@@ -121,8 +121,6 @@
       position: relative;
       overflow: hidden;
     }
-
-    /* ===== КАРТИНКА НА ВЕСЬ ЭКРАН ===== */
     .hero img {
       display: block;
       width: 100%;
@@ -133,7 +131,6 @@
       top: 0;
       left: 0;
     }
-
     .hero-overlay {
       position: absolute;
       top: 0;
@@ -143,7 +140,6 @@
       background: rgba(11, 11, 11, 0.45);
       z-index: 1;
     }
-
     .hero-content {
       position: relative;
       z-index: 2;
@@ -159,7 +155,6 @@
       gap: 30px;
     }
 
-    /* ===== ВОССТАНОВЛЕННЫЕ РАЗМЕРЫ ШРИФТОВ ===== */
     .hero-text h1 {
       font-family: 'Inter', sans-serif;
       font-size: clamp(6rem, 20vw, 14rem);
@@ -173,7 +168,6 @@
       text-shadow: 0 4px 40px rgba(0,0,0,0.3);
       margin-bottom: 8px;
     }
-
     .hero-text .subtitle {
       font-family: 'Montserrat', sans-serif;
       font-size: clamp(2.5rem, 6vw, 5rem);
@@ -184,14 +178,12 @@
       text-transform: uppercase;
     }
 
-    /* ===== ВИДЖЕТ ЯНДЕКС МУЗЫКИ (ОПУЩЕН НИЖЕ) ===== */
     .hero-player-wrapper {
       width: 100%;
       max-width: 560px;
       margin: 0 auto;
-      margin-top: 20px; /* ОПУСТИЛ НИЖЕ */
+      margin-top: 20px;
     }
-
     .hero-player {
       width: 100%;
       background: rgba(20, 20, 20, 0.6);
@@ -227,7 +219,7 @@
       .hero-text .subtitle { font-size: clamp(1.2rem, 4vw, 2.2rem); }
     }
 
-    /* ===== ОСТАЛЬНЫЕ СЕКЦИИ ===== */
+    /* ===== БЛОК МУЗЫКА БЕЗ АВТОРСКИХ ПРАВ ===== */
     .copyright-free-section {
       padding: 80px 0;
       background: #0d0d0d;
@@ -285,7 +277,7 @@
     .copyright-free-text .legal .text { font-size: 0.9rem; color: #999; line-height: 1.5; }
     .copyright-free-text .legal .text strong { color: #f0f0f0; font-weight: 600; }
 
-    /* ===== КАСТОМНЫЙ ПЛЕЕР (ИСПРАВЛЕННАЯ ССЫЛКА) ===== */
+    /* ===== КАСТОМНЫЙ ПЛЕЕР — ТРЕК ЗАГРУЖАЕТСЯ С GITHUB ЧЕРЕЗ CDN ===== */
     .copyright-free-player {
       width: 100%;
       display: flex;
@@ -341,7 +333,7 @@
       padding-top: 14px;
     }
 
-    /* ===== ИСПРАВЛЕННАЯ ССЫЛКА ДЛЯ КАСТОМНОГО ПЛЕЕРА ===== */
+    /* ===== ССЫЛКА НА ТРЕК ЧЕРЕЗ CDN (РАБОТАЕТ) ===== */
     .demo-player audio {
       width: 100%;
       display: block;
@@ -608,9 +600,9 @@
                 <div class="artist">BALM · Royalty Free</div>
               </div>
             </div>
-            <!-- ===== ИСПРАВЛЕННАЯ ССЫЛКА ДЛЯ КАСТОМНОГО ПЛЕЕРА ===== -->
+            <!-- ===== РАБОЧАЯ ССЫЛКА ЧЕРЕЗ CDN ===== -->
             <audio controls preload="metadata" crossorigin="anonymous">
-              <source src="https://raw.githubusercontent.com/albeweb/music/main/track10.mp3" type="audio/mpeg">
+              <source src="https://cdn.jsdelivr.net/gh/albeweb/music/track10.mp3" type="audio/mpeg">
               Ваш браузер не поддерживает аудио.
             </audio>
             <div class="demo-tag">
