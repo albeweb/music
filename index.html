@@ -473,7 +473,7 @@
     .release-title { font-weight: 600; font-size: 1.1rem; margin-bottom: 4px; }
     .release-year { color: #777; font-size: 0.8rem; letter-spacing: 0.3px; }
 
-    /* ===== БИО ===== */
+    /* ===== БИО С ФОТО ===== */
     .bio-section {
       padding: 80px 0;
       background: #0e0e0e;
@@ -484,27 +484,28 @@
       gap: 60px;
       align-items: center;
     }
-    @media (max-width: 1024px) { .bio-grid { gap: 40px; } }
-    @media (max-width: 768px) { .bio-grid { grid-template-columns: 1fr; gap: 30px; } }
+    @media (max-width: 1024px) {
+      .bio-grid { gap: 40px; }
+    }
+    @media (max-width: 768px) {
+      .bio-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+    }
 
     .bio-image {
-      background: linear-gradient(145deg, #1f1a26, #0f0b13);
       border-radius: 40px;
-      height: 380px;
+      overflow: hidden;
       border: 1px solid #262626;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 4rem;
-      color: #444;
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100"><circle cx="50" cy="50" r="40" fill="%23222222" /></svg>');
-      background-size: 60px;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-color: #16161a;
+      background: #16161a;
     }
-    @media (max-width: 1024px) { .bio-image { height: 300px; } }
-    @media (max-width: 768px) { .bio-image { height: 220px; border-radius: 28px; } }
+    .bio-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
 
     .bio-text h2 {
       font-size: 2.4rem;
@@ -519,7 +520,11 @@
       max-width: 500px;
       margin-bottom: 24px;
       font-weight: 300;
-      line-height: 1.6;
+      line-height: 1.7;
+    }
+    .bio-text p strong {
+      color: #f0f0f0;
+      font-weight: 600;
     }
     .bio-stats {
       display: flex;
@@ -657,15 +662,15 @@
         <a href="#">Все треки <i class="fas fa-arrow-right" style="margin-left: 6px;"></i></a>
       </div>
       <div class="release-grid">
-        <!-- Alterego -->
+        <!-- alterego -->
         <div class="release-card">
           <div class="release-cover">
             <img src="alterego.webp" alt="alterego">
           </div>
-          <div class="release-title">Альтерэго</div>
-          <div class="release-year">2026 · альбом</div>
+          <div class="release-title">Alter Ego</div>
+          <div class="release-year">2026 · сингл</div>
         </div>
-        <!-- My beautiful English (Rock ver.) -->
+        <!-- beautiful -->
         <div class="release-card">
           <div class="release-cover">
             <img src="beautiful.webp" alt="beautiful">
@@ -673,7 +678,7 @@
           <div class="release-title">Beautiful</div>
           <div class="release-year">2026 · сингл</div>
         </div>
-        <!-- Chance English (Rock ver.) -->
+        <!-- chance -->
         <div class="release-card">
           <div class="release-cover">
             <img src="chance.webp" alt="chance">
@@ -681,23 +686,23 @@
           <div class="release-title">Chance</div>
           <div class="release-year">2026 · сингл</div>
         </div>
-        <!-- Облака -->
+        <!-- cloud -->
         <div class="release-card">
           <div class="release-cover">
             <img src="cloud.webp" alt="cloud">
           </div>
-          <div class="release-title">Облака</div>
+          <div class="release-title">Cloud</div>
           <div class="release-year">2026 · сингл</div>
         </div>
-        <!-- Жги моё сердце -->
+        <!-- Heart -->
         <div class="release-card">
           <div class="release-cover">
             <img src="Heart.webp" alt="Heart">
           </div>
-          <div class="release-title">Жги моё сердце</div>
+          <div class="release-title">Heart</div>
           <div class="release-year">2026 · сингл</div>
         </div>
-        <!-- It's my life -->
+        <!-- its my life -->
         <div class="release-card">
           <div class="release-cover">
             <img src="its%20my%20life.webp" alt="its my life">
@@ -705,74 +710,77 @@
           <div class="release-title">It's My Life</div>
           <div class="release-year">2026 · сингл</div>
         </div>
-        <!-- А смысл жизни любовь -->
+        <!-- love -->
         <div class="release-card">
           <div class="release-cover">
             <img src="love.webp" alt="love">
           </div>
-          <div class="release-title">А смысл жизни любовь</div>
+          <div class="release-title">Love</div>
           <div class="release-year">2026 · сингл</div>
         </div>
-        <!-- К звездам -->
+        <!-- stars -->
         <div class="release-card">
           <div class="release-cover">
             <img src="stars.webp" alt="stars">
           </div>
-          <div class="release-title">К звездам</div>
-          <div class="release-year">2026 · трипл сингл</div>
+          <div class="release-title">Stars</div>
+          <div class="release-year">2026 · сингл</div>
         </div>
-        <!-- Ну почему? -->
+        <!-- what -->
         <div class="release-card">
           <div class="release-cover">
             <img src="what.webp" alt="what">
           </div>
-          <div class="release-title">Ну почему?</div>
+          <div class="release-title">What</div>
           <div class="release-year">2026 · сингл</div>
         </div>
-        <!-- Мой маленький мир -->
+        <!-- world -->
         <div class="release-card">
           <div class="release-cover">
             <img src="world.webp" alt="world">
           </div>
-          <div class="release-title">Мой маленький мир</div>
+          <div class="release-title">World</div>
           <div class="release-year">2026 · сингл</div>
         </div>
-        <!-- Моя Красивая -->
+        <!-- beautifulRU -->
         <div class="release-card">
           <div class="release-cover">
             <img src="beautifulRU.webp" alt="beautifulRU">
           </div>
-          <div class="release-title">Моя Красивая</div>
+          <div class="release-title">Beautiful (RU)</div>
           <div class="release-year">2026 · сингл</div>
         </div>
-        <!-- Шанс -->
+        <!-- chanceRU -->
         <div class="release-card">
           <div class="release-cover">
             <img src="chanceRU.webp" alt="chanceRU">
           </div>
-          <div class="release-title">Шанс</div>
+          <div class="release-title">Chance (RU)</div>
           <div class="release-year">2026 · сингл</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== БИО ===== -->
+  <!-- ===== БИО С ФОТО ===== -->
   <section class="bio-section" id="bio">
     <div class="container bio-grid">
       <div class="bio-image">
-        <span style="background: #1f1f1f; padding: 14px 28px; border-radius: 60px; color: #666;">BALM</span>
+        <img src="BALM.webp" alt="BALM">
       </div>
       <div class="bio-text">
         <h2>BALM</h2>
         <p>
-          Мультиинструменталист и продюсер, переопределяющий границы электронной музыки. 
-          Сочетает мрачные синтезаторные текстуры с живыми ритмами. 
-          Вдохновение черпает в городских пейзажах и ночных мегаполисах.
+          <strong>BALM (БИЭЛЭМ)</strong> — это музыкальный проект Беляева Алексея, музыканта, поэта и диджея из Санкт-Петербурга.
         </p>
         <p>
-          Дебютный альбом «Fragments» собрал более 10 миллионов стримов, 
-          а сингл «Echoes» стал гимном лета 2026.
+          Для меня музыка — не просто творчество, а жизненная необходимость. Это способ высказать то, что годами копится внутри, когда слов уже недостаточно. В эпоху одноразовых хитов я сознательно выбираю путь, где за каждой строкой стоит настоящая эмоция. Мои песни — это место, где сталкиваются боль и красота, где тишина говорит громче, чем крик. Это территория, в которой каждый слушатель может найти отражение собственных переживаний: от щемящей тоски до едва уловимой улыбки.
+        </p>
+        <p>
+          <strong>О проекте:</strong>
+        </p>
+        <p>
+          BALM — мой экспериментальный музыкальный мир. В нём я смешиваю тяжёлые гитарные рифы ню-метала с поп-мелодиями и электронной текстурой. Это звук, рождённый на стыке жанров — там, где эмоции встречаются с ритмом, а стихи обретают форму. Каждый трек — это не просто песня, а маленькая история, прожитая на сцене и в студии, в Петербурге и за его пределами. Я создаю музыку для тех, кто чувствует глубоко, кто ищет правду в звуке и не боится эмоциональной честности.
         </p>
         <div class="bio-stats">
           <div><span class="number">12M</span><span class="label">стримов</span></div>
