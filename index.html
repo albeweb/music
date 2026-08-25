@@ -234,7 +234,6 @@
       .hero-player iframe { height: 250px; }
     }
 
-    /* ===== КНОПКА "ПОДДЕРЖАТЬ" — ТОЧНАЯ КОПИЯ "КУПИТЬ" ===== */
     .donate-btn {
       display: inline-flex;
       align-items: center;
@@ -454,6 +453,123 @@
     }
     .btn i { font-size: 1.1rem; }
 
+    /* ===== МОДАЛЬНОЕ ОКНО ===== */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(8px);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.open {
+      display: flex;
+    }
+    .modal {
+      background: #141414;
+      border-radius: 28px;
+      max-width: 560px;
+      width: 100%;
+      padding: 40px 36px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.8);
+      position: relative;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      background: none;
+      border: none;
+      color: #666;
+      font-size: 1.4rem;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .modal-close:hover {
+      color: #fff;
+    }
+    .modal h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, #ffffff, #a0a0a0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .modal .sub {
+      font-size: 1rem;
+      color: #b0b0b0;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    .modal .price-list {
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 16px;
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .modal .price-list p {
+      display: flex;
+      justify-content: space-between;
+      color: #ccc;
+      font-size: 1rem;
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+    .modal .price-list p:last-child {
+      border-bottom: none;
+    }
+    .modal .price-list .sum {
+      color: #4ade80;
+      font-weight: 600;
+    }
+    .modal .comment {
+      font-size: 0.85rem;
+      color: #888;
+      margin-bottom: 24px;
+      padding: 12px 16px;
+      background: rgba(139, 92, 246, 0.06);
+      border-radius: 12px;
+      border: 1px solid rgba(139, 92, 246, 0.1);
+    }
+    .modal .btn-buy {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 16px 40px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #8b5cf6, #4ade80);
+      color: #0b0b0b;
+      box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3);
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
+    .modal .btn-buy:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(139, 92, 246, 0.4);
+    }
+    .modal .btn-buy i {
+      font-size: 1.1rem;
+    }
+
     /* ===== РЕЛИЗЫ ===== */
     .releases-section {
       padding: 80px 0;
@@ -565,7 +681,7 @@
     .release-title { font-weight: 600; font-size: 1.1rem; margin-bottom: 4px; }
     .release-year { color: #777; font-size: 0.8rem; letter-spacing: 0.3px; }
 
-    /* ===== БИО С ФОТО ===== */
+    /* ===== БИО ===== */
     .bio-section {
       padding: 80px 0;
       background: #0e0e0e;
@@ -712,10 +828,8 @@
     <img src="BALM%20-%20hero%20b.webp" alt="Balm hero">
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      
       <h1 class="hero-title">BALM</h1>
       <div class="hero-subtitle">БИЭЛЭМ</div>
-      
       <div class="hero-player-wrapper">
         <div class="hero-player">
           <iframe 
@@ -727,12 +841,9 @@
           ></iframe>
         </div>
       </div>
-      
-      <!-- ===== КНОПКА "ПОДДЕРЖАТЬ" — ТОЧНАЯ КОПИЯ "КУПИТЬ" ===== -->
       <a href="https://tips.tips/000481710" target="_blank" class="donate-btn">
         <i class="fas fa-heart"></i> Поддержать
       </a>
-      
     </div>
   </section>
 
@@ -780,9 +891,10 @@
           </div>
 
           <div class="btn-group">
-            <a href="https://t.me/albe_spb" target="_blank" class="btn btn-primary">
+            <!-- КНОПКА "КУПИТЬ" — ОТКРЫВАЕТ МОДАЛЬНОЕ ОКНО -->
+            <button class="btn btn-primary" onclick="openModal()">
               <i class="fas fa-shopping-cart"></i> Купить
-            </a>
+            </button>
             <a href="https://t.me/albe_spb" target="_blank" class="btn btn-outline">
               <i class="fab fa-telegram-plane"></i> Telegram
             </a>
@@ -792,6 +904,29 @@
       </div>
     </div>
   </section>
+
+  <!-- ===== МОДАЛЬНОЕ ОКНО ===== -->
+  <div class="modal-overlay" id="buyModal">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+      <h2>Приобрести музыку</h2>
+      <p class="sub">
+        Вы можете приобрести 2 часа студийной уникальной Chillout музыки, которую можете использовать в коммерческих целях, отчисления за авторское право не требуются. Музыку можно использовать в любой сфере бизнеса: от салонов красоты до торговых и развлекательных центров.
+      </p>
+      <div class="price-list">
+        <p><span>30 минут</span> <span class="sum">200 ₽</span></p>
+        <p><span>1 час</span> <span class="sum">400 ₽</span></p>
+        <p><span>2 часа</span> <span class="sum">500 ₽</span></p>
+      </div>
+      <div class="comment">
+        <i class="fas fa-info-circle" style="margin-right: 8px; color: #8b5cf6;"></i>
+        При оплате укажите в комментарии: <strong>Telegram, VK, Почту, или Макс</strong> — куда отправить ссылку на скачивание музыки в высоком качестве.
+      </div>
+      <a href="https://tips.tips/000481739" target="_blank" class="btn-buy">
+        <i class="fas fa-credit-card"></i> Оплатить
+      </a>
+    </div>
+  </div>
 
   <!-- ===== РЕЛИЗЫ ===== -->
   <section class="releases-section" id="releases">
@@ -803,7 +938,6 @@
         </a>
       </div>
       <div class="release-grid" id="releaseGrid">
-        <!-- alterego -->
         <div class="release-card">
           <div class="release-cover">
             <img src="alterego.webp" alt="alterego">
@@ -811,7 +945,6 @@
           <div class="release-title">Альтерэго (Rock)</div>
           <div class="release-year">2026 · Альбом</div>
         </div>
-        <!-- beautiful -->
         <div class="release-card">
           <div class="release-cover">
             <img src="beautiful.webp" alt="beautiful">
@@ -819,7 +952,6 @@
           <div class="release-title">Beautiful (Rock)</div>
           <div class="release-year">2026 · сингл</div>
         </div>
-        <!-- chance -->
         <div class="release-card">
           <div class="release-cover">
             <img src="chance.webp" alt="chance">
@@ -827,7 +959,6 @@
           <div class="release-title">Chance English ver. (Rock)</div>
           <div class="release-year">2026 · сингл</div>
         </div>
-        <!-- cloud -->
         <div class="release-card">
           <div class="release-cover">
             <img src="cloud.webp" alt="cloud">
@@ -835,7 +966,6 @@
           <div class="release-title">Облака (Rock)</div>
           <div class="release-year">2026 · сингл</div>
         </div>
-        <!-- Heart -->
         <div class="release-card">
           <div class="release-cover">
             <img src="Heart.webp" alt="Heart">
@@ -843,7 +973,6 @@
           <div class="release-title">Жги моё сердце (Pop)</div>
           <div class="release-year">2026 · сингл</div>
         </div>
-        <!-- its my life -->
         <div class="release-card">
           <div class="release-cover">
             <img src="its%20my%20life.webp" alt="its my life">
@@ -851,7 +980,6 @@
           <div class="release-title">It's My Life (Hip-hop)</div>
           <div class="release-year">2026 · сингл</div>
         </div>
-        <!-- love -->
         <div class="release-card">
           <div class="release-cover">
             <img src="love.webp" alt="love">
@@ -859,7 +987,6 @@
           <div class="release-title">Смысл жизни любовь (Pop)</div>
           <div class="release-year">2026 · сингл</div>
         </div>
-        <!-- stars -->
         <div class="release-card">
           <div class="release-cover">
             <img src="stars.webp" alt="stars">
@@ -867,7 +994,6 @@
           <div class="release-title">К звездам (Rock / Jazz / Piano)</div>
           <div class="release-year">2026 · трипл сингл</div>
         </div>
-        <!-- what -->
         <div class="release-card">
           <div class="release-cover">
             <img src="what.webp" alt="what">
@@ -875,7 +1001,6 @@
           <div class="release-title">Ну почему? (Breaks)</div>
           <div class="release-year">2026 · сингл</div>
         </div>
-        <!-- world -->
         <div class="release-card">
           <div class="release-cover">
             <img src="world.webp" alt="world">
@@ -883,7 +1008,6 @@
           <div class="release-title">Мой маленький мир (Pop)</div>
           <div class="release-year">2026 · сингл</div>
         </div>
-        <!-- beautifulRU -->
         <div class="release-card">
           <div class="release-cover">
             <img src="beautifulRU.webp" alt="beautifulRU">
@@ -891,7 +1015,6 @@
           <div class="release-title">Моя красивая (Pop)</div>
           <div class="release-year">2026 · сингл</div>
         </div>
-        <!-- chanceRU -->
         <div class="release-card">
           <div class="release-cover">
             <img src="chanceRU.webp" alt="chanceRU">
@@ -903,7 +1026,7 @@
     </div>
   </section>
 
-  <!-- ===== БИО С ФОТО ===== -->
+  <!-- ===== БИО ===== -->
   <section class="bio-section" id="bio">
     <div class="container bio-grid">
       <div class="bio-image">
@@ -951,8 +1074,27 @@
     </footer>
   </div>
 
-  <!-- ===== СКРИПТ ДЛЯ РАСКРЫТИЯ РЕЛИЗОВ ===== -->
+  <!-- ===== СКРИПТЫ ===== -->
   <script>
+    // ===== МОДАЛЬНОЕ ОКНО =====
+    function openModal() {
+      document.getElementById('buyModal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal() {
+      document.getElementById('buyModal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    // Закрытие по клику на оверлей
+    document.getElementById('buyModal').addEventListener('click', function(e) {
+      if (e.target === this) closeModal();
+    });
+    // Закрытие по ESC
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    // ===== РЕЛИЗЫ =====
     let allVisible = false;
     const grid = document.getElementById('releaseGrid');
     const btn = document.getElementById('showAllBtn');
