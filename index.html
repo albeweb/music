@@ -453,7 +453,7 @@
     }
     .btn i { font-size: 1.1rem; }
 
-    /* ===== МОДАЛЬНОЕ ОКНО (ПО КЛИКУ) ===== */
+    /* ===== МОДАЛЬНОЕ ОКНО ===== */
     .modal-overlay {
       display: none;
       position: fixed;
@@ -534,7 +534,6 @@
       color: #4ade80;
       font-weight: 600;
     }
-    /* ===== АКЦИЯ В МОДАЛЬНОМ ОКНЕ ===== */
     .modal .price-list .old-price {
       text-decoration: line-through;
       color: #888;
@@ -590,7 +589,7 @@
       font-size: 1.1rem;
     }
 
-    /* ===== ВСПЛЫВАЮЩИЙ БАННЕР (ПРАВЫЙ НИЖНИЙ УГОЛ) ===== */
+    /* ===== БАННЕР (НОВАЯ ВЕРСИЯ — ГАРАНТИРОВАННО ЗАКРЫВАЕТСЯ) ===== */
     .banner {
       position: fixed;
       bottom: 30px;
@@ -604,24 +603,12 @@
       padding: 24px 28px;
       border: 1px solid rgba(255, 255, 255, 0.06);
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
-      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
-      animation: slideUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
     }
-    .banner.hidden {
-      transform: translateY(calc(100% + 40px));
-      opacity: 0;
-      pointer-events: none;
+    /* Это состояние скрытости, которое добавляется через JS */
+    .banner.hidden-banner {
+      display: none !important;
     }
-    @keyframes slideUp {
-      from {
-        transform: translateY(calc(100% + 40px));
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
+
     .banner-close {
       position: absolute;
       top: 12px;
@@ -633,6 +620,7 @@
       cursor: pointer;
       transition: color 0.2s;
       padding: 4px;
+      z-index: 10;
     }
     .banner-close:hover {
       color: #fff;
@@ -667,6 +655,7 @@
       align-items: center;
       gap: 12px;
       margin-bottom: 16px;
+      flex-wrap: wrap;
     }
     .banner .banner-price .old {
       text-decoration: line-through;
@@ -714,6 +703,7 @@
     .banner .banner-btn i {
       font-size: 1rem;
     }
+
     @media (max-width: 480px) {
       .banner {
         bottom: 16px;
@@ -1061,7 +1051,7 @@
     </div>
   </section>
 
-  <!-- ===== МОДАЛЬНОЕ ОКНО (ПО КЛИКУ) ===== -->
+  <!-- ===== МОДАЛЬНОЕ ОКНО ===== -->
   <div class="modal-overlay" id="buyModal">
     <div class="modal">
       <button class="modal-close" onclick="closeModal()">&times;</button>
@@ -1093,7 +1083,7 @@
     </div>
   </div>
 
-  <!-- ===== ВСПЛЫВАЮЩИЙ БАННЕР (ПРАВЫЙ НИЖНИЙ УГОЛ) ===== -->
+  <!-- ===== БАННЕР (ГАРАНТИРОВАННО ЗАКРЫВАЕТСЯ) ===== -->
   <div class="banner" id="promoBanner">
     <button class="banner-close" onclick="closeBanner()">&times;</button>
     <div class="badge">🔥 Спецпредложение</div>
@@ -1275,15 +1265,11 @@
       if (e.key === 'Escape') closeModal();
     });
 
-    // ===== БАННЕР =====
+    // ===== БАННЕР (ГАРАНТИРОВАННО ЗАКРЫВАЕТСЯ) =====
     function closeBanner() {
-      document.getElementById('promoBanner').classList.add('hidden');
-      // Сохраняем в localStorage, чтобы не показывать повторно
-      localStorage.setItem('bannerClosed', 'true');
-    }
-    // Проверяем, закрывал ли пользователь баннер ранее
-    if (localStorage.getItem('bannerClosed') === 'true') {
-      document.getElementById('promoBanner').classList.add('hidden');
+      var banner = document.getElementById('promoBanner');
+      // Добавляем класс, который скрывает баннер через display: none
+      banner.classList.add('hidden-banner');
     }
 
     // ===== РЕЛИЗЫ =====
