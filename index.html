@@ -619,7 +619,7 @@
     .bio-stats .number { font-size: 1.8rem; font-weight: 700; color: white; }
     .bio-stats .label { font-size: 0.75rem; color: #777; letter-spacing: 0.5px; text-transform: uppercase; }
 
-    /* ===== ФУТЕР С УВЕЛИЧЕННЫМ ЛОГОТИПОМ ===== */
+    /* ===== ФУТЕР С ЛОГОТИПОМ ===== */
     .footer {
       padding: 40px 0;
       border-top: 1px solid #1a1a1a;
@@ -641,26 +641,28 @@
 
     .footer-left {
       display: flex;
-      align-items: center;
+      align-items: flex-end;  /* Выравнивание по нижнему краю */
       gap: 8px;
     }
     .footer-left span {
       color: #5a5a5a;
+      line-height: 1;
+      padding-bottom: 2px;  /* Небольшой отступ, чтобы ровнялось с низом лого */
     }
     .footer-left .albe-link {
       display: inline-flex;
-      align-items: center;
-      gap: 6px;
+      align-items: flex-end;  /* Логотип прижат к низу */
       text-decoration: none;
       color: #888;
       transition: color 0.2s;
       font-weight: 500;
+      line-height: 0;  /* Убираем лишние отступы */
     }
     .footer-left .albe-link:hover {
       color: #fff;
     }
     .footer-left .albe-link img {
-      height: 40px;  /* УВЕЛИЧЕНО В 2 РАЗА (было 20px) */
+      height: 40px;
       width: auto;
       display: block;
       transition: opacity 0.2s;
