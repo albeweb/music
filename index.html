@@ -556,12 +556,53 @@
     .modal .comment {
       font-size: 0.85rem;
       color: #888;
-      margin-bottom: 24px;
+      margin-bottom: 16px;
       padding: 12px 16px;
       background: rgba(139, 92, 246, 0.06);
       border-radius: 12px;
       border: 1px solid rgba(139, 92, 246, 0.1);
     }
+
+    /* ===== ГАЛОЧКА (ИСПРАВЛЕННАЯ) ===== */
+    .modal .agree {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      cursor: pointer;
+      padding: 8px 12px;
+      border-radius: 12px;
+      transition: background 0.2s;
+    }
+    .modal .agree:hover {
+      background: rgba(255, 255, 255, 0.03);
+    }
+    .modal .agree input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      accent-color: #8b5cf6;
+      cursor: pointer;
+      flex-shrink: 0;
+      margin: 0;
+    }
+    .modal .agree label {
+      font-size: 0.85rem;
+      color: #b0b0b0;
+      cursor: pointer;
+      line-height: 1.4;
+      flex: 1;
+    }
+    .modal .agree label a {
+      color: #8b5cf6;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(139, 92, 246, 0.3);
+      transition: border-color 0.2s;
+    }
+    .modal .agree label a:hover {
+      border-color: #8b5cf6;
+    }
+
+    /* ===== КНОПКА ОПЛАТЫ ===== */
     .modal .btn-buy {
       display: inline-flex;
       align-items: center;
@@ -580,8 +621,15 @@
       border: none;
       cursor: pointer;
       width: 100%;
+      opacity: 0.4;
+      pointer-events: none;
+      transition: all 0.3s ease;
     }
-    .modal .btn-buy:hover {
+    .modal .btn-buy.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .modal .btn-buy.active:hover {
       transform: translateY(-2px);
       box-shadow: 0 8px 30px rgba(139, 92, 246, 0.4);
     }
@@ -589,7 +637,7 @@
       font-size: 1.1rem;
     }
 
-    /* ===== БАННЕР (НОВАЯ ВЕРСИЯ — ГАРАНТИРОВАННО ЗАКРЫВАЕТСЯ) ===== */
+    /* ===== БАННЕР ===== */
     .banner {
       position: fixed;
       bottom: 30px;
@@ -604,11 +652,9 @@
       border: 1px solid rgba(255, 255, 255, 0.06);
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
     }
-    /* Это состояние скрытости, которое добавляется через JS */
     .banner.hidden-banner {
       display: none !important;
     }
-
     .banner-close {
       position: absolute;
       top: 12px;
@@ -1077,13 +1123,23 @@
         <i class="fas fa-info-circle" style="margin-right: 8px; color: #8b5cf6;"></i>
         При оплате укажите в комментарии: <strong>Telegram, VK, почту</strong> — куда отправить ссылку на скачивание музыки.
       </div>
-      <a href="https://tips.tips/000481739" target="_blank" class="btn-buy">
+
+      <!-- ===== ГАЛОЧКА (ИСПРАВЛЕННАЯ) ===== -->
+      <div class="agree">
+        <input type="checkbox" id="agreeCheck" onchange="checkAgree()">
+        <label for="agreeCheck">
+          Я ознакомлен(а) и согласен(на) с <a href="#" onclick="event.preventDefault();">условиями приобретения</a> и обработкой данных
+        </label>
+      </div>
+
+      <!-- ===== КНОПКА ОПЛАТЫ ===== -->
+      <a href="https://tips.tips/000481739" target="_blank" class="btn-buy" id="payBtn">
         <i class="fas fa-credit-card"></i> Оплатить
       </a>
     </div>
   </div>
 
-  <!-- ===== БАННЕР (ГАРАНТИРОВАННО ЗАКРЫВАЕТСЯ) ===== -->
+  <!-- ===== БАННЕР ===== -->
   <div class="banner" id="promoBanner">
     <button class="banner-close" onclick="closeBanner()">&times;</button>
     <div class="badge">🔥 Спецпредложение</div>
@@ -1253,6 +1309,9 @@
     function openModal() {
       document.getElementById('buyModal').classList.add('open');
       document.body.style.overflow = 'hidden';
+      // Сбрасываем галочку при открытии
+      document.getElementById('agreeCheck').checked = false;
+      document.getElementById('payBtn').classList.remove('active');
     }
     function closeModal() {
       document.getElementById('buyModal').classList.remove('open');
@@ -1265,11 +1324,20 @@
       if (e.key === 'Escape') closeModal();
     });
 
-    // ===== БАННЕР (ГАРАНТИРОВАННО ЗАКРЫВАЕТСЯ) =====
+    // ===== ГАЛОЧКА (ИСПРАВЛЕННАЯ) =====
+    function checkAgree() {
+      const checkbox = document.getElementById('agreeCheck');
+      const btn = document.getElementById('payBtn');
+      if (checkbox.checked) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    }
+
+    // ===== БАННЕР =====
     function closeBanner() {
-      var banner = document.getElementById('promoBanner');
-      // Добавляем класс, который скрывает баннер через display: none
-      banner.classList.add('hidden-banner');
+      document.getElementById('promoBanner').classList.add('hidden-banner');
     }
 
     // ===== РЕЛИЗЫ =====
