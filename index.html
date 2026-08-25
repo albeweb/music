@@ -619,17 +619,56 @@
     .bio-stats .number { font-size: 1.8rem; font-weight: 700; color: white; }
     .bio-stats .label { font-size: 0.75rem; color: #777; letter-spacing: 0.5px; text-transform: uppercase; }
 
+    /* ===== ФУТЕР С ЛОГОТИПОМ ===== */
     .footer {
       padding: 40px 0;
       border-top: 1px solid #1a1a1a;
       display: flex;
       justify-content: space-between;
+      align-items: center;
       flex-wrap: wrap;
       gap: 20px;
       color: #5a5a5a;
       font-size: 0.9rem;
     }
-    @media (max-width: 480px) { .footer { flex-direction: column; align-items: center; text-align: center; } }
+    @media (max-width: 480px) {
+      .footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+    }
+
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .footer-left span {
+      color: #5a5a5a;
+    }
+    .footer-left .albe-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      color: #888;
+      transition: color 0.2s;
+      font-weight: 500;
+    }
+    .footer-left .albe-link:hover {
+      color: #fff;
+    }
+    .footer-left .albe-link img {
+      height: 20px;
+      width: auto;
+      display: block;
+      transition: opacity 0.2s;
+    }
+    .footer-left .albe-link:hover img {
+      opacity: 0.8;
+    }
+
     .social-icons {
       display: flex;
       gap: 20px;
@@ -883,7 +922,12 @@
   <!-- ===== ФУТЕР ===== -->
   <div class="container">
     <footer class="footer">
-      <span>© 2026 BALM · все права защищены</span>
+      <div class="footer-left">
+        <span>Разработано в</span>
+        <a href="https://t.me/albe_web" target="_blank" class="albe-link">
+          <img src="Albe.webp" alt="Albe">
+        </a>
+      </div>
       <div class="social-icons">
         <a href="#"><i class="fab fa-instagram"></i></a>
         <a href="#"><i class="fab fa-spotify"></i></a>
@@ -901,7 +945,6 @@
     const btn = document.getElementById('showAllBtn');
     const cards = grid.querySelectorAll('.release-card');
 
-    // Скрываем все карточки, кроме первых трёх
     function updateVisibility(showAll) {
       cards.forEach((card, index) => {
         if (showAll) {
@@ -916,19 +959,15 @@
       });
     }
 
-    // Переключатель
     function toggleReleases() {
       allVisible = !allVisible;
       updateVisibility(allVisible);
       btn.innerHTML = allVisible 
         ? 'Скрыть релизы <i class="fas fa-chevron-up"></i>' 
         : 'Все релизы <i class="fas fa-chevron-down"></i>';
-      
-      // Добавляем/убираем класс для анимации стрелки
       btn.classList.toggle('rotated');
     }
 
-    // Инициализация: показываем только первые 3
     updateVisibility(false);
   </script>
 
