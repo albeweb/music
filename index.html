@@ -277,7 +277,7 @@
     .copyright-free-text .legal .text { font-size: 0.9rem; color: #999; line-height: 1.5; }
     .copyright-free-text .legal .text strong { color: #f0f0f0; font-weight: 600; }
 
-    /* ===== КАСТОМНЫЙ ПЛЕЕР С SOUNDCLOUD ===== */
+    /* ===== КАСТОМНЫЙ ПЛЕЕР С HEARTHIS.AT ===== */
     .copyright-free-player {
       width: 100%;
       display: flex;
@@ -333,10 +333,10 @@
       padding-top: 14px;
     }
 
-    /* ===== ПЛЕЕР SOUNDCLOUD (РАБОТАЕТ) ===== */
+    /* ===== ПЛЕЕР HEARTHIS.AT (РАБОТАЕТ) ===== */
     .demo-player iframe {
       width: 100%;
-      height: 120px;
+      height: 150px;
       border: none;
       border-radius: 12px;
       background: transparent;
@@ -344,7 +344,7 @@
     }
     @media (max-width: 480px) {
       .demo-player { padding: 16px 18px; }
-      .demo-player iframe { height: 100px; }
+      .demo-player iframe { height: 130px; }
     }
 
     .btn-group {
@@ -604,14 +604,15 @@
                 <div class="artist">BALM · Royalty Free</div>
               </div>
             </div>
-            <!-- ===== ПЛЕЕР SOUNDCLOUD (РАБОТАЕТ) ===== -->
+            <!-- ===== ПЛЕЕР HEARTHIS.AT (РАБОТАЕТ БЕЗ VPN) ===== -->
             <iframe 
-              width="100%" 
-              height="120" 
               scrolling="no" 
-              frameborder="no" 
-              allow="autoplay" 
-              src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/balm-bielem/track-10&color=%238b5cf6&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=false&buying=false&liking=false&download=false&sharing=false"
+              style="border-radius: 10px; width: 100%; height: 150px; border: none; display: block; background: transparent;" 
+              id="hearthis_at_track_14645614" 
+              src="https://app.hearthis.at/embed/14645614/transparent_black/?hcolor=&color=&style=2&block_size=2&block_space=1&background=1&waveform=0&cover=0&autoplay=0&css=" 
+              frameborder="0" 
+              allowtransparency 
+              allow="autoplay"
             ></iframe>
             <div class="demo-tag">
               <i class="fas fa-headphones" style="margin-right: 6px;"></i> 
