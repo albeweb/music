@@ -11,7 +11,7 @@
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://albeweb.github.io/music/">
   
-  <!-- ===== OPEN GRAPH (для соцсетей) ===== -->
+  <!-- ===== OPEN GRAPH ===== -->
   <meta property="og:title" content="BALM (БИЭЛЭМ) · Официальный сайт · Chillout музыка без авторских прав">
   <meta property="og:description" content="Уникальная Chillout музыка для бизнеса. Без отчислений РАО и ВОИС. Скачать бесплатно демо и купить лицензию.">
   <meta property="og:url" content="https://albeweb.github.io/music/">
@@ -33,7 +33,7 @@
   <meta name="theme-color" content="#0b0b0b">
   <meta name="mobile-web-app-capable" content="yes">
   
-  <!-- ===== СТРУКТУРИРОВАННЫЕ ДАННЫЕ (JSON-LD) ===== -->
+  <!-- ===== СТРУКТУРИРОВАННЫЕ ДАННЫЕ ===== -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -55,7 +55,6 @@
   }
   </script>
   
-  <!-- ===== ДОПОЛНИТЕЛЬНЫЙ JSON-LD ДЛЯ ТОВАРА ===== -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -82,18 +81,18 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   
   <style>
     /* ===== БАЗОВЫЕ СТИЛИ ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     ::-webkit-scrollbar { width: 4px; height: 4px; }
     ::-webkit-scrollbar-track { background: #0b0b0b; }
     ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #8b5cf6, #4ade80); border-radius: 4px; }
     ::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #a78bfa, #6ee7b7); }
     * { scrollbar-width: thin; scrollbar-color: #8b5cf6 #0b0b0b; }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Inter', sans-serif;
       background-color: #0b0b0b;
@@ -142,19 +141,8 @@
       height: 72px;
       transition: all 0.3s ease;
     }
-    .navbar.scrolled {
-      background: rgba(11, 11, 11, 0.96);
-      border-bottom-color: rgba(255, 255, 255, 0.08);
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-    }
     @media (max-width: 1024px) { .navbar { padding: 0 40px; } }
-    @media (max-width: 768px) { 
-      .navbar { 
-        padding: 0 24px; 
-        height: 60px; 
-        flex-wrap: nowrap;
-      }
-    }
+    @media (max-width: 768px) { .navbar { padding: 0 24px; height: 60px; } }
     @media (max-width: 480px) { .navbar { padding: 0 18px; } }
 
     .logo {
@@ -163,14 +151,13 @@
       font-weight: 700;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: #ffffff;
       text-decoration: none;
-      transition: opacity 0.3s ease;
       white-space: nowrap;
       background: linear-gradient(135deg, #ffffff 0%, #a0a0a0 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      transition: opacity 0.3s ease;
     }
     .logo:hover { opacity: 0.8; }
     @media (max-width: 480px) { .logo { font-size: 1.2rem; letter-spacing: 0.12em; } }
@@ -183,13 +170,8 @@
       font-size: 0.85rem;
       letter-spacing: 0.05em;
       text-transform: uppercase;
-      flex-wrap: wrap;
     }
-    @media (max-width: 768px) {
-      .nav-links {
-        display: none;
-      }
-    }
+    @media (max-width: 768px) { .nav-links { display: none; } }
 
     .nav-links a {
       color: rgba(255, 255, 255, 0.65);
@@ -230,20 +212,10 @@
       transition: all 0.3s ease;
       transform-origin: center;
     }
-    .hamburger.active span:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
-    }
-    .hamburger.active span:nth-child(2) {
-      opacity: 0;
-    }
-    .hamburger.active span:nth-child(3) {
-      transform: rotate(-45deg) translate(5px, -5px);
-    }
-    @media (max-width: 768px) {
-      .hamburger {
-        display: flex;
-      }
-    }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    @media (max-width: 768px) { .hamburger { display: flex; } }
 
     .mobile-menu {
       display: none;
@@ -260,18 +232,10 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.06);
       animation: slideDown 0.3s ease;
     }
-    .mobile-menu.open {
-      display: flex;
-    }
+    .mobile-menu.open { display: flex; }
     @keyframes slideDown {
-      from {
-        opacity: 0;
-        transform: translateY(-10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
     .mobile-menu a {
       color: rgba(255, 255, 255, 0.8);
@@ -284,12 +248,8 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.04);
       transition: color 0.2s;
     }
-    .mobile-menu a:hover {
-      color: #fff;
-    }
-    .mobile-menu a:last-child {
-      border-bottom: none;
-    }
+    .mobile-menu a:hover { color: #fff; }
+    .mobile-menu a:last-child { border-bottom: none; }
 
     .navbar-support-btn {
       display: inline-flex;
@@ -315,22 +275,14 @@
       transform: translateY(-2px);
       box-shadow: 0 6px 24px rgba(139, 92, 246, 0.35);
     }
-    .navbar-support-btn i {
-      font-size: 0.9rem;
-    }
     @media (max-width: 768px) {
-      .navbar-support-btn {
-        padding: 6px 14px;
-        font-size: 0.75rem;
-        gap: 6px;
-      }
+      .navbar-support-btn { padding: 6px 14px; font-size: 0.75rem; gap: 6px; }
     }
 
-    /* ===== HERO БАННЕР ===== */
+    /* ===== HERO ===== */
     .hero {
       width: 100%;
       height: 100vh;
-      margin-top: 0;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -343,10 +295,10 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      z-index: 0;
       position: absolute;
       top: 0;
       left: 0;
+      z-index: 0;
     }
     .hero-overlay {
       position: absolute;
@@ -357,7 +309,6 @@
       background: rgba(11, 11, 11, 0.45);
       z-index: 1;
     }
-
     .hero-content {
       position: relative;
       z-index: 2;
@@ -372,7 +323,6 @@
       min-height: 80vh;
       padding-top: 100px;
     }
-
     .hero-title {
       font-family: 'Inter', sans-serif;
       font-size: clamp(6rem, 20vw, 14rem);
@@ -385,11 +335,8 @@
       background-clip: text;
       text-shadow: 0 4px 40px rgba(0,0,0,0.3);
       text-align: center;
-      margin: 0 auto;
-      padding: 0;
       width: 100%;
     }
-
     .hero-subtitle {
       font-family: 'Montserrat', sans-serif;
       font-size: clamp(2.5rem, 6vw, 5rem);
@@ -400,15 +347,12 @@
       text-transform: uppercase;
       text-align: center;
       margin: 4px auto 20px auto;
-      padding: 0;
       width: 100%;
     }
-
     .hero-player-wrapper {
       width: 100%;
       max-width: 560px;
       margin: 0 auto 15px auto;
-      padding: 0;
     }
     .hero-player {
       width: 100%;
@@ -424,7 +368,6 @@
       border-color: rgba(255, 255, 255, 0.15);
       box-shadow: 0 24px 60px rgba(0,0,0,0.8);
     }
-    
     .hero-player iframe {
       width: 100%;
       height: 400px;
@@ -433,15 +376,9 @@
       background: transparent;
       display: block;
     }
-    @media (max-width: 1024px) {
-      .hero-player iframe { height: 220px; }
-    }
-    @media (max-width: 768px) {
-      .hero-player iframe { height: 220px; }
-    }
-    @media (max-width: 480px) {
-      .hero-player iframe { height: 250px; }
-    }
+    @media (max-width: 1024px) { .hero-player iframe { height: 220px; } }
+    @media (max-width: 768px) { .hero-player iframe { height: 220px; } }
+    @media (max-width: 480px) { .hero-player iframe { height: 250px; } }
 
     .donate-btn {
       display: inline-flex;
@@ -470,8 +407,76 @@
       transform: translateY(-3px);
       box-shadow: 0 8px 30px rgba(139, 92, 246, 0.4);
     }
-    .donate-btn i {
-      font-size: 1.1rem;
+
+    /* ===== КНОПКИ (общие) ===== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 32px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      flex: 1;
+      min-width: 140px;
+    }
+    @media (max-width: 480px) { .btn { flex: 1 1 100%; } }
+    .btn-primary {
+      background: linear-gradient(135deg, #8b5cf6, #4ade80);
+      color: #0b0b0b;
+      box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3);
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(139, 92, 246, 0.4);
+    }
+    .btn-outline {
+      background: transparent;
+      color: #f0f0f0;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: #8b5cf6;
+      transform: translateY(-3px);
+    }
+    .btn-group {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+    @media (max-width: 768px) { .btn-group { justify-content: center; } }
+
+    .free-download-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 32px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #8b5cf6, #4ade80);
+      color: #0b0b0b;
+      box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3);
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 4px;
+    }
+    .free-download-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(139, 92, 246, 0.4);
     }
 
     /* ===== БЛОК МУЗЫКА БЕЗ АВТОРСКИХ ПРАВ ===== */
@@ -486,9 +491,7 @@
       gap: 60px;
       align-items: center;
     }
-    @media (max-width: 1024px) {
-      .copyright-free-grid { gap: 40px; }
-    }
+    @media (max-width: 1024px) { .copyright-free-grid { gap: 40px; } }
     @media (max-width: 768px) {
       .copyright-free-grid {
         grid-template-columns: 1fr;
@@ -497,12 +500,8 @@
       }
     }
 
-    .copyright-free-text {
-      text-align: left;
-    }
-    @media (max-width: 768px) {
-      .copyright-free-text { text-align: center; }
-    }
+    .copyright-free-text { text-align: left; }
+    @media (max-width: 768px) { .copyright-free-text { text-align: center; } }
     .copyright-free-text .badge {
       display: inline-block;
       background: rgba(139, 92, 246, 0.15);
@@ -588,10 +587,7 @@
       border: 1px solid #333;
       flex-shrink: 0;
     }
-    .demo-player .track-meta {
-      flex: 1;
-      text-align: left;
-    }
+    .demo-player .track-meta { flex: 1; text-align: left; }
     .demo-player .track-meta .name { font-weight: 600; font-size: 1rem; color: #fff; }
     .demo-player .track-meta .artist { font-size: 0.8rem; color: #999; }
     .demo-player iframe {
@@ -615,81 +611,7 @@
       .demo-player iframe { height: 100px; }
     }
 
-    .free-download-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 14px 32px;
-      border-radius: 60px;
-      font-weight: 600;
-      font-size: 0.95rem;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(135deg, #8b5cf6, #4ade80);
-      color: #0b0b0b;
-      box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3);
-      border: none;
-      cursor: pointer;
-      width: 100%;
-      margin-top: 4px;
-    }
-    .free-download-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 30px rgba(139, 92, 246, 0.4);
-    }
-    .free-download-btn i {
-      font-size: 1.1rem;
-    }
-
-    .btn-group {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      justify-content: flex-start;
-    }
-    @media (max-width: 768px) { .btn-group { justify-content: center; } }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 14px 32px;
-      border-radius: 60px;
-      font-weight: 600;
-      font-size: 0.95rem;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      border: none;
-      cursor: pointer;
-      font-family: 'Inter', sans-serif;
-      flex: 1;
-      min-width: 140px;
-    }
-    @media (max-width: 480px) { .btn { flex: 1 1 100%; } }
-    .btn-primary {
-      background: linear-gradient(135deg, #8b5cf6, #4ade80);
-      color: #0b0b0b;
-      box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3);
-    }
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 30px rgba(139, 92, 246, 0.4);
-    }
-    .btn-outline {
-      background: transparent;
-      color: #f0f0f0;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-    }
-    .btn-outline:hover {
-      background: rgba(255, 255, 255, 0.05);
-      border-color: #8b5cf6;
-      transform: translateY(-3px);
-    }
-    .btn i { font-size: 1.1rem; }
-
-    /* ===== МОДАЛЬНОЕ ОКНО ОПЛАТЫ ===== */
+    /* ===== МОДАЛЬНЫЕ ОКНА ===== */
     .modal-overlay {
       display: none;
       position: fixed;
@@ -704,9 +626,7 @@
       justify-content: center;
       padding: 20px;
     }
-    .modal-overlay.open {
-      display: flex;
-    }
+    .modal-overlay.open { display: flex; }
     .modal {
       background: #141414;
       border-radius: 28px;
@@ -730,9 +650,7 @@
       cursor: pointer;
       transition: color 0.2s;
     }
-    .modal-close:hover {
-      color: #fff;
-    }
+    .modal-close:hover { color: #fff; }
     .modal h2 {
       font-size: 1.8rem;
       font-weight: 700;
@@ -763,23 +681,15 @@
       padding: 6px 0;
       border-bottom: 1px solid rgba(255, 255, 255, 0.04);
     }
-    .modal .price-list p:last-child {
-      border-bottom: none;
-    }
-    .modal .price-list .sum {
-      color: #4ade80;
-      font-weight: 600;
-    }
+    .modal .price-list p:last-child { border-bottom: none; }
+    .modal .price-list .sum { color: #4ade80; font-weight: 600; }
     .modal .price-list .old-price {
       text-decoration: line-through;
       color: #888;
       font-weight: 400;
       margin-right: 8px;
     }
-    .modal .price-list .new-price {
-      color: #4ade80;
-      font-weight: 700;
-    }
+    .modal .price-list .new-price { color: #4ade80; font-weight: 700; }
     .modal .price-list .sale-badge {
       background: rgba(239, 68, 68, 0.15);
       color: #ef4444;
@@ -808,9 +718,7 @@
       border-radius: 12px;
       transition: background 0.2s;
     }
-    .modal .agree:hover {
-      background: rgba(255, 255, 255, 0.03);
-    }
+    .modal .agree:hover { background: rgba(255, 255, 255, 0.03); }
     .modal .agree input[type="checkbox"] {
       width: 20px;
       height: 20px;
@@ -833,9 +741,7 @@
       transition: border-color 0.2s;
       cursor: pointer;
     }
-    .modal .agree label a:hover {
-      border-color: #8b5cf6;
-    }
+    .modal .agree label a:hover { border-color: #8b5cf6; }
     .modal .btn-buy {
       display: inline-flex;
       align-items: center;
@@ -856,7 +762,6 @@
       width: 100%;
       opacity: 0.4;
       pointer-events: none;
-      transition: all 0.3s ease;
     }
     .modal .btn-buy.active {
       opacity: 1;
@@ -866,11 +771,7 @@
       transform: translateY(-2px);
       box-shadow: 0 8px 30px rgba(139, 92, 246, 0.4);
     }
-    .modal .btn-buy i {
-      font-size: 1.1rem;
-    }
 
-    /* ===== ФИКС ДЛЯ МОДАЛЬНОГО ОКНА НА МОБИЛЬНЫХ ===== */
     @media (max-width: 480px) {
       .modal .price-list p {
         flex-wrap: wrap;
@@ -894,7 +795,7 @@
       }
     }
 
-    /* ===== МОДАЛЬНОЕ ОКНО С СОГЛАШЕНИЕМ ===== */
+    /* ===== МОДАЛЬНОЕ ОКНО СОГЛАШЕНИЯ ===== */
     .agreement-modal-overlay {
       display: none;
       position: fixed;
@@ -909,9 +810,7 @@
       justify-content: center;
       padding: 20px;
     }
-    .agreement-modal-overlay.open {
-      display: flex;
-    }
+    .agreement-modal-overlay.open { display: flex; }
     .agreement-modal {
       background: #141414;
       border-radius: 28px;
@@ -924,16 +823,9 @@
       box-shadow: 0 40px 80px rgba(0, 0, 0, 0.8);
       position: relative;
     }
-    .agreement-modal::-webkit-scrollbar {
-      width: 4px;
-    }
-    .agreement-modal::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    .agreement-modal::-webkit-scrollbar-thumb {
-      background: #8b5cf6;
-      border-radius: 4px;
-    }
+    .agreement-modal::-webkit-scrollbar { width: 4px; }
+    .agreement-modal::-webkit-scrollbar-track { background: transparent; }
+    .agreement-modal::-webkit-scrollbar-thumb { background: #8b5cf6; border-radius: 4px; }
     .agreement-modal-close {
       position: absolute;
       top: 16px;
@@ -946,9 +838,7 @@
       transition: color 0.2s;
       z-index: 10;
     }
-    .agreement-modal-close:hover {
-      color: #fff;
-    }
+    .agreement-modal-close:hover { color: #fff; }
     .agreement-modal h1 {
       font-size: 1.8rem;
       font-weight: 700;
@@ -965,16 +855,14 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
       padding-bottom: 16px;
     }
-    .agreement-modal .section {
-      margin-bottom: 24px;
-    }
+    .agreement-modal .section { margin-bottom: 24px; }
     .agreement-modal .section h2 {
       font-size: 1.1rem;
       font-weight: 600;
       color: #f0f0f0;
       margin-bottom: 8px;
     }
-    .agreement-modal .section p, 
+    .agreement-modal .section p,
     .agreement-modal .section li {
       font-size: 0.95rem;
       color: #b0b0b0;
@@ -995,14 +883,8 @@
       left: 4px;
       color: #8b5cf6;
     }
-    .agreement-modal .section .check {
-      color: #4ade80;
-      margin-right: 8px;
-    }
-    .agreement-modal .section .cross {
-      color: #ef4444;
-      margin-right: 8px;
-    }
+    .agreement-modal .section .check { color: #4ade80; margin-right: 8px; }
+    .agreement-modal .section .cross { color: #ef4444; margin-right: 8px; }
     .agreement-modal .table-wrap {
       background: rgba(255, 255, 255, 0.03);
       border-radius: 12px;
@@ -1029,13 +911,8 @@
       text-transform: uppercase;
       letter-spacing: 0.05em;
     }
-    .agreement-modal .table-wrap td {
-      color: #ccc;
-    }
-    .agreement-modal .table-wrap .highlight {
-      color: #4ade80;
-      font-weight: 600;
-    }
+    .agreement-modal .table-wrap td { color: #ccc; }
+    .agreement-modal .table-wrap .highlight { color: #4ade80; font-weight: 600; }
     .agreement-modal .agreement-footer {
       margin-top: 24px;
       padding-top: 16px;
@@ -1043,6 +920,10 @@
       font-size: 0.8rem;
       color: #666;
       text-align: center;
+    }
+    @media (max-width: 768px) {
+      .agreement-modal { padding: 28px 20px; }
+      .agreement-modal h1 { font-size: 1.4rem; }
     }
 
     /* ===== РЕКЛАМНЫЙ БАННЕР ===== */
@@ -1069,9 +950,7 @@
       transform: translateY(0);
       pointer-events: all;
     }
-    .banner.hidden-banner {
-      display: none !important;
-    }
+    .banner.hidden-banner { display: none !important; }
     .banner-close {
       position: absolute;
       top: 12px;
@@ -1085,9 +964,7 @@
       padding: 4px;
       z-index: 10;
     }
-    .banner-close:hover {
-      color: #fff;
-    }
+    .banner-close:hover { color: #fff; }
     .banner h3 {
       font-size: 1.2rem;
       font-weight: 700;
@@ -1123,10 +1000,6 @@
       transform: translateY(-2px);
       box-shadow: 0 8px 24px rgba(139, 92, 246, 0.4);
     }
-    .banner .banner-btn i {
-      font-size: 1rem;
-    }
-
     @media (max-width: 768px) {
       .banner {
         bottom: auto;
@@ -1138,8 +1011,6 @@
         padding: 20px;
       }
       .banner h3 { font-size: 1rem; }
-      .agreement-modal { padding: 28px 20px; }
-      .agreement-modal h1 { font-size: 1.4rem; }
     }
 
     /* ===== РЕЛИЗЫ ===== */
@@ -1177,24 +1048,16 @@
       color: #fff;
       border-bottom-color: #8b5cf6;
     }
-    .section-header a i {
-      transition: transform 0.3s ease;
-    }
-    .section-header a.rotated i {
-      transform: rotate(180deg);
-    }
+    .section-header a i { transition: transform 0.3s ease; }
+    .section-header a.rotated i { transform: rotate(180deg); }
 
     .release-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 30px;
     }
-    @media (max-width: 768px) {
-      .release-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
-    }
-    @media (max-width: 480px) {
-      .release-grid { grid-template-columns: 1fr; gap: 16px; }
-    }
+    @media (max-width: 768px) { .release-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; } }
+    @media (max-width: 480px) { .release-grid { grid-template-columns: 1fr; gap: 16px; } }
 
     .release-card {
       background: #121212;
@@ -1219,18 +1082,10 @@
     .release-card:nth-child(10) { animation-delay: 0.50s; }
     .release-card:nth-child(11) { animation-delay: 0.55s; }
     .release-card:nth-child(12) { animation-delay: 0.60s; }
-
-    .release-card.hidden {
-      display: none;
-    }
-
+    .release-card.hidden { display: none; }
     @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      to { opacity: 1; transform: translateY(0); }
     }
-
     .release-card:hover {
       background: #1a1a1a;
       transform: translateY(-6px);
@@ -1264,15 +1119,8 @@
       gap: 60px;
       align-items: center;
     }
-    @media (max-width: 1024px) {
-      .bio-grid { gap: 40px; }
-    }
-    @media (max-width: 768px) {
-      .bio-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
-      }
-    }
+    @media (max-width: 1024px) { .bio-grid { gap: 40px; } }
+    @media (max-width: 768px) { .bio-grid { grid-template-columns: 1fr; gap: 30px; } }
 
     .bio-image {
       border-radius: 40px;
@@ -1286,7 +1134,6 @@
       object-fit: cover;
       display: block;
     }
-
     .bio-text h2 {
       font-size: 2.4rem;
       font-weight: 600;
@@ -1302,10 +1149,7 @@
       font-weight: 300;
       line-height: 1.7;
     }
-    .bio-text p strong {
-      color: #f0f0f0;
-      font-weight: 600;
-    }
+    .bio-text p strong { color: #f0f0f0; font-weight: 600; }
     .bio-stats {
       display: flex;
       gap: 40px;
@@ -1327,7 +1171,6 @@
       color: #5a5a5a;
       font-size: 0.9rem;
     }
-
     .footer-row {
       display: flex;
       justify-content: center;
@@ -1336,7 +1179,6 @@
       gap: 20px 30px;
       width: 100%;
     }
-
     .footer-social {
       display: flex;
       gap: 20px;
@@ -1349,7 +1191,6 @@
       text-decoration: none;
     }
     .footer-social a:hover { color: #fff; }
-
     .footer-links {
       display: flex;
       gap: 20px 30px;
@@ -1368,7 +1209,6 @@
       color: #f0f0f0;
       border-bottom-color: #8b5cf6;
     }
-
     .footer-bottom {
       display: flex;
       align-items: center;
@@ -1381,10 +1221,6 @@
       padding-top: 12px;
       border-top: 1px solid rgba(255, 255, 255, 0.04);
     }
-    .footer-bottom span {
-      color: #5a5a5a;
-      line-height: 1;
-    }
     .footer-bottom .albe-link {
       display: inline-flex;
       align-items: center;
@@ -1394,49 +1230,24 @@
       font-weight: 500;
       line-height: 0;
     }
-    .footer-bottom .albe-link:hover {
-      color: #fff;
-    }
+    .footer-bottom .albe-link:hover { color: #fff; }
     .footer-bottom .albe-link img {
       height: 36px;
       width: auto;
       display: block;
       transition: opacity 0.2s;
     }
-    .footer-bottom .albe-link:hover img {
-      opacity: 0.8;
-    }
+    .footer-bottom .albe-link:hover img { opacity: 0.8; }
 
-    /* Адаптив для футера */
     @media (max-width: 480px) {
-      .footer {
-        padding: 30px 0 20px;
-        gap: 16px;
-      }
-      .footer-row {
-        gap: 14px 20px;
-      }
-      .footer-social {
-        gap: 16px;
-      }
-      .footer-social a {
-        font-size: 1.1rem;
-      }
-      .footer-links {
-        gap: 12px 16px;
-      }
-      .footer-links a {
-        font-size: 0.7rem;
-      }
-      .footer-bottom {
-        font-size: 0.7rem;
-        padding-top: 10px;
-        gap: 4px;
-        flex-wrap: wrap;
-      }
-      .footer-bottom .albe-link img {
-        height: 28px;
-      }
+      .footer { padding: 30px 0 20px; gap: 16px; }
+      .footer-row { gap: 14px 20px; }
+      .footer-social { gap: 16px; }
+      .footer-social a { font-size: 1.1rem; }
+      .footer-links { gap: 12px 16px; }
+      .footer-links a { font-size: 0.7rem; }
+      .footer-bottom { font-size: 0.7rem; padding-top: 10px; gap: 4px; flex-wrap: wrap; }
+      .footer-bottom .albe-link img { height: 28px; }
     }
 
     #player, #releases, #bio, #copyright-free { scroll-margin-top: 80px; }
@@ -1458,9 +1269,7 @@
         <i class="fas fa-heart" aria-hidden="true"></i> Поддержать
       </a>
       <button class="hamburger" id="hamburger" aria-label="Открыть меню" aria-expanded="false">
-        <span></span>
-        <span></span>
-        <span></span>
+        <span></span><span></span><span></span>
       </button>
     </div>
   </header>
@@ -1472,8 +1281,10 @@
     <a href="#bio" onclick="closeMobileMenu()">Био</a>
   </nav>
 
-  <!-- ===== HERO БАННЕР ===== -->
+  <!-- ===== ОСНОВНОЙ КОНТЕНТ ===== -->
   <main role="main">
+
+    <!-- HERO -->
     <section class="hero" id="player" aria-label="Главный плеер BALM">
       <img src="BALM%20-%20hero%20b.webp" alt="BALM hero background - музыкальный проект" loading="eager" width="1920" height="1080">
       <div class="hero-overlay"></div>
@@ -1483,14 +1294,7 @@
         <h2 class="visually-hidden">Плеер BALM на Яндекс Музыке</h2>
         <div class="hero-player-wrapper">
           <div class="hero-player">
-            <iframe 
-              src="https://music.yandex.ru/iframe/#artist/26471381" 
-              frameborder="0" 
-              allowfullscreen
-              loading="lazy"
-              allow="autoplay; encrypted-media"
-              title="BALM на Яндекс Музыке — слушать онлайн"
-            ></iframe>
+            <iframe src="https://music.yandex.ru/iframe/#artist/26471381" frameborder="0" allowfullscreen loading="lazy" allow="autoplay; encrypted-media" title="BALM на Яндекс Музыке — слушать онлайн"></iframe>
           </div>
         </div>
         <a href="https://tips.tips/000481710" target="_blank" class="donate-btn" rel="noopener noreferrer">
@@ -1499,23 +1303,19 @@
       </div>
     </section>
 
-    <!-- ===== БЛОК МУЗЫКА БЕЗ АВТОРСКИХ ПРАВ ===== -->
+    <!-- МУЗЫКА БЕЗ АВТОРСКИХ ПРАВ -->
     <section class="copyright-free-section" id="copyright-free" aria-label="Музыка без авторских прав">
       <div class="container">
         <div class="copyright-free-grid">
           <div class="copyright-free-text">
             <div class="badge"><i class="fas fa-shield-alt" style="margin-right: 8px;" aria-hidden="true"></i> Royalty Free</div>
             <h2><i class="fas fa-music" aria-hidden="true"></i> Музыка без авторских прав</h2>
-            <p class="description">
-              Вся представленная музыка создана специально для использования в коммерческих и некоммерческих проектах. 
-              Вы можете использовать её в видео, подкастах, рекламе, играх и любых других проектах без ограничений.
-            </p>
+            <p class="description">Вся представленная музыка создана специально для использования в коммерческих и некоммерческих проектах. Вы можете использовать её в видео, подкастах, рекламе, играх и любых других проектах без ограничений.</p>
             <div class="legal">
               <i class="fas fa-check-circle" aria-hidden="true"></i>
               <div class="text">
                 <strong>✅ Полная свобода использования</strong><br>
-                Музыка не нарушает авторских прав третьих лиц. Разрешено использование в коммерческих целях, 
-                монетизация на YouTube, Twitch, TikTok, Instagram и других платформах. Без роялти и отчислений.
+                Музыка не нарушает авторских прав третьих лиц. Разрешено использование в коммерческих целях, монетизация на YouTube, Twitch, TikTok, Instagram и других платформах. Без роялти и отчислений.
               </div>
             </div>
           </div>
@@ -1529,97 +1329,55 @@
                   <div class="artist">BALM (БИЭЛЭМ)</div>
                 </div>
               </div>
-              <iframe 
-                style="border: 0; width: 100%; height: 120px; border-radius: 12px;" 
-                src="https://bandcamp.com/EmbeddedPlayer/track=3546794513/size=large/bgcol=333333/linkcol=9a64ff/tracklist=false/artwork=small/transparent=true/" 
-                seamless
-                title="BALM demo на Bandcamp — слушать демо-версию"
-              >
-                <a href="https://balm2.bandcamp.com/track/demo">demo by BALM (БИЭЛЭМ)</a>
-              </iframe>
-              <div class="demo-tag">
-                <i class="fas fa-headphones" style="margin-right: 6px;" aria-hidden="true"></i> 
-                Демо-версия · Полная версия доступна по запросу
-              </div>
+              <iframe style="border:0;width:100%;height:120px;border-radius:12px;" src="https://bandcamp.com/EmbeddedPlayer/track=3546794513/size=large/bgcol=333333/linkcol=9a64ff/tracklist=false/artwork=small/transparent=true/" seamless title="BALM demo на Bandcamp — слушать демо-версию"><a href="https://balm2.bandcamp.com/track/demo">demo by BALM (БИЭЛЭМ)</a></iframe>
+              <div class="demo-tag"><i class="fas fa-headphones" style="margin-right:6px;" aria-hidden="true"></i> Демо-версия · Полная версия доступна по запросу</div>
             </div>
 
             <div class="btn-group">
-              <button class="btn btn-primary" onclick="openModal()">
-                <i class="fas fa-shopping-cart" aria-hidden="true"></i> Купить
-              </button>
-              <a href="https://t.me/albe_spb" target="_blank" class="btn btn-outline" rel="noopener noreferrer">
-                <i class="fab fa-telegram-plane" aria-hidden="true"></i> Telegram
-              </a>
+              <button class="btn btn-primary" onclick="openModal()"><i class="fas fa-shopping-cart" aria-hidden="true"></i> Купить</button>
+              <a href="https://t.me/albe_spb" target="_blank" class="btn btn-outline" rel="noopener noreferrer"><i class="fab fa-telegram-plane" aria-hidden="true"></i> Telegram</a>
             </div>
-            <a href="https://disk.yandex.com/d/-E67dJQXa2KYsg" target="_blank" class="free-download-btn" rel="noopener noreferrer">
-              <i class="fas fa-download" aria-hidden="true"></i> Скачать бесплатно
-            </a>
+            <a href="https://disk.yandex.com/d/-E67dJQXa2KYsg" target="_blank" class="free-download-btn" rel="noopener noreferrer"><i class="fas fa-download" aria-hidden="true"></i> Скачать бесплатно</a>
           </div>
-
         </div>
       </div>
     </section>
 
-    <!-- ===== МОДАЛЬНОЕ ОКНО ОПЛАТЫ ===== -->
+    <!-- МОДАЛЬНОЕ ОКНО ОПЛАТЫ -->
     <div class="modal-overlay" id="buyModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
       <div class="modal">
         <button class="modal-close" onclick="closeModal()" aria-label="Закрыть">&times;</button>
         <h2 id="modalTitle">Приобрести музыку</h2>
-        <p class="sub">
-          Вы можете приобрести 2 часа студийной уникальной Chillout музыки, которую можете использовать в коммерческих целях, отчисления за авторское право не требуются. Музыку можно использовать в любой сфере бизнеса: от салонов красоты до торговых и развлекательных центров.
-        </p>
-
+        <p class="sub">Вы можете приобрести 2 часа студийной уникальной Chillout музыки, которую можете использовать в коммерческих целях, отчисления за авторское право не требуются. Музыку можно использовать в любой сфере бизнеса: от салонов красоты до торговых и развлекательных центров.</p>
         <div class="price-list">
+          <p><span>Джаз</span><span class="sum">1 час · 500 ₽</span></p>
+          <p><span>Турецкая</span><span class="sum">1 час · 500 ₽</span></p>
           <p>
-            <span>Джаз</span>
-            <span class="sum">1 час · 500 ₽</span>
-          </p>
-          <p>
-            <span>Турецкая</span>
-            <span class="sum">1 час · 500 ₽</span>
-          </p>
-          <p>
-            <span style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
-              2 часа
-              <span class="sale-badge">🔥 Акция</span>
-            </span>
-            <span style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap; justify-content: flex-end;">
-              <span class="old-price">1000 ₽</span>
-              <span class="new-price">300 ₽</span>
-            </span>
+            <span style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">2 часа <span class="sale-badge">🔥 Акция</span></span>
+            <span style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:flex-end;"><span class="old-price">1000 ₽</span><span class="new-price">300 ₽</span></span>
           </p>
         </div>
-
-        <div class="comment">
-          <i class="fas fa-info-circle" style="margin-right: 8px; color: #8b5cf6;" aria-hidden="true"></i>
-          При оплате укажите в комментарии: <strong>Telegram, VK, почту</strong> — куда отправить ссылку на скачивание музыки.
-        </div>
+        <div class="comment"><i class="fas fa-info-circle" style="margin-right:8px;color:#8b5cf6;" aria-hidden="true"></i> При оплате укажите в комментарии: <strong>Telegram, VK, почту</strong> — куда отправить ссылку на скачивание музыки.</div>
         <div class="agree">
           <input type="checkbox" id="agreeCheck" onchange="checkAgree()" aria-label="Согласие с условиями">
-          <label for="agreeCheck">
-            Я ознакомлен(а) и согласен(на) с <a href="#" onclick="event.preventDefault(); openAgreementModal();">условиями приобретения</a> и обработкой данных
-          </label>
+          <label for="agreeCheck">Я ознакомлен(а) и согласен(на) с <a href="#" onclick="event.preventDefault(); openAgreementModal();">условиями приобретения</a> и обработкой данных</label>
         </div>
-        <a href="https://tips.tips/000481739" target="_blank" class="btn-buy" id="payBtn" rel="noopener noreferrer">
-          <i class="fas fa-credit-card" aria-hidden="true"></i> Оплатить
-        </a>
+        <a href="https://tips.tips/000481739" target="_blank" class="btn-buy" id="payBtn" rel="noopener noreferrer"><i class="fas fa-credit-card" aria-hidden="true"></i> Оплатить</a>
       </div>
     </div>
 
-    <!-- ===== МОДАЛЬНОЕ ОКНО С СОГЛАШЕНИЕМ ===== -->
+    <!-- МОДАЛЬНОЕ ОКНО СОГЛАШЕНИЯ -->
     <div class="agreement-modal-overlay" id="agreementModal" role="dialog" aria-modal="true" aria-labelledby="agreementTitle">
       <div class="agreement-modal">
         <button class="agreement-modal-close" onclick="closeAgreementModal()" aria-label="Закрыть соглашение">&times;</button>
         <h1 id="agreementTitle">ИНФОРМАЦИОННОЕ СОГЛАШЕНИЕ</h1>
         <div class="subtitle">по использованию музыки BALM (БИЭЛЭМ)</div>
-
         <div class="section">
-          <p style="font-size: 0.85rem; color: #888; margin-bottom: 12px;">Настоящее Соглашение носит информационный характер и не является публичной офертой.</p>
+          <p style="font-size:0.85rem;color:#888;margin-bottom:12px;">Настоящее Соглашение носит информационный характер и не является публичной офертой.</p>
           <h2>1. Общие положения</h2>
           <p>1.1. Настоящее Соглашение информирует о правилах использования музыкальных произведений артиста BALM (БИЭЛЭМ) (Беляев Алексей).</p>
           <p>1.2. Совершая разовый платёж за музыку, вы соглашаетесь с условиями, описанными ниже.</p>
         </div>
-
         <div class="section">
           <h2>2. Что вы получаете</h2>
           <ul>
@@ -1629,7 +1387,6 @@
             <li><span class="check">✅</span> Без отчислений — никаких выплат в РАО, ВОИС и другие организации. Музыка принадлежит BALM (БИЭЛЭМ), и вы платите напрямую артисту.</li>
           </ul>
         </div>
-
         <div class="section">
           <h2>3. Чего делать НЕЛЬЗЯ</h2>
           <ul>
@@ -1638,7 +1395,6 @@
             <li><span class="cross">❌</span> Изменять, переделывать или создавать ремиксы без разрешения.</li>
           </ul>
         </div>
-
         <div class="section">
           <h2>4. Что нужно для легального использования</h2>
           <p>Достаточно иметь:</p>
@@ -1646,157 +1402,101 @@
             <li>Настоящее Соглашение</li>
             <li>Подтверждение оплаты (чек или скриншот)</li>
           </ul>
-          <p style="margin-top: 8px;">Эти документы подтверждают, что вы используете музыку легально.</p>
+          <p style="margin-top:8px;">Эти документы подтверждают, что вы используете музыку легально.</p>
         </div>
-
         <div class="section">
           <h2>5. Сравнение: выгода для бизнеса</h2>
-          <p style="margin-bottom: 8px;">Вместо того чтобы платить РАО и ВОИС ежемесячно:</p>
+          <p style="margin-bottom:8px;">Вместо того чтобы платить РАО и ВОИС ежемесячно:</p>
           <div class="table-wrap">
             <table>
-              <thead>
-                <tr>
-                  <th>Тип объекта</th>
-                  <th>РАО + ВОИС за 1 м² в месяц</th>
-                  <th>Экономия за год (на 100 м²)</th>
-                </tr>
-              </thead>
+              <thead><tr><th>Тип объекта</th><th>РАО + ВОИС за 1 м² в месяц</th><th>Экономия за год (на 100 м²)</th></tr></thead>
               <tbody>
-                <tr>
-                  <td>Кафе и рестораны</td>
-                  <td>90–125 ₽</td>
-                  <td class="highlight">от 108 000 ₽</td>
-                </tr>
-                <tr>
-                  <td>Бары и ночные клубы</td>
-                  <td>135–205 ₽</td>
-                  <td class="highlight">от 162 000 ₽</td>
-                </tr>
-                <tr>
-                  <td>Салоны красоты и спа</td>
-                  <td>75–110 ₽</td>
-                  <td class="highlight">от 90 000 ₽</td>
-                </tr>
-                <tr>
-                  <td>Фитнес-клубы</td>
-                  <td>60–95 ₽</td>
-                  <td class="highlight">от 72 000 ₽</td>
-                </tr>
+                <tr><td>Кафе и рестораны</td><td>90–125 ₽</td><td class="highlight">от 108 000 ₽</td></tr>
+                <tr><td>Бары и ночные клубы</td><td>135–205 ₽</td><td class="highlight">от 162 000 ₽</td></tr>
+                <tr><td>Салоны красоты и спа</td><td>75–110 ₽</td><td class="highlight">от 90 000 ₽</td></tr>
+                <tr><td>Фитнес-клубы</td><td>60–95 ₽</td><td class="highlight">от 72 000 ₽</td></tr>
               </tbody>
             </table>
           </div>
-          <p style="margin-top: 10px; color: #4ade80; font-weight: 600;">Вы платите один раз — и больше никаких ежемесячных отчислений.</p>
+          <p style="margin-top:10px;color:#4ade80;font-weight:600;">Вы платите один раз — и больше никаких ежемесячных отчислений.</p>
         </div>
-
-        <div class="agreement-footer">
-          © 2026 BALM (БИЭЛЭМ) · Беляев Алексей
-        </div>
+        <div class="agreement-footer">© 2026 BALM (БИЭЛЭМ) · Беляев Алексей</div>
       </div>
     </div>
 
-    <!-- ===== РЕКЛАМНЫЙ БАННЕР ===== -->
+    <!-- РЕКЛАМНЫЙ БАННЕР -->
     <div class="banner" id="promoBanner" role="complementary" aria-label="Рекламный баннер">
       <button class="banner-close" onclick="closeBanner()" aria-label="Закрыть баннер">&times;</button>
       <h3>Бесплатная музыка для бизнеса</h3>
-      <p class="banner-text">
-        1 час уникальной музыки без авторских прав. Подходит для салонов, ТЦ, ресторанов и любых коммерческих пространств.
-      </p>
-      <a href="https://disk.yandex.com/d/-E67dJQXa2KYsg" target="_blank" class="banner-btn" rel="noopener noreferrer">
-        <i class="fas fa-download" aria-hidden="true"></i> Скачать бесплатно
-      </a>
+      <p class="banner-text">1 час уникальной музыки без авторских прав. Подходит для салонов, ТЦ, ресторанов и любых коммерческих пространств.</p>
+      <a href="https://disk.yandex.com/d/-E67dJQXa2KYsg" target="_blank" class="banner-btn" rel="noopener noreferrer"><i class="fas fa-download" aria-hidden="true"></i> Скачать бесплатно</a>
     </div>
 
-    <!-- ===== РЕЛИЗЫ ===== -->
+    <!-- РЕЛИЗЫ -->
     <section class="releases-section" id="releases" aria-label="Релизы BALM">
       <div class="container">
         <div class="section-header">
           <h2>Релизы</h2>
-          <a id="showAllBtn" onclick="toggleReleases()" role="button" tabindex="0">
-            Все релизы <i class="fas fa-chevron-down" aria-hidden="true"></i>
-          </a>
+          <a id="showAllBtn" onclick="toggleReleases()" role="button" tabindex="0">Все релизы <i class="fas fa-chevron-down" aria-hidden="true"></i></a>
         </div>
         <div class="release-grid" id="releaseGrid">
           <article class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
-            <div class="release-cover">
-              <img src="alterego.webp" alt="Альтерэго (Rock) — обложка альбома" loading="lazy" width="400" height="400">
-            </div>
+            <div class="release-cover"><img src="alterego.webp" alt="Альтерэго (Rock) — обложка альбома" loading="lazy" width="400" height="400"></div>
             <div class="release-title" itemprop="name">Альтерэго (Rock)</div>
             <div class="release-year" itemprop="datePublished">2026 · Альбом</div>
           </article>
           <article class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
-            <div class="release-cover">
-              <img src="beautiful.webp" alt="Beautiful (Rock) — обложка сингла" loading="lazy" width="400" height="400">
-            </div>
+            <div class="release-cover"><img src="beautiful.webp" alt="Beautiful (Rock) — обложка сингла" loading="lazy" width="400" height="400"></div>
             <div class="release-title" itemprop="name">Beautiful (Rock)</div>
             <div class="release-year" itemprop="datePublished">2026 · сингл</div>
           </article>
           <article class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
-            <div class="release-cover">
-              <img src="chance.webp" alt="Chance English ver. (Rock) — обложка сингла" loading="lazy" width="400" height="400">
-            </div>
+            <div class="release-cover"><img src="chance.webp" alt="Chance English ver. (Rock) — обложка сингла" loading="lazy" width="400" height="400"></div>
             <div class="release-title" itemprop="name">Chance English ver. (Rock)</div>
             <div class="release-year" itemprop="datePublished">2026 · сингл</div>
           </article>
           <article class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
-            <div class="release-cover">
-              <img src="cloud.webp" alt="Облака (Rock) — обложка сингла" loading="lazy" width="400" height="400">
-            </div>
+            <div class="release-cover"><img src="cloud.webp" alt="Облака (Rock) — обложка сингла" loading="lazy" width="400" height="400"></div>
             <div class="release-title" itemprop="name">Облака (Rock)</div>
             <div class="release-year" itemprop="datePublished">2026 · сингл</div>
           </article>
           <article class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
-            <div class="release-cover">
-              <img src="Heart.webp" alt="Жги моё сердце (Pop) — обложка сингла" loading="lazy" width="400" height="400">
-            </div>
+            <div class="release-cover"><img src="Heart.webp" alt="Жги моё сердце (Pop) — обложка сингла" loading="lazy" width="400" height="400"></div>
             <div class="release-title" itemprop="name">Жги моё сердце (Pop)</div>
             <div class="release-year" itemprop="datePublished">2026 · сингл</div>
           </article>
           <article class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
-            <div class="release-cover">
-              <img src="its%20my%20life.webp" alt="It's My Life (Hip-hop) — обложка сингла" loading="lazy" width="400" height="400">
-            </div>
+            <div class="release-cover"><img src="its%20my%20life.webp" alt="It's My Life (Hip-hop) — обложка сингла" loading="lazy" width="400" height="400"></div>
             <div class="release-title" itemprop="name">It's My Life (Hip-hop)</div>
             <div class="release-year" itemprop="datePublished">2026 · сингл</div>
           </article>
           <article class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
-            <div class="release-cover">
-              <img src="love.webp" alt="Смысл жизни любовь (Pop) — обложка сингла" loading="lazy" width="400" height="400">
-            </div>
+            <div class="release-cover"><img src="love.webp" alt="Смысл жизни любовь (Pop) — обложка сингла" loading="lazy" width="400" height="400"></div>
             <div class="release-title" itemprop="name">Смысл жизни любовь (Pop)</div>
             <div class="release-year" itemprop="datePublished">2026 · сингл</div>
           </article>
           <article class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
-            <div class="release-cover">
-              <img src="stars.webp" alt="К звездам (Rock / Jazz / Piano) — обложка трипл сингла" loading="lazy" width="400" height="400">
-            </div>
+            <div class="release-cover"><img src="stars.webp" alt="К звездам (Rock / Jazz / Piano) — обложка трипл сингла" loading="lazy" width="400" height="400"></div>
             <div class="release-title" itemprop="name">К звездам (Rock / Jazz / Piano)</div>
             <div class="release-year" itemprop="datePublished">2026 · трипл сингл</div>
           </article>
           <article class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
-            <div class="release-cover">
-              <img src="what.webp" alt="Ну почему? (Breaks) — обложка сингла" loading="lazy" width="400" height="400">
-            </div>
+            <div class="release-cover"><img src="what.webp" alt="Ну почему? (Breaks) — обложка сингла" loading="lazy" width="400" height="400"></div>
             <div class="release-title" itemprop="name">Ну почему? (Breaks)</div>
             <div class="release-year" itemprop="datePublished">2026 · сингл</div>
           </article>
           <article class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
-            <div class="release-cover">
-              <img src="world.webp" alt="Мой маленький мир (Pop) — обложка сингла" loading="lazy" width="400" height="400">
-            </div>
+            <div class="release-cover"><img src="world.webp" alt="Мой маленький мир (Pop) — обложка сингла" loading="lazy" width="400" height="400"></div>
             <div class="release-title" itemprop="name">Мой маленький мир (Pop)</div>
             <div class="release-year" itemprop="datePublished">2026 · сингл</div>
           </article>
           <article class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
-            <div class="release-cover">
-              <img src="beautifulRU.webp" alt="Моя красивая (Pop) — обложка сингла" loading="lazy" width="400" height="400">
-            </div>
+            <div class="release-cover"><img src="beautifulRU.webp" alt="Моя красивая (Pop) — обложка сингла" loading="lazy" width="400" height="400"></div>
             <div class="release-title" itemprop="name">Моя красивая (Pop)</div>
             <div class="release-year" itemprop="datePublished">2026 · сингл</div>
           </article>
           <article class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
-            <div class="release-cover">
-              <img src="chanceRU.webp" alt="Шанс (Rock) — обложка сингла" loading="lazy" width="400" height="400">
-            </div>
+            <div class="release-cover"><img src="chanceRU.webp" alt="Шанс (Rock) — обложка сингла" loading="lazy" width="400" height="400"></div>
             <div class="release-title" itemprop="name">Шанс (Rock)</div>
             <div class="release-year" itemprop="datePublished">2026 · сингл</div>
           </article>
@@ -1804,26 +1504,16 @@
       </div>
     </section>
 
-    <!-- ===== БИО ===== -->
+    <!-- БИО -->
     <section class="bio-section" id="bio" aria-label="Биография BALM">
       <div class="container bio-grid">
-        <div class="bio-image">
-          <img src="BALM.webp" alt="BALM (БИЭЛЭМ) — Беляев Алексей, музыкант из Санкт-Петербурга" loading="lazy" width="800" height="800">
-        </div>
+        <div class="bio-image"><img src="BALM.webp" alt="BALM (БИЭЛЭМ) — Беляев Алексей, музыкант из Санкт-Петербурга" loading="lazy" width="800" height="800"></div>
         <div class="bio-text">
           <h2>BALM</h2>
-          <p>
-            <strong>BALM (БИЭЛЭМ)</strong> — это музыкальный проект Беляева Алексея, музыканта, поэта и диджея из Санкт-Петербурга.
-          </p>
-          <p>
-            Для меня музыка — не просто творчество, а жизненная необходимость. Это способ высказать то, что годами копится внутри, когда слов уже недостаточно. В эпоху одноразовых хитов я сознательно выбираю путь, где за каждой строкой стоит настоящая эмоция. Мои песни — это место, где сталкиваются боль и красота, где тишина говорит громче, чем крик. Это территория, в которой каждый слушатель может найти отражение собственных переживаний: от щемящей тоски до едва уловимой улыбки.
-          </p>
-          <p>
-            <strong>О проекте:</strong>
-          </p>
-          <p>
-            BALM — мой экспериментальный музыкальный мир. В нём я смешиваю тяжёлые гитарные рифы ню-метала с поп-мелодиями и электронной текстурой. Это звук, рождённый на стыке жанров.
-          </p>
+          <p><strong>BALM (БИЭЛЭМ)</strong> — это музыкальный проект Беляева Алексея, музыканта, поэта и диджея из Санкт-Петербурга.</p>
+          <p>Для меня музыка — не просто творчество, а жизненная необходимость. Это способ высказать то, что годами копится внутри, когда слов уже недостаточно. В эпоху одноразовых хитов я сознательно выбираю путь, где за каждой строкой стоит настоящая эмоция. Мои песни — это место, где сталкиваются боль и красота, где тишина говорит громче, чем крик. Это территория, в которой каждый слушатель может найти отражение собственных переживаний: от щемящей тоски до едва уловимой улыбки.</p>
+          <p><strong>О проекте:</strong></p>
+          <p>BALM — мой экспериментальный музыкальный мир. В нём я смешиваю тяжёлые гитарные рифы ню-метала с поп-мелодиями и электронной текстурой. Это звук, рождённый на стыке жанров.</p>
           <div class="bio-stats">
             <div><span class="number">Выпускается на всех музыкальных площадках мира</span><span class="label"></span></div>
             <div><span class="number"></span><span class="label"></span></div>
@@ -1832,41 +1522,27 @@
         </div>
       </div>
     </section>
+
   </main>
 
   <!-- ===== ФУТЕР ===== -->
   <div class="container">
     <footer class="footer" role="contentinfo">
-      <!-- Ряд 1: Иконки соцсетей -->
       <div class="footer-row">
         <div class="footer-social">
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-            <i class="fab fa-instagram" aria-hidden="true"></i>
-          </a>
-          <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" aria-label="Яндекс Музыка">
-            <i class="fab fa-spotify" aria-hidden="true"></i>
-          </a>
-          <a href="https://apple.com/apple-music" target="_blank" rel="noopener noreferrer" aria-label="Apple Music">
-            <i class="fab fa-apple" aria-hidden="true"></i>
-          </a>
-          <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-            <i class="fab fa-youtube" aria-hidden="true"></i>
-          </a>
-          <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
-            <i class="fab fa-tiktok" aria-hidden="true"></i>
-          </a>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+          <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" aria-label="Яндекс Музыка"><i class="fab fa-spotify" aria-hidden="true"></i></a>
+          <a href="https://apple.com/apple-music" target="_blank" rel="noopener noreferrer" aria-label="Apple Music"><i class="fab fa-apple" aria-hidden="true"></i></a>
+          <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+          <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok" aria-hidden="true"></i></a>
         </div>
       </div>
-
-      <!-- Ряд 2: Ссылки -->
       <div class="footer-row">
         <div class="footer-links">
           <a href="#" onclick="event.preventDefault(); openAgreementModal();">Пользовательское соглашение</a>
           <a href="#" onclick="event.preventDefault(); alert('Политика конфиденциальности: данные не передаются третьим лицам.');">Политика конфиденциальности</a>
         </div>
       </div>
-
-      <!-- Ряд 3: Разработано в Albe -->
       <div class="footer-row">
         <div class="footer-bottom">
           <span>Разработано в</span>
@@ -1880,7 +1556,7 @@
 
   <!-- ===== СКРИПТЫ ===== -->
   <script>
-    // ===== МОДАЛЬНОЕ ОКНО ОПЛАТЫ =====
+    // Модальное окно оплаты
     function openModal() {
       document.getElementById('buyModal').classList.add('open');
       document.body.style.overflow = 'hidden';
@@ -1895,23 +1571,16 @@
       if (e.target === this) closeModal();
     });
     document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
-        closeModal();
-        closeAgreementModal();
-      }
+      if (e.key === 'Escape') { closeModal(); closeAgreementModal(); }
     });
 
     function checkAgree() {
       const checkbox = document.getElementById('agreeCheck');
       const btn = document.getElementById('payBtn');
-      if (checkbox.checked) {
-        btn.classList.add('active');
-      } else {
-        btn.classList.remove('active');
-      }
+      btn.classList.toggle('active', checkbox.checked);
     }
 
-    // ===== МОДАЛЬНОЕ ОКНО С СОГЛАШЕНИЕМ =====
+    // Модальное окно соглашения
     function openAgreementModal() {
       document.getElementById('agreementModal').classList.add('open');
       document.body.style.overflow = 'hidden';
@@ -1924,52 +1593,37 @@
       if (e.target === this) closeAgreementModal();
     });
 
-    // ===== БАННЕР =====
+    // Баннер
     function closeBanner() {
       document.getElementById('promoBanner').classList.add('hidden-banner');
     }
-
     setTimeout(function() {
       const banner = document.getElementById('promoBanner');
-      if (!banner.classList.contains('hidden-banner')) {
-        banner.classList.add('visible');
-      }
+      if (!banner.classList.contains('hidden-banner')) banner.classList.add('visible');
     }, 3000);
 
-    // ===== МОБИЛЬНОЕ МЕНЮ =====
+    // Мобильное меню
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
-
     hamburger.addEventListener('click', function() {
       this.classList.toggle('active');
       mobileMenu.classList.toggle('open');
-      const isOpen = mobileMenu.classList.contains('open');
-      this.setAttribute('aria-expanded', isOpen);
+      this.setAttribute('aria-expanded', mobileMenu.classList.contains('open'));
     });
-
     function closeMobileMenu() {
       hamburger.classList.remove('active');
       mobileMenu.classList.remove('open');
       hamburger.setAttribute('aria-expanded', 'false');
     }
 
-    // ===== РЕЛИЗЫ =====
+    // Релизы
     let allVisible = false;
-    const grid = document.getElementById('releaseGrid');
+    const cards = document.querySelectorAll('.release-card');
     const btn = document.getElementById('showAllBtn');
-    const cards = grid.querySelectorAll('.release-card');
 
     function updateVisibility(showAll) {
       cards.forEach((card, index) => {
-        if (showAll) {
-          card.classList.remove('hidden');
-        } else {
-          if (index >= 3) {
-            card.classList.add('hidden');
-          } else {
-            card.classList.remove('hidden');
-          }
-        }
+        card.classList.toggle('hidden', !showAll && index >= 3);
       });
     }
 
@@ -1977,7 +1631,7 @@
       allVisible = !allVisible;
       updateVisibility(allVisible);
       btn.innerHTML = allVisible 
-        ? 'Скрыть релизы <i class="fas fa-chevron-up" aria-hidden="true"></i>' 
+        ? 'Скрыть релизы <i class="fas fa-chevron-up" aria-hidden="true"></i>'
         : 'Все релизы <i class="fas fa-chevron-down" aria-hidden="true"></i>';
       btn.classList.toggle('rotated');
     }
