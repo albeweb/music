@@ -55,6 +55,27 @@
   }
   </script>
   
+  <!-- ===== ДОПОЛНИТЕЛЬНЫЙ JSON-LD ДЛЯ ТОВАРА ===== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Chillout музыка для бизнеса",
+    "description": "2 часа уникальной Chillout музыки без авторских прав для коммерческого использования",
+    "brand": {
+      "@type": "Brand",
+      "name": "BALM"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "300",
+      "priceCurrency": "RUB",
+      "availability": "https://schema.org/InStock",
+      "url": "https://albeweb.github.io/music/"
+    }
+  }
+  </script>
+  
   <!-- ===== ФАВИКОН ===== -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='5' y='5' width='90' height='90' rx='20' fill='%238b5cf6'/%3E%3Ctext x='50' y='68' font-family='Arial, sans-serif' font-size='60' font-weight='bold' text-anchor='middle' fill='%23ffffff'%3EB%3C/text%3E%3C/svg%3E">
   <link rel="apple-touch-icon" sizes="180x180" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='5' y='5' width='90' height='90' rx='20' fill='%238b5cf6'/%3E%3Ctext x='50' y='68' font-family='Arial, sans-serif' font-size='60' font-weight='bold' text-anchor='middle' fill='%23ffffff'%3EB%3C/text%3E%3C/svg%3E">
@@ -65,7 +86,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   
   <style>
-    /* ===== ОСТАЛЬНЫЕ СТИЛИ (без изменений) ===== */
+    /* ===== ВСЕ СТИЛИ (без изменений) ===== */
     ::-webkit-scrollbar { width: 4px; height: 4px; }
     ::-webkit-scrollbar-track { background: #0b0b0b; }
     ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #8b5cf6, #4ade80); border-radius: 4px; }
@@ -370,6 +391,18 @@
       margin: 4px auto 20px auto;
       padding: 0;
       width: 100%;
+    }
+
+    /* Скрытый заголовок для SEO */
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
     }
 
     .hero-player-wrapper {
@@ -836,6 +869,30 @@
     }
     .modal .btn-buy i {
       font-size: 1.1rem;
+    }
+
+    /* ===== ФИКС ДЛЯ МОДАЛЬНОГО ОКНА НА МОБИЛЬНЫХ ===== */
+    @media (max-width: 480px) {
+      .modal .price-list p {
+        flex-wrap: wrap;
+        gap: 4px 0;
+        justify-content: space-between;
+      }
+      .modal .price-list p span {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+      .modal .price-list p span:last-child {
+        justify-content: flex-end;
+        text-align: right;
+      }
+      .modal .price-list .sale-badge {
+        font-size: 0.6rem;
+        padding: 1px 8px;
+        white-space: nowrap;
+      }
     }
 
     /* ===== МОДАЛЬНОЕ ОКНО С СОГЛАШЕНИЕМ ===== */
@@ -1312,6 +1369,21 @@
       opacity: 0.8;
     }
 
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: #5a5a5a;
+      text-decoration: none;
+      font-size: 0.8rem;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover {
+      color: #f0f0f0;
+    }
+
     .social-icons {
       display: flex;
       gap: 20px;
@@ -1329,19 +1401,19 @@
 <body>
 
   <!-- ===== ШАПКА ===== -->
-  <header class="navbar" id="navbar">
-    <a href="#player" class="logo">BALM</a>
-    <div class="nav-links">
+  <header class="navbar" id="navbar" role="banner">
+    <a href="#player" class="logo" aria-label="BALM главная">BALM</a>
+    <nav class="nav-links" role="navigation" aria-label="Основная навигация">
       <a href="#player">Плеер</a>
       <a href="#copyright-free">Без авторских прав</a>
       <a href="#releases">Релизы</a>
       <a href="#bio">Био</a>
-    </div>
+    </nav>
     <div style="display: flex; align-items: center; gap: 16px;">
-      <a href="https://tips.tips/000481710" target="_blank" class="navbar-support-btn">
-        <i class="fas fa-heart"></i> Поддержать
+      <a href="https://tips.tips/000481710" target="_blank" class="navbar-support-btn" rel="noopener noreferrer">
+        <i class="fas fa-heart" aria-hidden="true"></i> Поддержать
       </a>
-      <button class="hamburger" id="hamburger" aria-label="Меню">
+      <button class="hamburger" id="hamburger" aria-label="Открыть меню" aria-expanded="false">
         <span></span>
         <span></span>
         <span></span>
@@ -1349,387 +1421,394 @@
     </div>
   </header>
 
-  <div class="mobile-menu" id="mobileMenu">
+  <nav class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Мобильное меню">
     <a href="#player" onclick="closeMobileMenu()">Плеер</a>
     <a href="#copyright-free" onclick="closeMobileMenu()">Без авторских прав</a>
     <a href="#releases" onclick="closeMobileMenu()">Релизы</a>
     <a href="#bio" onclick="closeMobileMenu()">Био</a>
-  </div>
+  </nav>
 
   <!-- ===== HERO БАННЕР ===== -->
-  <section class="hero" id="player">
-    <img src="BALM%20-%20hero%20b.webp" alt="BALM hero background" loading="eager">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <h1 class="hero-title">BALM</h1>
-      <div class="hero-subtitle">БИЭЛЭМ</div>
-      <div class="hero-player-wrapper">
-        <div class="hero-player">
-          <iframe 
-            src="https://music.yandex.ru/iframe/#artist/26471381" 
-            frameborder="0" 
-            allowfullscreen
-            loading="lazy"
-            allow="autoplay; encrypted-media"
-            title="BALM на Яндекс Музыке"
-          ></iframe>
-        </div>
-      </div>
-      <a href="https://tips.tips/000481710" target="_blank" class="donate-btn">
-        <i class="fas fa-heart"></i> Поддержать
-      </a>
-    </div>
-  </section>
-
-  <!-- ===== БЛОК МУЗЫКА БЕЗ АВТОРСКИХ ПРАВ ===== -->
-  <section class="copyright-free-section" id="copyright-free">
-    <div class="container">
-      <div class="copyright-free-grid">
-        <div class="copyright-free-text">
-          <div class="badge"><i class="fas fa-shield-alt" style="margin-right: 8px;"></i> Royalty Free</div>
-          <h2><i class="fas fa-music"></i> Музыка без авторских прав</h2>
-          <p class="description">
-            Вся представленная музыка создана специально для использования в коммерческих и некоммерческих проектах. 
-            Вы можете использовать её в видео, подкастах, рекламе, играх и любых других проектах без ограничений.
-          </p>
-          <div class="legal">
-            <i class="fas fa-check-circle"></i>
-            <div class="text">
-              <strong>✅ Полная свобода использования</strong><br>
-              Музыка не нарушает авторских прав третьих лиц. Разрешено использование в коммерческих целях, 
-              монетизация на YouTube, Twitch, TikTok, Instagram и других платформах. Без роялти и отчислений.
-            </div>
-          </div>
-        </div>
-
-        <div class="copyright-free-player">
-          <div class="demo-player">
-            <div class="track-row">
-              <div class="track-artwork"><i class="fas fa-headphones"></i></div>
-              <div class="track-meta">
-                <div class="name">Demo</div>
-                <div class="artist">BALM (БИЭЛЭМ)</div>
-              </div>
-            </div>
+  <main role="main">
+    <section class="hero" id="player" aria-label="Главный плеер BALM">
+      <img src="BALM%20-%20hero%20b.webp" alt="BALM hero background - музыкальный проект" loading="eager" width="1920" height="1080">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1 class="hero-title">BALM</h1>
+        <div class="hero-subtitle">БИЭЛЭМ</div>
+        <h2 class="visually-hidden">Плеер BALM на Яндекс Музыке</h2>
+        <div class="hero-player-wrapper">
+          <div class="hero-player">
             <iframe 
-              style="border: 0; width: 100%; height: 120px; border-radius: 12px;" 
-              src="https://bandcamp.com/EmbeddedPlayer/track=3546794513/size=large/bgcol=333333/linkcol=9a64ff/tracklist=false/artwork=small/transparent=true/" 
-              seamless
-              title="BALM demo на Bandcamp"
-            >
-              <a href="https://balm2.bandcamp.com/track/demo">demo by BALM (БИЭЛЭМ)</a>
-            </iframe>
-            <div class="demo-tag">
-              <i class="fas fa-headphones" style="margin-right: 6px;"></i> 
-              Демо-версия · Полная версия доступна по запросу
-            </div>
+              src="https://music.yandex.ru/iframe/#artist/26471381" 
+              frameborder="0" 
+              allowfullscreen
+              loading="lazy"
+              allow="autoplay; encrypted-media"
+              title="BALM на Яндекс Музыке — слушать онлайн"
+            ></iframe>
           </div>
-
-          <div class="btn-group">
-            <button class="btn btn-primary" onclick="openModal()">
-              <i class="fas fa-shopping-cart"></i> Купить
-            </button>
-            <a href="https://t.me/albe_spb" target="_blank" class="btn btn-outline">
-              <i class="fab fa-telegram-plane"></i> Telegram
-            </a>
-          </div>
-          <a href="https://disk.yandex.com/d/-E67dJQXa2KYsg" target="_blank" class="free-download-btn">
-            <i class="fas fa-download"></i> Скачать бесплатно
-          </a>
         </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== МОДАЛЬНОЕ ОКНО ОПЛАТЫ ===== -->
-  <div class="modal-overlay" id="buyModal">
-    <div class="modal">
-      <button class="modal-close" onclick="closeModal()">&times;</button>
-      <h2>Приобрести музыку</h2>
-      <p class="sub">
-        Вы можете приобрести 2 часа студийной уникальной Chillout музыки, которую можете использовать в коммерческих целях, отчисления за авторское право не требуются. Музыку можно использовать в любой сфере бизнеса: от салонов красоты до торговых и развлекательных центров.
-      </p>
-
-      <div class="price-list">
-        <p>
-          <span>Джаз</span>
-          <span class="sum">1 час · 500 ₽</span>
-        </p>
-        <p>
-          <span>Турецкая</span>
-          <span class="sum">1 час · 500 ₽</span>
-        </p>
-        <p>
-          <span>
-            2 часа
-            <span class="sale-badge">🔥 Акция</span>
-          </span>
-          <span>
-            <span class="old-price">1000 ₽</span>
-            <span class="new-price">300 ₽</span>
-          </span>
-        </p>
-      </div>
-
-      <div class="comment">
-        <i class="fas fa-info-circle" style="margin-right: 8px; color: #8b5cf6;"></i>
-        При оплате укажите в комментарии: <strong>Telegram, VK, почту</strong> — куда отправить ссылку на скачивание музыки.
-      </div>
-      <div class="agree">
-        <input type="checkbox" id="agreeCheck" onchange="checkAgree()">
-        <label for="agreeCheck">
-          Я ознакомлен(а) и согласен(на) с <a href="#" onclick="event.preventDefault(); openAgreementModal();">условиями приобретения</a> и обработкой данных
-        </label>
-      </div>
-      <a href="https://tips.tips/000481739" target="_blank" class="btn-buy" id="payBtn">
-        <i class="fas fa-credit-card"></i> Оплатить
-      </a>
-    </div>
-  </div>
-
-  <!-- ===== МОДАЛЬНОЕ ОКНО С СОГЛАШЕНИЕМ ===== -->
-  <div class="agreement-modal-overlay" id="agreementModal">
-    <div class="agreement-modal">
-      <button class="agreement-modal-close" onclick="closeAgreementModal()">&times;</button>
-      <h1>ИНФОРМАЦИОННОЕ СОГЛАШЕНИЕ</h1>
-      <div class="subtitle">по использованию музыки BALM (БИЭЛЭМ)</div>
-
-      <div class="section">
-        <p style="font-size: 0.85rem; color: #888; margin-bottom: 12px;">Настоящее Соглашение носит информационный характер и не является публичной офертой.</p>
-        <h2>1. Общие положения</h2>
-        <p>1.1. Настоящее Соглашение информирует о правилах использования музыкальных произведений артиста BALM (БИЭЛЭМ) (Беляев Алексей).</p>
-        <p>1.2. Совершая разовый платёж за музыку, вы соглашаетесь с условиями, описанными ниже.</p>
-      </div>
-
-      <div class="section">
-        <h2>2. Что вы получаете</h2>
-        <ul>
-          <li><span class="check">✅</span> Право использовать музыку в коммерческих и некоммерческих целях без ограничений.</li>
-          <li><span class="check">✅</span> Право транслировать музыку в любых общественных местах: кафе, рестораны, бары, салоны красоты, спа-центры, фитнес-клубы, торговые и развлекательные центры, офисы, гостиницы и любые другие коммерческие объекты.</li>
-          <li><span class="check">✅</span> Право использовать бессрочно — один раз заплатили, пользуетесь всегда.</li>
-          <li><span class="check">✅</span> Без отчислений — никаких выплат в РАО, ВОИС и другие организации. Музыка принадлежит BALM (БИЭЛЭМ), и вы платите напрямую артисту.</li>
-        </ul>
-      </div>
-
-      <div class="section">
-        <h2>3. Чего делать НЕЛЬЗЯ</h2>
-        <ul>
-          <li><span class="cross">❌</span> Выдавать музыку за свою (указывайте автора: BALM (БИЭЛЭМ)).</li>
-          <li><span class="cross">❌</span> Передавать или продавать музыку третьим лицам.</li>
-          <li><span class="cross">❌</span> Изменять, переделывать или создавать ремиксы без разрешения.</li>
-        </ul>
-      </div>
-
-      <div class="section">
-        <h2>4. Что нужно для легального использования</h2>
-        <p>Достаточно иметь:</p>
-        <ul>
-          <li>Настоящее Соглашение</li>
-          <li>Подтверждение оплаты (чек или скриншот)</li>
-        </ul>
-        <p style="margin-top: 8px;">Эти документы подтверждают, что вы используете музыку легально.</p>
-      </div>
-
-      <div class="section">
-        <h2>5. Сравнение: выгода для бизнеса</h2>
-        <p style="margin-bottom: 8px;">Вместо того чтобы платить РАО и ВОИС ежемесячно:</p>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>Тип объекта</th>
-                <th>РАО + ВОИС за 1 м² в месяц</th>
-                <th>Экономия за год (на 100 м²)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Кафе и рестораны</td>
-                <td>90–125 ₽</td>
-                <td class="highlight">от 108 000 ₽</td>
-              </tr>
-              <tr>
-                <td>Бары и ночные клубы</td>
-                <td>135–205 ₽</td>
-                <td class="highlight">от 162 000 ₽</td>
-              </tr>
-              <tr>
-                <td>Салоны красоты и спа</td>
-                <td>75–110 ₽</td>
-                <td class="highlight">от 90 000 ₽</td>
-              </tr>
-              <tr>
-                <td>Фитнес-клубы</td>
-                <td>60–95 ₽</td>
-                <td class="highlight">от 72 000 ₽</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <p style="margin-top: 10px; color: #4ade80; font-weight: 600;">Вы платите один раз — и больше никаких ежемесячных отчислений.</p>
-      </div>
-
-      <div class="agreement-footer">
-        © 2026 BALM (БИЭЛЭМ) · Беляев Алексей
-      </div>
-    </div>
-  </div>
-
-  <!-- ===== РЕКЛАМНЫЙ БАННЕР ===== -->
-  <div class="banner" id="promoBanner">
-    <button class="banner-close" onclick="closeBanner()">&times;</button>
-    <h3>Бесплатная музыка для бизнеса</h3>
-    <p class="banner-text">
-      1 час уникальной музыки без авторских прав. Подходит для салонов, ТЦ, ресторанов и любых коммерческих пространств.
-    </p>
-    <a href="https://disk.yandex.com/d/-E67dJQXa2KYsg" target="_blank" class="banner-btn">
-      <i class="fas fa-download"></i> Скачать бесплатно
-    </a>
-  </div>
-
-  <!-- ===== РЕЛИЗЫ ===== -->
-  <section class="releases-section" id="releases">
-    <div class="container">
-      <div class="section-header">
-        <h2>Релизы</h2>
-        <a id="showAllBtn" onclick="toggleReleases()">
-          Все релизы <i class="fas fa-chevron-down"></i>
+        <a href="https://tips.tips/000481710" target="_blank" class="donate-btn" rel="noopener noreferrer">
+          <i class="fas fa-heart" aria-hidden="true"></i> Поддержать
         </a>
       </div>
-      <div class="release-grid" id="releaseGrid">
-        <div class="release-card">
-          <div class="release-cover">
-            <img src="alterego.webp" alt="Альтерэго (Rock)" loading="lazy">
-          </div>
-          <div class="release-title">Альтерэго (Rock)</div>
-          <div class="release-year">2026 · Альбом</div>
-        </div>
-        <div class="release-card">
-          <div class="release-cover">
-            <img src="beautiful.webp" alt="Beautiful (Rock)" loading="lazy">
-          </div>
-          <div class="release-title">Beautiful (Rock)</div>
-          <div class="release-year">2026 · сингл</div>
-        </div>
-        <div class="release-card">
-          <div class="release-cover">
-            <img src="chance.webp" alt="Chance English ver. (Rock)" loading="lazy">
-          </div>
-          <div class="release-title">Chance English ver. (Rock)</div>
-          <div class="release-year">2026 · сингл</div>
-        </div>
-        <div class="release-card">
-          <div class="release-cover">
-            <img src="cloud.webp" alt="Облака (Rock)" loading="lazy">
-          </div>
-          <div class="release-title">Облака (Rock)</div>
-          <div class="release-year">2026 · сингл</div>
-        </div>
-        <div class="release-card">
-          <div class="release-cover">
-            <img src="Heart.webp" alt="Жги моё сердце (Pop)" loading="lazy">
-          </div>
-          <div class="release-title">Жги моё сердце (Pop)</div>
-          <div class="release-year">2026 · сингл</div>
-        </div>
-        <div class="release-card">
-          <div class="release-cover">
-            <img src="its%20my%20life.webp" alt="It's My Life (Hip-hop)" loading="lazy">
-          </div>
-          <div class="release-title">It's My Life (Hip-hop)</div>
-          <div class="release-year">2026 · сингл</div>
-        </div>
-        <div class="release-card">
-          <div class="release-cover">
-            <img src="love.webp" alt="Смысл жизни любовь (Pop)" loading="lazy">
-          </div>
-          <div class="release-title">Смысл жизни любовь (Pop)</div>
-          <div class="release-year">2026 · сингл</div>
-        </div>
-        <div class="release-card">
-          <div class="release-cover">
-            <img src="stars.webp" alt="К звездам (Rock / Jazz / Piano)" loading="lazy">
-          </div>
-          <div class="release-title">К звездам (Rock / Jazz / Piano)</div>
-          <div class="release-year">2026 · трипл сингл</div>
-        </div>
-        <div class="release-card">
-          <div class="release-cover">
-            <img src="what.webp" alt="Ну почему? (Breaks)" loading="lazy">
-          </div>
-          <div class="release-title">Ну почему? (Breaks)</div>
-          <div class="release-year">2026 · сингл</div>
-        </div>
-        <div class="release-card">
-          <div class="release-cover">
-            <img src="world.webp" alt="Мой маленький мир (Pop)" loading="lazy">
-          </div>
-          <div class="release-title">Мой маленький мир (Pop)</div>
-          <div class="release-year">2026 · сингл</div>
-        </div>
-        <div class="release-card">
-          <div class="release-cover">
-            <img src="beautifulRU.webp" alt="Моя красивая (Pop)" loading="lazy">
-          </div>
-          <div class="release-title">Моя красивая (Pop)</div>
-          <div class="release-year">2026 · сингл</div>
-        </div>
-        <div class="release-card">
-          <div class="release-cover">
-            <img src="chanceRU.webp" alt="Шанс (Rock)" loading="lazy">
-          </div>
-          <div class="release-title">Шанс (Rock)</div>
-          <div class="release-year">2026 · сингл</div>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ===== БИО ===== -->
-  <section class="bio-section" id="bio">
-    <div class="container bio-grid">
-      <div class="bio-image">
-        <img src="BALM.webp" alt="BALM (БИЭЛЭМ) — Беляев Алексей" loading="lazy">
+    <!-- ===== БЛОК МУЗЫКА БЕЗ АВТОРСКИХ ПРАВ ===== -->
+    <section class="copyright-free-section" id="copyright-free" aria-label="Музыка без авторских прав">
+      <div class="container">
+        <div class="copyright-free-grid">
+          <div class="copyright-free-text">
+            <div class="badge"><i class="fas fa-shield-alt" style="margin-right: 8px;" aria-hidden="true"></i> Royalty Free</div>
+            <h2><i class="fas fa-music" aria-hidden="true"></i> Музыка без авторских прав</h2>
+            <p class="description">
+              Вся представленная музыка создана специально для использования в коммерческих и некоммерческих проектах. 
+              Вы можете использовать её в видео, подкастах, рекламе, играх и любых других проектах без ограничений.
+            </p>
+            <div class="legal">
+              <i class="fas fa-check-circle" aria-hidden="true"></i>
+              <div class="text">
+                <strong>✅ Полная свобода использования</strong><br>
+                Музыка не нарушает авторских прав третьих лиц. Разрешено использование в коммерческих целях, 
+                монетизация на YouTube, Twitch, TikTok, Instagram и других платформах. Без роялти и отчислений.
+              </div>
+            </div>
+          </div>
+
+          <div class="copyright-free-player">
+            <div class="demo-player">
+              <div class="track-row">
+                <div class="track-artwork"><i class="fas fa-headphones" aria-hidden="true"></i></div>
+                <div class="track-meta">
+                  <div class="name">Demo</div>
+                  <div class="artist">BALM (БИЭЛЭМ)</div>
+                </div>
+              </div>
+              <iframe 
+                style="border: 0; width: 100%; height: 120px; border-radius: 12px;" 
+                src="https://bandcamp.com/EmbeddedPlayer/track=3546794513/size=large/bgcol=333333/linkcol=9a64ff/tracklist=false/artwork=small/transparent=true/" 
+                seamless
+                title="BALM demo на Bandcamp — слушать демо-версию"
+              >
+                <a href="https://balm2.bandcamp.com/track/demo">demo by BALM (БИЭЛЭМ)</a>
+              </iframe>
+              <div class="demo-tag">
+                <i class="fas fa-headphones" style="margin-right: 6px;" aria-hidden="true"></i> 
+                Демо-версия · Полная версия доступна по запросу
+              </div>
+            </div>
+
+            <div class="btn-group">
+              <button class="btn btn-primary" onclick="openModal()">
+                <i class="fas fa-shopping-cart" aria-hidden="true"></i> Купить
+              </button>
+              <a href="https://t.me/albe_spb" target="_blank" class="btn btn-outline" rel="noopener noreferrer">
+                <i class="fab fa-telegram-plane" aria-hidden="true"></i> Telegram
+              </a>
+            </div>
+            <a href="https://disk.yandex.com/d/-E67dJQXa2KYsg" target="_blank" class="free-download-btn" rel="noopener noreferrer">
+              <i class="fas fa-download" aria-hidden="true"></i> Скачать бесплатно
+            </a>
+          </div>
+
+        </div>
       </div>
-      <div class="bio-text">
-        <h2>BALM</h2>
-        <p>
-          <strong>BALM (БИЭЛЭМ)</strong> — это музыкальный проект Беляева Алексея, музыканта, поэта и диджея из Санкт-Петербурга.
+    </section>
+
+    <!-- ===== МОДАЛЬНОЕ ОКНО ОПЛАТЫ ===== -->
+    <div class="modal-overlay" id="buyModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal">
+        <button class="modal-close" onclick="closeModal()" aria-label="Закрыть">&times;</button>
+        <h2 id="modalTitle">Приобрести музыку</h2>
+        <p class="sub">
+          Вы можете приобрести 2 часа студийной уникальной Chillout музыки, которую можете использовать в коммерческих целях, отчисления за авторское право не требуются. Музыку можно использовать в любой сфере бизнеса: от салонов красоты до торговых и развлекательных центров.
         </p>
-        <p>
-          Для меня музыка — не просто творчество, а жизненная необходимость. Это способ высказать то, что годами копится внутри, когда слов уже недостаточно. В эпоху одноразовых хитов я сознательно выбираю путь, где за каждой строкой стоит настоящая эмоция. Мои песни — это место, где сталкиваются боль и красота, где тишина говорит громче, чем крик. Это территория, в которой каждый слушатель может найти отражение собственных переживаний: от щемящей тоски до едва уловимой улыбки.
-        </p>
-        <p>
-          <strong>О проекте:</strong>
-        </p>
-        <p>
-          BALM — мой экспериментальный музыкальный мир. В нём я смешиваю тяжёлые гитарные рифы ню-метала с поп-мелодиями и электронной текстурой. Это звук, рождённый на стыке жанров.
-        </p>
-        <div class="bio-stats">
-          <div><span class="number">Выпускается на всех музыкальных площадках мира</span><span class="label"></span></div>
-          <div><span class="number"></span><span class="label"></span></div>
-          <div><span class="number"></span><span class="label"></span></div>
+
+        <div class="price-list">
+          <p>
+            <span>Джаз</span>
+            <span class="sum">1 час · 500 ₽</span>
+          </p>
+          <p>
+            <span>Турецкая</span>
+            <span class="sum">1 час · 500 ₽</span>
+          </p>
+          <p>
+            <span style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+              2 часа
+              <span class="sale-badge">🔥 Акция</span>
+            </span>
+            <span style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap; justify-content: flex-end;">
+              <span class="old-price">1000 ₽</span>
+              <span class="new-price">300 ₽</span>
+            </span>
+          </p>
+        </div>
+
+        <div class="comment">
+          <i class="fas fa-info-circle" style="margin-right: 8px; color: #8b5cf6;" aria-hidden="true"></i>
+          При оплате укажите в комментарии: <strong>Telegram, VK, почту</strong> — куда отправить ссылку на скачивание музыки.
+        </div>
+        <div class="agree">
+          <input type="checkbox" id="agreeCheck" onchange="checkAgree()" aria-label="Согласие с условиями">
+          <label for="agreeCheck">
+            Я ознакомлен(а) и согласен(на) с <a href="#" onclick="event.preventDefault(); openAgreementModal();">условиями приобретения</a> и обработкой данных
+          </label>
+        </div>
+        <a href="https://tips.tips/000481739" target="_blank" class="btn-buy" id="payBtn" rel="noopener noreferrer">
+          <i class="fas fa-credit-card" aria-hidden="true"></i> Оплатить
+        </a>
+      </div>
+    </div>
+
+    <!-- ===== МОДАЛЬНОЕ ОКНО С СОГЛАШЕНИЕМ ===== -->
+    <div class="agreement-modal-overlay" id="agreementModal" role="dialog" aria-modal="true" aria-labelledby="agreementTitle">
+      <div class="agreement-modal">
+        <button class="agreement-modal-close" onclick="closeAgreementModal()" aria-label="Закрыть соглашение">&times;</button>
+        <h1 id="agreementTitle">ИНФОРМАЦИОННОЕ СОГЛАШЕНИЕ</h1>
+        <div class="subtitle">по использованию музыки BALM (БИЭЛЭМ)</div>
+
+        <div class="section">
+          <p style="font-size: 0.85rem; color: #888; margin-bottom: 12px;">Настоящее Соглашение носит информационный характер и не является публичной офертой.</p>
+          <h2>1. Общие положения</h2>
+          <p>1.1. Настоящее Соглашение информирует о правилах использования музыкальных произведений артиста BALM (БИЭЛЭМ) (Беляев Алексей).</p>
+          <p>1.2. Совершая разовый платёж за музыку, вы соглашаетесь с условиями, описанными ниже.</p>
+        </div>
+
+        <div class="section">
+          <h2>2. Что вы получаете</h2>
+          <ul>
+            <li><span class="check">✅</span> Право использовать музыку в коммерческих и некоммерческих целях без ограничений.</li>
+            <li><span class="check">✅</span> Право транслировать музыку в любых общественных местах: кафе, рестораны, бары, салоны красоты, спа-центры, фитнес-клубы, торговые и развлекательные центры, офисы, гостиницы и любые другие коммерческие объекты.</li>
+            <li><span class="check">✅</span> Право использовать бессрочно — один раз заплатили, пользуетесь всегда.</li>
+            <li><span class="check">✅</span> Без отчислений — никаких выплат в РАО, ВОИС и другие организации. Музыка принадлежит BALM (БИЭЛЭМ), и вы платите напрямую артисту.</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>3. Чего делать НЕЛЬЗЯ</h2>
+          <ul>
+            <li><span class="cross">❌</span> Выдавать музыку за свою (указывайте автора: BALM (БИЭЛЭМ)).</li>
+            <li><span class="cross">❌</span> Передавать или продавать музыку третьим лицам.</li>
+            <li><span class="cross">❌</span> Изменять, переделывать или создавать ремиксы без разрешения.</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>4. Что нужно для легального использования</h2>
+          <p>Достаточно иметь:</p>
+          <ul>
+            <li>Настоящее Соглашение</li>
+            <li>Подтверждение оплаты (чек или скриншот)</li>
+          </ul>
+          <p style="margin-top: 8px;">Эти документы подтверждают, что вы используете музыку легально.</p>
+        </div>
+
+        <div class="section">
+          <h2>5. Сравнение: выгода для бизнеса</h2>
+          <p style="margin-bottom: 8px;">Вместо того чтобы платить РАО и ВОИС ежемесячно:</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Тип объекта</th>
+                  <th>РАО + ВОИС за 1 м² в месяц</th>
+                  <th>Экономия за год (на 100 м²)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Кафе и рестораны</td>
+                  <td>90–125 ₽</td>
+                  <td class="highlight">от 108 000 ₽</td>
+                </tr>
+                <tr>
+                  <td>Бары и ночные клубы</td>
+                  <td>135–205 ₽</td>
+                  <td class="highlight">от 162 000 ₽</td>
+                </tr>
+                <tr>
+                  <td>Салоны красоты и спа</td>
+                  <td>75–110 ₽</td>
+                  <td class="highlight">от 90 000 ₽</td>
+                </tr>
+                <tr>
+                  <td>Фитнес-клубы</td>
+                  <td>60–95 ₽</td>
+                  <td class="highlight">от 72 000 ₽</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="margin-top: 10px; color: #4ade80; font-weight: 600;">Вы платите один раз — и больше никаких ежемесячных отчислений.</p>
+        </div>
+
+        <div class="agreement-footer">
+          © 2026 BALM (БИЭЛЭМ) · Беляев Алексей
         </div>
       </div>
     </div>
-  </section>
+
+    <!-- ===== РЕКЛАМНЫЙ БАННЕР ===== -->
+    <div class="banner" id="promoBanner" role="complementary" aria-label="Рекламный баннер">
+      <button class="banner-close" onclick="closeBanner()" aria-label="Закрыть баннер">&times;</button>
+      <h3>Бесплатная музыка для бизнеса</h3>
+      <p class="banner-text">
+        1 час уникальной музыки без авторских прав. Подходит для салонов, ТЦ, ресторанов и любых коммерческих пространств.
+      </p>
+      <a href="https://disk.yandex.com/d/-E67dJQXa2KYsg" target="_blank" class="banner-btn" rel="noopener noreferrer">
+        <i class="fas fa-download" aria-hidden="true"></i> Скачать бесплатно
+      </a>
+    </div>
+
+    <!-- ===== РЕЛИЗЫ ===== -->
+    <section class="releases-section" id="releases" aria-label="Релизы BALM">
+      <div class="container">
+        <div class="section-header">
+          <h2>Релизы</h2>
+          <a id="showAllBtn" onclick="toggleReleases()" role="button" tabindex="0">
+            Все релизы <i class="fas fa-chevron-down" aria-hidden="true"></i>
+          </a>
+        </div>
+        <div class="release-grid" id="releaseGrid">
+          <article class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
+            <div class="release-cover">
+              <img src="alterego.webp" alt="Альтерэго (Rock) — обложка альбома" loading="lazy" width="400" height="400">
+            </div>
+            <div class="release-title" itemprop="name">Альтерэго (Rock)</div>
+            <div class="release-year" itemprop="datePublished">2026 · Альбом</div>
+          </article>
+          <article class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
+            <div class="release-cover">
+              <img src="beautiful.webp" alt="Beautiful (Rock) — обложка сингла" loading="lazy" width="400" height="400">
+            </div>
+            <div class="release-title" itemprop="name">Beautiful (Rock)</div>
+            <div class="release-year" itemprop="datePublished">2026 · сингл</div>
+          </article>
+          <article class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
+            <div class="release-cover">
+              <img src="chance.webp" alt="Chance English ver. (Rock) — обложка сингла" loading="lazy" width="400" height="400">
+            </div>
+            <div class="release-title" itemprop="name">Chance English ver. (Rock)</div>
+            <div class="release-year" itemprop="datePublished">2026 · сингл</div>
+          </article>
+          <article class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
+            <div class="release-cover">
+              <img src="cloud.webp" alt="Облака (Rock) — обложка сингла" loading="lazy" width="400" height="400">
+            </div>
+            <div class="release-title" itemprop="name">Облака (Rock)</div>
+            <div class="release-year" itemprop="datePublished">2026 · сингл</div>
+          </article>
+          <article class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
+            <div class="release-cover">
+              <img src="Heart.webp" alt="Жги моё сердце (Pop) — обложка сингла" loading="lazy" width="400" height="400">
+            </div>
+            <div class="release-title" itemprop="name">Жги моё сердце (Pop)</div>
+            <div class="release-year" itemprop="datePublished">2026 · сингл</div>
+          </article>
+          <article class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
+            <div class="release-cover">
+              <img src="its%20my%20life.webp" alt="It's My Life (Hip-hop) — обложка сингла" loading="lazy" width="400" height="400">
+            </div>
+            <div class="release-title" itemprop="name">It's My Life (Hip-hop)</div>
+            <div class="release-year" itemprop="datePublished">2026 · сингл</div>
+          </article>
+          <article class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
+            <div class="release-cover">
+              <img src="love.webp" alt="Смысл жизни любовь (Pop) — обложка сингла" loading="lazy" width="400" height="400">
+            </div>
+            <div class="release-title" itemprop="name">Смысл жизни любовь (Pop)</div>
+            <div class="release-year" itemprop="datePublished">2026 · сингл</div>
+          </article>
+          <article class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
+            <div class="release-cover">
+              <img src="stars.webp" alt="К звездам (Rock / Jazz / Piano) — обложка трипл сингла" loading="lazy" width="400" height="400">
+            </div>
+            <div class="release-title" itemprop="name">К звездам (Rock / Jazz / Piano)</div>
+            <div class="release-year" itemprop="datePublished">2026 · трипл сингл</div>
+          </article>
+          <article class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
+            <div class="release-cover">
+              <img src="what.webp" alt="Ну почему? (Breaks) — обложка сингла" loading="lazy" width="400" height="400">
+            </div>
+            <div class="release-title" itemprop="name">Ну почему? (Breaks)</div>
+            <div class="release-year" itemprop="datePublished">2026 · сингл</div>
+          </article>
+          <article class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
+            <div class="release-cover">
+              <img src="world.webp" alt="Мой маленький мир (Pop) — обложка сингла" loading="lazy" width="400" height="400">
+            </div>
+            <div class="release-title" itemprop="name">Мой маленький мир (Pop)</div>
+            <div class="release-year" itemprop="datePublished">2026 · сингл</div>
+          </article>
+          <article class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
+            <div class="release-cover">
+              <img src="beautifulRU.webp" alt="Моя красивая (Pop) — обложка сингла" loading="lazy" width="400" height="400">
+            </div>
+            <div class="release-title" itemprop="name">Моя красивая (Pop)</div>
+            <div class="release-year" itemprop="datePublished">2026 · сингл</div>
+          </article>
+          <article class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
+            <div class="release-cover">
+              <img src="chanceRU.webp" alt="Шанс (Rock) — обложка сингла" loading="lazy" width="400" height="400">
+            </div>
+            <div class="release-title" itemprop="name">Шанс (Rock)</div>
+            <div class="release-year" itemprop="datePublished">2026 · сингл</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== БИО ===== -->
+    <section class="bio-section" id="bio" aria-label="Биография BALM">
+      <div class="container bio-grid">
+        <div class="bio-image">
+          <img src="BALM.webp" alt="BALM (БИЭЛЭМ) — Беляев Алексей, музыкант из Санкт-Петербурга" loading="lazy" width="800" height="800">
+        </div>
+        <div class="bio-text">
+          <h2>BALM</h2>
+          <p>
+            <strong>BALM (БИЭЛЭМ)</strong> — это музыкальный проект Беляева Алексея, музыканта, поэта и диджея из Санкт-Петербурга.
+          </p>
+          <p>
+            Для меня музыка — не просто творчество, а жизненная необходимость. Это способ высказать то, что годами копится внутри, когда слов уже недостаточно. В эпоху одноразовых хитов я сознательно выбираю путь, где за каждой строкой стоит настоящая эмоция. Мои песни — это место, где сталкиваются боль и красота, где тишина говорит громче, чем крик. Это территория, в которой каждый слушатель может найти отражение собственных переживаний: от щемящей тоски до едва уловимой улыбки.
+          </p>
+          <p>
+            <strong>О проекте:</strong>
+          </p>
+          <p>
+            BALM — мой экспериментальный музыкальный мир. В нём я смешиваю тяжёлые гитарные рифы ню-метала с поп-мелодиями и электронной текстурой. Это звук, рождённый на стыке жанров.
+          </p>
+          <div class="bio-stats">
+            <div><span class="number">Выпускается на всех музыкальных площадках мира</span><span class="label"></span></div>
+            <div><span class="number"></span><span class="label"></span></div>
+            <div><span class="number"></span><span class="label"></span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <!-- ===== ФУТЕР ===== -->
   <div class="container">
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
       <div class="footer-left">
         <span>Разработано в</span>
-        <a href="https://t.me/albe_web" target="_blank" class="albe-link">
-          <img src="Albe.webp" alt="Albe" loading="lazy">
+        <a href="https://t.me/albe_web" target="_blank" class="albe-link" rel="noopener noreferrer">
+          <img src="Albe.webp" alt="Albe — веб-разработка" loading="lazy" width="80" height="40">
         </a>
       </div>
+      <div class="footer-links">
+        <a href="#" onclick="event.preventDefault(); openAgreementModal();">Пользовательское соглашение</a>
+        <a href="#" onclick="event.preventDefault(); alert('Политика конфиденциальности: данные не передаются третьим лицам.');">Политика конфиденциальности</a>
+      </div>
       <div class="social-icons">
-        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="https://music.yandex.ru/artist/26471381" target="_blank" aria-label="Яндекс Музыка"><i class="fab fa-spotify"></i></a>
-        <a href="#" aria-label="Apple Music"><i class="fab fa-apple"></i></a>
-        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+        <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" aria-label="Яндекс Музыка"><i class="fab fa-spotify" aria-hidden="true"></i></a>
+        <a href="https://apple.com/apple-music" target="_blank" rel="noopener noreferrer" aria-label="Apple Music"><i class="fab fa-apple" aria-hidden="true"></i></a>
+        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+        <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok" aria-hidden="true"></i></a>
       </div>
     </footer>
   </div>
@@ -1799,11 +1878,14 @@
     hamburger.addEventListener('click', function() {
       this.classList.toggle('active');
       mobileMenu.classList.toggle('open');
+      const isOpen = mobileMenu.classList.contains('open');
+      this.setAttribute('aria-expanded', isOpen);
     });
 
     function closeMobileMenu() {
       hamburger.classList.remove('active');
       mobileMenu.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
     }
 
     // ===== РЕЛИЗЫ =====
@@ -1830,8 +1912,8 @@
       allVisible = !allVisible;
       updateVisibility(allVisible);
       btn.innerHTML = allVisible 
-        ? 'Скрыть релизы <i class="fas fa-chevron-up"></i>' 
-        : 'Все релизы <i class="fas fa-chevron-down"></i>';
+        ? 'Скрыть релизы <i class="fas fa-chevron-up" aria-hidden="true"></i>' 
+        : 'Все релизы <i class="fas fa-chevron-down" aria-hidden="true"></i>';
       btn.classList.toggle('rotated');
     }
 
