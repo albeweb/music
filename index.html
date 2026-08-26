@@ -40,7 +40,7 @@
     @media (max-width: 768px) { .container { padding: 0 24px; } }
     @media (max-width: 480px) { .container { padding: 0 18px; } }
 
-    /* ===== НЕПРОЗРАЧНАЯ ШАПКА ===== */
+    /* ===== ШАПКА ===== */
     .navbar {
       position: fixed;
       top: 0;
@@ -64,7 +64,13 @@
       box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
     }
     @media (max-width: 1024px) { .navbar { padding: 0 40px; } }
-    @media (max-width: 768px) { .navbar { padding: 0 24px; height: 60px; flex-wrap: wrap; gap: 4px; } }
+    @media (max-width: 768px) { 
+      .navbar { 
+        padding: 0 24px; 
+        height: 60px; 
+        flex-wrap: nowrap;
+      }
+    }
     @media (max-width: 480px) { .navbar { padding: 0 18px; } }
 
     .logo {
@@ -85,6 +91,7 @@
     .logo:hover { opacity: 0.8; }
     @media (max-width: 480px) { .logo { font-size: 1.2rem; letter-spacing: 0.12em; } }
 
+    /* ===== ДЕСКТОПНАЯ НАВИГАЦИЯ ===== */
     .nav-links {
       display: flex;
       align-items: center;
@@ -95,8 +102,12 @@
       text-transform: uppercase;
       flex-wrap: wrap;
     }
-    @media (max-width: 768px) { .nav-links { gap: 20px; font-size: 0.7rem; letter-spacing: 0.08em; } }
-    @media (max-width: 480px) { .nav-links { gap: 14px; font-size: 0.65rem; letter-spacing: 0.06em; } }
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none; /* Скрываем на мобильных */
+      }
+    }
+
     .nav-links a {
       color: rgba(255, 255, 255, 0.65);
       text-decoration: none;
@@ -116,6 +127,124 @@
     }
     .nav-links a:hover { color: #ffffff; }
     .nav-links a:hover::after { width: 100%; }
+
+    /* ===== МОБИЛЬНОЕ ГАМБУРГЕР-МЕНЮ ===== */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+      z-index: 1001;
+    }
+    .hamburger span {
+      display: block;
+      width: 28px;
+      height: 2px;
+      background: #fff;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      transform-origin: center;
+    }
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+    @media (max-width: 768px) {
+      .hamburger {
+        display: flex;
+      }
+    }
+
+    /* ===== МОБИЛЬНОЕ МЕНЮ (ВЫПАДАЮЩЕЕ) ===== */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 60px;
+      left: 0;
+      width: 100%;
+      background: rgba(11, 11, 11, 0.98);
+      backdrop-filter: blur(16px);
+      padding: 24px 30px 30px;
+      flex-direction: column;
+      gap: 20px;
+      z-index: 999;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      animation: slideDown 0.3s ease;
+    }
+    .mobile-menu.open {
+      display: flex;
+    }
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .mobile-menu a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      transition: color 0.2s;
+    }
+    .mobile-menu a:hover {
+      color: #fff;
+    }
+    .mobile-menu a:last-child {
+      border-bottom: none;
+    }
+
+    /* ===== КНОПКА "ПОДДЕРЖАТЬ" В ШАПКЕ ===== */
+    .navbar-support-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 8px 20px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #8b5cf6, #4ade80);
+      color: #0b0b0b;
+      box-shadow: 0 4px 16px rgba(139, 92, 246, 0.25);
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .navbar-support-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(139, 92, 246, 0.35);
+    }
+    .navbar-support-btn i {
+      font-size: 0.9rem;
+    }
+    @media (max-width: 768px) {
+      .navbar-support-btn {
+        padding: 6px 14px;
+        font-size: 0.75rem;
+        gap: 6px;
+      }
+    }
 
     /* ===== HERO БАННЕР ===== */
     .hero {
@@ -541,7 +670,6 @@
       margin-bottom: 20px;
     }
 
-    /* ===== ОБНОВЛЁННЫЙ ПРАЙС-ЛИСТ ===== */
     .modal .price-list {
       background: rgba(255, 255, 255, 0.03);
       border-radius: 16px;
@@ -1004,13 +1132,36 @@
   <!-- ===== ШАПКА ===== -->
   <header class="navbar" id="navbar">
     <a href="#player" class="logo">BALM</a>
+    
+    <!-- Десктопная навигация -->
     <div class="nav-links">
       <a href="#player">Плеер</a>
       <a href="#copyright-free">Без авторских прав</a>
       <a href="#releases">Релизы</a>
       <a href="#bio">Био</a>
     </div>
+
+    <!-- Правая часть: кнопка + гамбургер -->
+    <div style="display: flex; align-items: center; gap: 16px;">
+      <a href="https://tips.tips/000481710" target="_blank" class="navbar-support-btn">
+        <i class="fas fa-heart"></i> Поддержать
+      </a>
+      <!-- Гамбургер (только на мобильных) -->
+      <button class="hamburger" id="hamburger" aria-label="Меню">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
   </header>
+
+  <!-- ===== МОБИЛЬНОЕ МЕНЮ ===== -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#player" onclick="closeMobileMenu()">Плеер</a>
+    <a href="#copyright-free" onclick="closeMobileMenu()">Без авторских прав</a>
+    <a href="#releases" onclick="closeMobileMenu()">Релизы</a>
+    <a href="#bio" onclick="closeMobileMenu()">Био</a>
+  </div>
 
   <!-- ===== HERO БАННЕР ===== -->
   <section class="hero" id="player">
@@ -1096,7 +1247,7 @@
     </div>
   </section>
 
-  <!-- ===== МОДАЛЬНОЕ ОКНО (ОБНОВЛЁННЫЙ ПРАЙС) ===== -->
+  <!-- ===== МОДАЛЬНОЕ ОКНО ===== -->
   <div class="modal-overlay" id="buyModal">
     <div class="modal">
       <button class="modal-close" onclick="closeModal()">&times;</button>
@@ -1105,7 +1256,6 @@
         Вы можете приобрести 2 часа студийной уникальной Chillout музыки, которую можете использовать в коммерческих целях, отчисления за авторское право не требуются. Музыку можно использовать в любой сфере бизнеса: от салонов красоты до торговых и развлекательных центров.
       </p>
 
-      <!-- ===== НОВЫЙ ПРАЙС-ЛИСТ ===== -->
       <div class="price-list">
         <p>
           <span>Джаз</span>
@@ -1342,6 +1492,20 @@
         banner.classList.add('visible');
       }
     }, 3000);
+
+    // ===== МОБИЛЬНОЕ МЕНЮ =====
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    hamburger.addEventListener('click', function() {
+      this.classList.toggle('active');
+      mobileMenu.classList.toggle('open');
+    });
+
+    function closeMobileMenu() {
+      hamburger.classList.remove('active');
+      mobileMenu.classList.remove('open');
+    }
 
     // ===== РЕЛИЗЫ =====
     let allVisible = false;
