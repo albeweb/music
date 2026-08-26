@@ -1,0 +1,18 @@
+# ============================================
+# ROBOTS.TXT для BALM (БИЭЛЭМ)
+# Официальный сайт: https://albeweb.github.io/music/
+# ============================================
+
+User-agent: *
+Allow: /
+
+# Запрещаем индексацию служебных страниц
+Disallow: /assets/
+Disallow: /css/
+Disallow: /js/
+
+# Указываем путь к карте сайта
+Sitemap: https://albeweb.github.io/music/sitemap.xml
+
+# Хост (для поисковых систем, поддерживающих эту директиву)
+Host: https://albeweb.github.io/music/

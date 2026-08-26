@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- ===== ГЛАВНАЯ СТРАНИЦА ===== -->
+  <url>
+    <loc>https://albeweb.github.io/music/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://albeweb.github.io/music/"/>
+  </url>
+
+  <!-- ===== ЯНДЕКС МУЗЫКА (ВНЕШНИЙ ИСТОЧНИК) ===== -->
+  <url>
+    <loc>https://music.yandex.ru/artist/26471381</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- ===== BANDCAMP (ДЕМО) ===== -->
+  <url>
+    <loc>https://balm2.bandcamp.com/track/demo</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- ===== TELEGRAM (КОНТАКТЫ) ===== -->
+  <url>
+    <loc>https://t.me/albe_spb</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- ===== DISK (СКАЧАТЬ БЕСПЛАТНО) ===== -->
+  <url>
+    <loc>https://disk.yandex.com/d/-E67dJQXa2KYsg</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+</urlset>
