@@ -1790,28 +1790,103 @@
     </section>
   </main>
 
-  <!-- ===== ФУТЕР ===== -->
-  <div class="container">
-    <footer class="footer" role="contentinfo">
-      <div class="footer-left">
-        <span>Разработано в</span>
-        <a href="https://t.me/albe_web" target="_blank" class="albe-link" rel="noopener noreferrer">
-          <img src="Albe.webp" alt="Albe — веб-разработка" loading="lazy" width="80" height="40">
-        </a>
-      </div>
-      <div class="footer-links">
-        <a href="#" onclick="event.preventDefault(); openAgreementModal();">Пользовательское соглашение</a>
-        <a href="#" onclick="event.preventDefault(); alert('Политика конфиденциальности: данные не передаются третьим лицам.');">Политика конфиденциальности</a>
-      </div>
-      <div class="social-icons">
-        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
-        <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" aria-label="Яндекс Музыка"><i class="fab fa-spotify" aria-hidden="true"></i></a>
-        <a href="https://apple.com/apple-music" target="_blank" rel="noopener noreferrer" aria-label="Apple Music"><i class="fab fa-apple" aria-hidden="true"></i></a>
-        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
-        <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok" aria-hidden="true"></i></a>
-      </div>
-    </footer>
-  </div>
+/* ===== ФУТЕР (обновленный) ===== */
+.footer {
+  padding: 30px 0 20px;
+  border-top: 1px solid #1a1a1a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  color: #5a5a5a;
+  font-size: 0.9rem;
+}
+
+/* Соцсети — всегда вверху */
+.footer-social {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+}
+.footer-social a {
+  color: #888;
+  font-size: 1.4rem;
+  transition: color 0.2s;
+}
+.footer-social a:hover {
+  color: #fff;
+}
+
+/* Ссылки — в одну строку */
+.footer-links {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.footer-links a {
+  color: #5a5a5a;
+  text-decoration: none;
+  font-size: 0.8rem;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+.footer-links a:hover {
+  color: #f0f0f0;
+}
+
+/* Разработка — в самом низу */
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #5a5a5a;
+  font-size: 0.85rem;
+}
+.footer-bottom .albe-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  line-height: 0;
+}
+.footer-bottom .albe-link img {
+  height: 32px;
+  width: auto;
+  display: block;
+  transition: opacity 0.2s;
+}
+.footer-bottom .albe-link:hover img {
+  opacity: 0.8;
+}
+
+/* ===== АДАПТИВ ДЛЯ МОБИЛЬНЫХ ===== */
+@media (max-width: 480px) {
+  .footer {
+    padding: 24px 0 16px;
+    gap: 14px;
+  }
+  .footer-social {
+    gap: 18px;
+  }
+  .footer-social a {
+    font-size: 1.2rem;
+  }
+  .footer-links {
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .footer-links a {
+    font-size: 0.7rem;
+    white-space: nowrap;
+  }
+  .footer-bottom {
+    font-size: 0.75rem;
+  }
+  .footer-bottom .albe-link img {
+    height: 26px;
+  }
+}
 
   <!-- ===== СКРИПТЫ ===== -->
   <script>
