@@ -1251,6 +1251,24 @@
     }
 
     #player, #releases, #bio, #copyright-free { scroll-margin-top: 80px; }
+
+    /* ===== Tawk.to — позиция снизу слева ===== */
+    .tawk-min-container {
+      left: 20px !important;
+      right: auto !important;
+    }
+    /* Для виджета в мобильной версии */
+    @media (max-width: 768px) {
+      .tawk-min-container {
+        left: 10px !important;
+        right: auto !important;
+        bottom: 10px !important;
+      }
+      .tawk-min-container iframe {
+        left: 0 !important;
+        right: auto !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1554,7 +1572,22 @@
     </footer>
   </div>
 
-  <!-- ===== СКРИПТЫ ===== -->
+  <!-- ===== Tawk.to ЧАТ ===== -->
+  <!--Start of Tawk.to Script-->
+  <script type="text/javascript">
+  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+  (function(){
+  var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+  s1.async=true;
+  s1.src='https://embed.tawk.to/6a8ed1a4067fac344b1dc207/1k0uu5qto';
+  s1.charset='UTF-8';
+  s1.setAttribute('crossorigin','*');
+  s0.parentNode.insertBefore(s1,s0);
+  })();
+  </script>
+  <!--End of Tawk.to Script-->
+
+  <!-- ===== ОСТАЛЬНЫЕ СКРИПТЫ ===== -->
   <script>
     // Модальное окно оплаты
     function openModal() {
@@ -1637,6 +1670,46 @@
     }
 
     updateVisibility(false);
+
+    // ===== ПЕРЕМЕЩЕНИЕ ИКОНКИ Tawk.to ВЛЕВО =====
+    // Ждём загрузки виджета и перемещаем его в левый нижний угол
+    function moveTawkToLeft() {
+      const observer = new MutationObserver(function() {
+        const tawkContainer = document.querySelector('.tawk-min-container');
+        if (tawkContainer) {
+          tawkContainer.style.left = '20px !important';
+          tawkContainer.style.right = 'auto !important';
+          // Для мобильных
+          if (window.innerWidth <= 768) {
+            tawkContainer.style.left = '10px !important';
+            tawkContainer.style.bottom = '10px !important';
+          }
+          observer.disconnect();
+        }
+      });
+      observer.observe(document.body, { childList: true, subtree: true });
+    }
+
+    // Запускаем после загрузки страницы
+    if (document.readyState === 'complete') {
+      moveTawkToLeft();
+    } else {
+      window.addEventListener('load', moveTawkToLeft);
+    }
+
+    // Также обрабатываем изменение размера окна
+    window.addEventListener('resize', function() {
+      const tawkContainer = document.querySelector('.tawk-min-container');
+      if (tawkContainer) {
+        if (window.innerWidth <= 768) {
+          tawkContainer.style.left = '10px !important';
+          tawkContainer.style.bottom = '10px !important';
+        } else {
+          tawkContainer.style.left = '20px !important';
+          tawkContainer.style.right = 'auto !important';
+        }
+      }
+    });
   </script>
 
 </body>
