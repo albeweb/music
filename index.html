@@ -1013,6 +1013,132 @@
       .banner h3 { font-size: 1rem; }
     }
 
+    /* ===== БАННЕР НОВЫХ РЕЛИЗОВ ===== */
+    .new-releases-banner {
+      position: fixed;
+      top: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 9997;
+      background: rgba(20, 20, 20, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      padding: 20px 30px;
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+      opacity: 0;
+      transform: translateX(-50%) translateY(-30px);
+      transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+      pointer-events: none;
+      max-width: 600px;
+      width: 90%;
+    }
+    .new-releases-banner.visible {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+      pointer-events: all;
+    }
+    .new-releases-banner.hidden-banner {
+      display: none !important;
+    }
+    .new-releases-banner-close {
+      position: absolute;
+      top: 8px;
+      right: 14px;
+      background: none;
+      border: none;
+      color: #666;
+      font-size: 1.4rem;
+      cursor: pointer;
+      transition: color 0.2s;
+      padding: 4px;
+      z-index: 10;
+    }
+    .new-releases-banner-close:hover {
+      color: #fff;
+    }
+    .new-releases-banner h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .new-releases-banner h3 .new-badge {
+      background: linear-gradient(135deg, #ef4444, #dc2626);
+      color: #fff;
+      font-size: 0.6rem;
+      padding: 2px 10px;
+      border-radius: 60px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.7; transform: scale(1.05); }
+    }
+    .new-releases-banner .banner-releases {
+      display: flex;
+      gap: 12px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .new-releases-banner .banner-release-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 6px 14px 6px 8px;
+      border-radius: 60px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      text-decoration: none;
+      color: #f0f0f0;
+      font-size: 0.8rem;
+    }
+    .new-releases-banner .banner-release-item:hover {
+      background: rgba(139, 92, 246, 0.15);
+      border-color: #8b5cf6;
+      transform: scale(1.05);
+    }
+    .new-releases-banner .banner-release-item img {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+    .new-releases-banner .banner-release-item .new-tag {
+      font-size: 0.55rem;
+      color: #4ade80;
+      font-weight: 700;
+      text-transform: uppercase;
+      background: rgba(74, 222, 128, 0.15);
+      padding: 1px 8px;
+      border-radius: 60px;
+    }
+    @media (max-width: 768px) {
+      .new-releases-banner {
+        top: 70px;
+        padding: 16px 20px;
+        width: 95%;
+      }
+      .new-releases-banner h3 { font-size: 0.95rem; }
+      .new-releases-banner .banner-release-item {
+        font-size: 0.7rem;
+        padding: 4px 10px 4px 6px;
+      }
+      .new-releases-banner .banner-release-item img {
+        width: 28px;
+        height: 28px;
+      }
+    }
+
     /* ===== РЕЛИЗЫ ===== */
     .releases-section {
       padding: 80px 0;
@@ -1069,6 +1195,11 @@
       opacity: 0;
       transform: translateY(20px);
       animation: fadeInUp 0.4s ease forwards;
+      cursor: pointer;
+      position: relative;
+      text-decoration: none;
+      color: #f0f0f0;
+      display: block;
     }
     .release-card:nth-child(1) { animation-delay: 0.05s; }
     .release-card:nth-child(2) { animation-delay: 0.10s; }
@@ -1082,6 +1213,8 @@
     .release-card:nth-child(10) { animation-delay: 0.50s; }
     .release-card:nth-child(11) { animation-delay: 0.55s; }
     .release-card:nth-child(12) { animation-delay: 0.60s; }
+    .release-card:nth-child(13) { animation-delay: 0.65s; }
+
     .release-card.hidden { display: none; }
     @keyframes fadeInUp {
       to { opacity: 1; transform: translateY(0); }
@@ -1098,12 +1231,28 @@
       margin-bottom: 18px;
       overflow: hidden;
       border: 1px solid #2a2a2a;
+      position: relative;
     }
     .release-cover img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
+    }
+    .release-cover .new-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: linear-gradient(135deg, #ef4444, #dc2626);
+      color: #fff;
+      font-size: 0.6rem;
+      padding: 3px 12px;
+      border-radius: 60px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      animation: pulse 1.5s infinite;
+      box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
     }
     .release-title { font-weight: 600; font-size: 1.1rem; margin-bottom: 4px; }
     .release-year { color: #777; font-size: 0.8rem; letter-spacing: 0.3px; }
@@ -1432,6 +1581,32 @@
       <a href="https://disk.yandex.com/d/-E67dJQXa2KYsg" target="_blank" class="banner-btn" rel="noopener noreferrer"><i class="fas fa-download" aria-hidden="true"></i> Скачать бесплатно</a>
     </div>
 
+    <!-- ===== БАННЕР НОВЫХ РЕЛИЗОВ ===== -->
+    <div class="new-releases-banner" id="newReleasesBanner" role="complementary" aria-label="Новые релизы">
+      <button class="new-releases-banner-close" onclick="closeNewReleasesBanner()" aria-label="Закрыть баннер">&times;</button>
+      <h3>
+        🎵 Новые релизы
+        <span class="new-badge">NEW</span>
+      </h3>
+      <div class="banner-releases">
+        <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="banner-release-item">
+          <img src="Jazz.webp" alt="Jazz" loading="lazy">
+          <span>Jazz</span>
+          <span class="new-tag">NEW</span>
+        </a>
+        <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="banner-release-item">
+          <img src="stars.webp" alt="К звездам" loading="lazy">
+          <span>К звездам</span>
+          <span class="new-tag">NEW</span>
+        </a>
+        <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="banner-release-item">
+          <img src="alterego.webp" alt="Альтерэго" loading="lazy">
+          <span>Альтерэго</span>
+          <span class="new-tag">NEW</span>
+        </a>
+      </div>
+    </div>
+
     <!-- РЕЛИЗЫ -->
     <section class="releases-section" id="releases" aria-label="Релизы BALM">
       <div class="container">
@@ -1440,66 +1615,88 @@
           <a id="showAllBtn" onclick="toggleReleases()" role="button" tabindex="0">Все релизы <i class="fas fa-chevron-down" aria-hidden="true"></i></a>
         </div>
         <div class="release-grid" id="releaseGrid">
-          <article class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
-            <div class="release-cover"><img src="alterego.webp" alt="Альтерэго (Rock) — обложка альбома" loading="lazy" width="400" height="400"></div>
+          
+          <!-- ДЖАЗ - НОВЫЙ! -->
+          <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
+            <div class="release-cover">
+              <img src="Jazz.webp" alt="Jazz — обложка альбома" loading="lazy" width="400" height="400">
+              <span class="new-badge">NEW</span>
+            </div>
+            <div class="release-title" itemprop="name">Jazz</div>
+            <div class="release-year" itemprop="datePublished">2026 · Альбом</div>
+          </a>
+
+          <!-- К ЗВЕЗДАМ - НОВЫЙ! -->
+          <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
+            <div class="release-cover">
+              <img src="stars.webp" alt="К звездам (Rock / Jazz / Piano) — обложка трипл сингла" loading="lazy" width="400" height="400">
+              <span class="new-badge">NEW</span>
+            </div>
+            <div class="release-title" itemprop="name">К звездам (Rock / Jazz / Piano)</div>
+            <div class="release-year" itemprop="datePublished">2026 · трипл сингл</div>
+          </a>
+
+          <!-- АЛЬТЕРЭГО - НОВЫЙ! -->
+          <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
+            <div class="release-cover">
+              <img src="alterego.webp" alt="Альтерэго (Rock) — обложка альбома" loading="lazy" width="400" height="400">
+              <span class="new-badge">NEW</span>
+            </div>
             <div class="release-title" itemprop="name">Альтерэго (Rock)</div>
             <div class="release-year" itemprop="datePublished">2026 · Альбом</div>
-          </article>
-          <article class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
+          </a>
+
+          <!-- ОСТАЛЬНЫЕ РЕЛИЗЫ -->
+          <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
             <div class="release-cover"><img src="beautiful.webp" alt="Beautiful (Rock) — обложка сингла" loading="lazy" width="400" height="400"></div>
             <div class="release-title" itemprop="name">Beautiful (Rock)</div>
             <div class="release-year" itemprop="datePublished">2026 · сингл</div>
-          </article>
-          <article class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
+          </a>
+          <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
             <div class="release-cover"><img src="chance.webp" alt="Chance English ver. (Rock) — обложка сингла" loading="lazy" width="400" height="400"></div>
             <div class="release-title" itemprop="name">Chance English ver. (Rock)</div>
             <div class="release-year" itemprop="datePublished">2026 · сингл</div>
-          </article>
-          <article class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
+          </a>
+          <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
             <div class="release-cover"><img src="cloud.webp" alt="Облака (Rock) — обложка сингла" loading="lazy" width="400" height="400"></div>
             <div class="release-title" itemprop="name">Облака (Rock)</div>
             <div class="release-year" itemprop="datePublished">2026 · сингл</div>
-          </article>
-          <article class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
+          </a>
+          <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
             <div class="release-cover"><img src="Heart.webp" alt="Жги моё сердце (Pop) — обложка сингла" loading="lazy" width="400" height="400"></div>
             <div class="release-title" itemprop="name">Жги моё сердце (Pop)</div>
             <div class="release-year" itemprop="datePublished">2026 · сингл</div>
-          </article>
-          <article class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
+          </a>
+          <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
             <div class="release-cover"><img src="its%20my%20life.webp" alt="It's My Life (Hip-hop) — обложка сингла" loading="lazy" width="400" height="400"></div>
             <div class="release-title" itemprop="name">It's My Life (Hip-hop)</div>
             <div class="release-year" itemprop="datePublished">2026 · сингл</div>
-          </article>
-          <article class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
+          </a>
+          <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
             <div class="release-cover"><img src="love.webp" alt="Смысл жизни любовь (Pop) — обложка сингла" loading="lazy" width="400" height="400"></div>
             <div class="release-title" itemprop="name">Смысл жизни любовь (Pop)</div>
             <div class="release-year" itemprop="datePublished">2026 · сингл</div>
-          </article>
-          <article class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
-            <div class="release-cover"><img src="stars.webp" alt="К звездам (Rock / Jazz / Piano) — обложка трипл сингла" loading="lazy" width="400" height="400"></div>
-            <div class="release-title" itemprop="name">К звездам (Rock / Jazz / Piano)</div>
-            <div class="release-year" itemprop="datePublished">2026 · трипл сингл</div>
-          </article>
-          <article class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
+          </a>
+          <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
             <div class="release-cover"><img src="what.webp" alt="Ну почему? (Breaks) — обложка сингла" loading="lazy" width="400" height="400"></div>
             <div class="release-title" itemprop="name">Ну почему? (Breaks)</div>
             <div class="release-year" itemprop="datePublished">2026 · сингл</div>
-          </article>
-          <article class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
+          </a>
+          <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
             <div class="release-cover"><img src="world.webp" alt="Мой маленький мир (Pop) — обложка сингла" loading="lazy" width="400" height="400"></div>
             <div class="release-title" itemprop="name">Мой маленький мир (Pop)</div>
             <div class="release-year" itemprop="datePublished">2026 · сингл</div>
-          </article>
-          <article class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
+          </a>
+          <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
             <div class="release-cover"><img src="beautifulRU.webp" alt="Моя красивая (Pop) — обложка сингла" loading="lazy" width="400" height="400"></div>
             <div class="release-title" itemprop="name">Моя красивая (Pop)</div>
             <div class="release-year" itemprop="datePublished">2026 · сингл</div>
-          </article>
-          <article class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
+          </a>
+          <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
             <div class="release-cover"><img src="chanceRU.webp" alt="Шанс (Rock) — обложка сингла" loading="lazy" width="400" height="400"></div>
             <div class="release-title" itemprop="name">Шанс (Rock)</div>
             <div class="release-year" itemprop="datePublished">2026 · сингл</div>
-          </article>
+          </a>
         </div>
       </div>
     </section>
@@ -1554,7 +1751,7 @@
     </footer>
   </div>
 
-  <!-- ===== Tawk.to ЧАТ (НОВЫЙ КОД!) ===== -->
+  <!-- ===== Tawk.to ЧАТ ===== -->
   <!--Start of Tawk.to Script-->
   <script type="text/javascript">
   var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
@@ -1617,6 +1814,15 @@
       if (!banner.classList.contains('hidden-banner')) banner.classList.add('visible');
     }, 3000);
 
+    // Баннер новых релизов
+    function closeNewReleasesBanner() {
+      document.getElementById('newReleasesBanner').classList.add('hidden-banner');
+    }
+    setTimeout(function() {
+      const banner = document.getElementById('newReleasesBanner');
+      if (!banner.classList.contains('hidden-banner')) banner.classList.add('visible');
+    }, 1500);
+
     // Мобильное меню
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
@@ -1638,7 +1844,17 @@
 
     function updateVisibility(showAll) {
       cards.forEach((card, index) => {
-        card.classList.toggle('hidden', !showAll && index >= 3);
+        // Показываем все, кроме первых трёх (Jazz, К звездам, Альтерэго) — они всегда видны
+        if (showAll) {
+          card.classList.remove('hidden');
+        } else {
+          // Скрываем только те, у которых индекс >= 3 (после первых трёх)
+          if (index >= 3) {
+            card.classList.add('hidden');
+          } else {
+            card.classList.remove('hidden');
+          }
+        }
       });
     }
 
@@ -1651,6 +1867,7 @@
       btn.classList.toggle('rotated');
     }
 
+    // Изначально показываем первые 3 релиза (Jazz, К звездам, Альтерэго)
     updateVisibility(false);
   </script>
 
