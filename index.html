@@ -238,18 +238,8 @@
     @media(max-width:480px){.agree{padding:20px 14px;border-radius:20px}.agree-title{font-size:1.2rem}.agree-section p,.agree-section li{font-size:.85rem}}
 
     /* ===== БАННЕРЫ ===== */
-    .banner{position:fixed;bottom:100px;right:20px;z-index:9998;max-width:340px;width:calc(100% - 40px);background:rgba(20,20,20,.95);backdrop-filter:blur(20px);border-radius:20px;padding:20px 24px;border:1px solid rgba(255,255,255,.06);box-shadow:0 20px 60px rgba(0,0,0,.8);opacity:0;transform:translateY(30px);transition:all .5s cubic-bezier(.34,1.56,.64,1);pointer-events:none}
-    .banner.visible{opacity:1;transform:translateY(0);pointer-events:all}
-    .banner.hidden{display:none!important}
-    .banner-close{position:absolute;top:10px;right:14px;background:0 0;border:0;color:#666;font-size:1.1rem;cursor:pointer;transition:color .2s;padding:4px;z-index:10}
-    .banner-close:hover{color:#fff}
-    .banner-title{font-size:1rem;font-weight:700;margin-bottom:6px;color:#fff;padding-right:24px}
-    .banner-text{font-size:.85rem;color:var(--text2);line-height:1.5;margin-bottom:14px}
-    .banner-btn{width:100%}
-    @media(max-width:768px){.banner{top:80px;right:16px;left:16px;max-width:none;width:auto;padding:18px 20px}.banner-title{font-size:.95rem}}
-    @media(max-width:480px){.banner{top:72px;right:10px;left:10px;padding:14px;border-radius:16px}.banner-title{font-size:.85rem;padding-right:20px}.banner-text{font-size:.8rem}}
-
-    .new-banner{position:fixed;top:80px;left:50%;transform:translateX(-50%);z-index:9997;background:rgba(20,20,20,.95);backdrop-filter:blur(20px);border-radius:20px;padding:20px 30px;border:1px solid rgba(139,92,246,.3);box-shadow:0 20px 60px rgba(0,0,0,.8);opacity:0;transform:translateX(-50%) translateY(-30px);transition:all .6s cubic-bezier(.34,1.56,.64,1);pointer-events:none;max-width:600px;width:90%}
+    /* ----- БАННЕР НОВЫХ РЕЛИЗОВ (эталон ширины) ----- */
+    .new-banner{position:fixed;top:80px;left:50%;transform:translateX(-50%);z-index:9997;background:rgba(20,20,20,.95);backdrop-filter:blur(20px);border-radius:20px;padding:20px 30px;border:1px solid rgba(139,92,246,.3);box-shadow:0 20px 60px rgba(0,0,0,.8);opacity:0;transform:translateX(-50%) translateY(-30px);transition:all .6s cubic-bezier(.34,1.56,.64,1);pointer-events:none;max-width:600px;width:90%;box-sizing:border-box}
     .new-banner.visible{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:all}
     .new-banner.hidden{display:none!important}
     .new-banner-close{position:absolute;top:8px;right:14px;background:0 0;border:0;color:#666;font-size:1.4rem;cursor:pointer;transition:color .2s;padding:4px;z-index:10}
@@ -262,8 +252,43 @@
     .new-banner-item:hover{background:rgba(139,92,246,.15);border-color:var(--accent);transform:scale(1.05)}
     .new-banner-item img{width:28px;height:28px;border-radius:8px;object-fit:cover;flex-shrink:0}
     .new-banner-item .tag{font-size:.5rem;color:var(--success);font-weight:700;text-transform:uppercase;background:rgba(74,222,128,.15);padding:1px 8px;border-radius:60px}
-    @media(max-width:768px){.new-banner{top:70px;padding:16px 20px;width:95%}.new-banner-title{font-size:.9rem}.new-banner-item{font-size:.7rem;padding:4px 10px 4px 6px}.new-banner-item img{width:24px;height:24px}}
-    @media(max-width:480px){.new-banner{top:65px;padding:12px;width:96%;border-radius:16px}.new-banner-title{font-size:.75rem;gap:6px;padding-right:24px}.new-banner-badge{font-size:.5rem;padding:1px 8px}.new-banner-list{gap:6px}.new-banner-item{font-size:.6rem;padding:3px 8px 3px 5px;gap:5px}.new-banner-item img{width:18px;height:18px}.new-banner-item .tag{font-size:.4rem;padding:1px 6px}}
+
+    /* ----- РЕКЛАМНЫЙ БАННЕР — ТАКОЙ ЖЕ ШИРИНЫ, ПО ЦЕНТРУ, ПОВЕРХ ----- */
+    .banner{position:fixed;top:80px;left:50%;transform:translateX(-50%);z-index:9998;max-width:600px;width:90%;background:rgba(20,20,20,.95);backdrop-filter:blur(20px);border-radius:20px;padding:16px 24px;border:1px solid rgba(255,255,255,.06);box-shadow:0 20px 60px rgba(0,0,0,.8);opacity:0;transform:translateX(-50%) translateY(-30px);transition:all .6s cubic-bezier(.34,1.56,.64,1);pointer-events:none;box-sizing:border-box}
+    .banner.visible{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:all}
+    .banner.hidden{display:none!important}
+    .banner-close{position:absolute;top:8px;right:14px;background:0 0;border:0;color:#666;font-size:1.4rem;cursor:pointer;transition:color .2s;padding:4px;z-index:10}
+    .banner-close:hover{color:#fff}
+    .banner-title{font-size:1rem;font-weight:700;margin-bottom:4px;color:#fff;display:flex;align-items:center;gap:10px;padding-right:30px}
+    .banner-text{font-size:.85rem;color:var(--text2);line-height:1.4;margin-bottom:10px}
+    .banner-btn{width:100%;padding:8px 16px!important;font-size:.85rem!important;min-height:36px!important}
+
+    /* ===== АДАПТАЦИЯ БАННЕРОВ НА МОБИЛЬНЫХ ===== */
+    @media(max-width:768px){
+      .banner{top:70px;padding:12px 18px;width:90%}
+      .banner-title{font-size:.85rem;padding-right:24px}
+      .banner-text{font-size:.75rem;margin-bottom:6px}
+      .banner-btn{padding:6px 12px!important;font-size:.75rem!important;min-height:28px!important}
+      .banner-close{top:6px;right:10px;font-size:1.2rem}
+      .new-banner{top:70px;padding:14px 18px;width:90%}
+      .new-banner-title{font-size:.85rem}
+      .new-banner-item{font-size:.7rem;padding:4px 10px 4px 6px}
+      .new-banner-item img{width:24px;height:24px}
+    }
+    @media(max-width:480px){
+      .banner{top:65px;padding:10px 14px;width:92%}
+      .banner-title{font-size:.75rem;padding-right:20px}
+      .banner-text{font-size:.65rem;margin-bottom:4px}
+      .banner-btn{padding:4px 10px!important;font-size:.65rem!important;min-height:24px!important}
+      .banner-close{top:4px;right:8px;font-size:1rem}
+      .new-banner{top:65px;padding:10px 14px;width:92%}
+      .new-banner-title{font-size:.75rem;gap:4px}
+      .new-banner-badge{font-size:.5rem;padding:1px 8px}
+      .new-banner-list{gap:6px}
+      .new-banner-item{font-size:.6rem;padding:3px 8px 3px 5px;gap:5px}
+      .new-banner-item img{width:18px;height:18px}
+      .new-banner-item .tag{font-size:.4rem;padding:1px 6px}
+    }
 
     /* ===== РЕЛИЗЫ ===== */
     .releases{padding:80px 0;background:var(--bg);border-bottom:1px solid #181818}
@@ -304,12 +329,14 @@
     .bio-text{color:#bdbdbd;font-size:1.05rem;max-width:600px;margin-bottom:16px;font-weight:300;line-height:1.7}
     .bio-text strong{color:var(--text);font-weight:600}
     @media(max-width:480px){.bio-text{font-size:.95rem}}
+
+    /* ===== СТАТИСТИКА — В ОДНУ СТРОКУ НА МОБИЛЬНЫХ ===== */
     .bio-stats{display:flex;gap:40px;margin-top:24px;flex-wrap:wrap}
-    @media(max-width:480px){.bio-stats{gap:20px}}
-    .bio-stat{display:flex;flex-direction:column}
+    @media(max-width:480px){.bio-stats{gap:12px;justify-content:center;flex-wrap:nowrap}}
+    .bio-stat{display:flex;flex-direction:column;align-items:center}
     .bio-stat .num{font-size:1.8rem;font-weight:700;color:#fff}
     .bio-stat .lbl{font-size:.75rem;color:var(--text3);letter-spacing:.5px;text-transform:uppercase}
-    @media(max-width:480px){.bio-stat .num{font-size:1.4rem}.bio-stat .lbl{font-size:.65rem}}
+    @media(max-width:480px){.bio-stat .num{font-size:.75rem!important;white-space:nowrap}.bio-stat .lbl{font-size:.55rem!important;white-space:nowrap}}
 
     /* ===== FAQ ===== */
     .faq{padding:80px 0;background:var(--bg);border-bottom:1px solid #181818}
@@ -518,13 +545,15 @@
   </div>
 
   <!-- ===== БАННЕРЫ ===== -->
+  <!-- Рекламный баннер — такой же ширины как баннер релизов, по центру, поверх -->
   <div class="banner" id="promoBanner">
     <button class="banner-close" data-close-banner>&times;</button>
-    <div class="banner-title">Бесплатная музыка для бизнеса</div>
+    <div class="banner-title">🎵 Бесплатная музыка для бизнеса</div>
     <p class="banner-text">1 час уникальной музыки без авторских прав. Подходит для салонов, ТЦ, ресторанов.</p>
     <a href="https://disk.yandex.com/d/-E67dJQXa2KYsg" target="_blank" class="btn btn-primary btn-full banner-btn" rel="noopener"><i class="fas fa-download"></i> Скачать бесплатно</a>
   </div>
 
+  <!-- Баннер новых релизов -->
   <div class="new-banner" id="newReleasesBanner">
     <button class="new-banner-close" data-close-new-banner>&times;</button>
     <div class="new-banner-title">🎵 Новые релизы <span class="new-banner-badge">NEW</span></div>
