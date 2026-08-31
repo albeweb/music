@@ -112,41 +112,112 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
   <style>
-    /* ===== БАЗОВЫЕ СТИЛИ ===== */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    ::-webkit-scrollbar { width: 4px; height: 4px; }
-    ::-webkit-scrollbar-track { background: #0b0b0b; }
-    ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #8b5cf6, #4ade80); border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #a78bfa, #6ee7b7); }
-    * { scrollbar-width: thin; scrollbar-color: #8b5cf6 #0b0b0b; }
+    /* ============================================
+       ПЕРЕМЕННЫЕ
+    ============================================ */
+    :root {
+      /* Цвета */
+      --color-bg: #0b0b0b;
+      --color-bg-secondary: #0d0d0d;
+      --color-bg-card: #121212;
+      --color-bg-card-hover: #1a1a1a;
+      --color-text: #f0f0f0;
+      --color-text-secondary: #b0b0b0;
+      --color-text-muted: #777;
+      --color-border: #1f1f1f;
+      --color-border-hover: #3a3a3a;
+      --color-accent: #8b5cf6;
+      --color-accent-hover: #a78bfa;
+      --color-success: #4ade80;
+      --color-success-hover: #6ee7b7;
+      --color-danger: #ef4444;
+
+      /* Кнопки */
+      --btn-padding: 14px 28px;
+      --btn-radius: 60px;
+      --btn-font-size: 0.95rem;
+      --btn-min-height: 54px;
+
+      /* Отступы */
+      --container-padding: 80px;
+      --section-padding: 80px;
+      --gap: 30px;
+
+      /* Шрифты */
+      --font-family: 'Inter', sans-serif;
+      --font-family-heading: 'Montserrat', sans-serif;
+    }
+
+    @media (max-width: 1024px) {
+      :root { --container-padding: 40px; }
+    }
+    @media (max-width: 768px) {
+      :root {
+        --container-padding: 20px;
+        --section-padding: 50px;
+        --gap: 20px;
+        --btn-padding: 12px 20px;
+        --btn-font-size: 0.85rem;
+        --btn-min-height: 46px;
+      }
+    }
+    @media (max-width: 480px) {
+      :root {
+        --container-padding: 14px;
+        --section-padding: 40px;
+        --gap: 14px;
+        --btn-padding: 10px 16px;
+        --btn-font-size: 0.8rem;
+        --btn-min-height: 40px;
+      }
+    }
+
+    /* ============================================
+       БАЗОВЫЕ СТИЛИ
+    ============================================ */
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      width: 100%;
+    }
 
     body {
-      font-family: 'Inter', sans-serif;
-      background-color: #0b0b0b;
-      color: #f0f0f0;
+      font-family: var(--font-family);
+      background-color: var(--color-bg);
+      color: var(--color-text);
       line-height: 1.5;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
       width: 100%;
       max-width: 100%;
     }
-    html {
-      scroll-behavior: smooth;
-      overflow-x: hidden;
-      width: 100%;
+
+    img,
+    iframe,
+    video {
       max-width: 100%;
+      height: auto;
+      display: block;
     }
 
+    /* ============================================
+       УТИЛИТЫ
+    ============================================ */
     .container {
       max-width: 1440px;
       margin: 0 auto;
-      padding: 0 80px;
+      padding: 0 var(--container-padding);
       width: 100%;
       box-sizing: border-box;
     }
-    @media (max-width: 1024px) { .container { padding: 0 40px; } }
-    @media (max-width: 768px) { .container { padding: 0 20px; } }
-    @media (max-width: 480px) { .container { padding: 0 14px; } }
 
     .visually-hidden {
       position: absolute;
@@ -159,12 +230,137 @@
       border: 0;
     }
 
-    img, iframe, video {
-      max-width: 100%;
-      height: auto;
+    .scroll-margin {
+      scroll-margin-top: 80px;
     }
 
-    /* ===== ШАПКА ===== */
+    /* ============================================
+       КНОПКИ
+    ============================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: var(--btn-padding);
+      border-radius: var(--btn-radius);
+      font-weight: 600;
+      font-size: var(--btn-font-size);
+      font-family: var(--font-family);
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      color: #ffffff;
+      white-space: nowrap;
+      min-height: var(--btn-min-height);
+      box-sizing: border-box;
+      background: transparent;
+    }
+
+    .btn--primary {
+      background: linear-gradient(135deg, var(--color-accent), var(--color-success));
+      box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3);
+    }
+    .btn--primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(139, 92, 246, 0.4);
+    }
+
+    .btn--outline {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    .btn--outline:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: var(--color-accent);
+      transform: translateY(-3px);
+    }
+
+    .btn--heart {
+      background: linear-gradient(135deg, var(--color-accent), var(--color-success));
+      box-shadow: 0 4px 16px rgba(139, 92, 246, 0.25);
+      padding: 8px 18px;
+      min-height: 38px;
+      font-size: 0.8rem;
+    }
+    .btn--heart:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(139, 92, 246, 0.35);
+    }
+    .btn--heart .fa-heart {
+      color: #ff0000;
+    }
+
+    .btn--full {
+      width: 100%;
+    }
+
+    .btn--disabled {
+      opacity: 0.4;
+      pointer-events: none;
+    }
+    .btn--disabled.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+    .btn-group .btn {
+      flex: 1 1 200px;
+      min-width: 140px;
+    }
+
+    @media (max-width: 768px) {
+      .btn-group {
+        justify-content: center;
+      }
+    }
+    @media (max-width: 480px) {
+      .btn-group .btn {
+        flex: 1 1 100%;
+        min-width: 0;
+      }
+      .btn--heart {
+        padding: 6px 12px;
+        min-height: 32px;
+        font-size: 0.7rem;
+      }
+      .btn--heart .fa-heart {
+        font-size: 0.7rem;
+      }
+    }
+
+    /* ============================================
+       СКРОЛЛБАР
+    ============================================ */
+    ::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--color-bg);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, var(--color-accent), var(--color-success));
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(180deg, var(--color-accent-hover), var(--color-success-hover));
+    }
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: var(--color-accent) var(--color-bg);
+    }
+
+    /* ============================================
+       ШАПКА
+    ============================================ */
     .navbar {
       position: fixed;
       top: 0;
@@ -175,7 +371,7 @@
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      padding: 0 80px;
+      padding: 0 var(--container-padding);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -183,12 +379,15 @@
       transition: all 0.3s ease;
       box-sizing: border-box;
     }
-    @media (max-width: 1024px) { .navbar { padding: 0 40px; } }
-    @media (max-width: 768px) { .navbar { padding: 0 20px; height: 60px; } }
-    @media (max-width: 480px) { .navbar { padding: 0 14px; } }
+
+    @media (max-width: 768px) {
+      .navbar {
+        height: 60px;
+      }
+    }
 
     .logo {
-      font-family: 'Inter', sans-serif;
+      font-family: var(--font-family);
       font-size: 1.6rem;
       font-weight: 700;
       letter-spacing: 0.15em;
@@ -202,8 +401,16 @@
       transition: opacity 0.3s ease;
       flex-shrink: 0;
     }
-    .logo:hover { opacity: 0.8; }
-    @media (max-width: 480px) { .logo { font-size: 1rem; letter-spacing: 0.1em; } }
+    .logo:hover {
+      opacity: 0.8;
+    }
+
+    @media (max-width: 480px) {
+      .logo {
+        font-size: 1rem;
+        letter-spacing: 0.1em;
+      }
+    }
 
     .nav-links {
       display: flex;
@@ -214,7 +421,12 @@
       letter-spacing: 0.05em;
       text-transform: uppercase;
     }
-    @media (max-width: 768px) { .nav-links { display: none; } }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+    }
 
     .nav-links a {
       color: rgba(255, 255, 255, 0.65);
@@ -230,12 +442,26 @@
       left: 0;
       width: 0;
       height: 1.5px;
-      background: linear-gradient(90deg, #8b5cf6, #4ade80);
+      background: linear-gradient(90deg, var(--color-accent), var(--color-success));
       transition: width 0.3s ease;
     }
-    .nav-links a:hover { color: #ffffff; }
-    .nav-links a:hover::after { width: 100%; }
+    .nav-links a:hover {
+      color: #ffffff;
+    }
+    .nav-links a:hover::after {
+      width: 100%;
+    }
 
+    .navbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    /* ============================================
+       ГАМБУРГЕР
+    ============================================ */
     .hamburger {
       display: none;
       flex-direction: column;
@@ -256,11 +482,25 @@
       transition: all 0.3s ease;
       transform-origin: center;
     }
-    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-    .hamburger.active span:nth-child(2) { opacity: 0; }
-    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-    @media (max-width: 768px) { .hamburger { display: flex; } }
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
 
+    @media (max-width: 768px) {
+      .hamburger {
+        display: flex;
+      }
+    }
+
+    /* ============================================
+       МОБИЛЬНОЕ МЕНЮ
+    ============================================ */
     .mobile-menu {
       display: none;
       position: fixed;
@@ -274,14 +514,24 @@
       gap: 20px;
       z-index: 999;
       border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      animation: slideDown 0.3s ease;
       box-sizing: border-box;
     }
-    .mobile-menu.open { display: flex; }
-    @keyframes slideDown {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
+    .mobile-menu.open {
+      display: flex;
+      animation: slideDown 0.3s ease;
     }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     .mobile-menu a {
       color: rgba(255, 255, 255, 0.8);
       text-decoration: none;
@@ -293,144 +543,16 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.04);
       transition: color 0.2s;
     }
-    .mobile-menu a:hover { color: #fff; }
-    .mobile-menu a:last-child { border-bottom: none; }
-
-    /* ===== ЕДИНАЯ ТОЛЩИНА КНОПОК ===== */
-    .navbar-support-btn,
-    .donate-btn,
-    .btn,
-    .free-download-btn,
-    .banner .banner-btn,
-    .modal .btn-buy {
-      padding: 14px 28px !important;
-      border-radius: 60px !important;
-      font-weight: 600 !important;
-      font-size: 0.95rem !important;
-      font-family: 'Inter', sans-serif !important;
-      border: none !important;
-      cursor: pointer !important;
-      display: inline-flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      gap: 10px !important;
-      text-decoration: none !important;
-      transition: all 0.3s ease !important;
-      color: #ffffff !important;
-      white-space: nowrap !important;
-      min-height: 54px !important;
-      box-sizing: border-box !important;
+    .mobile-menu a:hover {
+      color: #fff;
+    }
+    .mobile-menu a:last-child {
+      border-bottom: none;
     }
 
-    .navbar-support-btn {
-      background: linear-gradient(135deg, #8b5cf6, #4ade80) !important;
-      box-shadow: 0 4px 16px rgba(139, 92, 246, 0.25) !important;
-      padding: 8px 18px !important;
-      min-height: 38px !important;
-      font-size: 0.8rem !important;
-    }
-    @media (max-width: 480px) {
-      .navbar-support-btn {
-        padding: 6px 12px !important;
-        font-size: 0.7rem !important;
-        min-height: 32px !important;
-        gap: 5px !important;
-      }
-      .navbar-support-btn i { font-size: 0.7rem !important; }
-    }
-    .navbar-support-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 24px rgba(139, 92, 246, 0.35) !important;
-    }
-
-    .donate-btn,
-    .btn-primary,
-    .free-download-btn,
-    .banner .banner-btn,
-    .modal .btn-buy {
-      background: linear-gradient(135deg, #8b5cf6, #4ade80) !important;
-      box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3) !important;
-    }
-    .donate-btn:hover,
-    .btn-primary:hover,
-    .free-download-btn:hover,
-    .banner .banner-btn:hover,
-    .modal .btn-buy:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 30px rgba(139, 92, 246, 0.4) !important;
-    }
-
-    .btn-outline {
-      background: transparent !important;
-      color: #ffffff !important;
-      border: 1px solid rgba(255, 255, 255, 0.3) !important;
-      box-shadow: none !important;
-    }
-    .btn-outline:hover {
-      background: rgba(255, 255, 255, 0.08) !important;
-      border-color: #8b5cf6 !important;
-      transform: translateY(-3px);
-    }
-
-    .modal .btn-buy {
-      opacity: 0.4;
-      pointer-events: none;
-      width: 100% !important;
-    }
-    .modal .btn-buy.active {
-      opacity: 1;
-      pointer-events: all;
-    }
-
-    .btn-group {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      justify-content: flex-start;
-    }
-    .btn-group .btn {
-      flex: 1 1 200px;
-      min-width: 140px;
-    }
-    @media (max-width: 768px) { .btn-group { justify-content: center; } }
-    @media (max-width: 480px) {
-      .btn-group .btn {
-        flex: 1 1 100%;
-        min-width: 0;
-        font-size: 0.85rem !important;
-        padding: 12px 16px !important;
-        min-height: 46px !important;
-      }
-    }
-
-    .free-download-btn {
-      width: 100% !important;
-      margin-top: 4px !important;
-    }
-    @media (max-width: 480px) {
-      .free-download-btn {
-        font-size: 0.85rem !important;
-        padding: 12px 16px !important;
-        min-height: 46px !important;
-      }
-    }
-
-    .navbar-support-btn i.fa-heart,
-    .donate-btn i.fa-heart {
-      color: #ff0000 !important;
-      -webkit-text-fill-color: #ff0000 !important;
-    }
-
-    .new-releases-banner .banner-release-item {
-      color: #f0f0f0 !important;
-    }
-    .new-releases-banner .banner-release-item:hover {
-      background: rgba(139, 92, 246, 0.15);
-      border-color: #8b5cf6;
-      transform: scale(1.05);
-    }
-
-    /* ===== HERO ===== */
+    /* ============================================
+       HERO
+    ============================================ */
     .hero {
       width: 100%;
       height: 100vh;
@@ -438,21 +560,22 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #0b0b0b;
+      background: var(--color-bg);
       position: relative;
       overflow: hidden;
     }
-    .hero img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+
+    .hero__image {
       position: absolute;
       top: 0;
       left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
       z-index: 0;
     }
-    .hero-overlay {
+
+    .hero__overlay {
       position: absolute;
       top: 0;
       left: 0;
@@ -461,7 +584,8 @@
       background: rgba(11, 11, 11, 0.45);
       z-index: 1;
     }
-    .hero-content {
+
+    .hero__content {
       position: relative;
       z-index: 2;
       width: 100%;
@@ -476,10 +600,22 @@
       padding-top: 100px;
       box-sizing: border-box;
     }
-    @media (max-width: 768px) { .hero-content { padding-top: 80px; min-height: auto; padding: 80px 16px 20px; } }
-    @media (max-width: 480px) { .hero-content { padding: 70px 12px 16px; } }
-    .hero-title {
-      font-family: 'Inter', sans-serif;
+
+    @media (max-width: 768px) {
+      .hero__content {
+        padding-top: 80px;
+        min-height: auto;
+        padding: 80px 16px 20px;
+      }
+    }
+    @media (max-width: 480px) {
+      .hero__content {
+        padding: 70px 12px 16px;
+      }
+    }
+
+    .hero__title {
+      font-family: var(--font-family);
       font-size: clamp(4rem, 20vw, 14rem);
       font-weight: 900;
       letter-spacing: 0.12em;
@@ -488,44 +624,53 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      text-shadow: 0 4px 40px rgba(0,0,0,0.3);
+      text-shadow: 0 4px 40px rgba(0, 0, 0, 0.3);
       text-align: center;
       width: 100%;
     }
-    .hero-subtitle {
-      font-family: 'Montserrat', sans-serif;
+
+    .hero__subtitle {
+      font-family: var(--font-family-heading);
       font-size: clamp(1.8rem, 6vw, 5rem);
       font-weight: 400;
       letter-spacing: 0.5em;
       color: #d0d0d0;
-      text-shadow: 0 2px 20px rgba(0,0,0,0.8);
+      text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
       text-transform: uppercase;
       text-align: center;
-      margin: 4px auto 20px auto;
+      margin: 4px auto 20px;
       width: 100%;
     }
-    @media (max-width: 480px) { .hero-subtitle { letter-spacing: 0.3em; } }
-    .hero-player-wrapper {
+
+    @media (max-width: 480px) {
+      .hero__subtitle {
+        letter-spacing: 0.3em;
+      }
+    }
+
+    .hero__player-wrapper {
       width: 100%;
       max-width: 560px;
-      margin: 0 auto 15px auto;
+      margin: 0 auto 15px;
     }
-    .hero-player {
+
+    .hero__player {
       width: 100%;
       background: rgba(20, 20, 20, 0.6);
       backdrop-filter: blur(16px) saturate(180%);
       border-radius: 20px;
       padding: 12px 16px;
       border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
       transition: all 0.3s ease;
       box-sizing: border-box;
     }
-    .hero-player:hover {
+    .hero__player:hover {
       border-color: rgba(255, 255, 255, 0.15);
-      box-shadow: 0 24px 60px rgba(0,0,0,0.8);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8);
     }
-    .hero-player iframe {
+
+    .hero__player iframe {
       width: 100%;
       height: 400px;
       border: none;
@@ -533,48 +678,71 @@
       background: transparent;
       display: block;
     }
-    @media (max-width: 1024px) { .hero-player iframe { height: 220px; } }
-    @media (max-width: 768px) { .hero-player iframe { height: 200px; } }
-    @media (max-width: 480px) { .hero-player iframe { height: 180px; } }
 
-    .donate-btn {
-      min-width: 220px !important;
+    @media (max-width: 1024px) {
+      .hero__player iframe {
+        height: 220px;
+      }
+    }
+    @media (max-width: 768px) {
+      .hero__player iframe {
+        height: 200px;
+      }
     }
     @media (max-width: 480px) {
-      .donate-btn {
-        min-width: 100% !important;
-        font-size: 0.85rem !important;
-        padding: 12px 16px !important;
-        min-height: 46px !important;
+      .hero__player iframe {
+        height: 180px;
       }
     }
 
-    /* ===== БЛОК МУЗЫКА БЕЗ АВТОРСКИХ ПРАВ ===== */
-    .copyright-free-section {
-      padding: 80px 0;
-      background: #0d0d0d;
+    .hero__donate {
+      min-width: 220px;
+    }
+    @media (max-width: 480px) {
+      .hero__donate {
+        min-width: 100%;
+      }
+    }
+
+    /* ============================================
+       МУЗЫКА БЕЗ АВТОРСКИХ ПРАВ
+    ============================================ */
+    .copyright-free {
+      padding: var(--section-padding) 0;
+      background: var(--color-bg-secondary);
       border-bottom: 1px solid #181818;
     }
-    @media (max-width: 768px) { .copyright-free-section { padding: 50px 0; } }
-    @media (max-width: 480px) { .copyright-free-section { padding: 40px 0; } }
-    .copyright-free-grid {
+
+    .copyright-free__grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 60px;
       align-items: center;
     }
-    @media (max-width: 1024px) { .copyright-free-grid { gap: 40px; } }
+
+    @media (max-width: 1024px) {
+      .copyright-free__grid {
+        gap: 40px;
+      }
+    }
     @media (max-width: 768px) {
-      .copyright-free-grid {
+      .copyright-free__grid {
         grid-template-columns: 1fr;
         gap: 30px;
         text-align: center;
       }
     }
 
-    .copyright-free-text { text-align: left; }
-    @media (max-width: 768px) { .copyright-free-text { text-align: center; } }
-    .copyright-free-text .badge {
+    .copyright-free__text {
+      text-align: left;
+    }
+    @media (max-width: 768px) {
+      .copyright-free__text {
+        text-align: center;
+      }
+    }
+
+    .copyright-free__badge {
       display: inline-block;
       background: rgba(139, 92, 246, 0.15);
       border: 1px solid rgba(139, 92, 246, 0.25);
@@ -582,27 +750,30 @@
       border-radius: 60px;
       font-size: 0.75rem;
       letter-spacing: 0.1em;
-      color: #a78bfa;
+      color: var(--color-accent-hover);
       text-transform: uppercase;
       margin-bottom: 20px;
     }
-    .copyright-free-text h2 {
-      font-size: 2.4rem;
+
+    .copyright-free__title {
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
       font-weight: 600;
       letter-spacing: -0.02em;
       margin-bottom: 16px;
     }
-    @media (max-width: 768px) { .copyright-free-text h2 { font-size: 2rem; } }
-    @media (max-width: 480px) { .copyright-free-text h2 { font-size: 1.6rem; } }
-    .copyright-free-text h2 i { color: #4ade80; margin-right: 12px; }
-    .copyright-free-text .description {
-      color: #b0b0b0;
+    .copyright-free__title .fa-check-circle {
+      color: var(--color-success);
+      margin-right: 12px;
+    }
+
+    .copyright-free__description {
+      color: var(--color-text-secondary);
       font-size: 1.05rem;
       line-height: 1.7;
       margin-bottom: 12px;
     }
-    @media (max-width: 480px) { .copyright-free-text .description { font-size: 0.95rem; } }
-    .copyright-free-text .features-list {
+
+    .copyright-free__features {
       list-style: none;
       padding: 0;
       margin: 16px 0;
@@ -610,28 +781,30 @@
       grid-template-columns: 1fr 1fr;
       gap: 8px 16px;
     }
+
     @media (max-width: 480px) {
-      .copyright-free-text .features-list {
+      .copyright-free__features {
         grid-template-columns: 1fr;
         text-align: left;
-        padding-left: 0;
       }
     }
-    .copyright-free-text .features-list li {
-      color: #b0b0b0;
+
+    .copyright-free__features li {
+      color: var(--color-text-secondary);
       font-size: 0.95rem;
       padding: 6px 0;
       display: flex;
       align-items: center;
       gap: 10px;
     }
-    .copyright-free-text .features-list li i {
-      color: #4ade80;
+    .copyright-free__features li .fa-check-circle {
+      color: var(--color-success);
       font-size: 1rem;
       flex-shrink: 0;
       width: 20px;
     }
-    .copyright-free-text .legal {
+
+    .copyright-free__legal {
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid rgba(255, 255, 255, 0.05);
       border-radius: 16px;
@@ -641,25 +814,39 @@
       gap: 14px;
       margin-top: 4px;
     }
+
     @media (max-width: 480px) {
-      .copyright-free-text .legal {
+      .copyright-free__legal {
         flex-direction: column;
         align-items: center;
         text-align: center;
-        padding: 14px 16px;
       }
     }
-    .copyright-free-text .legal i { font-size: 1.6rem; color: #4ade80; flex-shrink: 0; margin-top: 2px; }
-    .copyright-free-text .legal .text { font-size: 0.9rem; color: #999; line-height: 1.5; }
-    .copyright-free-text .legal .text strong { color: #f0f0f0; font-weight: 600; }
 
-    .copyright-free-player {
+    .copyright-free__legal .fa-check-circle {
+      font-size: 1.6rem;
+      color: var(--color-success);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .copyright-free__legal .text {
+      font-size: 0.9rem;
+      color: #999;
+      line-height: 1.5;
+    }
+    .copyright-free__legal .text strong {
+      color: var(--color-text);
+      font-weight: 600;
+    }
+
+    .copyright-free__player {
       width: 100%;
       display: flex;
       flex-direction: column;
       align-items: stretch;
       gap: 20px;
     }
+
     .demo-player {
       width: 100%;
       background: rgba(20, 20, 20, 0.7);
@@ -667,21 +854,23 @@
       border-radius: 20px;
       padding: 24px 28px;
       border: 1px solid rgba(255, 255, 255, 0.06);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
       transition: all 0.3s ease;
       box-sizing: border-box;
     }
     .demo-player:hover {
       border-color: rgba(255, 255, 255, 0.12);
-      box-shadow: 0 24px 60px rgba(0,0,0,0.9);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.9);
     }
-    .demo-player .track-row {
+
+    .demo-player__track {
       display: flex;
       align-items: center;
       gap: 16px;
       margin-bottom: 16px;
     }
-    .demo-player .track-artwork {
+
+    .demo-player__artwork {
       width: 52px;
       height: 52px;
       border-radius: 14px;
@@ -694,9 +883,21 @@
       border: 1px solid #333;
       flex-shrink: 0;
     }
-    .demo-player .track-meta { flex: 1; text-align: left; }
-    .demo-player .track-meta .name { font-weight: 600; font-size: 1rem; color: #fff; }
-    .demo-player .track-meta .artist { font-size: 0.8rem; color: #999; }
+
+    .demo-player__meta {
+      flex: 1;
+      text-align: left;
+    }
+    .demo-player__meta .name {
+      font-weight: 600;
+      font-size: 1rem;
+      color: #fff;
+    }
+    .demo-player__meta .artist {
+      font-size: 0.8rem;
+      color: #999;
+    }
+
     .demo-player iframe {
       width: 100%;
       height: 120px;
@@ -705,22 +906,36 @@
       background: transparent;
       display: block;
     }
-    .demo-player .demo-tag {
+
+    .demo-player__tag {
       margin-top: 14px;
       font-size: 0.7rem;
       color: #555;
       text-align: center;
-      border-top: 1px solid rgba(255,255,255,0.04);
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
       padding-top: 14px;
     }
+
     @media (max-width: 480px) {
-      .demo-player { padding: 16px 14px; }
-      .demo-player iframe { height: 100px; }
-      .demo-player .track-row { gap: 12px; }
-      .demo-player .track-artwork { width: 44px; height: 44px; font-size: 1.2rem; }
+      .demo-player {
+        padding: 16px 14px;
+      }
+      .demo-player iframe {
+        height: 100px;
+      }
+      .demo-player__track {
+        gap: 12px;
+      }
+      .demo-player__artwork {
+        width: 44px;
+        height: 44px;
+        font-size: 1.2rem;
+      }
     }
 
-    /* ===== МОДАЛЬНЫЕ ОКНА ===== */
+    /* ============================================
+       МОДАЛЬНЫЕ ОКНА
+    ============================================ */
     .modal-overlay {
       display: none;
       position: fixed;
@@ -736,7 +951,10 @@
       padding: 20px;
       box-sizing: border-box;
     }
-    .modal-overlay.open { display: flex; }
+    .modal-overlay.open {
+      display: flex;
+    }
+
     .modal {
       background: #141414;
       border-radius: 28px;
@@ -750,8 +968,15 @@
       overflow-y: auto;
       box-sizing: border-box;
     }
-    @media (max-width: 480px) { .modal { padding: 24px 16px; border-radius: 20px; } }
-    .modal-close {
+
+    @media (max-width: 480px) {
+      .modal {
+        padding: 24px 16px;
+        border-radius: 20px;
+      }
+    }
+
+    .modal__close {
       position: absolute;
       top: 16px;
       right: 20px;
@@ -762,8 +987,11 @@
       cursor: pointer;
       transition: color 0.2s;
     }
-    .modal-close:hover { color: #fff; }
-    .modal h2 {
+    .modal__close:hover {
+      color: #fff;
+    }
+
+    .modal__title {
       font-size: 1.8rem;
       font-weight: 700;
       margin-bottom: 16px;
@@ -772,22 +1000,35 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
-    @media (max-width: 480px) { .modal h2 { font-size: 1.4rem; } }
-    .modal .sub {
+
+    @media (max-width: 480px) {
+      .modal__title {
+        font-size: 1.4rem;
+      }
+    }
+
+    .modal__sub {
       font-size: 1rem;
-      color: #b0b0b0;
+      color: var(--color-text-secondary);
       line-height: 1.7;
       margin-bottom: 20px;
     }
-    @media (max-width: 480px) { .modal .sub { font-size: 0.9rem; } }
-    .modal .price-list {
+
+    @media (max-width: 480px) {
+      .modal__sub {
+        font-size: 0.9rem;
+      }
+    }
+
+    .modal__price-list {
       background: rgba(255, 255, 255, 0.03);
       border-radius: 16px;
       padding: 16px 20px;
       margin-bottom: 24px;
       border: 1px solid rgba(255, 255, 255, 0.05);
     }
-    .modal .price-list p {
+
+    .modal__price-item {
       display: flex;
       justify-content: space-between;
       color: #ccc;
@@ -795,25 +1036,34 @@
       padding: 6px 0;
       border-bottom: 1px solid rgba(255, 255, 255, 0.04);
     }
-    .modal .price-list p:last-child { border-bottom: none; }
-    .modal .price-list .sum { color: #4ade80; font-weight: 600; }
-    .modal .price-list .old-price {
+    .modal__price-item:last-child {
+      border-bottom: none;
+    }
+    .modal__price-item .sum {
+      color: var(--color-success);
+      font-weight: 600;
+    }
+    .modal__price-item .old-price {
       text-decoration: line-through;
       color: #888;
       font-weight: 400;
       margin-right: 8px;
     }
-    .modal .price-list .new-price { color: #4ade80; font-weight: 700; }
-    .modal .price-list .sale-badge {
+    .modal__price-item .new-price {
+      color: var(--color-success);
+      font-weight: 700;
+    }
+    .modal__price-item .sale-badge {
       background: rgba(239, 68, 68, 0.15);
-      color: #ef4444;
+      color: var(--color-danger);
       font-size: 0.7rem;
       padding: 2px 10px;
       border-radius: 60px;
       border: 1px solid rgba(239, 68, 68, 0.2);
       margin-left: 8px;
     }
-    .modal .comment {
+
+    .modal__comment {
       font-size: 0.85rem;
       color: #888;
       margin-bottom: 16px;
@@ -822,7 +1072,8 @@
       border-radius: 12px;
       border: 1px solid rgba(139, 92, 246, 0.1);
     }
-    .modal .agree {
+
+    .modal__agree {
       display: flex;
       align-items: center;
       gap: 12px;
@@ -832,64 +1083,55 @@
       border-radius: 12px;
       transition: background 0.2s;
     }
-    .modal .agree:hover { background: rgba(255, 255, 255, 0.03); }
-    .modal .agree input[type="checkbox"] {
+    .modal__agree:hover {
+      background: rgba(255, 255, 255, 0.03);
+    }
+    .modal__agree input[type="checkbox"] {
       width: 20px;
       height: 20px;
-      accent-color: #8b5cf6;
+      accent-color: var(--color-accent);
       cursor: pointer;
       flex-shrink: 0;
       margin: 0;
     }
-    .modal .agree label {
+    .modal__agree label {
       font-size: 0.85rem;
-      color: #b0b0b0;
+      color: var(--color-text-secondary);
       cursor: pointer;
       line-height: 1.4;
       flex: 1;
     }
-    .modal .agree label a {
-      color: #8b5cf6;
+    .modal__agree label a {
+      color: var(--color-accent);
       text-decoration: none;
       border-bottom: 1px solid rgba(139, 92, 246, 0.3);
       transition: border-color 0.2s;
       cursor: pointer;
     }
-    .modal .agree label a:hover { border-color: #8b5cf6; }
-    .modal .btn-buy {
-      width: 100% !important;
-      opacity: 0.4;
-      pointer-events: none;
+    .modal__agree label a:hover {
+      border-color: var(--color-accent);
     }
-    .modal .btn-buy.active {
-      opacity: 1;
-      pointer-events: all;
+
+    .modal__btn-buy {
+      width: 100%;
     }
 
     @media (max-width: 480px) {
-      .modal .price-list p {
+      .modal__price-item {
         flex-wrap: wrap;
         gap: 4px 0;
         justify-content: space-between;
       }
-      .modal .price-list p span {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        flex-wrap: wrap;
-      }
-      .modal .price-list p span:last-child {
-        justify-content: flex-end;
-        text-align: right;
-      }
-      .modal .price-list .sale-badge {
+      .modal__price-item .sale-badge {
         font-size: 0.6rem;
         padding: 1px 8px;
         white-space: nowrap;
       }
     }
 
-    /* ===== МОДАЛЬНОЕ ОКНО СОГЛАШЕНИЯ ===== */
+    /* ============================================
+       СОГЛАШЕНИЕ
+    ============================================ */
     .agreement-modal-overlay {
       display: none;
       position: fixed;
@@ -905,7 +1147,10 @@
       padding: 20px;
       box-sizing: border-box;
     }
-    .agreement-modal-overlay.open { display: flex; }
+    .agreement-modal-overlay.open {
+      display: flex;
+    }
+
     .agreement-modal {
       background: #141414;
       border-radius: 28px;
@@ -919,10 +1164,19 @@
       position: relative;
       box-sizing: border-box;
     }
-    .agreement-modal::-webkit-scrollbar { width: 4px; }
-    .agreement-modal::-webkit-scrollbar-track { background: transparent; }
-    .agreement-modal::-webkit-scrollbar-thumb { background: #8b5cf6; border-radius: 4px; }
-    .agreement-modal-close {
+
+    .agreement-modal::-webkit-scrollbar {
+      width: 4px;
+    }
+    .agreement-modal::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .agreement-modal::-webkit-scrollbar-thumb {
+      background: var(--color-accent);
+      border-radius: 4px;
+    }
+
+    .agreement-modal__close {
       position: absolute;
       top: 16px;
       right: 20px;
@@ -934,8 +1188,11 @@
       transition: color 0.2s;
       z-index: 10;
     }
-    .agreement-modal-close:hover { color: #fff; }
-    .agreement-modal h2 {
+    .agreement-modal__close:hover {
+      color: #fff;
+    }
+
+    .agreement-modal__title {
       font-size: 1.8rem;
       font-weight: 700;
       background: linear-gradient(135deg, #ffffff, #a0a0a0);
@@ -944,44 +1201,55 @@
       background-clip: text;
       margin-bottom: 4px;
     }
-    .agreement-modal .subtitle {
+
+    .agreement-modal__subtitle {
       font-size: 0.85rem;
       color: #888;
       margin-bottom: 24px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
       padding-bottom: 16px;
     }
-    .agreement-modal .section { margin-bottom: 24px; }
-    .agreement-modal .section h3 {
+
+    .agreement-modal__section {
+      margin-bottom: 24px;
+    }
+    .agreement-modal__section h3 {
       font-size: 1.1rem;
       font-weight: 600;
-      color: #f0f0f0;
+      color: var(--color-text);
       margin-bottom: 8px;
     }
-    .agreement-modal .section p,
-    .agreement-modal .section li {
+    .agreement-modal__section p,
+    .agreement-modal__section li {
       font-size: 0.95rem;
-      color: #b0b0b0;
+      color: var(--color-text-secondary);
       line-height: 1.7;
     }
-    .agreement-modal .section ul {
+    .agreement-modal__section ul {
       list-style: none;
       padding-left: 0;
     }
-    .agreement-modal .section ul li {
+    .agreement-modal__section ul li {
       padding: 4px 0;
       padding-left: 24px;
       position: relative;
     }
-    .agreement-modal .section ul li::before {
+    .agreement-modal__section ul li::before {
       content: '•';
       position: absolute;
       left: 4px;
-      color: #8b5cf6;
+      color: var(--color-accent);
     }
-    .agreement-modal .section .check { color: #4ade80; margin-right: 8px; }
-    .agreement-modal .section .cross { color: #ef4444; margin-right: 8px; }
-    .agreement-modal .table-wrap {
+    .agreement-modal__section .check {
+      color: var(--color-success);
+      margin-right: 8px;
+    }
+    .agreement-modal__section .cross {
+      color: var(--color-danger);
+      margin-right: 8px;
+    }
+
+    .agreement-modal__table {
       background: rgba(255, 255, 255, 0.03);
       border-radius: 12px;
       padding: 16px 20px;
@@ -989,27 +1257,33 @@
       overflow-x: auto;
       margin-top: 8px;
     }
-    .agreement-modal .table-wrap table {
+    .agreement-modal__table table {
       width: 100%;
       border-collapse: collapse;
       font-size: 0.85rem;
     }
-    .agreement-modal .table-wrap th,
-    .agreement-modal .table-wrap td {
+    .agreement-modal__table th,
+    .agreement-modal__table td {
       padding: 8px 12px;
       text-align: left;
       border-bottom: 1px solid rgba(255, 255, 255, 0.04);
     }
-    .agreement-modal .table-wrap th {
+    .agreement-modal__table th {
       color: #888;
       font-weight: 600;
       font-size: 0.75rem;
       text-transform: uppercase;
       letter-spacing: 0.05em;
     }
-    .agreement-modal .table-wrap td { color: #ccc; }
-    .agreement-modal .table-wrap .highlight { color: #4ade80; font-weight: 600; }
-    .agreement-modal .agreement-footer {
+    .agreement-modal__table td {
+      color: #ccc;
+    }
+    .agreement-modal__table .highlight {
+      color: var(--color-success);
+      font-weight: 600;
+    }
+
+    .agreement-modal__footer {
       margin-top: 24px;
       padding-top: 16px;
       border-top: 1px solid rgba(255, 255, 255, 0.05);
@@ -1017,18 +1291,32 @@
       color: #666;
       text-align: center;
     }
+
     @media (max-width: 768px) {
-      .agreement-modal { padding: 28px 20px; }
-      .agreement-modal h2 { font-size: 1.4rem; }
+      .agreement-modal {
+        padding: 28px 20px;
+      }
+      .agreement-modal__title {
+        font-size: 1.4rem;
+      }
     }
     @media (max-width: 480px) {
-      .agreement-modal { padding: 20px 14px; border-radius: 20px; }
-      .agreement-modal h2 { font-size: 1.2rem; }
-      .agreement-modal .section p,
-      .agreement-modal .section li { font-size: 0.85rem; }
+      .agreement-modal {
+        padding: 20px 14px;
+        border-radius: 20px;
+      }
+      .agreement-modal__title {
+        font-size: 1.2rem;
+      }
+      .agreement-modal__section p,
+      .agreement-modal__section li {
+        font-size: 0.85rem;
+      }
     }
 
-    /* ===== РЕКЛАМНЫЙ БАННЕР ===== */
+    /* ============================================
+       БАННЕРЫ
+    ============================================ */
     .banner {
       position: fixed;
       bottom: 100px;
@@ -1053,8 +1341,11 @@
       transform: translateY(0);
       pointer-events: all;
     }
-    .banner.hidden-banner { display: none !important; }
-    .banner-close {
+    .banner.hidden {
+      display: none !important;
+    }
+
+    .banner__close {
       position: absolute;
       top: 10px;
       right: 14px;
@@ -1067,23 +1358,27 @@
       padding: 4px;
       z-index: 10;
     }
-    .banner-close:hover { color: #fff; }
-    .banner h3 {
+    .banner__close:hover {
+      color: #fff;
+    }
+
+    .banner__title {
       font-size: 1rem;
       font-weight: 700;
       margin-bottom: 6px;
       color: #fff;
       padding-right: 24px;
     }
-    .banner .banner-text {
+    .banner__text {
       font-size: 0.85rem;
-      color: #b0b0b0;
+      color: var(--color-text-secondary);
       line-height: 1.5;
       margin-bottom: 14px;
     }
-    .banner .banner-btn {
-      width: 100% !important;
+    .banner__btn {
+      width: 100%;
     }
+
     @media (max-width: 768px) {
       .banner {
         bottom: auto;
@@ -1094,7 +1389,9 @@
         width: auto;
         padding: 18px 20px;
       }
-      .banner h3 { font-size: 0.95rem; }
+      .banner__title {
+        font-size: 0.95rem;
+      }
     }
     @media (max-width: 480px) {
       .banner {
@@ -1105,16 +1402,18 @@
         width: auto;
         border-radius: 16px;
       }
-      .banner h3 { font-size: 0.85rem; padding-right: 20px; }
-      .banner .banner-text { font-size: 0.8rem; }
-      .banner .banner-btn {
-        font-size: 0.8rem !important;
-        padding: 10px 16px !important;
-        min-height: 40px !important;
+      .banner__title {
+        font-size: 0.85rem;
+        padding-right: 20px;
+      }
+      .banner__text {
+        font-size: 0.8rem;
       }
     }
 
-    /* ===== БАННЕР НОВЫХ РЕЛИЗОВ ===== */
+    /* ============================================
+       БАННЕР НОВЫХ РЕЛИЗОВ
+    ============================================ */
     .new-releases-banner {
       position: fixed;
       top: 80px;
@@ -1140,8 +1439,11 @@
       transform: translateX(-50%) translateY(0);
       pointer-events: all;
     }
-    .new-releases-banner.hidden-banner { display: none !important; }
-    .new-releases-banner-close {
+    .new-releases-banner.hidden {
+      display: none !important;
+    }
+
+    .new-releases-banner__close {
       position: absolute;
       top: 8px;
       right: 14px;
@@ -1154,8 +1456,11 @@
       padding: 4px;
       z-index: 10;
     }
-    .new-releases-banner-close:hover { color: #fff; }
-    .new-releases-banner h3 {
+    .new-releases-banner__close:hover {
+      color: #fff;
+    }
+
+    .new-releases-banner__title {
       font-size: 1rem;
       font-weight: 700;
       margin-bottom: 4px;
@@ -1166,8 +1471,9 @@
       flex-wrap: wrap;
       padding-right: 30px;
     }
-    .new-releases-banner h3 .new-badge {
-      background: linear-gradient(135deg, #ef4444, #dc2626);
+
+    .new-releases-banner__badge {
+      background: linear-gradient(135deg, var(--color-danger), #dc2626);
       color: #fff;
       font-size: 0.6rem;
       padding: 2px 10px;
@@ -1177,18 +1483,28 @@
       letter-spacing: 0.05em;
       animation: pulse 1.5s infinite;
     }
+
     @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.7; transform: scale(1.05); }
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 0.7;
+        transform: scale(1.05);
+      }
     }
-    .new-releases-banner .banner-releases {
+
+    .new-releases-banner__list {
       display: flex;
       gap: 10px;
       margin-top: 10px;
       flex-wrap: wrap;
       justify-content: center;
     }
-    .new-releases-banner .banner-release-item {
+
+    .new-releases-banner__item {
       display: flex;
       align-items: center;
       gap: 8px;
@@ -1199,43 +1515,49 @@
       transition: all 0.3s ease;
       cursor: pointer;
       text-decoration: none;
-      color: #f0f0f0 !important;
+      color: var(--color-text);
       font-size: 0.8rem;
       flex: 0 1 auto;
     }
-    .new-releases-banner .banner-release-item:hover {
+    .new-releases-banner__item:hover {
       background: rgba(139, 92, 246, 0.15);
-      border-color: #8b5cf6;
+      border-color: var(--color-accent);
       transform: scale(1.05);
     }
-    .new-releases-banner .banner-release-item img {
+    .new-releases-banner__item img {
       width: 28px;
       height: 28px;
       border-radius: 8px;
       object-fit: cover;
       flex-shrink: 0;
     }
-    .new-releases-banner .banner-release-item .new-tag {
+    .new-releases-banner__item .new-tag {
       font-size: 0.5rem;
-      color: #4ade80;
+      color: var(--color-success);
       font-weight: 700;
       text-transform: uppercase;
       background: rgba(74, 222, 128, 0.15);
       padding: 1px 8px;
       border-radius: 60px;
     }
+
     @media (max-width: 768px) {
       .new-releases-banner {
         top: 70px;
         padding: 16px 20px;
         width: 95%;
       }
-      .new-releases-banner h3 { font-size: 0.9rem; }
-      .new-releases-banner .banner-release-item {
+      .new-releases-banner__title {
+        font-size: 0.9rem;
+      }
+      .new-releases-banner__item {
         font-size: 0.7rem;
         padding: 4px 10px 4px 6px;
       }
-      .new-releases-banner .banner-release-item img { width: 24px; height: 24px; }
+      .new-releases-banner__item img {
+        width: 24px;
+        height: 24px;
+      }
     }
     @media (max-width: 480px) {
       .new-releases-banner {
@@ -1244,31 +1566,43 @@
         width: 96%;
         border-radius: 16px;
       }
-      .new-releases-banner h3 {
+      .new-releases-banner__title {
         font-size: 0.75rem;
         gap: 6px;
         padding-right: 24px;
       }
-      .new-releases-banner h3 .new-badge { font-size: 0.5rem; padding: 1px 8px; }
-      .new-releases-banner .banner-releases { gap: 6px; }
-      .new-releases-banner .banner-release-item {
+      .new-releases-banner__badge {
+        font-size: 0.5rem;
+        padding: 1px 8px;
+      }
+      .new-releases-banner__list {
+        gap: 6px;
+      }
+      .new-releases-banner__item {
         font-size: 0.6rem;
         padding: 3px 8px 3px 5px;
         gap: 5px;
       }
-      .new-releases-banner .banner-release-item img { width: 18px; height: 18px; }
-      .new-releases-banner .banner-release-item .new-tag { font-size: 0.4rem; padding: 1px 6px; }
+      .new-releases-banner__item img {
+        width: 18px;
+        height: 18px;
+      }
+      .new-releases-banner__item .new-tag {
+        font-size: 0.4rem;
+        padding: 1px 6px;
+      }
     }
 
-    /* ===== РЕЛИЗЫ ===== */
-    .releases-section {
-      padding: 80px 0;
-      background: #0b0b0b;
+    /* ============================================
+       РЕЛИЗЫ
+    ============================================ */
+    .releases {
+      padding: var(--section-padding) 0;
+      background: var(--color-bg);
       border-bottom: 1px solid #181818;
     }
-    @media (max-width: 768px) { .releases-section { padding: 50px 0; } }
-    @media (max-width: 480px) { .releases-section { padding: 40px 0; } }
-    .section-header {
+
+    .releases__header {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
@@ -1276,15 +1610,14 @@
       margin-bottom: 48px;
       gap: 12px;
     }
-    @media (max-width: 480px) { .section-header { gap: 8px; } }
-    .section-header h2 {
-      font-size: 2.2rem;
+
+    .releases__title {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
       font-weight: 600;
       letter-spacing: -0.02em;
     }
-    @media (max-width: 768px) { .section-header h2 { font-size: 1.6rem; } }
-    @media (max-width: 480px) { .section-header h2 { font-size: 1.3rem; } }
-    .section-header a {
+
+    .releases__toggle {
       color: #888;
       text-decoration: none;
       border-bottom: 1px solid #333;
@@ -1297,29 +1630,57 @@
       gap: 6px;
       white-space: nowrap;
     }
-    .section-header a:hover {
+    .releases__toggle:hover {
       color: #fff;
-      border-bottom-color: #8b5cf6;
+      border-bottom-color: var(--color-accent);
     }
-    .section-header a i { transition: transform 0.3s ease; }
-    .section-header a.rotated i { transform: rotate(180deg); }
-    @media (max-width: 480px) { .section-header a { font-size: 0.75rem; } }
+    .releases__toggle .fa-chevron-down {
+      transition: transform 0.3s ease;
+    }
+    .releases__toggle.rotated .fa-chevron-down {
+      transform: rotate(180deg);
+    }
 
-    .release-grid {
+    @media (max-width: 480px) {
+      .releases__toggle {
+        font-size: 0.75rem;
+      }
+    }
+
+    .releases__grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 30px;
+      gap: var(--gap);
     }
-    @media (max-width: 768px) { .release-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; } }
-    @media (max-width: 480px) { .release-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; } }
-    @media (max-width: 380px) { .release-grid { grid-template-columns: 1fr; gap: 12px; } }
 
+    @media (max-width: 768px) {
+      .releases__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+    }
+    @media (max-width: 480px) {
+      .releases__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+    }
+    @media (max-width: 380px) {
+      .releases__grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+    }
+
+    /* ============================================
+       КАРТОЧКА РЕЛИЗА
+    ============================================ */
     .release-card {
-      background: #121212;
+      background: var(--color-bg-card);
       border-radius: 24px;
       padding: 16px 14px 20px;
       transition: transform 0.2s, background 0.2s;
-      border: 1px solid #1f1f1f;
+      border: 1px solid var(--color-border);
       text-align: center;
       opacity: 0;
       transform: translateY(20px);
@@ -1327,33 +1688,68 @@
       cursor: pointer;
       position: relative;
       text-decoration: none;
-      color: #f0f0f0;
+      color: var(--color-text);
       display: block;
     }
-    .release-card:nth-child(1) { animation-delay: 0.05s; }
-    .release-card:nth-child(2) { animation-delay: 0.10s; }
-    .release-card:nth-child(3) { animation-delay: 0.15s; }
-    .release-card:nth-child(4) { animation-delay: 0.20s; }
-    .release-card:nth-child(5) { animation-delay: 0.25s; }
-    .release-card:nth-child(6) { animation-delay: 0.30s; }
-    .release-card:nth-child(7) { animation-delay: 0.35s; }
-    .release-card:nth-child(8) { animation-delay: 0.40s; }
-    .release-card:nth-child(9) { animation-delay: 0.45s; }
-    .release-card:nth-child(10) { animation-delay: 0.50s; }
-    .release-card:nth-child(11) { animation-delay: 0.55s; }
-    .release-card:nth-child(12) { animation-delay: 0.60s; }
-    .release-card:nth-child(13) { animation-delay: 0.65s; }
 
-    .release-card.hidden { display: none; }
+    .release-card:nth-child(1) {
+      animation-delay: 0.05s;
+    }
+    .release-card:nth-child(2) {
+      animation-delay: 0.10s;
+    }
+    .release-card:nth-child(3) {
+      animation-delay: 0.15s;
+    }
+    .release-card:nth-child(4) {
+      animation-delay: 0.20s;
+    }
+    .release-card:nth-child(5) {
+      animation-delay: 0.25s;
+    }
+    .release-card:nth-child(6) {
+      animation-delay: 0.30s;
+    }
+    .release-card:nth-child(7) {
+      animation-delay: 0.35s;
+    }
+    .release-card:nth-child(8) {
+      animation-delay: 0.40s;
+    }
+    .release-card:nth-child(9) {
+      animation-delay: 0.45s;
+    }
+    .release-card:nth-child(10) {
+      animation-delay: 0.50s;
+    }
+    .release-card:nth-child(11) {
+      animation-delay: 0.55s;
+    }
+    .release-card:nth-child(12) {
+      animation-delay: 0.60s;
+    }
+    .release-card:nth-child(13) {
+      animation-delay: 0.65s;
+    }
+
+    .release-card.hidden {
+      display: none;
+    }
+
     @keyframes fadeInUp {
-      to { opacity: 1; transform: translateY(0); }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
+
     .release-card:hover {
-      background: #1a1a1a;
+      background: var(--color-bg-card-hover);
       transform: translateY(-6px);
-      border-color: #3a3a3a;
+      border-color: var(--color-border-hover);
     }
-    .release-cover {
+
+    .release-card__cover {
       width: 100%;
       aspect-ratio: 1/1;
       border-radius: 18px;
@@ -1362,17 +1758,18 @@
       border: 1px solid #2a2a2a;
       position: relative;
     }
-    .release-cover img {
+    .release-card__cover img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
     }
-    .release-cover .new-badge {
+
+    .release-card__new-badge {
       position: absolute;
       top: 8px;
       right: 8px;
-      background: linear-gradient(135deg, #ef4444, #dc2626);
+      background: linear-gradient(135deg, var(--color-danger), #dc2626);
       color: #fff;
       font-size: 0.55rem;
       padding: 2px 10px;
@@ -1383,58 +1780,105 @@
       animation: pulse 1.5s infinite;
       box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
     }
-    .release-title { font-weight: 600; font-size: 1rem; margin-bottom: 4px; }
-    .release-year { color: #777; font-size: 0.7rem; letter-spacing: 0.3px; }
-    @media (max-width: 768px) {
-      .release-card { padding: 14px 12px 16px; border-radius: 18px; }
-      .release-cover { border-radius: 14px; margin-bottom: 10px; }
-      .release-title { font-size: 0.9rem; }
-      .release-year { font-size: 0.65rem; }
+
+    .release-card__title {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 4px;
     }
-    @media (max-width: 480px) {
-      .release-card { padding: 10px 8px 14px; border-radius: 14px; }
-      .release-cover { border-radius: 12px; margin-bottom: 8px; }
-      .release-title { font-size: 0.8rem; }
-      .release-year { font-size: 0.55rem; }
-      .release-cover .new-badge { font-size: 0.45rem; padding: 1px 8px; top: 5px; right: 5px; }
+    .release-card__year {
+      color: var(--color-text-muted);
+      font-size: 0.7rem;
+      letter-spacing: 0.3px;
     }
 
-    /* ===== БИО ===== */
-    .bio-section {
-      padding: 80px 0;
+    @media (max-width: 768px) {
+      .release-card {
+        padding: 14px 12px 16px;
+        border-radius: 18px;
+      }
+      .release-card__cover {
+        border-radius: 14px;
+        margin-bottom: 10px;
+      }
+      .release-card__title {
+        font-size: 0.9rem;
+      }
+      .release-card__year {
+        font-size: 0.65rem;
+      }
+    }
+    @media (max-width: 480px) {
+      .release-card {
+        padding: 10px 8px 14px;
+        border-radius: 14px;
+      }
+      .release-card__cover {
+        border-radius: 12px;
+        margin-bottom: 8px;
+      }
+      .release-card__title {
+        font-size: 0.8rem;
+      }
+      .release-card__year {
+        font-size: 0.55rem;
+      }
+      .release-card__new-badge {
+        font-size: 0.45rem;
+        padding: 1px 8px;
+        top: 5px;
+        right: 5px;
+      }
+    }
+
+    /* ============================================
+       БИО
+    ============================================ */
+    .bio {
+      padding: var(--section-padding) 0;
       background: #0e0e0e;
     }
-    @media (max-width: 768px) { .bio-section { padding: 50px 0; } }
-    @media (max-width: 480px) { .bio-section { padding: 40px 0; } }
-    .bio-grid {
+
+    .bio__grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 60px;
       align-items: center;
     }
-    @media (max-width: 1024px) { .bio-grid { gap: 40px; } }
-    @media (max-width: 768px) { .bio-grid { grid-template-columns: 1fr; gap: 30px; } }
 
-    .bio-image {
+    @media (max-width: 1024px) {
+      .bio__grid {
+        gap: 40px;
+      }
+    }
+    @media (max-width: 768px) {
+      .bio__grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+    }
+
+    .bio__image {
       border-radius: 40px;
       overflow: hidden;
       border: 1px solid #262626;
       background: #16161a;
     }
-    .bio-image img {
+    .bio__image img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
     }
-    .bio-text h2 {
-      font-size: 2.4rem;
+
+    .bio__title {
+      font-size: clamp(2rem, 3vw, 2.4rem);
       font-weight: 600;
       letter-spacing: -0.02em;
       margin-bottom: 20px;
     }
-    @media (max-width: 480px) { .bio-text h2 { font-size: 1.8rem; } }
-    .bio-text p {
+
+    .bio__text {
       color: #bdbdbd;
       font-size: 1.05rem;
       max-width: 600px;
@@ -1442,54 +1886,101 @@
       font-weight: 300;
       line-height: 1.7;
     }
-    @media (max-width: 480px) { .bio-text p { font-size: 0.95rem; } }
-    .bio-text p strong { color: #f0f0f0; font-weight: 600; }
-    .bio-stats {
+    .bio__text strong {
+      color: var(--color-text);
+      font-weight: 600;
+    }
+
+    @media (max-width: 480px) {
+      .bio__text {
+        font-size: 0.95rem;
+      }
+    }
+
+    .bio__stats {
       display: flex;
       gap: 40px;
       margin-top: 24px;
       flex-wrap: wrap;
     }
-    @media (max-width: 480px) { .bio-stats { gap: 20px; } }
-    .bio-stats div { display: flex; flex-direction: column; }
-    .bio-stats .number { font-size: 1.8rem; font-weight: 700; color: white; }
-    @media (max-width: 480px) { .bio-stats .number { font-size: 1.4rem; } }
-    .bio-stats .label { font-size: 0.75rem; color: #777; letter-spacing: 0.5px; text-transform: uppercase; }
-    @media (max-width: 480px) { .bio-stats .label { font-size: 0.65rem; } }
+    @media (max-width: 480px) {
+      .bio__stats {
+        gap: 20px;
+      }
+    }
 
-    /* ===== FAQ ===== */
-    .faq-section {
-      padding: 80px 0;
-      background: #0b0b0b;
+    .bio__stat {
+      display: flex;
+      flex-direction: column;
+    }
+    .bio__stat .number {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: white;
+    }
+    .bio__stat .label {
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 480px) {
+      .bio__stat .number {
+        font-size: 1.4rem;
+      }
+      .bio__stat .label {
+        font-size: 0.65rem;
+      }
+    }
+
+    /* ============================================
+       FAQ
+    ============================================ */
+    .faq {
+      padding: var(--section-padding) 0;
+      background: var(--color-bg);
       border-bottom: 1px solid #181818;
     }
-    @media (max-width: 768px) { .faq-section { padding: 50px 0; } }
-    @media (max-width: 480px) { .faq-section { padding: 40px 0; } }
-    .faq-section h2 {
-      font-size: 2.2rem;
+
+    .faq__title {
+      font-size: clamp(1.8rem, 3vw, 2.2rem);
       font-weight: 600;
       letter-spacing: -0.02em;
       margin-bottom: 48px;
       text-align: center;
     }
-    @media (max-width: 768px) { .faq-section h2 { font-size: 1.8rem; } }
-    @media (max-width: 480px) { .faq-section h2 { font-size: 1.4rem; margin-bottom: 30px; } }
-    .faq-list {
+
+    @media (max-width: 480px) {
+      .faq__title {
+        font-size: 1.4rem;
+        margin-bottom: 30px;
+      }
+    }
+
+    .faq__list {
       max-width: 820px;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
       gap: 12px;
     }
+
     .faq-item {
-      background: #121212;
+      background: var(--color-bg-card);
       border-radius: 16px;
-      border: 1px solid #1f1f1f;
+      border: 1px solid var(--color-border);
       overflow: hidden;
       transition: border-color 0.3s ease;
     }
-    .faq-item:hover { border-color: #2a2a2a; }
-    .faq-question {
+    .faq-item:hover {
+      border-color: #2a2a2a;
+    }
+    .faq-item.active {
+      border-color: var(--color-accent);
+    }
+
+    .faq-item__question {
       width: 100%;
       background: none;
       border: none;
@@ -1498,16 +1989,19 @@
       justify-content: space-between;
       align-items: center;
       cursor: pointer;
-      font-family: 'Inter', sans-serif;
+      font-family: var(--font-family);
       font-size: 1.05rem;
       font-weight: 500;
-      color: #f0f0f0;
+      color: var(--color-text);
       text-align: left;
       transition: background 0.2s;
       gap: 16px;
     }
-    .faq-question:hover { background: rgba(255, 255, 255, 0.02); }
-    .faq-question .icon {
+    .faq-item__question:hover {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .faq-item__icon {
       flex-shrink: 0;
       width: 28px;
       height: 28px;
@@ -1516,53 +2010,83 @@
       justify-content: center;
       border-radius: 50%;
       background: rgba(139, 92, 246, 0.12);
-      color: #8b5cf6;
+      color: var(--color-accent);
       font-size: 0.9rem;
       transition: all 0.3s ease;
     }
-    .faq-item.active .faq-question .icon {
+    .faq-item.active .faq-item__icon {
       background: rgba(74, 222, 128, 0.15);
-      color: #4ade80;
+      color: var(--color-success);
       transform: rotate(180deg);
     }
-    .faq-answer {
+
+    .faq-item__answer {
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), padding 0.3s ease;
       padding: 0 24px;
     }
-    .faq-item.active .faq-answer {
+    .faq-item.active .faq-item__answer {
       max-height: 400px;
-      padding: 0 24px 24px 24px;
+      padding: 0 24px 24px;
     }
-    .faq-answer p {
-      color: #b0b0b0;
+    .faq-item__answer p {
+      color: var(--color-text-secondary);
       font-size: 0.95rem;
       line-height: 1.7;
       margin: 0;
     }
-    .faq-answer p:not(:last-child) { margin-bottom: 12px; }
-    .faq-answer a {
-      color: #8b5cf6;
+    .faq-item__answer p:not(:last-child) {
+      margin-bottom: 12px;
+    }
+    .faq-item__answer a {
+      color: var(--color-accent);
       text-decoration: none;
       border-bottom: 1px solid rgba(139, 92, 246, 0.3);
       transition: border-color 0.2s;
     }
-    .faq-answer a:hover { border-color: #8b5cf6; }
-    .faq-answer .highlight { color: #4ade80; font-weight: 500; }
-    @media (max-width: 768px) {
-      .faq-question { font-size: 0.95rem; padding: 16px 18px; }
-      .faq-answer p { font-size: 0.9rem; }
-      .faq-item.active .faq-answer { padding: 0 18px 18px 18px; }
+    .faq-item__answer a:hover {
+      border-color: var(--color-accent);
     }
-    @media (max-width: 480px) {
-      .faq-question { font-size: 0.85rem; padding: 14px 14px; gap: 12px; }
-      .faq-answer p { font-size: 0.85rem; }
-      .faq-item.active .faq-answer { padding: 0 14px 14px 14px; }
-      .faq-question .icon { width: 24px; height: 24px; font-size: 0.75rem; }
+    .faq-item__answer .highlight {
+      color: var(--color-success);
+      font-weight: 500;
     }
 
-    /* ===== ФУТЕР ===== */
+    @media (max-width: 768px) {
+      .faq-item__question {
+        font-size: 0.95rem;
+        padding: 16px 18px;
+      }
+      .faq-item__answer p {
+        font-size: 0.9rem;
+      }
+      .faq-item.active .faq-item__answer {
+        padding: 0 18px 18px;
+      }
+    }
+    @media (max-width: 480px) {
+      .faq-item__question {
+        font-size: 0.85rem;
+        padding: 14px 14px;
+        gap: 12px;
+      }
+      .faq-item__answer p {
+        font-size: 0.85rem;
+      }
+      .faq-item.active .faq-item__answer {
+        padding: 0 14px 14px;
+      }
+      .faq-item__icon {
+        width: 24px;
+        height: 24px;
+        font-size: 0.75rem;
+      }
+    }
+
+    /* ============================================
+       ФУТЕР
+    ============================================ */
     .footer {
       padding: 40px 0 30px;
       border-top: 1px solid #1a1a1a;
@@ -1573,7 +2097,8 @@
       color: #5a5a5a;
       font-size: 0.9rem;
     }
-    .footer-row {
+
+    .footer__row {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -1581,37 +2106,42 @@
       gap: 20px 30px;
       width: 100%;
     }
-    .footer-social {
+
+    .footer__social {
       display: flex;
       gap: 20px;
       order: 0;
     }
-    .footer-social a {
+    .footer__social a {
       color: #888;
       font-size: 1.3rem;
       transition: color 0.2s;
       text-decoration: none;
     }
-    .footer-social a:hover { color: #fff; }
-    .footer-links {
+    .footer__social a:hover {
+      color: #fff;
+    }
+
+    .footer__links {
       display: flex;
       gap: 20px 30px;
       flex-wrap: wrap;
       justify-content: center;
       order: 1;
     }
-    .footer-links a {
+    .footer__links a {
       color: #5a5a5a;
       text-decoration: none;
       font-size: 0.8rem;
       transition: color 0.2s;
       border-bottom: 1px solid transparent;
     }
-    .footer-links a:hover {
-      color: #f0f0f0;
-      border-bottom-color: #8b5cf6;
+    .footer__links a:hover {
+      color: var(--color-text);
+      border-bottom-color: var(--color-accent);
     }
-    .footer-bottom {
+
+    .footer__bottom {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1624,7 +2154,8 @@
       border-top: 1px solid rgba(255, 255, 255, 0.04);
       flex-wrap: wrap;
     }
-    .footer-bottom .albe-link {
+
+    .footer__albe {
       display: inline-flex;
       align-items: center;
       text-decoration: none;
@@ -1633,27 +2164,59 @@
       font-weight: 500;
       line-height: 0;
     }
-    .footer-bottom .albe-link:hover { color: #fff; }
-    .footer-bottom .albe-link img {
+    .footer__albe:hover {
+      color: #fff;
+    }
+    .footer__albe img {
       height: 36px;
       width: auto;
       display: block;
       transition: opacity 0.2s;
     }
-    .footer-bottom .albe-link:hover img { opacity: 0.8; }
-
-    @media (max-width: 480px) {
-      .footer { padding: 30px 0 20px; gap: 16px; }
-      .footer-row { gap: 14px 16px; }
-      .footer-social { gap: 14px; }
-      .footer-social a { font-size: 1.1rem; }
-      .footer-links { gap: 10px 14px; }
-      .footer-links a { font-size: 0.65rem; }
-      .footer-bottom { font-size: 0.65rem; padding-top: 10px; gap: 4px; }
-      .footer-bottom .albe-link img { height: 24px; }
+    .footer__albe:hover img {
+      opacity: 0.8;
     }
 
-    #player, #releases, #bio, #copyright-free, #faq { scroll-margin-top: 80px; }
+    @media (max-width: 480px) {
+      .footer {
+        padding: 30px 0 20px;
+        gap: 16px;
+      }
+      .footer__row {
+        gap: 14px 16px;
+      }
+      .footer__social {
+        gap: 14px;
+      }
+      .footer__social a {
+        font-size: 1.1rem;
+      }
+      .footer__links {
+        gap: 10px 14px;
+      }
+      .footer__links a {
+        font-size: 0.65rem;
+      }
+      .footer__bottom {
+        font-size: 0.65rem;
+        padding-top: 10px;
+        gap: 4px;
+      }
+      .footer__albe img {
+        height: 24px;
+      }
+    }
+
+    /* ============================================
+       СКРОЛЛ МАРДЖИН ДЛЯ ЯКОРЕЙ
+    ============================================ */
+    #player,
+    #releases,
+    #bio,
+    #copyright-free,
+    #faq {
+      scroll-margin-top: 80px;
+    }
   </style>
 </head>
 <body>
@@ -1668,9 +2231,9 @@
       <a href="#bio">Био</a>
       <a href="#faq">FAQ</a>
     </nav>
-    <div style="display: flex; align-items: center; gap: 12px; flex-shrink: 0;">
-      <a href="https://tips.tips/000481710" target="_blank" class="navbar-support-btn" rel="noopener noreferrer">
-        <i class="fas fa-heart" aria-hidden="true" style="color: #ff0000 !important;"></i> Поддержать
+    <div class="navbar-actions">
+      <a href="https://tips.tips/000481710" target="_blank" class="btn btn--heart" rel="noopener noreferrer">
+        <i class="fas fa-heart" aria-hidden="true"></i> Поддержать
       </a>
       <button class="hamburger" id="hamburger" aria-label="Открыть меню" aria-expanded="false">
         <span></span><span></span><span></span>
@@ -1679,11 +2242,11 @@
   </header>
 
   <nav class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Мобильное меню">
-    <a href="#player" onclick="closeMobileMenu()">Плеер</a>
-    <a href="#copyright-free" onclick="closeMobileMenu()">Без авторских прав</a>
-    <a href="#releases" onclick="closeMobileMenu()">Релизы</a>
-    <a href="#bio" onclick="closeMobileMenu()">Био</a>
-    <a href="#faq" onclick="closeMobileMenu()">FAQ</a>
+    <a href="#player" data-close-menu>Плеер</a>
+    <a href="#copyright-free" data-close-menu>Без авторских прав</a>
+    <a href="#releases" data-close-menu>Релизы</a>
+    <a href="#bio" data-close-menu>Био</a>
+    <a href="#faq" data-close-menu>FAQ</a>
   </nav>
 
   <!-- ===== ОСНОВНОЙ КОНТЕНТ ===== -->
@@ -1691,39 +2254,44 @@
 
     <!-- HERO -->
     <section class="hero" id="player" aria-label="Главный плеер BALM">
-      <img src="BALM%20-%20hero%20b.webp" alt="BALM (БИЭЛЭМ) — скачать музыку без авторских прав для бизнеса, рекламы и детской мультипликации" loading="lazy" width="1920" height="1080">
-      <div class="hero-overlay"></div>
-      <div class="hero-content">
-        <h1 class="hero-title">BALM</h1>
-        <h2 class="hero-subtitle">БИЭЛЭМ</h2>
-        <div class="hero-player-wrapper">
-          <div class="hero-player">
+      <img class="hero__image" src="BALM%20-%20hero%20b.webp" alt="BALM (БИЭЛЭМ) — скачать музыку без авторских прав для бизнеса, рекламы и детской мультипликации" loading="lazy" width="1920" height="1080">
+      <div class="hero__overlay"></div>
+      <div class="hero__content">
+        <h1 class="hero__title">BALM</h1>
+        <h2 class="hero__subtitle">БИЭЛЭМ</h2>
+        <div class="hero__player-wrapper">
+          <div class="hero__player">
             <iframe src="https://music.yandex.ru/iframe/#artist/26471381" frameborder="0" allowfullscreen loading="lazy" allow="autoplay; encrypted-media" title="BALM на Яндекс Музыке — слушать онлайн бесплатно"></iframe>
           </div>
         </div>
-        <a href="https://tips.tips/000481710" target="_blank" class="donate-btn" rel="noopener noreferrer">
-          <i class="fas fa-heart" aria-hidden="true" style="color: #ff0000 !important;"></i> Поддержать проект BALM
+        <a href="https://tips.tips/000481710" target="_blank" class="btn btn--primary hero__donate" rel="noopener noreferrer">
+          <i class="fas fa-heart" aria-hidden="true"></i> Поддержать проект BALM
         </a>
       </div>
     </section>
 
     <!-- МУЗЫКА БЕЗ АВТОРСКИХ ПРАВ -->
-    <section class="copyright-free-section" id="copyright-free" aria-label="Музыка без авторских прав для бизнеса">
+    <section class="copyright-free scroll-margin" id="copyright-free" aria-label="Музыка без авторских прав для бизнеса">
       <div class="container">
-        <div class="copyright-free-grid">
-          <div class="copyright-free-text">
-            <div class="badge"><i class="fas fa-shield-alt" style="margin-right: 8px;" aria-hidden="true"></i> Royalty Free — без отчислений</div>
-            <h2>Музыка без авторских прав для фона, бизнеса и видео</h2>
-            <p class="description">
+        <div class="copyright-free__grid">
+          <div class="copyright-free__text">
+            <div class="copyright-free__badge">
+              <i class="fas fa-shield-alt" style="margin-right: 8px;" aria-hidden="true"></i> Royalty Free — без отчислений
+            </div>
+            <h2 class="copyright-free__title">
+              <i class="fas fa-check-circle" aria-hidden="true"></i>
+              Музыка без авторских прав для фона, бизнеса и видео
+            </h2>
+            <p class="copyright-free__description">
               Музыка BALM создана для использования в коммерческих и некоммерческих проектах. <strong>Никаких отчислений РАО и ВОИС</strong> — платите один раз и используете бессрочно.
             </p>
-            <ul class="features-list">
-              <li><i class="fas fa-check-circle"></i> Для ресторанов, ТЦ, салонов красоты</li>
-              <li><i class="fas fa-check-circle"></i> Для YouTube, TikTok, рекламы</li>
-              <li><i class="fas fa-check-circle"></i> Для игр, подкастов, презентаций</li>
-              <li><i class="fas fa-check-circle"></i> Без ограничений по тиражам и срокам</li>
+            <ul class="copyright-free__features">
+              <li><i class="fas fa-check-circle" aria-hidden="true"></i> Для ресторанов, ТЦ, салонов красоты</li>
+              <li><i class="fas fa-check-circle" aria-hidden="true"></i> Для YouTube, TikTok, рекламы</li>
+              <li><i class="fas fa-check-circle" aria-hidden="true"></i> Для игр, подкастов, презентаций</li>
+              <li><i class="fas fa-check-circle" aria-hidden="true"></i> Без ограничений по тиражам и срокам</li>
             </ul>
-            <div class="legal">
+            <div class="copyright-free__legal">
               <i class="fas fa-check-circle" aria-hidden="true"></i>
               <div class="text">
                 <strong>✅ Скачайте бесплатную демо-версию</strong><br>
@@ -1732,24 +2300,33 @@
             </div>
           </div>
 
-          <div class="copyright-free-player">
+          <div class="copyright-free__player">
             <div class="demo-player">
-              <div class="track-row">
-                <div class="track-artwork"><i class="fas fa-headphones" aria-hidden="true"></i></div>
-                <div class="track-meta">
+              <div class="demo-player__track">
+                <div class="demo-player__artwork"><i class="fas fa-headphones" aria-hidden="true"></i></div>
+                <div class="demo-player__meta">
                   <div class="name">Демо-версия</div>
                   <div class="artist">BALM (БИЭЛЭМ)</div>
                 </div>
               </div>
               <iframe style="border:0;width:100%;height:120px;border-radius:12px;" src="https://bandcamp.com/EmbeddedPlayer/track=3546794513/size=large/bgcol=333333/linkcol=9a64ff/tracklist=false/artwork=small/transparent=true/" seamless title="Слушать демо музыки BALM без авторских прав"><a href="https://balm2.bandcamp.com/track/demo">demo by BALM (БИЭЛЭМ)</a></iframe>
-              <div class="demo-tag"><i class="fas fa-headphones" style="margin-right:6px;" aria-hidden="true"></i> Бесплатная демо-версия (1 час) · Полная версия — 2 часа уникальной музыки</div>
+              <div class="demo-player__tag">
+                <i class="fas fa-headphones" style="margin-right:6px;" aria-hidden="true"></i>
+                Бесплатная демо-версия (1 час) · Полная версия — 2 часа уникальной музыки
+              </div>
             </div>
 
             <div class="btn-group">
-              <button class="btn btn-primary" onclick="openModal()"><i class="fas fa-shopping-cart" aria-hidden="true"></i> Купить музыку для бизнеса</button>
-              <a href="https://t.me/albe_spb" target="_blank" class="btn btn-outline" rel="noopener noreferrer"><i class="fab fa-telegram-plane" aria-hidden="true"></i> Связаться в Telegram</a>
+              <button class="btn btn--primary" data-modal="buy">
+                <i class="fas fa-shopping-cart" aria-hidden="true"></i> Купить музыку для бизнеса
+              </button>
+              <a href="https://t.me/albe_spb" target="_blank" class="btn btn--outline" rel="noopener noreferrer">
+                <i class="fab fa-telegram-plane" aria-hidden="true"></i> Связаться в Telegram
+              </a>
             </div>
-            <a href="https://disk.yandex.com/d/-E67dJQXa2KYsg" target="_blank" class="free-download-btn" rel="noopener noreferrer"><i class="fas fa-download" aria-hidden="true"></i> Скачать бесплатно демо-версию (1 час)</a>
+            <a href="https://disk.yandex.com/d/-E67dJQXa2KYsg" target="_blank" class="btn btn--primary btn--full" rel="noopener noreferrer">
+              <i class="fas fa-download" aria-hidden="true"></i> Скачать бесплатно демо-версию (1 час)
+            </a>
           </div>
         </div>
       </div>
@@ -1758,39 +2335,60 @@
     <!-- МОДАЛЬНОЕ ОКНО ОПЛАТЫ -->
     <div class="modal-overlay" id="buyModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
       <div class="modal">
-        <button class="modal-close" onclick="closeModal()" aria-label="Закрыть">&times;</button>
-        <h2 id="modalTitle">Приобрести музыку без авторских прав</h2>
-        <p class="sub">Вы можете приобрести 2 часа студийной уникальной Chillout музыки, которую можете использовать в коммерческих целях без ограничений. Отчисления за авторское право не требуются — вы платите один раз и пользуетесь бессрочно. Музыка подходит для любых бизнес-пространств: от салонов красоты до торговых и развлекательных центров.</p>
-        <div class="price-list">
-          <p><span>Джазовая музыка</span><span class="sum">1 час · 1500 ₽</span></p>
-          <p><span>Турецкая музыка</span><span class="sum">1 час · 1000 ₽</span></p>
-          <p>
-            <span style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">Полный пакет — 2 часа <span class="sale-badge">🔥 Супер-акция</span></span>
-            <span style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:flex-end;"><span class="old-price">2500 ₽</span><span class="new-price">300 ₽</span></span>
-          </p>
+        <button class="modal__close" data-close-modal aria-label="Закрыть">&times;</button>
+        <h2 class="modal__title" id="modalTitle">Приобрести музыку без авторских прав</h2>
+        <p class="modal__sub">Вы можете приобрести 2 часа студийной уникальной Chillout музыки, которую можете использовать в коммерческих целях без ограничений. Отчисления за авторское право не требуются — вы платите один раз и пользуетесь бессрочно. Музыка подходит для любых бизнес-пространств: от салонов красоты до торговых и развлекательных центров.</p>
+        <div class="modal__price-list">
+          <div class="modal__price-item">
+            <span>Джазовая музыка</span>
+            <span class="sum">1 час · 1500 ₽</span>
+          </div>
+          <div class="modal__price-item">
+            <span>Турецкая музыка</span>
+            <span class="sum">1 час · 1000 ₽</span>
+          </div>
+          <div class="modal__price-item">
+            <span style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+              Полный пакет — 2 часа
+              <span class="sale-badge">🔥 Супер-акция</span>
+            </span>
+            <span style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:flex-end;">
+              <span class="old-price">2500 ₽</span>
+              <span class="new-price">300 ₽</span>
+            </span>
+          </div>
         </div>
-        <div class="comment"><i class="fas fa-info-circle" style="margin-right:8px;color:#8b5cf6;" aria-hidden="true"></i> После оплаты укажите в комментарии: <strong>Telegram, VK или email</strong> — и мы отправим ссылку на скачивание музыки.</div>
-        <div class="agree">
-          <input type="checkbox" id="agreeCheck" onchange="checkAgree()" aria-label="Согласие с условиями">
-          <label for="agreeCheck">Я ознакомлен(а) и согласен(на) с <a href="javascript:void(0);" onclick="openAgreementModal();">условиями приобретения</a> и обработкой данных</label>
+        <div class="modal__comment">
+          <i class="fas fa-info-circle" style="margin-right:8px;color:var(--color-accent);" aria-hidden="true"></i>
+          После оплаты укажите в комментарии: <strong>Telegram, VK или email</strong> — и мы отправим ссылку на скачивание музыки.
         </div>
-        <a href="https://tips.tips/000481739" target="_blank" class="btn-buy" id="payBtn" rel="noopener noreferrer"><i class="fas fa-credit-card" aria-hidden="true"></i> Оплатить и получить музыку</a>
+        <div class="modal__agree">
+          <input type="checkbox" id="agreeCheck">
+          <label for="agreeCheck">
+            Я ознакомлен(а) и согласен(на) с <a href="#" data-agreement>условиями приобретения</a> и обработкой данных
+          </label>
+        </div>
+        <a href="https://tips.tips/000481739" target="_blank" class="btn btn--primary btn--full btn--disabled" id="payBtn" rel="noopener noreferrer">
+          <i class="fas fa-credit-card" aria-hidden="true"></i> Оплатить и получить музыку
+        </a>
       </div>
     </div>
 
     <!-- МОДАЛЬНОЕ ОКНО СОГЛАШЕНИЯ -->
     <div class="agreement-modal-overlay" id="agreementModal" role="dialog" aria-modal="true" aria-labelledby="agreementTitle">
       <div class="agreement-modal">
-        <button class="agreement-modal-close" onclick="closeAgreementModal()" aria-label="Закрыть соглашение">&times;</button>
-        <h2 id="agreementTitle">ИНФОРМАЦИОННОЕ СОГЛАШЕНИЕ</h2>
-        <div class="subtitle">по использованию музыки BALM (БИЭЛЭМ) без авторских прав</div>
-        <div class="section">
+        <button class="agreement-modal__close" data-close-agreement aria-label="Закрыть соглашение">&times;</button>
+        <h2 class="agreement-modal__title" id="agreementTitle">ИНФОРМАЦИОННОЕ СОГЛАШЕНИЕ</h2>
+        <div class="agreement-modal__subtitle">по использованию музыки BALM (БИЭЛЭМ) без авторских прав</div>
+
+        <div class="agreement-modal__section">
           <p style="font-size:0.85rem;color:#888;margin-bottom:12px;">Настоящее Соглашение носит информационный характер и не является публичной офертой.</p>
           <h3>1. Общие положения</h3>
           <p>1.1. Настоящее Соглашение информирует о правилах использования музыкальных произведений артиста BALM (БИЭЛЭМ) (Беляев Алексей).</p>
           <p>1.2. Совершая разовый платёж за музыку, вы соглашаетесь с условиями, описанными ниже.</p>
         </div>
-        <div class="section">
+
+        <div class="agreement-modal__section">
           <h3>2. Что вы получаете</h3>
           <ul>
             <li><span class="check">✅</span> Право использовать музыку в коммерческих и некоммерческих целях без ограничений.</li>
@@ -1799,7 +2397,8 @@
             <li><span class="check">✅</span> Без отчислений — никаких выплат в РАО, ВОИС и другие организации. Музыка принадлежит BALM (БИЭЛЭМ), и вы платите напрямую артисту.</li>
           </ul>
         </div>
-        <div class="section">
+
+        <div class="agreement-modal__section">
           <h3>3. Чего делать НЕЛЬЗЯ</h3>
           <ul>
             <li><span class="cross">❌</span> Выдавать музыку за свою (указывайте автора: BALM (БИЭЛЭМ)).</li>
@@ -1807,7 +2406,8 @@
             <li><span class="cross">❌</span> Изменять, переделывать или создавать ремиксы без разрешения.</li>
           </ul>
         </div>
-        <div class="section">
+
+        <div class="agreement-modal__section">
           <h3>4. Что нужно для легального использования</h3>
           <p>Достаточно иметь:</p>
           <ul>
@@ -1816,10 +2416,11 @@
           </ul>
           <p style="margin-top:8px;">Эти документы подтверждают, что вы используете музыку легально.</p>
         </div>
-        <div class="section">
+
+        <div class="agreement-modal__section">
           <h3>5. Сравнение: выгода для бизнеса</h3>
           <p style="margin-bottom:8px;">Вместо того чтобы платить РАО и ВОИС ежемесячно, вы платите один раз:</p>
-          <div class="table-wrap">
+          <div class="agreement-modal__table">
             <table>
               <thead><tr><th>Тип объекта</th><th>Экономия за год (на 100 м²)</th></tr></thead>
               <tbody>
@@ -1830,39 +2431,42 @@
               </tbody>
             </table>
           </div>
-          <p style="margin-top:10px;color:#4ade80;font-weight:600;">Вы платите один раз — и больше никаких ежемесячных отчислений!</p>
+          <p style="margin-top:10px;color:var(--color-success);font-weight:600;">Вы платите один раз — и больше никаких ежемесячных отчислений!</p>
         </div>
-        <div class="agreement-footer">© 2026 BALM (БИЭЛЭМ) · Беляев Алексей · Все права защищены</div>
+
+        <div class="agreement-modal__footer">© 2026 BALM (БИЭЛЭМ) · Беляев Алексей · Все права защищены</div>
       </div>
     </div>
 
     <!-- РЕКЛАМНЫЙ БАННЕР -->
     <div class="banner" id="promoBanner" role="complementary" aria-label="Рекламный баннер">
-      <button class="banner-close" onclick="closeBanner()" aria-label="Закрыть баннер">&times;</button>
-      <h3>Бесплатная музыка для бизнеса</h3>
-      <p class="banner-text">1 час уникальной музыки без авторских прав. Подходит для салонов, ТЦ, ресторанов и любых коммерческих пространств.</p>
-      <a href="https://disk.yandex.com/d/-E67dJQXa2KYsg" target="_blank" class="banner-btn" rel="noopener noreferrer"><i class="fas fa-download" aria-hidden="true"></i> Скачать бесплатно</a>
+      <button class="banner__close" data-close-banner aria-label="Закрыть баннер">&times;</button>
+      <h3 class="banner__title">Бесплатная музыка для бизнеса</h3>
+      <p class="banner__text">1 час уникальной музыки без авторских прав. Подходит для салонов, ТЦ, ресторанов и любых коммерческих пространств.</p>
+      <a href="https://disk.yandex.com/d/-E67dJQXa2KYsg" target="_blank" class="btn btn--primary btn--full banner__btn" rel="noopener noreferrer">
+        <i class="fas fa-download" aria-hidden="true"></i> Скачать бесплатно
+      </a>
     </div>
 
-    <!-- ===== БАННЕР НОВЫХ РЕЛИЗОВ ===== -->
+    <!-- БАННЕР НОВЫХ РЕЛИЗОВ -->
     <div class="new-releases-banner" id="newReleasesBanner" role="complementary" aria-label="Новые релизы BALM">
-      <button class="new-releases-banner-close" onclick="closeNewReleasesBanner()" aria-label="Закрыть баннер">&times;</button>
-      <h3>
+      <button class="new-releases-banner__close" data-close-new-banner aria-label="Закрыть баннер">&times;</button>
+      <div class="new-releases-banner__title">
         🎵 Новые релизы
-        <span class="new-badge">NEW</span>
-      </h3>
-      <div class="banner-releases">
-        <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="banner-release-item">
+        <span class="new-releases-banner__badge">NEW</span>
+      </div>
+      <div class="new-releases-banner__list">
+        <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="new-releases-banner__item">
           <img src="Jazz.webp" alt="Jazz — джазовый альбом без авторских прав BALM" loading="lazy" width="32" height="32">
           <span>Jazz</span>
           <span class="new-tag">NEW</span>
         </a>
-        <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="banner-release-item">
+        <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="new-releases-banner__item">
           <img src="stars.webp" alt="К звездам — рок-сингл без авторских прав BALM" loading="lazy" width="32" height="32">
           <span>К звездам</span>
           <span class="new-tag">NEW</span>
         </a>
-        <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="banner-release-item">
+        <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="new-releases-banner__item">
           <img src="alterego.webp" alt="Альтерэго — рок-альбом без авторских прав BALM" loading="lazy" width="32" height="32">
           <span>Альтерэго</span>
           <span class="new-tag">NEW</span>
@@ -1871,165 +2475,180 @@
     </div>
 
     <!-- РЕЛИЗЫ -->
-    <section class="releases-section" id="releases" aria-label="Релизы BALM - музыка без авторских прав">
+    <section class="releases scroll-margin" id="releases" aria-label="Релизы BALM - музыка без авторских прав">
       <div class="container">
-        <div class="section-header">
-          <h2>Новые релизы BALM</h2>
-          <a id="showAllBtn" onclick="toggleReleases()" role="button" tabindex="0">Все релизы <i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+        <div class="releases__header">
+          <h2 class="releases__title">Новые релизы BALM</h2>
+          <button class="releases__toggle" id="showAllBtn" aria-expanded="false">
+            Все релизы <i class="fas fa-chevron-down" aria-hidden="true"></i>
+          </button>
         </div>
-        <div class="release-grid" id="releaseGrid">
-          
-          <!-- ДЖАЗ -->
+        <div class="releases__grid" id="releaseGrid">
+
           <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
-            <div class="release-cover">
+            <div class="release-card__cover">
               <img src="Jazz.webp" alt="Jazz — джазовый альбом без авторских прав для бизнеса от BALM" loading="lazy" width="400" height="400">
-              <span class="new-badge">NEW</span>
+              <span class="release-card__new-badge">NEW</span>
             </div>
-            <div class="release-title" itemprop="name">Jazz</div>
-            <div class="release-year" itemprop="datePublished">2026 · Альбом · Джаз</div>
+            <div class="release-card__title" itemprop="name">Jazz</div>
+            <div class="release-card__year" itemprop="datePublished">2026 · Альбом · Джаз</div>
           </a>
 
-          <!-- К ЗВЕЗДАМ -->
           <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
-            <div class="release-cover">
+            <div class="release-card__cover">
               <img src="stars.webp" alt="К звездам — трипл-сингл Rock, Jazz, Piano без авторских прав от BALM" loading="lazy" width="400" height="400">
-              <span class="new-badge">NEW</span>
+              <span class="release-card__new-badge">NEW</span>
             </div>
-            <div class="release-title" itemprop="name">К звездам (Rock / Jazz / Piano)</div>
-            <div class="release-year" itemprop="datePublished">2026 · Трипл-сингл</div>
+            <div class="release-card__title" itemprop="name">К звездам (Rock / Jazz / Piano)</div>
+            <div class="release-card__year" itemprop="datePublished">2026 · Трипл-сингл</div>
           </a>
 
-          <!-- АЛЬТЕРЭГО -->
           <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
-            <div class="release-cover">
+            <div class="release-card__cover">
               <img src="alterego.webp" alt="Альтерэго — рок-альбом без авторских прав для коммерческого использования" loading="lazy" width="400" height="400">
-              <span class="new-badge">NEW</span>
+              <span class="release-card__new-badge">NEW</span>
             </div>
-            <div class="release-title" itemprop="name">Альтерэго (Rock)</div>
-            <div class="release-year" itemprop="datePublished">2026 · Альбом · Рок</div>
+            <div class="release-card__title" itemprop="name">Альтерэго (Rock)</div>
+            <div class="release-card__year" itemprop="datePublished">2026 · Альбом · Рок</div>
           </a>
 
-          <!-- ОСТАЛЬНЫЕ РЕЛИЗЫ -->
           <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
-            <div class="release-cover"><img src="beautiful.webp" alt="Beautiful — рок-сингл без авторских прав для видео от BALM" loading="lazy" width="400" height="400"></div>
-            <div class="release-title" itemprop="name">Beautiful (Rock)</div>
-            <div class="release-year" itemprop="datePublished">2026 · Сингл</div>
+            <div class="release-card__cover"><img src="beautiful.webp" alt="Beautiful — рок-сингл без авторских прав для видео от BALM" loading="lazy" width="400" height="400"></div>
+            <div class="release-card__title" itemprop="name">Beautiful (Rock)</div>
+            <div class="release-card__year" itemprop="datePublished">2026 · Сингл</div>
           </a>
+
           <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
-            <div class="release-cover"><img src="chance.webp" alt="Chance English ver. — рок-сингл на английском без авторских прав" loading="lazy" width="400" height="400"></div>
-            <div class="release-title" itemprop="name">Chance English ver. (Rock)</div>
-            <div class="release-year" itemprop="datePublished">2026 · Сингл</div>
+            <div class="release-card__cover"><img src="chance.webp" alt="Chance English ver. — рок-сингл на английском без авторских прав" loading="lazy" width="400" height="400"></div>
+            <div class="release-card__title" itemprop="name">Chance English ver. (Rock)</div>
+            <div class="release-card__year" itemprop="datePublished">2026 · Сингл</div>
           </a>
+
           <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
-            <div class="release-cover"><img src="cloud.webp" alt="Облака — рок-сингл без авторских прав для коммерческих проектов" loading="lazy" width="400" height="400"></div>
-            <div class="release-title" itemprop="name">Облака (Rock)</div>
-            <div class="release-year" itemprop="datePublished">2026 · Сингл</div>
+            <div class="release-card__cover"><img src="cloud.webp" alt="Облака — рок-сингл без авторских прав для коммерческих проектов" loading="lazy" width="400" height="400"></div>
+            <div class="release-card__title" itemprop="name">Облака (Rock)</div>
+            <div class="release-card__year" itemprop="datePublished">2026 · Сингл</div>
           </a>
+
           <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
-            <div class="release-cover"><img src="Heart.webp" alt="Жги моё сердце — поп-сингл без авторских прав от BALM" loading="lazy" width="400" height="400"></div>
-            <div class="release-title" itemprop="name">Жги моё сердце (Pop)</div>
-            <div class="release-year" itemprop="datePublished">2026 · Сингл</div>
+            <div class="release-card__cover"><img src="Heart.webp" alt="Жги моё сердце — поп-сингл без авторских прав от BALM" loading="lazy" width="400" height="400"></div>
+            <div class="release-card__title" itemprop="name">Жги моё сердце (Pop)</div>
+            <div class="release-card__year" itemprop="datePublished">2026 · Сингл</div>
           </a>
+
           <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
-            <div class="release-cover"><img src="its%20my%20life.webp" alt="It's My Life — хип-хоп сингл без авторских прав для рекламы" loading="lazy" width="400" height="400"></div>
-            <div class="release-title" itemprop="name">It's My Life (Hip-hop)</div>
-            <div class="release-year" itemprop="datePublished">2026 · Сингл</div>
+            <div class="release-card__cover"><img src="its%20my%20life.webp" alt="It's My Life — хип-хоп сингл без авторских прав для рекламы" loading="lazy" width="400" height="400"></div>
+            <div class="release-card__title" itemprop="name">It's My Life (Hip-hop)</div>
+            <div class="release-card__year" itemprop="datePublished">2026 · Сингл</div>
           </a>
+
           <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
-            <div class="release-cover"><img src="love.webp" alt="Смысл жизни любовь — поп-сингл без авторских прав от BALM" loading="lazy" width="400" height="400"></div>
-            <div class="release-title" itemprop="name">Смысл жизни любовь (Pop)</div>
-            <div class="release-year" itemprop="datePublished">2026 · Сингл</div>
+            <div class="release-card__cover"><img src="love.webp" alt="Смысл жизни любовь — поп-сингл без авторских прав от BALM" loading="lazy" width="400" height="400"></div>
+            <div class="release-card__title" itemprop="name">Смысл жизни любовь (Pop)</div>
+            <div class="release-card__year" itemprop="datePublished">2026 · Сингл</div>
           </a>
+
           <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
-            <div class="release-cover"><img src="what.webp" alt="Ну почему? — Breaks сингл без авторских прав от BALM" loading="lazy" width="400" height="400"></div>
-            <div class="release-title" itemprop="name">Ну почему? (Breaks)</div>
-            <div class="release-year" itemprop="datePublished">2026 · Сингл</div>
+            <div class="release-card__cover"><img src="what.webp" alt="Ну почему? — Breaks сингл без авторских прав от BALM" loading="lazy" width="400" height="400"></div>
+            <div class="release-card__title" itemprop="name">Ну почему? (Breaks)</div>
+            <div class="release-card__year" itemprop="datePublished">2026 · Сингл</div>
           </a>
+
           <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
-            <div class="release-cover"><img src="world.webp" alt="Мой маленький мир — поп-сингл без авторских прав от BALM" loading="lazy" width="400" height="400"></div>
-            <div class="release-title" itemprop="name">Мой маленький мир (Pop)</div>
-            <div class="release-year" itemprop="datePublished">2026 · Сингл</div>
+            <div class="release-card__cover"><img src="world.webp" alt="Мой маленький мир — поп-сингл без авторских прав от BALM" loading="lazy" width="400" height="400"></div>
+            <div class="release-card__title" itemprop="name">Мой маленький мир (Pop)</div>
+            <div class="release-card__year" itemprop="datePublished">2026 · Сингл</div>
           </a>
+
           <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
-            <div class="release-cover"><img src="beautifulRU.webp" alt="Моя красивая — поп-сингл на русском без авторских прав" loading="lazy" width="400" height="400"></div>
-            <div class="release-title" itemprop="name">Моя красивая (Pop)</div>
-            <div class="release-year" itemprop="datePublished">2026 · Сингл</div>
+            <div class="release-card__cover"><img src="beautifulRU.webp" alt="Моя красивая — поп-сингл на русском без авторских прав" loading="lazy" width="400" height="400"></div>
+            <div class="release-card__title" itemprop="name">Моя красивая (Pop)</div>
+            <div class="release-card__year" itemprop="datePublished">2026 · Сингл</div>
           </a>
+
           <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="release-card" itemscope itemtype="https://schema.org/MusicAlbum">
-            <div class="release-cover"><img src="chanceRU.webp" alt="Шанс — рок-сингл на русском без авторских прав от BALM" loading="lazy" width="400" height="400"></div>
-            <div class="release-title" itemprop="name">Шанс (Rock)</div>
-            <div class="release-year" itemprop="datePublished">2026 · Сингл</div>
+            <div class="release-card__cover"><img src="chanceRU.webp" alt="Шанс — рок-сингл на русском без авторских прав от BALM" loading="lazy" width="400" height="400"></div>
+            <div class="release-card__title" itemprop="name">Шанс (Rock)</div>
+            <div class="release-card__year" itemprop="datePublished">2026 · Сингл</div>
           </a>
+
         </div>
       </div>
     </section>
 
     <!-- БИО -->
-    <section class="bio-section" id="bio" aria-label="Биография BALM - музыкант Беляев Алексей">
-      <div class="container bio-grid">
-        <div class="bio-image"><img src="BALM.webp" alt="BALM (БИЭЛЭМ) — музыкант Беляев Алексей из Санкт-Петербурга" loading="lazy" width="800" height="800"></div>
-        <div class="bio-text">
-          <h2>О проекте BALM</h2>
-          <p><strong>BALM</strong> — это экспериментальный музыкальный проект Алексея Беляева из Санкт-Петербурга. На стыке ню-метала, поп-мелодий и электроники рождается уникальный звук для тех, кто ищет настоящую эмоцию и качественный музыкальный контент без ограничений по авторским правам.</p>
-          <p>Основная миссия проекта — сделать качественную музыку доступной для бизнеса и творческих проектов. Мы создаём коммерческую, детскую и фоновую музыку, а также пишем песни и стихи для мультипликации на заказ. Работаем в любых жанрах: от джаза до рока, от электроники до хип-хопа.</p>
-          <p><strong>Ключевое преимущество:</strong> вся музыка BALM свободна от авторских отчислений РАО и ВОИС. Вы можете использовать её в любых коммерческих целях без дополнительных платежей. Релизы доступны на всех цифровых площадках мира, а эксклюзивные треки можно приобрести напрямую у автора.</p>
-          <div class="bio-stats">
-            <div><span class="number">Санкт-Петербург</span><span class="label">База проекта</span></div>
-            <div><span class="number">12+</span><span class="label">Релизов</span></div>
-            <div><span class="number">Бесплатно</span><span class="label">Демо-версия</span></div>
+    <section class="bio scroll-margin" id="bio" aria-label="Биография BALM - музыкант Беляев Алексей">
+      <div class="container bio__grid">
+        <div class="bio__image"><img src="BALM.webp" alt="BALM (БИЭЛЭМ) — музыкант Беляев Алексей из Санкт-Петербурга" loading="lazy" width="800" height="800"></div>
+        <div>
+          <h2 class="bio__title">О проекте BALM</h2>
+          <p class="bio__text"><strong>BALM</strong> — это экспериментальный музыкальный проект Алексея Беляева из Санкт-Петербурга. На стыке ню-метала, поп-мелодий и электроники рождается уникальный звук для тех, кто ищет настоящую эмоцию и качественный музыкальный контент без ограничений по авторским правам.</p>
+          <p class="bio__text">Основная миссия проекта — сделать качественную музыку доступной для бизнеса и творческих проектов. Мы создаём коммерческую, детскую и фоновую музыку, а также пишем песни и стихи для мультипликации на заказ. Работаем в любых жанрах: от джаза до рока, от электроники до хип-хопа.</p>
+          <p class="bio__text"><strong>Ключевое преимущество:</strong> вся музыка BALM свободна от авторских отчислений РАО и ВОИС. Вы можете использовать её в любых коммерческих целях без дополнительных платежей. Релизы доступны на всех цифровых площадках мира, а эксклюзивные треки можно приобрести напрямую у автора.</p>
+          <div class="bio__stats">
+            <div class="bio__stat">
+              <span class="number">Санкт-Петербург</span>
+              <span class="label">База проекта</span>
+            </div>
+            <div class="bio__stat">
+              <span class="number">12+</span>
+              <span class="label">Релизов</span>
+            </div>
+            <div class="bio__stat">
+              <span class="number">Бесплатно</span>
+              <span class="label">Демо-версия</span>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ===== FAQ ===== -->
-    <section class="faq-section" id="faq" aria-label="Часто задаваемые вопросы о музыке BALM">
+    <!-- FAQ -->
+    <section class="faq scroll-margin" id="faq" aria-label="Часто задаваемые вопросы о музыке BALM">
       <div class="container">
-        <h2>Часто задаваемые вопросы</h2>
-        <div class="faq-list">
-          <!-- Вопрос 1 -->
+        <h2 class="faq__title">Часто задаваемые вопросы</h2>
+        <div class="faq__list">
+
           <div class="faq-item">
-            <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+            <button class="faq-item__question" data-faq-toggle aria-expanded="false">
               <span>Нужно ли платить РАО и ВОИС за использование музыки BALM?</span>
-              <span class="icon"><i class="fas fa-chevron-down"></i></span>
+              <span class="faq-item__icon"><i class="fas fa-chevron-down"></i></span>
             </button>
-            <div class="faq-answer">
-              <p><strong>Нет, не нужно.</strong> Музыка BALM (БИЭЛЭМ) полностью свободна от авторских отчислений. Вы платите <span class="highlight">один раз</span> за право использования и больше никогда не платите РАО, ВОИС или другим организациям. Это экономит ваш бизнес до 162 000 ₽ в год. Подробнее об условиях читайте в нашем <a href="javascript:void(0);" onclick="openAgreementModal();">Соглашении</a>.</p>
+            <div class="faq-item__answer">
+              <p><strong>Нет, не нужно.</strong> Музыка BALM (БИЭЛЭМ) полностью свободна от авторских отчислений. Вы платите <span class="highlight">один раз</span> за право использования и больше никогда не платите РАО, ВОИС или другим организациям. Это экономит ваш бизнес до 162 000 ₽ в год. Подробнее об условиях читайте в нашем <a href="#" data-agreement>Соглашении</a>.</p>
             </div>
           </div>
 
-          <!-- Вопрос 2 -->
           <div class="faq-item">
-            <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+            <button class="faq-item__question" data-faq-toggle aria-expanded="false">
               <span>Вы пишете музыку для детских мультфильмов и анимации?</span>
-              <span class="icon"><i class="fas fa-chevron-down"></i></span>
+              <span class="faq-item__icon"><i class="fas fa-chevron-down"></i></span>
             </button>
-            <div class="faq-answer">
+            <div class="faq-item__answer">
               <p><strong>Да, мы создаём музыку для детской мультипликации.</strong> BALM пишет оригинальные саундтреки, фоновую музыку и песенки для мультфильмов, детских программ, развивающих роликов и анимационных проектов. Работаем в любых жанрах — от весёлых поп-мелодий до нежных колыбельных. <a href="https://t.me/albe_spb" target="_blank">Обсудим вашу идею в Telegram</a>.</p>
             </div>
           </div>
 
-          <!-- Вопрос 3 -->
           <div class="faq-item">
-            <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+            <button class="faq-item__question" data-faq-toggle aria-expanded="false">
               <span>Пишете ли вы стихи и песни для исполнителей с нуля?</span>
-              <span class="icon"><i class="fas fa-chevron-down"></i></span>
+              <span class="faq-item__icon"><i class="fas fa-chevron-down"></i></span>
             </button>
-            <div class="faq-answer">
+            <div class="faq-item__answer">
               <p><strong>Да, мы пишем стихи, тексты песен и полноценные треки для исполнителей на заказ.</strong> Можем создать материал под ваш образ, голос и стиль — от лирики до энергичных хитов. Также помогаем с аранжировкой и сведением. <a href="https://t.me/albe_spb" target="_blank">Напишите в Telegram</a>, и мы обсудим детали вашего проекта.</p>
             </div>
           </div>
 
-          <!-- Вопрос 4 -->
           <div class="faq-item">
-            <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+            <button class="faq-item__question" data-faq-toggle aria-expanded="false">
               <span>Можно ли приобрести готовые стихи и песни из каталога?</span>
-              <span class="icon"><i class="fas fa-chevron-down"></i></span>
+              <span class="faq-item__icon"><i class="fas fa-chevron-down"></i></span>
             </button>
-            <div class="faq-answer">
+            <div class="faq-item__answer">
               <p><strong>Да, некоторые авторские стихи и песни доступны для приобретения.</strong> Мы предлагаем как эксклюзивные тексты, так и работы из нашего портфолио. Стоимость и условия обсуждаются индивидуально, в зависимости от вашего проекта. <a href="https://t.me/albe_spb" target="_blank">Свяжитесь с нами в Telegram</a>, чтобы узнать подробности.</p>
             </div>
           </div>
+
         </div>
       </div>
     </section>
@@ -2037,168 +2656,227 @@
   </main>
 
   <!-- ===== ФУТЕР ===== -->
-  <div class="container">
-    <footer class="footer" role="contentinfo">
-      <div class="footer-row">
-        <div class="footer-social">
-          <a href="https://t.me/albe_spb" target="_blank" rel="noopener noreferrer" aria-label="Telegram BALM"><i class="fab fa-telegram" aria-hidden="true"></i></a>
-          <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" aria-label="Яндекс Музыка BALM"><i class="fab fa-spotify" aria-hidden="true"></i></a>
-          <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" aria-label="Яндекс Музыка BALM"><i class="fas fa-music" aria-hidden="true"></i></a>
-        </div>
+  <footer class="container footer" role="contentinfo">
+    <div class="footer__row">
+      <div class="footer__social">
+        <a href="https://t.me/albe_spb" target="_blank" rel="noopener noreferrer" aria-label="Telegram BALM"><i class="fab fa-telegram" aria-hidden="true"></i></a>
+        <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" aria-label="Яндекс Музыка BALM"><i class="fab fa-spotify" aria-hidden="true"></i></a>
+        <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" aria-label="Яндекс Музыка BALM"><i class="fas fa-music" aria-hidden="true"></i></a>
       </div>
-      <div class="footer-row">
-        <div class="footer-links">
-          <a href="javascript:void(0);" onclick="openAgreementModal();">Пользовательское соглашение</a>
-          <a href="javascript:void(0);" onclick="alert('Политика конфиденциальности: данные не передаются третьим лицам.');">Политика конфиденциальности</a>
-        </div>
+    </div>
+    <div class="footer__row">
+      <div class="footer__links">
+        <a href="#" data-agreement>Пользовательское соглашение</a>
+        <a href="#" onclick="alert('Политика конфиденциальности: данные не передаются третьим лицам.');">Политика конфиденциальности</a>
       </div>
-      <div class="footer-row">
-        <div class="footer-bottom">
-          <span>Разработано в</span>
-          <a href="https://t.me/albe_web" target="_blank" class="albe-link" rel="noopener noreferrer">
-            <img src="Albe.webp" alt="Albe — веб-разработка и SEO продвижение" loading="lazy" width="80" height="40">
-          </a>
-        </div>
+    </div>
+    <div class="footer__row">
+      <div class="footer__bottom">
+        <span>Разработано в</span>
+        <a href="https://t.me/albe_web" target="_blank" class="footer__albe" rel="noopener noreferrer">
+          <img src="Albe.webp" alt="Albe — веб-разработка и SEO продвижение" loading="lazy" width="80" height="40">
+        </a>
       </div>
-    </footer>
-  </div>
+    </div>
+  </footer>
 
   <!-- ===== Tawk.to ЧАТ ===== -->
   <script type="text/javascript">
-  var Tawk_API = Tawk_API || {};
-  var Tawk_LoadStart = new Date();
-  (function(){
-    var s1 = document.createElement("script");
-    var s0 = document.getElementsByTagName("script")[0];
-    s1.async = true;
-    s1.src = 'https://embed.tawk.to/6a8ed1a4067fac344b1dc207/1k0v4lbp5';
-    s1.charset = 'UTF-8';
-    s1.setAttribute('crossorigin', '*');
-    s0.parentNode.insertBefore(s1, s0);
-  })();
+    var Tawk_API = Tawk_API || {};
+    var Tawk_LoadStart = new Date();
+    (function() {
+      var s1 = document.createElement("script");
+      var s0 = document.getElementsByTagName("script")[0];
+      s1.async = true;
+      s1.src = 'https://embed.tawk.to/6a8ed1a4067fac344b1dc207/1k0v4lbp5';
+      s1.charset = 'UTF-8';
+      s1.setAttribute('crossorigin', '*');
+      s0.parentNode.insertBefore(s1, s0);
+    })();
   </script>
 
-  <!-- ===== ОСТАЛЬНЫЕ СКРИПТЫ ===== -->
+  <!-- ===== СКРИПТЫ ===== -->
   <script>
-    // Модальное окно оплаты
-    function openModal() {
-      document.getElementById('buyModal').classList.add('open');
-      document.body.style.overflow = 'hidden';
-      document.getElementById('agreeCheck').checked = false;
-      document.getElementById('payBtn').classList.remove('active');
-    }
-    function closeModal() {
-      document.getElementById('buyModal').classList.remove('open');
-      document.body.style.overflow = '';
-    }
-    document.getElementById('buyModal').addEventListener('click', function(e) {
-      if (e.target === this) closeModal();
-    });
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') { closeModal(); closeAgreementModal(); }
-    });
+    (function() {
+      'use strict';
 
-    function checkAgree() {
-      const checkbox = document.getElementById('agreeCheck');
-      const btn = document.getElementById('payBtn');
-      btn.classList.toggle('active', checkbox.checked);
-    }
+      // ============================================
+      // МОДАЛЬНОЕ ОКНО ОПЛАТЫ
+      // ============================================
+      const buyModal = document.getElementById('buyModal');
+      const buyModalOpen = document.querySelector('[data-modal="buy"]');
+      const buyModalClose = buyModal.querySelector('[data-close-modal]');
+      const agreeCheck = document.getElementById('agreeCheck');
+      const payBtn = document.getElementById('payBtn');
 
-    // Модальное окно соглашения
-    function openAgreementModal() {
-      document.getElementById('agreementModal').classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeAgreementModal() {
-      document.getElementById('agreementModal').classList.remove('open');
-      document.body.style.overflow = '';
-    }
-    document.getElementById('agreementModal').addEventListener('click', function(e) {
-      if (e.target === this) closeAgreementModal();
-    });
-
-    // Баннер
-    function closeBanner() {
-      document.getElementById('promoBanner').classList.add('hidden-banner');
-    }
-    setTimeout(function() {
-      const banner = document.getElementById('promoBanner');
-      if (!banner.classList.contains('hidden-banner')) banner.classList.add('visible');
-    }, 3000);
-
-    // Баннер новых релизов
-    function closeNewReleasesBanner() {
-      document.getElementById('newReleasesBanner').classList.add('hidden-banner');
-    }
-    setTimeout(function() {
-      const banner = document.getElementById('newReleasesBanner');
-      if (!banner.classList.contains('hidden-banner')) banner.classList.add('visible');
-    }, 1500);
-
-    // Мобильное меню
-    const hamburger = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobileMenu');
-    hamburger.addEventListener('click', function() {
-      this.classList.toggle('active');
-      mobileMenu.classList.toggle('open');
-      this.setAttribute('aria-expanded', mobileMenu.classList.contains('open'));
-    });
-    function closeMobileMenu() {
-      hamburger.classList.remove('active');
-      mobileMenu.classList.remove('open');
-      hamburger.setAttribute('aria-expanded', 'false');
-    }
-
-    // Релизы
-    let allVisible = false;
-    const cards = document.querySelectorAll('.release-card');
-    const btn = document.getElementById('showAllBtn');
-
-    function updateVisibility(showAll) {
-      cards.forEach((card, index) => {
-        if (showAll) {
-          card.classList.remove('hidden');
-        } else {
-          if (index >= 3) {
-            card.classList.add('hidden');
-          } else {
-            card.classList.remove('hidden');
-          }
-        }
-      });
-    }
-
-    function toggleReleases() {
-      allVisible = !allVisible;
-      updateVisibility(allVisible);
-      btn.innerHTML = allVisible 
-        ? 'Скрыть релизы <i class="fas fa-chevron-up" aria-hidden="true"></i>'
-        : 'Все релизы <i class="fas fa-chevron-down" aria-hidden="true"></i>';
-      btn.classList.toggle('rotated');
-    }
-
-    updateVisibility(false);
-
-    // FAQ Аккордеон
-    function toggleFaq(button) {
-      const item = button.closest('.faq-item');
-      const isActive = item.classList.contains('active');
-      
-      document.querySelectorAll('.faq-item.active').forEach(el => {
-        if (el !== item) {
-          el.classList.remove('active');
-          el.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
-        }
-      });
-      
-      if (isActive) {
-        item.classList.remove('active');
-        button.setAttribute('aria-expanded', 'false');
-      } else {
-        item.classList.add('active');
-        button.setAttribute('aria-expanded', 'true');
+      function openBuyModal() {
+        buyModal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        agreeCheck.checked = false;
+        payBtn.classList.add('btn--disabled');
       }
-    }
+
+      function closeBuyModal() {
+        buyModal.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+
+      buyModalOpen.addEventListener('click', openBuyModal);
+      buyModalClose.addEventListener('click', closeBuyModal);
+      buyModal.addEventListener('click', function(e) {
+        if (e.target === this) closeBuyModal();
+      });
+
+      agreeCheck.addEventListener('change', function() {
+        payBtn.classList.toggle('btn--disabled', !this.checked);
+      });
+
+      // ============================================
+      // МОДАЛЬНОЕ ОКНО СОГЛАШЕНИЯ
+      // ============================================
+      const agreementModal = document.getElementById('agreementModal');
+      const agreementOpen = document.querySelectorAll('[data-agreement]');
+      const agreementClose = agreementModal.querySelector('[data-close-agreement]');
+
+      function openAgreementModal(e) {
+        e.preventDefault();
+        agreementModal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeAgreementModal() {
+        agreementModal.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+
+      agreementOpen.forEach(function(el) {
+        el.addEventListener('click', openAgreementModal);
+      });
+      agreementClose.addEventListener('click', closeAgreementModal);
+      agreementModal.addEventListener('click', function(e) {
+        if (e.target === this) closeAgreementModal();
+      });
+
+      // ESC
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          closeBuyModal();
+          closeAgreementModal();
+        }
+      });
+
+      // ============================================
+      // БАННЕРЫ
+      // ============================================
+      const promoBanner = document.getElementById('promoBanner');
+      const closeBannerBtn = promoBanner.querySelector('[data-close-banner]');
+
+      closeBannerBtn.addEventListener('click', function() {
+        promoBanner.classList.add('hidden');
+      });
+
+      setTimeout(function() {
+        if (!promoBanner.classList.contains('hidden')) {
+          promoBanner.classList.add('visible');
+        }
+      }, 3000);
+
+      const newReleasesBanner = document.getElementById('newReleasesBanner');
+      const closeNewBannerBtn = newReleasesBanner.querySelector('[data-close-new-banner]');
+
+      closeNewBannerBtn.addEventListener('click', function() {
+        newReleasesBanner.classList.add('hidden');
+      });
+
+      setTimeout(function() {
+        if (!newReleasesBanner.classList.contains('hidden')) {
+          newReleasesBanner.classList.add('visible');
+        }
+      }, 1500);
+
+      // ============================================
+      // МОБИЛЬНОЕ МЕНЮ
+      // ============================================
+      const hamburger = document.getElementById('hamburger');
+      const mobileMenu = document.getElementById('mobileMenu');
+
+      hamburger.addEventListener('click', function() {
+        this.classList.toggle('active');
+        mobileMenu.classList.toggle('open');
+        this.setAttribute('aria-expanded', mobileMenu.classList.contains('open'));
+      });
+
+      mobileMenu.querySelectorAll('[data-close-menu]').forEach(function(link) {
+        link.addEventListener('click', function() {
+          hamburger.classList.remove('active');
+          mobileMenu.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+        });
+      });
+
+      // ============================================
+      // РЕЛИЗЫ
+      // ============================================
+      const cards = document.querySelectorAll('.release-card');
+      const toggleBtn = document.getElementById('showAllBtn');
+      let allVisible = false;
+
+      function updateVisibility(showAll) {
+        cards.forEach(function(card, index) {
+          if (showAll) {
+            card.classList.remove('hidden');
+          } else {
+            if (index >= 3) {
+              card.classList.add('hidden');
+            } else {
+              card.classList.remove('hidden');
+            }
+          }
+        });
+      }
+
+      toggleBtn.addEventListener('click', function() {
+        allVisible = !allVisible;
+        updateVisibility(allVisible);
+        this.innerHTML = allVisible ?
+          'Скрыть релизы <i class="fas fa-chevron-up" aria-hidden="true"></i>' :
+          'Все релизы <i class="fas fa-chevron-down" aria-hidden="true"></i>';
+        this.classList.toggle('rotated');
+        this.setAttribute('aria-expanded', allVisible);
+      });
+
+      updateVisibility(false);
+
+      // ============================================
+      // FAQ АККОРДЕОН
+      // ============================================
+      const faqToggles = document.querySelectorAll('[data-faq-toggle]');
+
+      faqToggles.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          const item = this.closest('.faq-item');
+          const isActive = item.classList.contains('active');
+
+          // Закрываем все открытые
+          document.querySelectorAll('.faq-item.active').forEach(function(el) {
+            if (el !== item) {
+              el.classList.remove('active');
+              el.querySelector('[data-faq-toggle]').setAttribute('aria-expanded', 'false');
+            }
+          });
+
+          // Переключаем текущий
+          if (isActive) {
+            item.classList.remove('active');
+            this.setAttribute('aria-expanded', 'false');
+          } else {
+            item.classList.add('active');
+            this.setAttribute('aria-expanded', 'true');
+          }
+        });
+      });
+
+    })();
   </script>
 
 </body>
