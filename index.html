@@ -995,18 +995,18 @@
       .agreement-modal h1 { font-size: 1.4rem; }
     }
 
-    /* ===== РЕКЛАМНЫЙ БАННЕР ===== */
+    /* ===== РЕКЛАМНЫЙ БАННЕР — ПОДНЯТ НАД ИКОНКОЙ ЧАТА ===== */
     .banner {
       position: fixed;
-      bottom: 30px;
-      right: 30px;
+      bottom: 100px; /* ← поднят над иконкой чата (было 30px) */
+      right: 80px; /* ← смещён правее */
       z-index: 9998;
-      max-width: 400px;
+      max-width: 360px;
       width: 100%;
       background: rgba(20, 20, 20, 0.95);
       backdrop-filter: blur(20px);
       border-radius: 20px;
-      padding: 24px 28px;
+      padding: 20px 24px;
       border: 1px solid rgba(255, 255, 255, 0.06);
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
       opacity: 0;
@@ -1022,12 +1022,12 @@
     .banner.hidden-banner { display: none !important; }
     .banner-close {
       position: absolute;
-      top: 12px;
-      right: 16px;
+      top: 10px;
+      right: 14px;
       background: none;
       border: none;
       color: #666;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       cursor: pointer;
       transition: color 0.2s;
       padding: 4px;
@@ -1035,26 +1035,26 @@
     }
     .banner-close:hover { color: #fff; }
     .banner h3 {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       font-weight: 700;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       color: #fff;
     }
     .banner .banner-text {
       font-size: 0.85rem;
       color: #b0b0b0;
-      line-height: 1.6;
-      margin-bottom: 16px;
+      line-height: 1.5;
+      margin-bottom: 14px;
     }
     .banner .banner-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      padding: 12px 28px;
+      padding: 10px 24px;
       border-radius: 60px;
       font-weight: 600;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       text-decoration: none;
       transition: all 0.3s ease;
       font-family: 'Inter', sans-serif;
@@ -1077,7 +1077,7 @@
         left: 16px;
         max-width: none;
         width: auto;
-        padding: 20px;
+        padding: 18px 20px;
       }
       .banner h3 { font-size: 1rem; }
     }
@@ -1642,7 +1642,7 @@
       </div>
     </div>
 
-    <!-- РЕКЛАМНЫЙ БАННЕР -->
+    <!-- РЕКЛАМНЫЙ БАННЕР - ПОДНЯТ НАД ИКОНКОЙ ЧАТА -->
     <div class="banner" id="promoBanner" role="complementary" aria-label="Рекламный баннер">
       <button class="banner-close" onclick="closeBanner()" aria-label="Закрыть баннер">&times;</button>
       <h3>Бесплатная музыка для бизнеса</h3>
