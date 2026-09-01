@@ -238,22 +238,76 @@
     @media(max-width:480px){.agree{padding:20px 14px;border-radius:20px}.agree-title{font-size:1.2rem}.agree-section p,.agree-section li{font-size:.85rem}}
 
     /* ===== БАННЕРЫ ===== */
-    /* ----- БАННЕР НОВЫХ РЕЛИЗОВ (эталон ширины) ----- */
-    .new-banner{position:fixed;top:80px;left:50%;transform:translateX(-50%);z-index:9997;background:rgba(20,20,20,.95);backdrop-filter:blur(20px);border-radius:20px;padding:20px 30px;border:1px solid rgba(139,92,246,.3);box-shadow:0 20px 60px rgba(0,0,0,.8);opacity:0;transform:translateX(-50%) translateY(-30px);transition:all .6s cubic-bezier(.34,1.56,.64,1);pointer-events:none;max-width:600px;width:90%;box-sizing:border-box}
-    .new-banner.visible{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:all}
+    /* ----- БАННЕР НОВЫХ РЕЛИЗОВ — ДЛЯ ПК: СНИЗУ СЛЕВА ----- */
+    .new-banner {
+      position:fixed;
+      bottom:30px;
+      left:30px;
+      z-index:9997;
+      background:rgba(20,20,20,.95);
+      backdrop-filter:blur(20px);
+      border-radius:20px;
+      padding:16px 20px;
+      border:1px solid rgba(139,92,246,.3);
+      box-shadow:0 20px 60px rgba(0,0,0,.8);
+      opacity:0;
+      transform:translateY(30px);
+      transition:all .6s cubic-bezier(.34,1.56,.64,1);
+      pointer-events:none;
+      max-width:340px;
+      width:auto;
+      box-sizing:border-box;
+      min-width:240px;
+    }
+    .new-banner.visible{opacity:1;transform:translateY(0);pointer-events:all}
     .new-banner.hidden{display:none!important}
+
+    /* На мобилках оставляем как было — по центру сверху */
+    @media(max-width:768px){
+      .new-banner {
+        bottom:auto;
+        left:50%;
+        top:70px;
+        transform:translateX(-50%) translateY(-30px);
+        max-width:600px;
+        width:90%;
+        padding:14px 18px;
+        min-width:auto;
+      }
+      .new-banner.visible{transform:translateX(-50%) translateY(0)}
+    }
+    @media(max-width:480px){
+      .new-banner{top:65px;padding:10px 14px;width:92%}
+    }
+
     .new-banner-close{position:absolute;top:8px;right:14px;background:0 0;border:0;color:#666;font-size:1.4rem;cursor:pointer;transition:color .2s;padding:4px;z-index:10}
     .new-banner-close:hover{color:#fff}
-    .new-banner-title{font-size:1rem;font-weight:700;margin-bottom:4px;color:#fff;display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding-right:30px}
-    .new-banner-badge{background:linear-gradient(135deg,var(--danger),#dc2626);color:#fff;font-size:.6rem;padding:2px 10px;border-radius:60px;font-weight:700;text-transform:uppercase;animation:pulse 1.5s infinite}
+    .new-banner-title{font-size:.9rem;font-weight:700;margin-bottom:8px;color:#fff;display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding-right:30px}
+    .new-banner-badge{background:linear-gradient(135deg,var(--danger),#dc2626);color:#fff;font-size:.5rem;padding:2px 10px;border-radius:60px;font-weight:700;text-transform:uppercase;animation:pulse 1.5s infinite}
     @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.7;transform:scale(1.05)}}
-    .new-banner-list{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap;justify-content:center}
-    .new-banner-item{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.05);padding:6px 12px 6px 8px;border-radius:60px;border:1px solid rgba(255,255,255,.06);transition:.3s;cursor:pointer;text-decoration:none;color:var(--text);font-size:.8rem;flex:0 1 auto}
-    .new-banner-item:hover{background:rgba(139,92,246,.15);border-color:var(--accent);transform:scale(1.05)}
+    .new-banner-list{display:flex;flex-direction:column;gap:6px;margin-top:4px}
+    .new-banner-item{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.05);padding:6px 12px 6px 8px;border-radius:12px;border:1px solid rgba(255,255,255,.06);transition:.3s;cursor:pointer;text-decoration:none;color:var(--text);font-size:.8rem;width:100%;box-sizing:border-box}
+    .new-banner-item:hover{background:rgba(139,92,246,.15);border-color:var(--accent);transform:scale(1.02)}
     .new-banner-item img{width:28px;height:28px;border-radius:8px;object-fit:cover;flex-shrink:0}
-    .new-banner-item .tag{font-size:.5rem;color:var(--success);font-weight:700;text-transform:uppercase;background:rgba(74,222,128,.15);padding:1px 8px;border-radius:60px}
+    .new-banner-item .tag{font-size:.5rem;color:var(--success);font-weight:700;text-transform:uppercase;background:rgba(74,222,128,.15);padding:1px 8px;border-radius:60px;margin-left:auto;flex-shrink:0}
 
-    /* ----- РЕКЛАМНЫЙ БАННЕР — ТАКОЙ ЖЕ ШИРИНЫ, ПО ЦЕНТРУ, ПОВЕРХ ----- */
+    /* Адаптация для мобилок: список в строку */
+    @media(max-width:768px){
+      .new-banner-list{flex-direction:row;flex-wrap:wrap;justify-content:center}
+      .new-banner-item{width:auto;padding:4px 10px 4px 6px;font-size:.7rem}
+      .new-banner-item img{width:24px;height:24px}
+      .new-banner-title{font-size:.85rem}
+    }
+    @media(max-width:480px){
+      .new-banner-list{gap:4px}
+      .new-banner-item{font-size:.6rem;padding:3px 8px 3px 5px;gap:5px}
+      .new-banner-item img{width:18px;height:18px}
+      .new-banner-item .tag{font-size:.4rem;padding:1px 6px}
+      .new-banner-title{font-size:.75rem;gap:4px}
+      .new-banner-badge{font-size:.5rem;padding:1px 8px}
+    }
+
+    /* ----- РЕКЛАМНЫЙ БАННЕР — ПО ЦЕНТРУ СВЕРХУ ----- */
     .banner{position:fixed;top:80px;left:50%;transform:translateX(-50%);z-index:9998;max-width:600px;width:90%;background:rgba(20,20,20,.95);backdrop-filter:blur(20px);border-radius:20px;padding:16px 24px;border:1px solid rgba(255,255,255,.06);box-shadow:0 20px 60px rgba(0,0,0,.8);opacity:0;transform:translateX(-50%) translateY(-30px);transition:all .6s cubic-bezier(.34,1.56,.64,1);pointer-events:none;box-sizing:border-box}
     .banner.visible{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:all}
     .banner.hidden{display:none!important}
@@ -262,33 +316,8 @@
     .banner-title{font-size:1rem;font-weight:700;margin-bottom:4px;color:#fff;display:flex;align-items:center;gap:10px;padding-right:30px}
     .banner-text{font-size:.85rem;color:var(--text2);line-height:1.4;margin-bottom:10px}
     .banner-btn{width:100%;padding:8px 16px!important;font-size:.85rem!important;min-height:36px!important}
-
-    /* ===== АДАПТАЦИЯ БАННЕРОВ НА МОБИЛЬНЫХ ===== */
-    @media(max-width:768px){
-      .banner{top:70px;padding:12px 18px;width:90%}
-      .banner-title{font-size:.85rem;padding-right:24px}
-      .banner-text{font-size:.75rem;margin-bottom:6px}
-      .banner-btn{padding:6px 12px!important;font-size:.75rem!important;min-height:28px!important}
-      .banner-close{top:6px;right:10px;font-size:1.2rem}
-      .new-banner{top:70px;padding:14px 18px;width:90%}
-      .new-banner-title{font-size:.85rem}
-      .new-banner-item{font-size:.7rem;padding:4px 10px 4px 6px}
-      .new-banner-item img{width:24px;height:24px}
-    }
-    @media(max-width:480px){
-      .banner{top:65px;padding:10px 14px;width:92%}
-      .banner-title{font-size:.75rem;padding-right:20px}
-      .banner-text{font-size:.65rem;margin-bottom:4px}
-      .banner-btn{padding:4px 10px!important;font-size:.65rem!important;min-height:24px!important}
-      .banner-close{top:4px;right:8px;font-size:1rem}
-      .new-banner{top:65px;padding:10px 14px;width:92%}
-      .new-banner-title{font-size:.75rem;gap:4px}
-      .new-banner-badge{font-size:.5rem;padding:1px 8px}
-      .new-banner-list{gap:6px}
-      .new-banner-item{font-size:.6rem;padding:3px 8px 3px 5px;gap:5px}
-      .new-banner-item img{width:18px;height:18px}
-      .new-banner-item .tag{font-size:.4rem;padding:1px 6px}
-    }
+    @media(max-width:768px){.banner{top:70px;padding:12px 18px;width:90%}.banner-title{font-size:.85rem;padding-right:24px}.banner-text{font-size:.75rem;margin-bottom:6px}.banner-btn{padding:6px 12px!important;font-size:.75rem!important;min-height:28px!important}.banner-close{top:6px;right:10px;font-size:1.2rem}}
+    @media(max-width:480px){.banner{top:65px;padding:10px 14px;width:92%}.banner-title{font-size:.75rem;padding-right:20px}.banner-text{font-size:.65rem;margin-bottom:4px}.banner-btn{padding:4px 10px!important;font-size:.65rem!important;min-height:24px!important}.banner-close{top:4px;right:8px;font-size:1rem}}
 
     /* ===== РЕЛИЗЫ ===== */
     .releases{padding:80px 0;background:var(--bg);border-bottom:1px solid #181818}
@@ -545,7 +574,7 @@
   </div>
 
   <!-- ===== БАННЕРЫ ===== -->
-  <!-- Рекламный баннер — такой же ширины как баннер релизов, по центру, поверх -->
+  <!-- Рекламный баннер — по центру сверху -->
   <div class="banner" id="promoBanner">
     <button class="banner-close" data-close-banner>&times;</button>
     <div class="banner-title">🎵 Бесплатная музыка для бизнеса</div>
@@ -553,19 +582,25 @@
     <a href="https://disk.yandex.com/d/-E67dJQXa2KYsg" target="_blank" class="btn btn-primary btn-full banner-btn" rel="noopener"><i class="fas fa-download"></i> Скачать бесплатно</a>
   </div>
 
-  <!-- Баннер новых релизов -->
+  <!-- ===== БАННЕР НОВЫХ РЕЛИЗОВ ===== -->
   <div class="new-banner" id="newReleasesBanner">
     <button class="new-banner-close" data-close-new-banner>&times;</button>
-    <div class="new-banner-title">🎵 Новые релизы <span class="new-banner-badge">NEW</span></div>
+    <div class="new-banner-title">🔥 Новые релизы <span class="new-banner-badge">NEW</span></div>
     <div class="new-banner-list">
+      <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="new-banner-item">
+        <img src="rage.webp" alt="Обложка сингла Клуб на дне — минимал-техно от BALM" loading="lazy"> <span>Клуб на дне</span> <span class="tag">NEW</span>
+      </a>
+      <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="new-banner-item">
+        <img src="last.webp" alt="Обложка сингла Последняя любовь — дабл-сингл от BALM" loading="lazy"> <span>Последняя любовь</span> <span class="tag">NEW</span>
+      </a>
       <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="new-banner-item">
         <img src="Jazz.webp" alt="Обложка альбома Jazz — джазовая музыка для бизнеса без авторских прав от BALM" loading="lazy"> <span>Jazz</span> <span class="tag">NEW</span>
       </a>
       <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="new-banner-item">
-        <img src="stars.webp" alt="Обложка сингла К звездам — рок, джаз и фортепиано от BALM" loading="lazy"> <span>К звездам</span> <span class="tag">NEW</span>
+        <img src="stars.webp" alt="Обложка сингла К звездам — рок, джаз и фортепиано от BALM" loading="lazy"> <span>К звездам</span>
       </a>
       <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="new-banner-item">
-        <img src="alterego.webp" alt="Обложка альбома Альтерэго — рок музыка от BALM" loading="lazy"> <span>Альтерэго</span> <span class="tag">NEW</span>
+        <img src="alterego.webp" alt="Обложка альбома Альтерэго — рок музыка от BALM" loading="lazy"> <span>Альтерэго</span>
       </a>
     </div>
   </div>
@@ -578,18 +613,30 @@
         <button class="releases-toggle" id="showAllBtn">Все релизы <i class="fas fa-chevron-down"></i></button>
       </div>
       <div class="releases-grid" id="releaseGrid">
+        <!-- НОВЫЕ РЕЛИЗЫ ПЕРВЫМИ -->
+        <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="card">
+          <div class="card-cover"><img src="rage.webp" alt="Обложка сингла Клуб на дне — минимал-техно от BALM" loading="lazy"><span class="card-new">NEW</span></div>
+          <div class="card-title">Клуб на дне (Минимал-техно)</div>
+          <div class="card-year">2026 · Сингл · Техно</div>
+        </a>
+        <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="card">
+          <div class="card-cover"><img src="last.webp" alt="Обложка сингла Последняя любовь — дабл-сингл от BALM" loading="lazy"><span class="card-new">NEW</span></div>
+          <div class="card-title">Последняя любовь</div>
+          <div class="card-year">2026 · Дабл-сингл · Поп</div>
+        </a>
         <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="card">
           <div class="card-cover"><img src="Jazz.webp" alt="Обложка альбома Jazz — джазовая музыка для бизнеса без авторских прав от BALM" loading="lazy"><span class="card-new">NEW</span></div>
           <div class="card-title">Jazz</div>
           <div class="card-year">2026 · Альбом · Джаз</div>
         </a>
+        <!-- ОСТАЛЬНЫЕ РЕЛИЗЫ -->
         <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="card">
-          <div class="card-cover"><img src="stars.webp" alt="Обложка сингла К звездам — рок, джаз и фортепиано от BALM" loading="lazy"><span class="card-new">NEW</span></div>
+          <div class="card-cover"><img src="stars.webp" alt="Обложка сингла К звездам — рок, джаз и фортепиано от BALM" loading="lazy"></div>
           <div class="card-title">К звездам (Rock / Jazz / Piano)</div>
           <div class="card-year">2026 · Трипл-сингл</div>
         </a>
         <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="card">
-          <div class="card-cover"><img src="alterego.webp" alt="Обложка альбома Альтерэго — рок музыка от BALM" loading="lazy"><span class="card-new">NEW</span></div>
+          <div class="card-cover"><img src="alterego.webp" alt="Обложка альбома Альтерэго — рок музыка от BALM" loading="lazy"></div>
           <div class="card-title">Альтерэго (Rock)</div>
           <div class="card-year">2026 · Альбом · Рок</div>
         </a>
@@ -658,7 +705,7 @@
         <p class="bio-text"><strong>Ключевое преимущество:</strong> вся музыка BALM свободна от авторских отчислений РАО и ВОИС. Вы можете использовать её в любых коммерческих целях без дополнительных платежей.</p>
         <div class="bio-stats">
           <div class="bio-stat"><span class="num">Санкт-Петербург</span><span class="lbl">База проекта</span></div>
-          <div class="bio-stat"><span class="num">12+</span><span class="lbl">Релизов</span></div>
+          <div class="bio-stat"><span class="num">15+</span><span class="lbl">Релизов</span></div>
           <div class="bio-stat"><span class="num">Бесплатно</span><span class="lbl">Демо-версия</span></div>
         </div>
       </div>
