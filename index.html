@@ -90,6 +90,23 @@
     @media(max-width:480px){.btn-group .btn{flex:1 1 100%}}
     @media(max-width:480px){.btn-heart{padding:6px 12px;min-height:32px;font-size:.7rem}}
 
+    /* ===== SVG ИКОНКА ПЛАМЕНИ ===== */
+    .flame-icon {
+      display:inline-block;
+      width:24px;
+      height:24px;
+      flex-shrink:0;
+      vertical-align:middle;
+    }
+    .flame-icon svg {
+      width:100%;
+      height:100%;
+      display:block;
+    }
+    @media(max-width:480px){
+      .flame-icon{width:18px;height:18px}
+    }
+
     /* ===== ШАПКА ===== */
     .navbar{
       position:fixed;top:0;left:0;width:100%;z-index:1000;
@@ -282,8 +299,8 @@
 
     .new-banner-close{position:absolute;top:8px;right:14px;background:0 0;border:0;color:#666;font-size:1.4rem;cursor:pointer;transition:color .2s;padding:4px;z-index:10}
     .new-banner-close:hover{color:#fff}
-    .new-banner-title{font-size:.9rem;font-weight:700;margin-bottom:8px;color:#fff;display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding-right:30px}
-    .new-banner-badge{background:linear-gradient(135deg,var(--danger),#dc2626);color:#fff;font-size:.5rem;padding:2px 10px;border-radius:60px;font-weight:700;text-transform:uppercase;animation:pulse 1.5s infinite}
+    .new-banner-title{font-size:.9rem;font-weight:700;margin-bottom:8px;color:#fff;display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding-right:30px}
+    .new-banner-badge-global{background:linear-gradient(135deg,var(--danger),#dc2626);color:#fff;font-size:.5rem;padding:2px 10px;border-radius:60px;font-weight:700;text-transform:uppercase;animation:pulse 1.5s infinite}
     @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.7;transform:scale(1.05)}}
     .new-banner-list{display:flex;flex-direction:column;gap:6px;margin-top:4px}
     .new-banner-item{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.05);padding:6px 12px 6px 8px;border-radius:12px;border:1px solid rgba(255,255,255,.06);transition:.3s;cursor:pointer;text-decoration:none;color:var(--text);font-size:.8rem;width:100%;box-sizing:border-box}
@@ -304,7 +321,7 @@
       .new-banner-item img{width:18px;height:18px}
       .new-banner-item .tag{font-size:.4rem;padding:1px 6px}
       .new-banner-title{font-size:.75rem;gap:4px}
-      .new-banner-badge{font-size:.5rem;padding:1px 8px}
+      .new-banner-badge-global{font-size:.5rem;padding:1px 8px}
     }
 
     /* ----- РЕКЛАМНЫЙ БАННЕР — ПО ЦЕНТРУ СВЕРХУ ----- */
@@ -585,22 +602,43 @@
   <!-- ===== БАННЕР НОВЫХ РЕЛИЗОВ ===== -->
   <div class="new-banner" id="newReleasesBanner">
     <button class="new-banner-close" data-close-new-banner>&times;</button>
-    <div class="new-banner-title">🔥 Новые релизы <span class="new-banner-badge">NEW</span></div>
+    <div class="new-banner-title">
+      <!-- SVG ИКОНКА ПЛАМЕНИ -->
+      <span class="flame-icon">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 23C12 23 4 17.5 4 10.5C4 6.5 6.5 3 9 1C8.5 4.5 10 7 12 8.5C14 7 15.5 4.5 15 1C17.5 3 20 6.5 20 10.5C20 17.5 12 23 12 23Z" fill="#FF6B00" stroke="#FF3300" stroke-width="0.5"/>
+          <path d="M12 19C12 19 8 16 8 12.5C8 10.5 9.5 8.5 10.5 7.5C10 9.5 11 11 12 12C13 11 14 9.5 13.5 7.5C14.5 8.5 16 10.5 16 12.5C16 16 12 19 12 19Z" fill="#FF9500" stroke="#FF6B00" stroke-width="0.3"/>
+          <path d="M12 15C12 15 10.5 13.5 10.5 12C10.5 11 11 10.5 11.5 10C11.2 11 11.5 11.8 12 12.2C12.5 11.8 12.8 11 12.5 10C13 10.5 13.5 11 13.5 12C13.5 13.5 12 15 12 15Z" fill="#FFD700" stroke="#FF9500" stroke-width="0.2"/>
+        </svg>
+      </span>
+      Новые релизы
+      <span class="new-banner-badge-global">NEW</span>
+    </div>
     <div class="new-banner-list">
       <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="new-banner-item">
-        <img src="rage.webp" alt="Обложка сингла Клуб на дне — минимал-техно от BALM" loading="lazy"> <span>Клуб на дне</span> <span class="tag">NEW</span>
+        <img src="rage.webp" alt="Обложка сингла Клуб на дне — минимал-техно от BALM" loading="lazy">
+        <span>Клуб на дне</span>
+        <span class="tag">NEW</span>
       </a>
       <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="new-banner-item">
-        <img src="last.webp" alt="Обложка сингла Последняя любовь — дабл-сингл от BALM" loading="lazy"> <span>Последняя любовь</span> <span class="tag">NEW</span>
+        <img src="last.webp" alt="Обложка сингла Последняя любовь — дабл-сингл от BALM" loading="lazy">
+        <span>Последняя любовь</span>
+        <span class="tag">NEW</span>
       </a>
       <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="new-banner-item">
-        <img src="Jazz.webp" alt="Обложка альбома Jazz — джазовая музыка для бизнеса без авторских прав от BALM" loading="lazy"> <span>Jazz</span> <span class="tag">NEW</span>
+        <img src="Jazz.webp" alt="Обложка альбома Jazz — джазовая музыка для бизнеса без авторских прав от BALM" loading="lazy">
+        <span>Jazz</span>
+        <span class="tag">NEW</span>
       </a>
       <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="new-banner-item">
-        <img src="stars.webp" alt="Обложка сингла К звездам — рок, джаз и фортепиано от BALM" loading="lazy"> <span>К звездам</span>
+        <img src="stars.webp" alt="Обложка сингла К звездам — рок, джаз и фортепиано от BALM" loading="lazy">
+        <span>К звездам</span>
+        <span class="tag">NEW</span>
       </a>
       <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="new-banner-item">
-        <img src="alterego.webp" alt="Обложка альбома Альтерэго — рок музыка от BALM" loading="lazy"> <span>Альтерэго</span>
+        <img src="alterego.webp" alt="Обложка альбома Альтерэго — рок музыка от BALM" loading="lazy">
+        <span>Альтерэго</span>
+        <span class="tag">NEW</span>
       </a>
     </div>
   </div>
