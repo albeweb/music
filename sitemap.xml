@@ -7,17 +7,17 @@
 
   <!-- ===== ГЛАВНАЯ СТРАНИЦА ===== -->
   <url>
-    <loc>https://albeweb.github.io/music/</loc>
-    <lastmod>2026-08-26</lastmod>
+    <loc>https://balm-music.ru/</loc>
+    <lastmod>2026-09-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://albeweb.github.io/music/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://balm-music.ru/"/>
   </url>
 
   <!-- ===== ЯНДЕКС МУЗЫКА (ВНЕШНИЙ ИСТОЧНИК) ===== -->
   <url>
     <loc>https://music.yandex.ru/artist/26471381</loc>
-    <lastmod>2026-08-26</lastmod>
+    <lastmod>2026-09-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -25,7 +25,7 @@
   <!-- ===== BANDCAMP (ДЕМО) ===== -->
   <url>
     <loc>https://balm2.bandcamp.com/track/demo</loc>
-    <lastmod>2026-08-26</lastmod>
+    <lastmod>2026-09-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -33,7 +33,7 @@
   <!-- ===== TELEGRAM (КОНТАКТЫ) ===== -->
   <url>
     <loc>https://t.me/albe_spb</loc>
-    <lastmod>2026-08-26</lastmod>
+    <lastmod>2026-09-03</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -41,7 +41,7 @@
   <!-- ===== DISK (СКАЧАТЬ БЕСПЛАТНО) ===== -->
   <url>
     <loc>https://disk.yandex.com/d/-E67dJQXa2KYsg</loc>
-    <lastmod>2026-08-26</lastmod>
+    <lastmod>2026-09-03</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
