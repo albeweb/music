@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -11,22 +9,30 @@
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://albeweb.github.io/music/">
 
-  <meta property="og:title" content="BALM (БИЭЛЭМ) — музыка без авторских прав для бизнеса и творческих проектов">
-  <meta property="og:description" content="Уникальная экспериментальная музыка для бизнеса, рекламы, видео и детской мультипликации. Без отчислений РАО и ВОИС. Скачать бесплатно демо и купить лицензию.">
+  <!-- ===== МЕТА-ТЕГИ ДЛЯ СОЦСЕТЕЙ ===== -->
+  <meta property="og:title" content="BALM (БИЭЛЭМ) — музыка без авторских прав для бизнеса и видео">
+  <meta property="og:description" content="Уникальная экспериментальная музыка для бизнеса, рекламы, видео и мультипликации. Без отчислений РАО и ВОИС. Скачать бесплатно демо.">
   <meta property="og:url" content="https://albeweb.github.io/music/">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="https://albeweb.github.io/music/BALM%20-%20hero%20b.webp">
+  <meta property="og:site_name" content="BALM · официальный сайт">
+  <meta property="og:image" content="https://albeweb.github.io/music/BALMherob.webp">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:site_name" content="BALM · официальный сайт">
+  <meta property="og:image:type" content="image/webp">
+  <meta property="og:image:alt" content="BALM — обложка проекта на фоне космоса">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="BALM (БИЭЛЭМ) — музыка без авторских прав">
   <meta name="twitter:description" content="Экспериментальная музыка для бизнеса и творческих проектов. Без отчислений. Скачать бесплатно.">
-  <meta name="twitter:image" content="https://albeweb.github.io/music/BALM%20-%20hero%20b.webp">
+  <meta name="twitter:image" content="https://albeweb.github.io/music/BALMherob.webp">
+  <meta name="twitter:image:alt" content="BALM — музыка без авторских прав">
 
   <meta name="author" content="BALM (БИЭЛЭМ)">
   <meta name="theme-color" content="#0b0b0b">
+
+  <!-- ===== ФАВИКОН ===== -->
+  <link rel="icon" type="image/x-icon" href="https://albeweb.github.io/music/favicon.ico">
+  <link rel="shortcut icon" href="https://albeweb.github.io/music/favicon.ico">
 
   <!-- ===== СТРУКТУРИРОВАННЫЕ ДАННЫЕ ===== -->
   <script type="application/ld+json">
@@ -38,8 +44,6 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://albeweb.github.io/music/"},{"@type":"ListItem","position":2,"name":"Музыка без авторских прав","item":"https://albeweb.github.io/music/#copyright-free"},{"@type":"ListItem","position":3,"name":"Релизы BALM","item":"https://albeweb.github.io/music/#releases"}]}
   </script>
-
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='5' y='5' width='90' height='90' rx='20' fill='%238b5cf6'/%3E%3Ctext x='50' y='68' font-family='Arial' font-size='60' font-weight='bold' text-anchor='middle' fill='%23ffffff'%3EB%3C/text%3E%3C/svg%3E">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -459,7 +463,7 @@
 
   <!-- ===== HERO ===== -->
   <section class="hero" id="player">
-    <img class="hero-img" src="BALM%20-%20hero%20b.webp" alt="BALM — экспериментальная музыка без авторских прав для бизнеса и видео. Обложка проекта на фоне космоса." loading="lazy">
+    <img class="hero-img" src="BALMherob.webp" alt="BALM — экспериментальная музыка без авторских прав для бизнеса и видео. Обложка проекта на фоне космоса." loading="lazy">
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <h1 class="hero-title">BALM</h1>
@@ -512,7 +516,7 @@
   </section>
 
   <!-- ===== МОДАЛКА ОПЛАТЫ ===== -->
-  <div class="modal-overlay" id="buyModal">
+  <div class="modal-overlay" id="buyModal" data-nosnippet>
     <div class="modal">
       <button class="modal-close" data-close-modal>&times;</button>
       <h2 class="modal-title">Приобрести музыку без авторских прав</h2>
@@ -535,7 +539,7 @@
   </div>
 
   <!-- ===== МОДАЛКА СОГЛАШЕНИЯ ===== -->
-  <div class="agree-overlay" id="agreementModal">
+  <div class="agree-overlay" id="agreementModal" data-nosnippet>
     <div class="agree">
       <button class="agree-close" data-close-agreement>&times;</button>
       <h2 class="agree-title">ИНФОРМАЦИОННОЕ СОГЛАШЕНИЕ</h2>
