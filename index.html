@@ -274,184 +274,6 @@
       }
     }
 
-    /* ===== БАННЕР "СЛУШАТЬ НА" (Font Awesome) ===== */
-    .music-platforms {
-      position:fixed;
-      bottom:30px;
-      left:30px;
-      z-index:9997;
-      background:rgba(20,20,20,.95);
-      backdrop-filter:blur(20px);
-      border-radius:20px;
-      padding:16px 20px;
-      border:1px solid rgba(139,92,246,.3);
-      box-shadow:0 20px 60px rgba(0,0,0,.8);
-      max-width:220px;
-      width:auto;
-      box-sizing:border-box;
-      min-width:180px;
-      transition:all .3s;
-    }
-    .music-platforms .banner-close {
-      display: none;
-      position:absolute;
-      top:8px;
-      right:14px;
-      background:0 0;
-      border:0;
-      color:#666;
-      font-size:1.4rem;
-      cursor:pointer;
-      transition:color .2s;
-      padding:4px;
-      z-index:10;
-      line-height:1;
-    }
-    .music-platforms .banner-close:hover {
-      color:#fff;
-    }
-    .music-platforms.hidden {
-      display: none !important;
-    }
-
-    .music-platforms:hover {
-      border-color:rgba(139,92,246,.6);
-      box-shadow:0 20px 60px rgba(139,92,246,.15);
-    }
-    .music-platforms-title {
-      font-size:.75rem;
-      font-weight:600;
-      color:var(--text2);
-      text-transform:uppercase;
-      letter-spacing:.1em;
-      margin-bottom:12px;
-      text-align:center;
-      border-bottom:1px solid rgba(255,255,255,.06);
-      padding-bottom:10px;
-      font-family:var(--font-main);
-    }
-    .music-platforms-list {
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-    }
-    .music-platforms-item {
-      display:flex;
-      align-items:center;
-      gap:12px;
-      padding:6px 10px;
-      border-radius:12px;
-      transition:all .3s;
-      text-decoration:none;
-      color:var(--text);
-      background:rgba(255,255,255,.03);
-      border:1px solid transparent;
-    }
-    .music-platforms-item:hover {
-      background:rgba(139,92,246,.12);
-      border-color:rgba(139,92,246,.25);
-      transform:translateX(4px);
-    }
-    .music-platforms-item i {
-      width:24px;
-      height:24px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:1.2rem;
-      flex-shrink:0;
-      color:var(--text2);
-      transition:color .3s;
-    }
-    .music-platforms-item:hover i {
-      color:#fff;
-    }
-    .music-platforms-item i.fa-yandex {
-      color:#FFCC00;
-    }
-    .music-platforms-item i.fa-spotify {
-      color:#1DB954;
-    }
-    .music-platforms-item i.fa-vk {
-      color:#0077FF;
-    }
-    .music-platforms-item i.fa-apple {
-      color:#FC3C44;
-    }
-    .music-platforms-item i.fa-music {
-      color:#8B5CF6;
-    }
-    .music-platforms-item span {
-      font-size:.8rem;
-      font-weight:500;
-      color:var(--text2);
-      transition:color .3s;
-      font-family:var(--font-main);
-    }
-    .music-platforms-item:hover span {
-      color:#fff;
-    }
-
-    @media(max-width:768px){
-      .music-platforms {
-        bottom:auto;
-        left:50%;
-        top:70px;
-        transform:translateX(-50%);
-        max-width:400px;
-        width:90%;
-        padding:14px 18px;
-        min-width:auto;
-      }
-      .music-platforms .banner-close {
-        display: block;
-      }
-      .music-platforms-list {
-        flex-direction:row;
-        flex-wrap:wrap;
-        justify-content:center;
-        gap:6px;
-      }
-      .music-platforms-item {
-        padding:4px 10px;
-        gap:8px;
-        flex:0 1 auto;
-      }
-      .music-platforms-item i {
-        width:20px;
-        height:20px;
-        font-size:1rem;
-      }
-      .music-platforms-item span {
-        font-size:.7rem;
-      }
-    }
-    @media(max-width:480px){
-      .music-platforms {
-        top:65px;
-        padding:10px 14px;
-        width:92%;
-        max-width:100%;
-      }
-      .music-platforms-title {
-        font-size:.6rem;
-        margin-bottom:8px;
-        padding-bottom:6px;
-      }
-      .music-platforms-item {
-        padding:3px 8px;
-        gap:6px;
-      }
-      .music-platforms-item i {
-        width:16px;
-        height:16px;
-        font-size:.8rem;
-      }
-      .music-platforms-item span {
-        font-size:.6rem;
-      }
-    }
-
     /* ===== ШАПКА ===== */
     .navbar{
       position:fixed;top:0;left:0;width:100%;z-index:1000;
@@ -471,31 +293,138 @@
     }
     .logo:hover{opacity:.8}
     @media(max-width:480px){.logo{font-size:1rem;letter-spacing:.1em}}
-    .nav-links{display:flex;align-items:center;gap:36px;font-size:.85rem;letter-spacing:.05em;text-transform:uppercase}
-    @media(max-width:768px){.nav-links{display:none}}
-    .nav-links a{color:rgba(255,255,255,.65);text-decoration:none;transition:.3s;position:relative;padding-bottom:4px;font-family:var(--font-main);font-weight:500}
-    .nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1.5px;background:linear-gradient(90deg,var(--accent),var(--success));transition:width .3s}
-    .nav-links a:hover{color:#fff}
-    .nav-links a:hover::after{width:100%}
-    .navbar-actions{display:flex;align-items:center;gap:12px;flex-shrink:0}
 
-    /* ===== ГАМБУРГЕР ===== */
-    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:0 0;border:none;flex-shrink:0}
-    .hamburger span{display:block;width:26px;height:2px;background:#fff;border-radius:4px;transition:.3s;transform-origin:center}
+    /* Платформы в шапке (только ПК) */
+    .nav-platforms {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .nav-platforms a {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      font-size: 0.75rem;
+      font-weight: 400;
+      font-family: var(--font-main);
+      transition: color 0.3s;
+      padding: 4px 0;
+      border-bottom: 2px solid transparent;
+    }
+    .nav-platforms a i {
+      font-size: 1.2rem;
+      transition: color 0.3s;
+    }
+    .nav-platforms a .platform-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.3px;
+    }
+
+    .nav-platforms a:hover {
+      color: #fff;
+      border-bottom-color: rgba(255,255,255,0.2);
+    }
+    .nav-platforms a:hover i.fa-music { color: #FFCC00; }
+    .nav-platforms a:hover i.fa-apple { color: #FC3C44; }
+    .nav-platforms a:hover i.fa-spotify { color: #1DB954; }
+    .nav-platforms a:hover i.fa-headphones { color: #8B5CF6; }
+    .nav-platforms a:hover i.fa-vk { color: #0077FF; }
+
+    @media (max-width: 768px) {
+      .nav-platforms {
+        display: none;
+      }
+    }
+
+    .navbar-actions{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      flex-shrink:0;
+    }
+
+    /* ===== ГАМБУРГЕР (ПК И МОБИЛА) ===== */
+    .hamburger{
+      display:flex;
+      flex-direction:column;
+      gap:5px;
+      cursor:pointer;
+      padding:4px;
+      background:0 0;
+      border:none;
+      flex-shrink:0
+    }
+    .hamburger span{
+      display:block;
+      width:26px;
+      height:2px;
+      background:#fff;
+      border-radius:4px;
+      transition:.3s;
+      transform-origin:center
+    }
     .hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
     .hamburger.active span:nth-child(2){opacity:0}
     .hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
-    @media(max-width:768px){.hamburger{display:flex}}
+
+    /* ===== МОБИЛЬНОЕ МЕНЮ (ПК И МОБИЛА) ===== */
     .mobile-menu{
-      display:none;position:fixed;top:60px;left:0;width:100%;background:rgba(11,11,11,.98);backdrop-filter:blur(16px);
-      padding:24px 30px;flex-direction:column;gap:20px;z-index:9999;
+      display:none;
+      position:fixed;
+      top:72px;
+      left:0;
+      width:100%;
+      background:rgba(11,11,11,.98);
+      backdrop-filter:blur(16px);
+      padding:20px 30px;
+      z-index:9999;
       border-bottom:1px solid rgba(255,255,255,.06)
     }
+    @media(max-width:768px){.mobile-menu{top:60px;padding:24px 30px;flex-direction:column;gap:20px}}
     .mobile-menu.open{display:flex;animation:slideDown .3s}
     @keyframes slideDown{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
-    .mobile-menu a{color:rgba(255,255,255,.8);text-decoration:none;font-size:1.1rem;letter-spacing:.05em;text-transform:uppercase;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04);transition:color .2s;font-family:var(--font-main);font-weight:500}
+
+    /* ПК версия меню — в строку по центру */
+    @media(min-width:769px){
+      .mobile-menu {
+        justify-content: center;
+        gap: 40px;
+        padding: 16px 30px;
+      }
+      .mobile-menu a {
+        font-size: 0.85rem;
+        letter-spacing: 0.08em;
+        padding: 6px 0;
+        border-bottom: none;
+        border-bottom: 2px solid transparent;
+        transition: border-color 0.3s, color 0.3s;
+      }
+      .mobile-menu a:hover {
+        border-bottom-color: #8b5cf6;
+      }
+      .mobile-menu a:last-child {
+        border-bottom: none;
+      }
+    }
+
+    .mobile-menu a{
+      color:rgba(255,255,255,.8);
+      text-decoration:none;
+      font-size:1.1rem;
+      letter-spacing:.05em;
+      text-transform:uppercase;
+      padding:8px 0;
+      border-bottom:1px solid rgba(255,255,255,.04);
+      transition:color .2s;
+      font-family:var(--font-main);
+      font-weight:500;
+      white-space:nowrap;
+    }
     .mobile-menu a:hover{color:#fff}
     .mobile-menu a:last-child{border-bottom:0}
+    @media(max-width:768px){.mobile-menu a{font-size:1.1rem;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04)}}
 
     /* ===== HERO ===== */
     .hero{width:100%;height:100vh;min-height:700px;display:flex;align-items:center;justify-content:center;background:var(--bg);position:relative;overflow:hidden}
@@ -549,7 +478,7 @@
     .demo-tag{margin-top:14px;font-size:.7rem;color:#555;text-align:center;border-top:1px solid rgba(255,255,255,.04);padding-top:14px;font-family:var(--font-main);font-weight:300}
     @media(max-width:480px){.demo{padding:16px 14px}.demo .radio-wrapper iframe{height:100px}.demo-track{gap:12px}.demo-art{width:44px;height:44px;font-size:1.2rem}}
 
-    /* ===== МОДАЛКА ПОДПИСКИ ===== */
+    /* ===== МОДАЛКИ ===== */
     .modal-overlay{
       display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);backdrop-filter:blur(8px);
       z-index:99999;align-items:center;justify-content:center;padding:20px
@@ -598,7 +527,7 @@
     .modal-buy .modal-agree label a:hover{border-color:var(--accent)}
     .modal-buy .modal-comment{font-size:.85rem;color:#888;margin-bottom:16px;padding:12px 16px;background:rgba(139,92,246,.06);border-radius:12px;border:1px solid rgba(139,92,246,.1);font-family:var(--font-main);font-weight:300}
 
-    /* ===== МОДАЛКА СОГЛАШЕНИЯ (СКРЫТА ОТ ПОИСКОВИКОВ) ===== */
+    /* ===== МОДАЛКА СОГЛАШЕНИЯ (СКРЫТА) ===== */
     .agree-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(12px);z-index:99999;align-items:center;justify-content:center;padding:20px}
     .agree-overlay.open{display:flex}
     .agree{background:#141414;border-radius:28px;max-width:720px;width:100%;max-height:85vh;overflow-y:auto;padding:40px 44px;border:1px solid rgba(255,255,255,.06);box-shadow:0 40px 80px rgba(0,0,0,.8);position:relative}
@@ -697,13 +626,84 @@
     /* ===== ФУТЕР ===== */
     .footer{padding:40px 0 30px;border-top:1px solid #1a1a1a;display:flex;flex-direction:column;align-items:center;gap:20px;color:#5a5a5a;font-size:.9rem}
     .footer-row{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:20px 30px;width:100%}
-    .footer-social{display:flex;gap:20px;order:0}
-    .footer-social a{color:#888;font-size:1.3rem;transition:color .2s;text-decoration:none}
+
+    /* Платформы в подвале (только мобильная версия) */
+    .footer-platforms {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      order: 0;
+      width: 100%;
+    }
+    .footer-platforms .platform-row {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .footer-platforms a {
+      color: rgba(255,255,255,0.5);
+      font-size: 1.1rem;
+      transition: color 0.3s;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .footer-platforms a:hover {
+      color: #fff;
+    }
+    .footer-platforms a .platform-label {
+      font-size: 0.7rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.3);
+    }
+    .footer-platforms a:hover .platform-label {
+      color: rgba(255,255,255,0.6);
+    }
+    .footer-platforms a i {
+      font-size: 1.1rem;
+    }
+
+    @media (max-width: 768px) {
+      .footer-platforms {
+        display: flex;
+      }
+    }
+
+    .footer-social{
+      display:flex;
+      gap:20px;
+      order:1;
+    }
+    .footer-social a{
+      color:#888;
+      font-size:1.3rem;
+      transition:color .2s;
+      text-decoration:none
+    }
     .footer-social a:hover{color:#fff}
-    .footer-links{display:flex;gap:20px 30px;flex-wrap:wrap;justify-content:center;order:1}
-    .footer-links a{color:#5a5a5a;text-decoration:none;font-size:.8rem;transition:color .2s;border-bottom:1px solid transparent;font-family:var(--font-main);font-weight:300}
+
+    .footer-links{
+      display:flex;
+      gap:20px 30px;
+      flex-wrap:wrap;
+      justify-content:center;
+      order:2
+    }
+    .footer-links a{
+      color:#5a5a5a;
+      text-decoration:none;
+      font-size:.8rem;
+      transition:color .2s;
+      border-bottom:1px solid transparent;
+      font-family:var(--font-main);
+      font-weight:300
+    }
     .footer-links a:hover{color:var(--text);border-bottom-color:var(--accent)}
-    .footer-bottom{display:flex;align-items:center;justify-content:center;gap:8px;order:2;color:#5a5a5a;font-size:.8rem;width:100%;padding-top:12px;border-top:1px solid rgba(255,255,255,.04);flex-wrap:wrap;font-family:var(--font-main);font-weight:300}
+
+    .footer-bottom{display:flex;align-items:center;justify-content:center;gap:8px;order:3;color:#5a5a5a;font-size:.8rem;width:100%;padding-top:12px;border-top:1px solid rgba(255,255,255,.04);flex-wrap:wrap;font-family:var(--font-main);font-weight:300}
     .footer-albe{display:inline-flex;align-items:center;text-decoration:none;color:#888;transition:color .2s;font-weight:500;line-height:0}
     .footer-albe:hover{color:#fff}
     .footer-albe img{height:36px;width:auto;display:block;transition:opacity .2s}
@@ -718,13 +718,31 @@
   <!-- ===== ШАПКА ===== -->
   <header class="navbar">
     <a href="#player" class="logo">BALM</a>
-    <nav class="nav-links">
-      <a href="#player">Плеер</a>
-      <a href="#copyright-free">Без авторских прав</a>
-      <a href="#releases">Релизы</a>
-      <a href="#bio">Био</a>
-      <a href="#faq">FAQ</a>
-    </nav>
+
+    <!-- Платформы в шапке (только ПК) -->
+    <div class="nav-platforms">
+      <a href="https://music.yandex.ru/artist/26471381" target="_blank">
+        <i class="fas fa-music"></i>
+        <span class="platform-label">Яндекс Музыка</span>
+      </a>
+      <a href="https://music.apple.com/ru/artist/balm-биэлэм/6800941971" target="_blank">
+        <i class="fab fa-apple"></i>
+        <span class="platform-label">Apple Music</span>
+      </a>
+      <a href="https://open.spotify.com/search/биэлэм" target="_blank">
+        <i class="fab fa-spotify"></i>
+        <span class="platform-label">Spotify</span>
+      </a>
+      <a href="https://zvuk.com/artist/214558962" target="_blank">
+        <i class="fas fa-headphones"></i>
+        <span class="platform-label">Zvuk</span>
+      </a>
+      <a href="https://vk.ru/albe_music" target="_blank">
+        <i class="fab fa-vk"></i>
+        <span class="platform-label">VK Музыка</span>
+      </a>
+    </div>
+
     <div class="navbar-actions">
       <a href="https://tips.tips/000481710" target="_blank" class="btn btn-heart" rel="noopener">
         <i class="fas fa-heart"></i> Поддержать
@@ -735,6 +753,7 @@
     </div>
   </header>
 
+  <!-- ===== МОБИЛЬНОЕ МЕНЮ (ПК И МОБИЛА) ===== -->
   <nav class="mobile-menu" id="mobileMenu">
     <a href="#player" data-close>Плеер</a>
     <a href="#copyright-free" data-close>Без авторских прав</a>
@@ -953,34 +972,6 @@
     </div>
   </section>
 
-  <!-- ===== БАННЕР "СЛУШАТЬ НА" (Font Awesome) ===== -->
-  <div class="music-platforms" id="musicPlatforms">
-    <button class="banner-close" data-close-mobile-banner>&times;</button>
-    <div class="music-platforms-title">Слушать на:</div>
-    <div class="music-platforms-list">
-      <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="music-platforms-item">
-        <i class="fas fa-music" style="color:#FFCC00;"></i>
-        <span>Яндекс Музыка</span>
-      </a>
-      <a href="https://music.apple.com/ru/artist/balm-биэлэм/6800941971" target="_blank" class="music-platforms-item">
-        <i class="fab fa-apple" style="color:#FC3C44;"></i>
-        <span>Apple Music</span>
-      </a>
-      <a href="https://open.spotify.com/search/биэлэм" target="_blank" class="music-platforms-item">
-        <i class="fab fa-spotify" style="color:#1DB954;"></i>
-        <span>Spotify</span>
-      </a>
-      <a href="https://zvuk.com/artist/214558962" target="_blank" class="music-platforms-item">
-        <i class="fas fa-headphones" style="color:#8B5CF6;"></i>
-        <span>Zvuk</span>
-      </a>
-      <a href="https://vk.ru/albe_music" target="_blank" class="music-platforms-item">
-        <i class="fab fa-vk" style="color:#0077FF;"></i>
-        <span>VK Музыка</span>
-      </a>
-    </div>
-  </div>
-
   <!-- ===== РЕЛИЗЫ ===== -->
   <section class="releases scroll-margin" id="releases">
     <div class="container">
@@ -989,80 +980,79 @@
         <button class="releases-toggle" id="showAllBtn">Все релизы <i class="fas fa-chevron-down"></i></button>
       </div>
       <div class="releases-grid" id="releaseGrid">
-        <!-- НОВЫЕ РЕЛИЗЫ ПЕРВЫМИ -->
         <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="card">
-          <div class="card-cover"><img src="rage.webp" alt="Обложка сингла Клуб на дне — минимал-техно от BALM" loading="lazy"><span class="card-new">NEW</span></div>
+          <div class="card-cover"><img src="rage.webp" alt="Обложка сингла Клуб на дне" loading="lazy"><span class="card-new">NEW</span></div>
           <div class="card-title">Клуб на дне (Минимал-техно)</div>
           <div class="card-year">2026 · Сингл · Техно</div>
         </a>
         <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="card">
-          <div class="card-cover"><img src="last.webp" alt="Обложка сингла Последняя любовь — дабл-сингл от BALM" loading="lazy"><span class="card-new">NEW</span></div>
+          <div class="card-cover"><img src="last.webp" alt="Обложка сингла Последняя любовь" loading="lazy"><span class="card-new">NEW</span></div>
           <div class="card-title">Последняя любовь</div>
           <div class="card-year">2026 · Дабл-сингл · Поп</div>
         </a>
         <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="card">
-          <div class="card-cover"><img src="Jazz.webp" alt="Обложка альбома Jazz — джазовая музыка для бизнеса без авторских прав от BALM" loading="lazy"><span class="card-new">NEW</span></div>
+          <div class="card-cover"><img src="Jazz.webp" alt="Обложка альбома Jazz" loading="lazy"><span class="card-new">NEW</span></div>
           <div class="card-title">Jazz</div>
           <div class="card-year">2026 · Альбом · Джаз</div>
         </a>
         <!-- ОСТАЛЬНЫЕ РЕЛИЗЫ -->
         <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="card">
-          <div class="card-cover"><img src="stars.webp" alt="Обложка сингла К звездам — рок, джаз и фортепиано от BALM" loading="lazy"></div>
+          <div class="card-cover"><img src="stars.webp" alt="Обложка сингла К звездам" loading="lazy"></div>
           <div class="card-title">К звездам (Rock / Jazz / Piano)</div>
           <div class="card-year">2026 · Трипл-сингл</div>
         </a>
         <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="card">
-          <div class="card-cover"><img src="alterego.webp" alt="Обложка альбома Альтерэго — рок музыка от BALM" loading="lazy"></div>
+          <div class="card-cover"><img src="alterego.webp" alt="Обложка альбома Альтерэго" loading="lazy"></div>
           <div class="card-title">Альтерэго (Rock)</div>
           <div class="card-year">2026 · Альбом · Рок</div>
         </a>
         <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="card">
-          <div class="card-cover"><img src="beautiful.webp" alt="Обложка сингла Beautiful — рок музыка от BALM" loading="lazy"></div>
+          <div class="card-cover"><img src="beautiful.webp" alt="Обложка сингла Beautiful" loading="lazy"></div>
           <div class="card-title">Beautiful (Rock)</div>
           <div class="card-year">2026 · Сингл</div>
         </a>
         <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="card">
-          <div class="card-cover"><img src="chance.webp" alt="Обложка сингла Chance English ver. — рок музыка от BALM" loading="lazy"></div>
+          <div class="card-cover"><img src="chance.webp" alt="Обложка сингла Chance" loading="lazy"></div>
           <div class="card-title">Chance English ver. (Rock)</div>
           <div class="card-year">2026 · Сингл</div>
         </a>
         <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="card">
-          <div class="card-cover"><img src="cloud.webp" alt="Обложка сингла Облака — рок музыка от BALM" loading="lazy"></div>
+          <div class="card-cover"><img src="cloud.webp" alt="Обложка сингла Облака" loading="lazy"></div>
           <div class="card-title">Облака (Rock)</div>
           <div class="card-year">2026 · Сингл</div>
         </a>
         <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="card">
-          <div class="card-cover"><img src="Heart.webp" alt="Обложка сингла Жги моё сердце — поп музыка от BALM" loading="lazy"></div>
+          <div class="card-cover"><img src="Heart.webp" alt="Обложка сингла Жги моё сердце" loading="lazy"></div>
           <div class="card-title">Жги моё сердце (Pop)</div>
           <div class="card-year">2026 · Сингл</div>
         </a>
         <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="card">
-          <div class="card-cover"><img src="its%20my%20life.webp" alt="Обложка сингла It's My Life — хип-хоп музыка от BALM" loading="lazy"></div>
+          <div class="card-cover"><img src="its%20my%20life.webp" alt="Обложка сингла It's My Life" loading="lazy"></div>
           <div class="card-title">It's My Life (Hip-hop)</div>
           <div class="card-year">2026 · Сингл</div>
         </a>
         <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="card">
-          <div class="card-cover"><img src="love.webp" alt="Обложка сингла Смысл жизни любовь — поп музыка от BALM" loading="lazy"></div>
+          <div class="card-cover"><img src="love.webp" alt="Обложка сингла Смысл жизни любовь" loading="lazy"></div>
           <div class="card-title">Смысл жизни любовь (Pop)</div>
           <div class="card-year">2026 · Сингл</div>
         </a>
         <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="card">
-          <div class="card-cover"><img src="what.webp" alt="Обложка сингла Ну почему? — брейкс музыка от BALM" loading="lazy"></div>
+          <div class="card-cover"><img src="what.webp" alt="Обложка сингла Ну почему?" loading="lazy"></div>
           <div class="card-title">Ну почему? (Breaks)</div>
           <div class="card-year">2026 · Сингл</div>
         </a>
         <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="card">
-          <div class="card-cover"><img src="world.webp" alt="Обложка сингла Мой маленький мир — поп музыка от BALM" loading="lazy"></div>
+          <div class="card-cover"><img src="world.webp" alt="Обложка сингла Мой маленький мир" loading="lazy"></div>
           <div class="card-title">Мой маленький мир (Pop)</div>
           <div class="card-year">2026 · Сингл</div>
         </a>
         <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="card">
-          <div class="card-cover"><img src="beautifulRU.webp" alt="Обложка сингла Моя красивая — поп музыка от BALM" loading="lazy"></div>
+          <div class="card-cover"><img src="beautifulRU.webp" alt="Обложка сингла Моя красивая" loading="lazy"></div>
           <div class="card-title">Моя красивая (Pop)</div>
           <div class="card-year">2026 · Сингл</div>
         </a>
         <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="card">
-          <div class="card-cover"><img src="chanceRU.webp" alt="Обложка сингла Шанс — рок музыка от BALM" loading="lazy"></div>
+          <div class="card-cover"><img src="chanceRU.webp" alt="Обложка сингла Шанс" loading="lazy"></div>
           <div class="card-title">Шанс (Rock)</div>
           <div class="card-year">2026 · Сингл</div>
         </a>
@@ -1073,7 +1063,7 @@
   <!-- ===== БИО ===== -->
   <section class="bio scroll-margin" id="bio">
     <div class="container bio-grid">
-      <div class="bio-img"><img src="BALM.webp" alt="BALM — экспериментальный музыкальный проект Алексея Беляева. Музыка без авторских прав для бизнеса и творческих проектов." loading="lazy"></div>
+      <div class="bio-img"><img src="BALM.webp" alt="BALM — экспериментальный музыкальный проект" loading="lazy"></div>
       <div>
         <h2 class="bio-title">О проекте BALM</h2>
         <p class="bio-text"><strong>BALM</strong> — это экспериментальный музыкальный проект Алексея Беляева из Санкт-Петербурга. На стыке ню-метала, поп-мелодий и электроники рождается уникальный звук для тех, кто ищет настоящую эмоцию и качественный музыкальный контент без ограничений по авторским правам.</p>
@@ -1116,18 +1106,50 @@
   <!-- ===== ФУТЕР ===== -->
   <footer class="container footer">
     <div class="footer-row">
+      <!-- Платформы в подвале (только мобильная версия) -->
+      <div class="footer-platforms">
+        <div class="platform-row">
+          <a href="https://music.yandex.ru/artist/26471381" target="_blank">
+            <i class="fas fa-music" style="color:#FFCC00;"></i>
+            <span class="platform-label">Яндекс Музыка</span>
+          </a>
+          <a href="https://music.apple.com/ru/artist/balm-биэлэм/6800941971" target="_blank">
+            <i class="fab fa-apple" style="color:#FC3C44;"></i>
+            <span class="platform-label">Apple Music</span>
+          </a>
+        </div>
+        <div class="platform-row">
+          <a href="https://open.spotify.com/search/биэлэм" target="_blank">
+            <i class="fab fa-spotify" style="color:#1DB954;"></i>
+            <span class="platform-label">Spotify</span>
+          </a>
+          <a href="https://zvuk.com/artist/214558962" target="_blank">
+            <i class="fas fa-headphones" style="color:#8B5CF6;"></i>
+            <span class="platform-label">Zvuk</span>
+          </a>
+          <a href="https://vk.ru/albe_music" target="_blank">
+            <i class="fab fa-vk" style="color:#0077FF;"></i>
+            <span class="platform-label">VK Музыка</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-row">
       <div class="footer-social">
         <a href="https://t.me/albe_spb" target="_blank" rel="noopener" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
         <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener" aria-label="Яндекс Музыка"><i class="fab fa-spotify"></i></a>
         <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener" aria-label="Яндекс Музыка"><i class="fas fa-music"></i></a>
       </div>
     </div>
+
     <div class="footer-row">
       <div class="footer-links">
         <a href="#" data-agreement>Пользовательское соглашение</a>
         <a href="#" onclick="alert('Политика конфиденциальности: данные не передаются третьим лицам.');">Политика конфиденциальности</a>
       </div>
     </div>
+
     <div class="footer-row">
       <div class="footer-bottom">
         <span>Разработано в</span>
@@ -1357,16 +1379,6 @@
           document.body.style.overflow = '';
         }
       });
-
-      // === ЗАКРЫТИЕ БАННЕРА НА МОБИЛЬНЫХ ===
-      var mobileBannerClose = document.querySelector('[data-close-mobile-banner]');
-      var musicPlatforms = document.getElementById('musicPlatforms');
-
-      if (mobileBannerClose) {
-        mobileBannerClose.addEventListener('click', function() {
-          musicPlatforms.classList.add('hidden');
-        });
-      }
 
       // === МЕНЮ ===
       var hamburger = document.getElementById('hamburger');
