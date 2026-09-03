@@ -99,6 +99,26 @@
       scrollbar-color: #8b5cf6 #0b0b0b;
     }
 
+    /* ===== СКРЫТИЕ СИСТЕМНОЙ КНОПКИ "НАВЕРХ" В SAFARI ===== */
+    body {
+      -webkit-touch-callout: none !important;
+    }
+
+    /* Скрываем системные элементы навигации в iOS Safari */
+    ._2ZxqK, ._1ZxqK, ._3ZxqK, 
+    ._WZxqK, ._XZxqK, ._YZxqK,
+    .scroll-to-top, .scroll-top {
+      display: none !important;
+    }
+
+    /* Для iOS Safari 15+ */
+    @supports (-webkit-touch-callout: none) {
+      body {
+        -webkit-touch-callout: none !important;
+        -webkit-user-select: none !important;
+      }
+    }
+
     /* ===== ПЕРЕМЕННЫЕ ===== */
     :root {
       --bg: #0b0b0b; --bg2: #0d0d0d; --bg3: #121212;
@@ -1202,6 +1222,39 @@
     (function() {
       'use strict';
 
+      // === СКРЫТИЕ АДРЕСНОЙ СТРОКИ НА МОБИЛЬНЫХ ===
+      function hideAddressBar() {
+        var isMobile = window.innerWidth < 768 || /Android|iPhone|iPad|iPod|BlackBerry|Opera Mini|IEMobile/i.test(navigator.userAgent);
+        if (!isMobile) return;
+        
+        if (window.scrollY < 1) {
+          window.scrollTo(0, 1);
+        }
+      }
+
+      // Запускаем при загрузке
+      window.addEventListener('load', function() {
+        setTimeout(hideAddressBar, 300);
+        setTimeout(hideAddressBar, 1000);
+      });
+
+      // При изменении ориентации
+      window.addEventListener('orientationchange', function() {
+        setTimeout(hideAddressBar, 500);
+      });
+
+      // При изменении размера
+      var resizeTimer;
+      window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(hideAddressBar, 300);
+      });
+
+      // При касании (для надёжности)
+      document.addEventListener('touchstart', function() {
+        setTimeout(hideAddressBar, 100);
+      }, { passive: true });
+
       // === БЛОКИРОВКА ГОРИЗОНТАЛЬНОГО РЕЖИМА НА МОБИЛЬНЫХ ===
       function initOrientationLock() {
         // Проверяем, что это мобильное устройство
@@ -1477,7 +1530,7 @@
           cards.forEach(function(card, i) {
             card.classList.toggle('hidden', !allVisible && i >= 3);
           });
-          this.innerHTML = allVisible ? 'Скрыть релизы <i class="fas fa-chevron-up"></i>' : 'Все релизы <i class="fas fa-chevron-down</i>';
+          this.innerHTML = allVisible ? 'Скрыть релизы <i class="fas fa-chevron-up"></i>' : 'Все релизы <i class="fas fa-chevron-down"></i>';
           this.classList.toggle('rotated');
         });
       }
