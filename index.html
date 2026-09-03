@@ -42,7 +42,7 @@
   {"@context":"https://schema.org","@type":"Product","name":"Chillout музыка для бизнеса без авторских прав","description":"2 часа уникальной Chillout музыки без авторских прав для коммерческого использования в бизнесе.","brand":{"@type":"Brand","name":"BALM"},"image":"https://balm-music.ru/BALM.webp","offers":{"@type":"Offer","priceCurrency":"RUB","price":"300","availability":"https://schema.org/InStock","url":"https://balm-music.ru/"}}
   </script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://balm-music.ru/"},{"@type":"ListItem","position":2,"name":"Музыка без авторских прав","item":"https://balm-music.ru/#copyright-free"},{"@type":"ListItem","position:":3,"name":"Релизы BALM","item":"https://balm-music.ru/#releases"}]}
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://balm-music.ru/"},{"@type":"ListItem","position":2,"name":"Музыка без авторских прав","item":"https://balm-music.ru/#copyright-free"},{"@type":"ListItem","position":3,"name":"Релизы BALM","item":"https://balm-music.ru/#releases"}]}
   </script>
 
   <!-- ===== ЛОКАЛЬНЫЕ ШРИФТЫ ===== -->
@@ -298,15 +298,15 @@
     .nav-platforms {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 24px;
     }
     .nav-platforms a {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
       color: rgba(255,255,255,0.4);
       text-decoration: none;
-      font-size: 0.75rem;
+      font-size: 0.85rem;
       font-weight: 400;
       font-family: var(--font-main);
       transition: color 0.3s;
@@ -314,11 +314,11 @@
       border-bottom: 2px solid transparent;
     }
     .nav-platforms a i {
-      font-size: 1.2rem;
+      font-size: 1.5rem;
       transition: color 0.3s;
     }
     .nav-platforms a .platform-label {
-      font-size: 0.7rem;
+      font-size: 0.85rem;
       letter-spacing: 0.3px;
     }
 
@@ -697,9 +697,51 @@
     @media(max-width:480px){.footer{padding:30px 0 20px;gap:16px}.footer-row{gap:14px 16px}.footer-links{gap:10px 14px}.footer-links a{font-size:.65rem}.footer-bottom{font-size:.65rem;padding-top:10px;gap:4px}.footer-albe img{height:24px}}
 
     #player,#releases,#bio,#copyright-free,#faq{scroll-margin-top:80px}
+
+    /* ===== ПРЕДУПРЕЖДЕНИЕ О ПЕРЕВОРОТЕ (СКРЫТО) ===== */
+    .rotate-warning {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(11,11,11,0.98);
+      z-index: 999999;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      color: #fff;
+      text-align: center;
+      padding: 40px;
+      font-family: var(--font-main);
+    }
+    .rotate-warning.active {
+      display: flex;
+    }
+    .rotate-warning i {
+      font-size: 4rem;
+      color: #8b5cf6;
+      margin-bottom: 24px;
+    }
+    .rotate-warning h2 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .rotate-warning p {
+      color: #888;
+      font-size: 1rem;
+      max-width: 360px;
+      line-height: 1.6;
+    }
   </style>
 </head>
 <body>
+
+  <!-- ===== ПРЕДУПРЕЖДЕНИЕ О ПЕРЕВОРОТЕ ===== -->
+  <div class="rotate-warning" id="rotateWarning">
+    <i class="fas fa-rotate"></i>
+    <h2>Поверните телефон</h2>
+    <p>Для удобного просмотра используйте вертикальный режим</p>
+  </div>
 
   <!-- ===== ШАПКА ===== -->
   <header class="navbar">
@@ -746,6 +788,9 @@
     <a href="#releases" data-close>Релизы</a>
     <a href="#bio" data-close>Био</a>
     <a href="#faq" data-close>FAQ</a>
+    <a href="https://t.me/albe_spb" target="_blank" data-close>
+      <i class="fab fa-telegram"></i> Связаться
+    </a>
   </nav>
 
   <!-- ===== МОДАЛКА ПОДПИСКИ ===== -->
@@ -1157,6 +1202,52 @@
     (function() {
       'use strict';
 
+      // === БЛОКИРОВКА ГОРИЗОНТАЛЬНОГО РЕЖИМА НА МОБИЛЬНЫХ ===
+      function initOrientationLock() {
+        // Проверяем, что это мобильное устройство
+        var isMobile = window.innerWidth < 768 || /Android|iPhone|iPad|iPod|BlackBerry|Opera Mini|IEMobile/i.test(navigator.userAgent);
+        if (!isMobile) return;
+
+        var warning = document.getElementById('rotateWarning');
+
+        function checkOrientation() {
+          var isLandscape = window.innerWidth > window.innerHeight;
+          if (isLandscape) {
+            warning.classList.add('active');
+          } else {
+            warning.classList.remove('active');
+          }
+        }
+
+        // Проверяем при загрузке
+        checkOrientation();
+
+        // Следим за изменением размера
+        window.addEventListener('resize', checkOrientation);
+
+        // Следим за изменением ориентации (с задержкой для iOS)
+        window.addEventListener('orientationchange', function() {
+          setTimeout(checkOrientation, 300);
+        });
+
+        // Пытаемся заблокировать через API (если доступно)
+        if (screen.orientation && screen.orientation.lock) {
+          screen.orientation.lock('portrait').catch(function() {});
+          screen.orientation.addEventListener('change', function() {
+            if (screen.orientation.type.includes('landscape')) {
+              screen.orientation.lock('portrait').catch(function() {});
+            }
+          });
+        }
+      }
+
+      // Запускаем при загрузке
+      if (document.readyState === 'complete') {
+        initOrientationLock();
+      } else {
+        window.addEventListener('load', initOrientationLock);
+      }
+
       // === ДАННЫЕ ТРЕКОВ ===
       const tracks = {
         chillout: {
@@ -1386,7 +1477,7 @@
           cards.forEach(function(card, i) {
             card.classList.toggle('hidden', !allVisible && i >= 3);
           });
-          this.innerHTML = allVisible ? 'Скрыть релизы <i class="fas fa-chevron-up"></i>' : 'Все релизы <i class="fas fa-chevron-down"></i>';
+          this.innerHTML = allVisible ? 'Скрыть релизы <i class="fas fa-chevron-up"></i>' : 'Все релизы <i class="fas fa-chevron-down</i>';
           this.classList.toggle('rotated');
         });
       }
