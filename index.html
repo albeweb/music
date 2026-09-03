@@ -42,7 +42,7 @@
   {"@context":"https://schema.org","@type":"Product","name":"Chillout музыка для бизнеса без авторских прав","description":"2 часа уникальной Chillout музыки без авторских прав для коммерческого использования в бизнесе.","brand":{"@type":"Brand","name":"BALM"},"image":"https://balm-music.ru/BALM.webp","offers":{"@type":"Offer","priceCurrency":"RUB","price":"300","availability":"https://schema.org/InStock","url":"https://balm-music.ru/"}}
   </script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://balm-music.ru/"},{"@type":"ListItem","position":2,"name":"Музыка без авторских прав","item":"https://balm-music.ru/#copyright-free"},{"@type":"ListItem","position":3,"name":"Релизы BALM","item":"https://balm-music.ru/#releases"}]}
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://balm-music.ru/"},{"@type":"ListItem","position":2,"name":"Музыка без авторских прав","item":"https://balm-music.ru/#copyright-free"},{"@type":"ListItem","position:":3,"name":"Релизы BALM","item":"https://balm-music.ru/#releases"}]}
   </script>
 
   <!-- ===== ЛОКАЛЬНЫЕ ШРИФТЫ ===== -->
@@ -633,7 +633,6 @@
       flex-direction: column;
       align-items: center;
       gap: 8px;
-      order: 0;
       width: 100%;
     }
     .footer-platforms .platform-row {
@@ -672,25 +671,12 @@
       }
     }
 
-    .footer-social{
-      display:flex;
-      gap:20px;
-      order:1;
-    }
-    .footer-social a{
-      color:#888;
-      font-size:1.3rem;
-      transition:color .2s;
-      text-decoration:none
-    }
-    .footer-social a:hover{color:#fff}
-
     .footer-links{
       display:flex;
       gap:20px 30px;
       flex-wrap:wrap;
       justify-content:center;
-      order:2
+      order:1
     }
     .footer-links a{
       color:#5a5a5a;
@@ -703,12 +689,12 @@
     }
     .footer-links a:hover{color:var(--text);border-bottom-color:var(--accent)}
 
-    .footer-bottom{display:flex;align-items:center;justify-content:center;gap:8px;order:3;color:#5a5a5a;font-size:.8rem;width:100%;padding-top:12px;border-top:1px solid rgba(255,255,255,.04);flex-wrap:wrap;font-family:var(--font-main);font-weight:300}
+    .footer-bottom{display:flex;align-items:center;justify-content:center;gap:8px;order:2;color:#5a5a5a;font-size:.8rem;width:100%;padding-top:12px;border-top:1px solid rgba(255,255,255,.04);flex-wrap:wrap;font-family:var(--font-main);font-weight:300}
     .footer-albe{display:inline-flex;align-items:center;text-decoration:none;color:#888;transition:color .2s;font-weight:500;line-height:0}
     .footer-albe:hover{color:#fff}
     .footer-albe img{height:36px;width:auto;display:block;transition:opacity .2s}
     .footer-albe:hover img{opacity:.8}
-    @media(max-width:480px){.footer{padding:30px 0 20px;gap:16px}.footer-row{gap:14px 16px}.footer-social{gap:14px}.footer-social a{font-size:1.1rem}.footer-links{gap:10px 14px}.footer-links a{font-size:.65rem}.footer-bottom{font-size:.65rem;padding-top:10px;gap:4px}.footer-albe img{height:24px}}
+    @media(max-width:480px){.footer{padding:30px 0 20px;gap:16px}.footer-row{gap:14px 16px}.footer-links{gap:10px 14px}.footer-links a{font-size:.65rem}.footer-bottom{font-size:.65rem;padding-top:10px;gap:4px}.footer-albe img{height:24px}}
 
     #player,#releases,#bio,#copyright-free,#faq{scroll-margin-top:80px}
   </style>
@@ -995,7 +981,6 @@
           <div class="card-title">Jazz</div>
           <div class="card-year">2026 · Альбом · Джаз</div>
         </a>
-        <!-- ОСТАЛЬНЫЕ РЕЛИЗЫ -->
         <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="card">
           <div class="card-cover"><img src="stars.webp" alt="Обложка сингла К звездам" loading="lazy"></div>
           <div class="card-title">К звездам (Rock / Jazz / Piano)</div>
@@ -1132,14 +1117,6 @@
             <span class="platform-label">VK Музыка</span>
           </a>
         </div>
-      </div>
-    </div>
-
-    <div class="footer-row">
-      <div class="footer-social">
-        <a href="https://t.me/albe_spb" target="_blank" rel="noopener" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
-        <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener" aria-label="Яндекс Музыка"><i class="fab fa-spotify"></i></a>
-        <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener" aria-label="Яндекс Музыка"><i class="fas fa-music"></i></a>
       </div>
     </div>
 
