@@ -45,6 +45,11 @@
     /* ШАПКА */
     .navbar{position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(11,11,11,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.06);padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:72px}
     .logo{font-size:1.6rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;background:linear-gradient(135deg,#fff 0%,#a0a0a0 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;flex-shrink:0}
+    .nav-platforms{display:flex;align-items:center;gap:24px}
+    .nav-platforms a{display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.4);text-decoration:none;font-size:.85rem;transition:color .3s;padding:4px 0;border-bottom:2px solid transparent}
+    .nav-platforms a:hover{color:#fff;border-bottom-color:rgba(255,255,255,.2)}
+    .nav-platforms a i{font-size:1.5rem}
+    @media(max-width:768px){.nav-platforms{display:none}}
     
     /* HERO */
     .hero{width:100%;height:100vh;min-height:700px;display:flex;align-items:center;justify-content:center;background:#0b0b0b;position:relative;overflow:hidden}
@@ -60,7 +65,6 @@
     .btn-primary:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(139,92,246,.4)}
     .btn-heart{background:linear-gradient(135deg,#8b5cf6,#4ade80);box-shadow:0 4px 16px rgba(139,92,246,.25);padding:8px 18px;min-height:38px;font-size:.8rem}
     .btn-heart .fa-heart{color:red}
-    
     .hero-donate{min-width:220px}
     .navbar-actions{display:flex;align-items:center;gap:12px;flex-shrink:0}
     .hamburger{display:flex;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:0 0;border:none;flex-shrink:0}
@@ -90,11 +94,17 @@
   <!-- ===== ПРЕДЗАГРУЗКА HERO-ИЗОБРАЖЕНИЯ ===== -->
   <link rel="preload" href="BALMherob.webp" as="image" fetchpriority="high">
 
-  <!-- ===== ШРИФТЫ (ПРЕДЗАГРУЗКА ТОЛЬКО НУЖНЫХ) ===== -->
+  <!-- ===== ШРИФТЫ (ПРЕДЗАГРУЗКА) ===== -->
   <link rel="preload" href="Geist-Regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="Geist-Bold.woff2" as="font" type="font/woff2" crossorigin>
 
-  <!-- ===== СТРУКТУРИРОВАННЫЕ ДАННЫЕ (ПЕРЕНЕСЕНЫ В НИЗ) ===== -->
+  <!-- ===== СТРУКТУРИРОВАННЫЕ ДАННЫЕ ===== -->
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"MusicGroup","name":"BALM","alternateName":"БИЭЛЭМ","description":"BALM (БИЭЛЭМ) — экспериментальный музыкальный проект Беляева Алексея из Санкт-Петербурга. На стыке ню-метала, поп-мелодий и электроники. Создание коммерческой, детской музыки и написание на заказ без авторских отчислений.","url":"https://balm-music.ru/","founder":{"@type":"Person","name":"Беляев Алексей"},"genre":["Chillout","Electronic","Ambient","Lounge","Nu Metal","Pop","Rock"],"image":"https://balm-music.ru/BALM.webp","sameAs":["https://music.yandex.ru/artist/26471381","https://t.me/albe_spb"]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Product","name":"Chillout музыка для бизнеса без авторских прав","description":"2 часа уникальной Chillout музыки без авторских прав для коммерческого использования в бизнесе.","brand":{"@type":"Brand","name":"BALM"},"image":"https://balm-music.ru/BALM.webp","offers":{"@type":"Offer","priceCurrency":"RUB","price":"300","availability":"https://schema.org/InStock","url":"https://balm-music.ru/"}}
+  </script>
 </head>
 <body>
 
@@ -102,24 +112,24 @@
   <header class="navbar">
     <a href="#player" class="logo">BALM</a>
 
-    <div class="nav-platforms" style="display:flex;align-items:center;gap:24px;">
-      <a href="https://music.yandex.ru/artist/26471381" target="_blank" style="display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.4);text-decoration:none;font-size:.85rem;transition:color .3s;padding:4px 0;border-bottom:2px solid transparent;">
+    <div class="nav-platforms">
+      <a href="https://music.yandex.ru/artist/26471381" target="_blank">
         <i class="fas fa-music"></i>
         <span class="platform-label">Яндекс Музыка</span>
       </a>
-      <a href="https://music.apple.com/ru/artist/balm-биэлэм/6800941971" target="_blank" style="display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.4);text-decoration:none;font-size:.85rem;transition:color .3s;padding:4px 0;border-bottom:2px solid transparent;">
+      <a href="https://music.apple.com/ru/artist/balm-биэлэм/6800941971" target="_blank">
         <i class="fab fa-apple"></i>
         <span class="platform-label">Apple Music</span>
       </a>
-      <a href="https://open.spotify.com/search/биэлэм" target="_blank" style="display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.4);text-decoration:none;font-size:.85rem;transition:color .3s;padding:4px 0;border-bottom:2px solid transparent;">
+      <a href="https://open.spotify.com/search/биэлэм" target="_blank">
         <i class="fab fa-spotify"></i>
         <span class="platform-label">Spotify</span>
       </a>
-      <a href="https://zvuk.com/artist/214558962" target="_blank" style="display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.4);text-decoration:none;font-size:.85rem;transition:color .3s;padding:4px 0;border-bottom:2px solid transparent;">
+      <a href="https://zvuk.com/artist/214558962" target="_blank">
         <i class="fas fa-headphones"></i>
         <span class="platform-label">Zvuk</span>
       </a>
-      <a href="https://vk.ru/albe_music" target="_blank" style="display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.4);text-decoration:none;font-size:.85rem;transition:color .3s;padding:4px 0;border-bottom:2px solid transparent;">
+      <a href="https://vk.ru/albe_music" target="_blank">
         <i class="fab fa-vk"></i>
         <span class="platform-label">VK Музыка</span>
       </a>
@@ -135,9 +145,135 @@
     </div>
   </header>
 
-  <!-- ===== HERO ===== -->
+  <!-- ===== МОБИЛЬНОЕ МЕНЮ ===== -->
+  <nav class="mobile-menu" id="mobileMenu" style="display:none;position:fixed;top:72px;left:0;width:100%;background:rgba(11,11,11,.98);backdrop-filter:blur(16px);padding:20px 30px;z-index:9999;border-bottom:1px solid rgba(255,255,255,.06);flex-direction:column;gap:20px;">
+    <a href="#player" data-close style="color:rgba(255,255,255,.8);text-decoration:none;font-size:1.1rem;letter-spacing:.05em;text-transform:uppercase;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04);transition:color .2s;font-weight:500;">Плеер</a>
+    <a href="#copyright-free" data-close style="color:rgba(255,255,255,.8);text-decoration:none;font-size:1.1rem;letter-spacing:.05em;text-transform:uppercase;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04);transition:color .2s;font-weight:500;">Без авторских прав</a>
+    <a href="#releases" data-close style="color:rgba(255,255,255,.8);text-decoration:none;font-size:1.1rem;letter-spacing:.05em;text-transform:uppercase;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04);transition:color .2s;font-weight:500;">Релизы</a>
+    <a href="#bio" data-close style="color:rgba(255,255,255,.8);text-decoration:none;font-size:1.1rem;letter-spacing:.05em;text-transform:uppercase;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04);transition:color .2s;font-weight:500;">Био</a>
+    <a href="#faq" data-close style="color:rgba(255,255,255,.8);text-decoration:none;font-size:1.1rem;letter-spacing:.05em;text-transform:uppercase;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04);transition:color .2s;font-weight:500;">FAQ</a>
+    <a href="https://t.me/albe_spb" target="_blank" data-close style="color:rgba(255,255,255,.8);text-decoration:none;font-size:1.1rem;letter-spacing:.05em;text-transform:uppercase;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04);transition:color .2s;font-weight:500;">
+      <i class="fab fa-telegram"></i> Связаться
+    </a>
+  </nav>
+
+  <!-- ===== МОДАЛКА ПОДПИСКИ ===== -->
+  <div class="modal-overlay" id="subscribeModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);backdrop-filter:blur(8px);z-index:99999;align-items:center;justify-content:center;padding:20px;">
+    <div class="modal" style="background:#141414;border-radius:28px;max-width:560px;width:100%;padding:40px 36px;border:1px solid rgba(255,255,255,.06);box-shadow:0 40px 80px rgba(0,0,0,.8);position:relative;max-height:90vh;overflow-y:auto;">
+      <button class="modal-close" data-close-subscribe style="position:absolute;top:16px;right:20px;background:0 0;border:0;color:#666;font-size:1.4rem;cursor:pointer;transition:color .2s;">&times;</button>
+      <h2 class="modal-title" style="font-size:1.8rem;font-weight:700;margin-bottom:16px;background:linear-gradient(135deg,#fff,#a0a0a0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">🎵 BALM Premium</h2>
+      <p class="modal-sub" style="font-size:1rem;color:#b0b0b0;line-height:1.7;margin-bottom:20px;font-weight:300;">Неограниченный доступ ко всей музыке BALM без авторских прав</p>
+      <ul class="modal-features" style="margin:16px 0;list-style:none;padding:0;">
+        <li style="padding:8px 0;color:#b0b0b0;display:flex;align-items:center;gap:10px;font-size:.95rem;font-weight:300;"><i class="fas fa-check" style="color:#4ade80;width:20px;flex-shrink:0;"></i> Все жанры: Chillout, Jazz, Asian, Turkish, Alternative, Funk, Piano</li>
+        <li style="padding:8px 0;color:#b0b0b0;display:flex;align-items:center;gap:10px;font-size:.95rem;font-weight:300;"><i class="fas fa-check" style="color:#4ade80;width:20px;flex-shrink:0;"></i> Неограниченный доступ к любой музыке</li>
+        <li style="padding:8px 0;color:#b0b0b0;display:flex;align-items:center;gap:10px;font-size:.95rem;font-weight:300;"><i class="fas fa-check" style="color:#4ade80;width:20px;flex-shrink:0;"></i> Без отчислений РАО и ВОИС</li>
+        <li style="padding:8px 0;color:#b0b0b0;display:flex;align-items:center;gap:10px;font-size:.95rem;font-weight:300;"><i class="fas fa-check" style="color:#4ade80;width:20px;flex-shrink:0;"></i> Использование в любых коммерческих проектах</li>
+        <li style="padding:8px 0;color:#b0b0b0;display:flex;align-items:center;gap:10px;font-size:.95rem;font-weight:300;"><i class="fas fa-check" style="color:#4ade80;width:20px;flex-shrink:0;"></i> Постоянное обновление библиотеки</li>
+      </ul>
+      <div class="modal-price" style="background:rgba(255,255,255,.03);border-radius:16px;padding:16px 20px;margin-bottom:24px;border:1px solid rgba(255,255,255,.05);">
+        <div class="modal-price-item" style="display:flex;justify-content:space-between;color:#ccc;font-size:1rem;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04);font-weight:300;"><span>Подписка</span><span class="sum" style="color:#4ade80;font-weight:700;">500 ₽ / месяц</span></div>
+      </div>
+      <button class="btn btn-primary" data-open-pay style="width:100%;background:linear-gradient(135deg,#8b5cf6,#4ade80);box-shadow:0 4px 20px rgba(139,92,246,.3);display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 28px;border-radius:60px;font-weight:500;font-size:.95rem;border:none;cursor:pointer;text-decoration:none;transition:.3s;color:#fff;min-height:54px;">Оформить подписку</button>
+    </div>
+  </div>
+
+  <!-- ===== МОДАЛКА ОПЛАТЫ ===== -->
+  <div class="modal-pay-overlay" id="payModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);backdrop-filter:blur(8px);z-index:99999;align-items:center;justify-content:center;padding:20px;">
+    <div class="modal-pay" style="background:#141414;border-radius:28px;max-width:560px;width:100%;padding:40px 36px;border:1px solid rgba(255,255,255,.06);box-shadow:0 40px 80px rgba(0,0,0,.8);position:relative;max-height:90vh;overflow-y:auto;">
+      <button class="modal-pay-close" data-close-pay style="position:absolute;top:16px;right:20px;background:0 0;border:0;color:#666;font-size:1.4rem;cursor:pointer;transition:color .2s;">&times;</button>
+      <h2 class="modal-title" style="font-size:1.8rem;font-weight:700;margin-bottom:16px;background:linear-gradient(135deg,#fff,#a0a0a0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Оплатить подписку</h2>
+      <p class="modal-sub" style="font-size:1rem;color:#b0b0b0;line-height:1.7;margin-bottom:20px;font-weight:300;">Вы оформляете подписку на BALM Premium за 500 ₽/месяц.</p>
+      <a href="https://tips.tips/000481739" target="_blank" class="btn btn-primary" style="width:100%;background:linear-gradient(135deg,#8b5cf6,#4ade80);box-shadow:0 4px 20px rgba(139,92,246,.3);display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 28px;border-radius:60px;font-weight:500;font-size:.95rem;border:none;cursor:pointer;text-decoration:none;transition:.3s;color:#fff;min-height:54px;" rel="noopener">
+        <i class="fas fa-credit-card"></i> Оплатить 500 ₽
+      </a>
+      <p style="margin-top:16px;font-size:.8rem;color:#666;text-align:center;font-weight:300;">После оплаты вы получите доступ ко всей музыке BALM</p>
+    </div>
+  </div>
+
+  <!-- ===== МОДАЛКА КУПИТЬ МУЗЫКУ ===== -->
+  <div class="modal-buy-overlay" id="buyModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);backdrop-filter:blur(8px);z-index:99999;align-items:center;justify-content:center;padding:20px;">
+    <div class="modal-buy" style="background:#141414;border-radius:28px;max-width:560px;width:100%;padding:40px 36px;border:1px solid rgba(255,255,255,.06);box-shadow:0 40px 80px rgba(0,0,0,.8);position:relative;max-height:90vh;overflow-y:auto;">
+      <button class="modal-buy-close" data-close-buy style="position:absolute;top:16px;right:20px;background:0 0;border:0;color:#666;font-size:1.4rem;cursor:pointer;transition:color .2s;">&times;</button>
+      <h2 class="modal-title" style="font-size:1.8rem;font-weight:700;margin-bottom:16px;background:linear-gradient(135deg,#fff,#a0a0a0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Приобрести музыку без авторских прав</h2>
+      <p class="modal-sub" style="font-size:1rem;color:#b0b0b0;line-height:1.7;margin-bottom:20px;font-weight:300;">Вы можете приобрести 2 часа студийной уникальной Chillout музыки для коммерческих целей без ограничений. Отчисления не требуются — платите один раз и пользуетесь бессрочно.</p>
+      <div class="modal-price" style="background:rgba(255,255,255,.03);border-radius:16px;padding:16px 20px;margin-bottom:24px;border:1px solid rgba(255,255,255,.05);">
+        <div class="modal-price-item" style="display:flex;justify-content:space-between;color:#ccc;font-size:1rem;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04);font-weight:300;"><span>Джазовая музыка</span><span class="sum" style="color:#4ade80;font-weight:700;">1 час · 1500 ₽</span></div>
+        <div class="modal-price-item" style="display:flex;justify-content:space-between;color:#ccc;font-size:1rem;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04);font-weight:300;"><span>Турецкая музыка</span><span class="sum" style="color:#4ade80;font-weight:700;">1 час · 1000 ₽</span></div>
+        <div class="modal-price-item" style="display:flex;justify-content:space-between;color:#ccc;font-size:1rem;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04);font-weight:300;">
+          <span style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">Полный пакет — 2 часа <span class="sale" style="background:rgba(239,68,68,.15);color:#ef4444;font-size:.7rem;padding:2px 10px;border-radius:60px;border:1px solid rgba(239,68,68,.2);margin-left:8px;font-weight:500;">🔥 Супер-акция</span></span>
+          <span style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:flex-end;"><span class="old" style="text-decoration:line-through;color:#888;margin-right:8px;">2500 ₽</span><span class="new" style="color:#4ade80;font-weight:700;">300 ₽</span></span>
+        </div>
+      </div>
+      <div class="modal-comment" style="font-size:.85rem;color:#888;margin-bottom:16px;padding:12px 16px;background:rgba(139,92,246,.06);border-radius:12px;border:1px solid rgba(139,92,246,.1);font-weight:300;"><i class="fas fa-info-circle" style="margin-right:8px;color:#8b5cf6;"></i> После оплаты укажите в комментарии: <strong>Telegram, VK или email</strong> — мы отправим ссылку.</div>
+      <div class="modal-agree" style="display:flex;align-items:center;gap:12px;margin-bottom:24px;cursor:pointer;padding:8px 12px;border-radius:12px;transition:background .2s;">
+        <input type="checkbox" id="agreeCheck" style="width:20px;height:20px;accent-color:#8b5cf6;cursor:pointer;flex-shrink:0;margin:0;">
+        <label for="agreeCheck" style="font-size:.85rem;color:#b0b0b0;cursor:pointer;line-height:1.4;flex:1;font-weight:300;">Я ознакомлен(а) и согласен(на) с <a href="#" data-agreement style="color:#8b5cf6;text-decoration:none;border-bottom:1px solid rgba(139,92,246,.3);">условиями приобретения</a> и обработкой данных</label>
+      </div>
+      <a href="https://tips.tips/000481739" target="_blank" class="btn btn-primary btn-disabled" id="payBtn" style="width:100%;background:linear-gradient(135deg,#8b5cf6,#4ade80);box-shadow:0 4px 20px rgba(139,92,246,.3);display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 28px;border-radius:60px;font-weight:500;font-size:.95rem;border:none;cursor:pointer;text-decoration:none;transition:.3s;color:#fff;min-height:54px;opacity:.4;pointer-events:none;" rel="noopener"><i class="fas fa-credit-card"></i> Оплатить и получить музыку</a>
+    </div>
+  </div>
+
+  <!-- ===== МОДАЛКА СОГЛАШЕНИЯ ===== -->
+  <div class="agree-overlay" id="agreementModal" aria-hidden="true" data-nosnippet style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(12px);z-index:99999;align-items:center;justify-content:center;padding:20px;">
+    <div class="agree" style="background:#141414;border-radius:28px;max-width:720px;width:100%;max-height:85vh;overflow-y:auto;padding:40px 44px;border:1px solid rgba(255,255,255,.06);box-shadow:0 40px 80px rgba(0,0,0,.8);position:relative;">
+      <button class="agree-close" data-close-agreement style="position:absolute;top:16px;right:20px;background:0 0;border:0;color:#666;font-size:1.6rem;cursor:pointer;transition:color .2s;z-index:10;">&times;</button>
+      <h2 class="agree-title" style="font-size:1.8rem;font-weight:700;background:linear-gradient(135deg,#fff,#a0a0a0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:4px;">ИНФОРМАЦИОННОЕ СОГЛАШЕНИЕ</h2>
+      <div class="agree-sub" style="font-size:.85rem;color:#888;margin-bottom:24px;border-bottom:1px solid rgba(255,255,255,.05);padding-bottom:16px;font-weight:300;">по использованию музыки BALM (БИЭЛЭМ) без авторских прав</div>
+      <div class="agree-section" style="margin-bottom:24px;">
+        <p style="font-size:.85rem;color:#888;margin-bottom:12px;font-weight:300;">Настоящее Соглашение носит информационный характер и не является публичной офертой.</p>
+        <h3 style="font-size:1.1rem;font-weight:700;color:#f0f0f0;margin-bottom:8px;">1. Общие положения</h3>
+        <p style="font-size:.95rem;color:#b0b0b0;line-height:1.7;font-weight:300;">1.1. Настоящее Соглашение информирует о правилах использования музыкальных произведений артиста BALM (БИЭЛЭМ) (Беляев Алексей).</p>
+        <p style="font-size:.95rem;color:#b0b0b0;line-height:1.7;font-weight:300;">1.2. Совершая разовый платёж за музыку, вы соглашаетесь с условиями, описанными ниже.</p>
+      </div>
+      <div class="agree-section" style="margin-bottom:24px;">
+        <h3 style="font-size:1.1rem;font-weight:700;color:#f0f0f0;margin-bottom:8px;">2. Что вы получаете</h3>
+        <ul style="list-style:none;padding-left:0;">
+          <li style="padding:4px 0 4px 24px;position:relative;font-size:.95rem;color:#b0b0b0;line-height:1.7;font-weight:300;"><span class="check" style="color:#4ade80;margin-right:8px;">✅</span> Право использовать музыку в коммерческих и некоммерческих целях без ограничений.</li>
+          <li style="padding:4px 0 4px 24px;position:relative;font-size:.95rem;color:#b0b0b0;line-height:1.7;font-weight:300;"><span class="check" style="color:#4ade80;margin-right:8px;">✅</span> Право транслировать музыку в любых общественных местах.</li>
+          <li style="padding:4px 0 4px 24px;position:relative;font-size:.95rem;color:#b0b0b0;line-height:1.7;font-weight:300;"><span class="check" style="color:#4ade80;margin-right:8px;">✅</span> Право использовать бессрочно — один раз заплатили, пользуетесь всегда.</li>
+          <li style="padding:4px 0 4px 24px;position:relative;font-size:.95rem;color:#b0b0b0;line-height:1.7;font-weight:300;"><span class="check" style="color:#4ade80;margin-right:8px;">✅</span> Без отчислений — никаких выплат в РАО, ВОИС и другие организации.</li>
+        </ul>
+      </div>
+      <div class="agree-section" style="margin-bottom:24px;">
+        <h3 style="font-size:1.1rem;font-weight:700;color:#f0f0f0;margin-bottom:8px;">3. Чего делать НЕЛЬЗЯ</h3>
+        <ul style="list-style:none;padding-left:0;">
+          <li style="padding:4px 0 4px 24px;position:relative;font-size:.95rem;color:#b0b0b0;line-height:1.7;font-weight:300;"><span class="cross" style="color:#ef4444;margin-right:8px;">❌</span> Выдавать музыку за свою (указывайте автора: BALM (БИЭЛЭМ)).</li>
+          <li style="padding:4px 0 4px 24px;position:relative;font-size:.95rem;color:#b0b0b0;line-height:1.7;font-weight:300;"><span class="cross" style="color:#ef4444;margin-right:8px;">❌</span> Передавать или продавать музыку третьим лицам.</li>
+          <li style="padding:4px 0 4px 24px;position:relative;font-size:.95rem;color:#b0b0b0;line-height:1.7;font-weight:300;"><span class="cross" style="color:#ef4444;margin-right:8px;">❌</span> Изменять, переделывать или создавать ремиксы без разрешения.</li>
+        </ul>
+      </div>
+      <div class="agree-section" style="margin-bottom:24px;">
+        <h3 style="font-size:1.1rem;font-weight:700;color:#f0f0f0;margin-bottom:8px;">4. Что нужно для легального использования</h3>
+        <p style="font-size:.95rem;color:#b0b0b0;line-height:1.7;font-weight:300;">Достаточно иметь:</p>
+        <ul style="list-style:none;padding-left:0;">
+          <li style="padding:4px 0 4px 24px;position:relative;font-size:.95rem;color:#b0b0b0;line-height:1.7;font-weight:300;">Настоящее Соглашение</li>
+          <li style="padding:4px 0 4px 24px;position:relative;font-size:.95rem;color:#b0b0b0;line-height:1.7;font-weight:300;">Подтверждение оплаты (чек или скриншот)</li>
+        </ul>
+        <p style="margin-top:8px;font-size:.95rem;color:#b0b0b0;line-height:1.7;font-weight:300;">Эти документы подтверждают, что вы используете музыку легально.</p>
+      </div>
+      <div class="agree-section" style="margin-bottom:24px;">
+        <h3 style="font-size:1.1rem;font-weight:700;color:#f0f0f0;margin-bottom:8px;">5. Сравнение: выгода для бизнеса</h3>
+        <p style="margin-bottom:8px;font-size:.95rem;color:#b0b0b0;line-height:1.7;font-weight:300;">Вместо того чтобы платить РАО и ВОИС ежемесячно, вы платите один раз:</p>
+        <div class="agree-table" style="background:rgba(255,255,255,.03);border-radius:12px;padding:16px 20px;border:1px solid rgba(255,255,255,.05);overflow-x:auto;margin-top:8px;">
+          <table style="width:100%;border-collapse:collapse;font-size:.85rem;">
+            <thead><tr><th style="padding:8px 12px;text-align:left;border-bottom:1px solid rgba(255,255,255,.04);color:#888;font-weight:700;font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;">Тип объекта</th><th style="padding:8px 12px;text-align:left;border-bottom:1px solid rgba(255,255,255,.04);color:#888;font-weight:700;font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;">Экономия за год (на 100 м²)</th></tr></thead>
+            <tbody>
+              <tr><td style="padding:8px 12px;text-align:left;border-bottom:1px solid rgba(255,255,255,.04);color:#ccc;font-weight:300;">Кафе и рестораны</td><td class="hl" style="padding:8px 12px;text-align:left;border-bottom:1px solid rgba(255,255,255,.04);color:#4ade80;font-weight:700;">от 108 000 ₽</td></tr>
+              <tr><td style="padding:8px 12px;text-align:left;border-bottom:1px solid rgba(255,255,255,.04);color:#ccc;font-weight:300;">Бары и ночные клубы</td><td class="hl" style="padding:8px 12px;text-align:left;border-bottom:1px solid rgba(255,255,255,.04);color:#4ade80;font-weight:700;">от 162 000 ₽</td></tr>
+              <tr><td style="padding:8px 12px;text-align:left;border-bottom:1px solid rgba(255,255,255,.04);color:#ccc;font-weight:300;">Салоны красоты и спа</td><td class="hl" style="padding:8px 12px;text-align:left;border-bottom:1px solid rgba(255,255,255,.04);color:#4ade80;font-weight:700;">от 90 000 ₽</td></tr>
+              <tr><td style="padding:8px 12px;text-align:left;border-bottom:1px solid rgba(255,255,255,.04);color:#ccc;font-weight:300;">Фитнес-клубы</td><td class="hl" style="padding:8px 12px;text-align:left;border-bottom:1px solid rgba(255,255,255,.04);color:#4ade80;font-weight:700;">от 72 000 ₽</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="margin-top:10px;color:#4ade80;font-weight:700;font-size:.95rem;line-height:1.7;">Вы платите один раз — и больше никаких ежемесячных отчислений!</p>
+      </div>
+      <div class="agree-footer" style="margin-top:24px;padding-top:16px;border-top:1px solid rgba(255,255,255,.05);font-size:.8rem;color:#666;text-align:center;font-weight:300;">© 2026 BALM (БИЭЛЭМ) · Беляев Алексей · Все права защищены</div>
+    </div>
+  </div>
+
+  <!-- ===== HERO С ПЛЕЕРОМ И ТАБАМИ ===== -->
   <section class="hero" id="player">
-    <img class="hero-img" src="BALMherob.webp" alt="BALM — экспериментальная музыка без авторских прав" fetchpriority="high" decoding="async">
+    <img class="hero-img" src="BALMherob.webp" alt="BALM — экспериментальная музыка без авторских прав для бизнеса и видео. Обложка проекта на фоне космоса." fetchpriority="high" decoding="async">
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <h1 class="hero-title">BALM</h1>
@@ -172,18 +308,548 @@
     </div>
   </section>
 
-  <!-- ===== ОСТАЛЬНЫЕ СЕКЦИИ (ОПТИМИЗИРОВАНЫ) ===== -->
-  <!-- ВСЕ ОСТАЛЬНЫЕ СЕКЦИИ ИДУТ ТАК ЖЕ, КАК БЫЛИ -->
+  <!-- ===== МУЗЫКА БЕЗ АВТОРСКИХ ПРАВ ===== -->
+  <section class="cf scroll-margin" id="copyright-free" style="padding:80px 0;background:#0d0d0d;border-bottom:1px solid #181818;">
+    <div class="container" style="max-width:1440px;margin:0 auto;padding:0 80px;width:100%;">
+      <div class="cf-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;">
+        <div class="cf-text" style="text-align:left;">
+          <div class="cf-badge" style="display:inline-block;background:rgba(139,92,246,.15);border:1px solid rgba(139,92,246,.25);padding:6px 20px;border-radius:60px;font-size:.75rem;letter-spacing:.1em;color:#a78bfa;text-transform:uppercase;margin-bottom:20px;font-weight:500;"><i class="fas fa-shield-alt" style="margin-right:8px"></i> Royalty Free</div>
+          <h2 class="cf-title" style="font-size:clamp(1.8rem,4vw,2.4rem);font-weight:700;letter-spacing:-.02em;margin-bottom:16px;"><i class="fas fa-check-circle" style="color:#4ade80;margin-right:12px;"></i> Музыка без авторских прав для фона, бизнеса и видео</h2>
+          <p class="cf-desc" style="color:#b0b0b0;font-size:1.05rem;line-height:1.7;margin-bottom:12px;font-weight:300;">Музыка BALM создана для использования в коммерческих и некоммерческих проектах. <strong style="color:#f0f0f0;font-weight:700;">Никаких отчислений РАО и ВОИС</strong> — платите один раз и используете бессрочно.</p>
+          <ul class="cf-features" style="list-style:none;margin:16px 0;display:grid;grid-template-columns:1fr 1fr;gap:8px 16px;">
+            <li style="color:#b0b0b0;font-size:.95rem;padding:6px 0;display:flex;align-items:center;gap:10px;font-weight:300;"><i class="fas fa-check-circle" style="color:#4ade80;flex-shrink:0;width:20px;"></i> Для ресторанов, ТЦ, салонов красоты</li>
+            <li style="color:#b0b0b0;font-size:.95rem;padding:6px 0;display:flex;align-items:center;gap:10px;font-weight:300;"><i class="fas fa-check-circle" style="color:#4ade80;flex-shrink:0;width:20px;"></i> Для YouTube, TikTok, рекламы</li>
+            <li style="color:#b0b0b0;font-size:.95rem;padding:6px 0;display:flex;align-items:center;gap:10px;font-weight:300;"><i class="fas fa-check-circle" style="color:#4ade80;flex-shrink:0;width:20px;"></i> Для игр, подкастов, презентаций</li>
+            <li style="color:#b0b0b0;font-size:.95rem;padding:6px 0;display:flex;align-items:center;gap:10px;font-weight:300;"><i class="fas fa-check-circle" style="color:#4ade80;flex-shrink:0;width:20px;"></i> Без ограничений по тиражам и срокам</li>
+          </ul>
+          <div class="cf-legal" style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);border-radius:16px;padding:16px 20px;display:flex;gap:14px;margin-top:4px;">
+            <i class="fas fa-check-circle" style="font-size:1.6rem;color:#4ade80;flex-shrink:0;margin-top:2px;"></i>
+            <div class="text" style="font-size:.9rem;color:#999;line-height:1.5;font-weight:300;"><strong style="color:#f0f0f0;font-weight:700;">✅ Скачайте бесплатную демо-версию</strong><br>Полная версия — 2 часа уникальной музыки. <strong style="color:#f0f0f0;font-weight:700;">Экономьте до 162 000 ₽ в год</strong> на отчислениях за фоновую музыку.</div>
+          </div>
+        </div>
+        <div class="cf-player" style="width:100%;display:flex;flex-direction:column;gap:20px;">
+          <div class="demo" style="background:rgba(20,20,20,.7);backdrop-filter:blur(20px);border-radius:20px;padding:24px 28px;border:1px solid rgba(255,255,255,.06);transition:.3s;position:relative;overflow:hidden;">
+            <div class="demo-track" style="display:flex;align-items:center;gap:16px;margin-bottom:16px;">
+              <div class="demo-art" style="width:52px;height:52px;border-radius:14px;background:linear-gradient(145deg,#2a1f3d,#1a1225);display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:#aaa;border:1px solid #333;flex-shrink:0;"><i class="fas fa-headphones"></i></div>
+              <div class="demo-meta" style="flex:1;text-align:left;">
+                <div class="name" style="font-weight:700;font-size:1rem;color:#4ade80;">BALM RADIO</div>
+                <div class="artist" style="font-size:.8rem;color:#999;font-weight:300;">Слушай онлайн · Без авторских прав</div>
+              </div>
+            </div>
+            <div class="genre-tabs" id="radioGenreTabs" style="display:flex;flex-wrap:nowrap;justify-content:center;gap:6px;margin-bottom:12px;padding:0 4px;overflow-x:auto;">
+              <button class="genre-tab active" data-genre="chillout" style="padding:6px 14px;border-radius:30px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:rgba(255,255,255,.6);font-size:.7rem;font-weight:500;cursor:pointer;transition:.3s;text-transform:uppercase;white-space:nowrap;flex-shrink:0;">Chillout</button>
+              <button class="genre-tab" data-genre="jazz" style="padding:6px 14px;border-radius:30px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:rgba(255,255,255,.6);font-size:.7rem;font-weight:500;cursor:pointer;transition:.3s;text-transform:uppercase;white-space:nowrap;flex-shrink:0;">Jazz</button>
+              <button class="genre-tab" data-genre="asian" style="padding:6px 14px;border-radius:30px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:rgba(255,255,255,.6);font-size:.7rem;font-weight:500;cursor:pointer;transition:.3s;text-transform:uppercase;white-space:nowrap;flex-shrink:0;">Asian</button>
+              <button class="genre-tab" data-genre="turkish" style="padding:6px 14px;border-radius:30px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:rgba(255,255,255,.6);font-size:.7rem;font-weight:500;cursor:pointer;transition:.3s;text-transform:uppercase;white-space:nowrap;flex-shrink:0;">Turkish</button>
+              <button class="genre-tab" data-genre="alternative" style="padding:6px 14px;border-radius:30px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:rgba(255,255,255,.6);font-size:.7rem;font-weight:500;cursor:pointer;transition:.3s;text-transform:uppercase;white-space:nowrap;flex-shrink:0;">Alternative</button>
+              <button class="genre-tab" data-genre="funk" style="padding:6px 14px;border-radius:30px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:rgba(255,255,255,.6);font-size:.7rem;font-weight:500;cursor:pointer;transition:.3s;text-transform:uppercase;white-space:nowrap;flex-shrink:0;">Funk</button>
+              <button class="genre-tab" data-genre="piano" style="padding:6px 14px;border-radius:30px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:rgba(255,255,255,.6);font-size:.7rem;font-weight:500;cursor:pointer;transition:.3s;text-transform:uppercase;white-space:nowrap;flex-shrink:0;">Piano</button>
+            </div>
+            <div class="radio-wrapper locked" id="radioWrapper" style="position:relative;border-radius:12px;overflow:hidden;">
+              <iframe id="radioIframe" style="border:0;width:100%;height:120px;border-radius:12px;display:block;transition:filter .3s;filter:blur(6px);pointer-events:none;" src="https://bandcamp.com/EmbeddedPlayer/track=1094038954/size=large/bgcol=333333/linkcol=ffffff/tracklist=false/artwork=small/transparent=true/" seamless></iframe>
+              <div class="radio-lock-overlay" id="radioLockOverlay" data-open-subscribe style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);border-radius:12px;cursor:pointer;opacity:1;transition:opacity .3s;z-index:5;">
+                <i class="fas fa-lock" style="font-size:2.5rem;color:#fff;margin-bottom:6px;text-shadow:0 0 20px rgba(0,0,0,.8);"></i>
+                <span style="font-size:.8rem;color:#fff;font-weight:500;text-shadow:0 0 20px rgba(0,0,0,.8);">Оформить подписку</span>
+              </div>
+            </div>
+            <div class="demo-tag" style="margin-top:14px;font-size:.7rem;color:#555;text-align:center;border-top:1px solid rgba(255,255,255,.04);padding-top:14px;font-weight:300;"><i class="fas fa-headphones" style="margin-right:6px"></i> BALM RADIO · Все жанры · Без рекламы</div>
+          </div>
+          <div class="btn-group" style="display:flex;gap:16px;flex-wrap:wrap;">
+            <button class="btn btn-primary" data-open-subscribe style="flex:1 1 200px;min-width:140px;background:linear-gradient(135deg,#8b5cf6,#4ade80);box-shadow:0 4px 20px rgba(139,92,246,.3);display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 28px;border-radius:60px;font-weight:500;font-size:.95rem;border:none;cursor:pointer;text-decoration:none;transition:.3s;color:#fff;min-height:54px;"><i class="fas fa-crown"></i> Оформить подписку</button>
+            <button class="btn btn-primary" data-open-buy style="flex:1 1 200px;min-width:140px;background:linear-gradient(135deg,#8b5cf6,#4ade80);box-shadow:0 4px 20px rgba(139,92,246,.3);display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 28px;border-radius:60px;font-weight:500;font-size:.95rem;border:none;cursor:pointer;text-decoration:none;transition:.3s;color:#fff;min-height:54px;"><i class="fas fa-shopping-cart"></i> Купить музыку для бизнеса</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <!-- ===== СКРИПТЫ (ЗАГРУЖАЮТСЯ В КОНЦЕ С АТРИБУТОМ defer) ===== -->
-  <script defer>
-    // === ВЕСЬ JS КОД С ВАШЕГО САЙТА (БЕЗ ИЗМЕНЕНИЙ) ===
-    // ... (ваш полный JS-код)
-  </script>
+  <!-- ===== РЕЛИЗЫ ===== -->
+  <section class="releases scroll-margin" id="releases" style="padding:80px 0;background:#0b0b0b;border-bottom:1px solid #181818;">
+    <div class="container" style="max-width:1440px;margin:0 auto;padding:0 80px;width:100%;">
+      <div class="releases-header" style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;margin-bottom:48px;gap:12px;">
+        <h2 class="releases-title" style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;letter-spacing:-.02em;">Новые релизы BALM</h2>
+        <button class="releases-toggle" id="showAllBtn" style="color:#888;text-decoration:none;border-bottom:1px solid #333;padding-bottom:2px;font-size:.9rem;cursor:pointer;transition:color .2s;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;background:0 0;border-top:0;border-left:0;border-right:0;font-weight:300;">Все релизы <i class="fas fa-chevron-down" style="transition:transform .3s;"></i></button>
+      </div>
+      <div class="releases-grid" id="releaseGrid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:30px;">
+        <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="card" style="background:#121212;border-radius:24px;padding:16px 14px 20px;transition:transform .2s,background .2s;border:1px solid #1f1f1f;text-align:center;opacity:0;transform:translateY(20px);animation:fadeInUp .4s forwards;cursor:pointer;text-decoration:none;color:#f0f0f0;display:block;animation-delay:.05s;">
+          <div class="card-cover" style="width:100%;aspect-ratio:1;border-radius:18px;margin-bottom:14px;overflow:hidden;border:1px solid #2a2a2a;position:relative;"><img src="rage.webp" alt="Обложка сингла Клуб на дне" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"><span class="card-new" style="position:absolute;top:8px;right:8px;background:linear-gradient(135deg,#ef4444,#dc2626);color:#fff;font-size:.55rem;padding:2px 10px;border-radius:60px;font-weight:700;text-transform:uppercase;animation:pulse 1.5s infinite;box-shadow:0 4px 15px rgba(239,68,68,.4);">NEW</span></div>
+          <div class="card-title" style="font-weight:700;font-size:1rem;margin-bottom:4px;">Клуб на дне (Минимал-техно)</div>
+          <div class="card-year" style="color:#777;font-size:.7rem;letter-spacing:.3px;font-weight:300;">2026 · Сингл · Техно</div>
+        </a>
+        <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="card" style="background:#121212;border-radius:24px;padding:16px 14px 20px;transition:transform .2s,background .2s;border:1px solid #1f1f1f;text-align:center;opacity:0;transform:translateY(20px);animation:fadeInUp .4s forwards;cursor:pointer;text-decoration:none;color:#f0f0f0;display:block;animation-delay:.10s;">
+          <div class="card-cover" style="width:100%;aspect-ratio:1;border-radius:18px;margin-bottom:14px;overflow:hidden;border:1px solid #2a2a2a;position:relative;"><img src="last.webp" alt="Обложка сингла Последняя любовь" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"><span class="card-new" style="position:absolute;top:8px;right:8px;background:linear-gradient(135deg,#ef4444,#dc2626);color:#fff;font-size:.55rem;padding:2px 10px;border-radius:60px;font-weight:700;text-transform:uppercase;animation:pulse 1.5s infinite;box-shadow:0 4px 15px rgba(239,68,68,.4);">NEW</span></div>
+          <div class="card-title" style="font-weight:700;font-size:1rem;margin-bottom:4px;">Последняя любовь</div>
+          <div class="card-year" style="color:#777;font-size:.7rem;letter-spacing:.3px;font-weight:300;">2026 · Дабл-сингл · Поп</div>
+        </a>
+        <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="card" style="background:#121212;border-radius:24px;padding:16px 14px 20px;transition:transform .2s,background .2s;border:1px solid #1f1f1f;text-align:center;opacity:0;transform:translateY(20px);animation:fadeInUp .4s forwards;cursor:pointer;text-decoration:none;color:#f0f0f0;display:block;animation-delay:.15s;">
+          <div class="card-cover" style="width:100%;aspect-ratio:1;border-radius:18px;margin-bottom:14px;overflow:hidden;border:1px solid #2a2a2a;position:relative;"><img src="Jazz.webp" alt="Обложка альбома Jazz" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"><span class="card-new" style="position:absolute;top:8px;right:8px;background:linear-gradient(135deg,#ef4444,#dc2626);color:#fff;font-size:.55rem;padding:2px 10px;border-radius:60px;font-weight:700;text-transform:uppercase;animation:pulse 1.5s infinite;box-shadow:0 4px 15px rgba(239,68,68,.4);">NEW</span></div>
+          <div class="card-title" style="font-weight:700;font-size:1rem;margin-bottom:4px;">Jazz</div>
+          <div class="card-year" style="color:#777;font-size:.7rem;letter-spacing:.3px;font-weight:300;">2026 · Альбом · Джаз</div>
+        </a>
+        <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="card" style="background:#121212;border-radius:24px;padding:16px 14px 20px;transition:transform .2s,background .2s;border:1px solid #1f1f1f;text-align:center;opacity:0;transform:translateY(20px);animation:fadeInUp .4s forwards;cursor:pointer;text-decoration:none;color:#f0f0f0;display:block;animation-delay:.20s;">
+          <div class="card-cover" style="width:100%;aspect-ratio:1;border-radius:18px;margin-bottom:14px;overflow:hidden;border:1px solid #2a2a2a;position:relative;"><img src="stars.webp" alt="Обложка сингла К звездам" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+          <div class="card-title" style="font-weight:700;font-size:1rem;margin-bottom:4px;">К звездам (Rock / Jazz / Piano)</div>
+          <div class="card-year" style="color:#777;font-size:.7rem;letter-spacing:.3px;font-weight:300;">2026 · Трипл-сингл</div>
+        </a>
+        <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="card" style="background:#121212;border-radius:24px;padding:16px 14px 20px;transition:transform .2s,background .2s;border:1px solid #1f1f1f;text-align:center;opacity:0;transform:translateY(20px);animation:fadeInUp .4s forwards;cursor:pointer;text-decoration:none;color:#f0f0f0;display:block;animation-delay:.25s;">
+          <div class="card-cover" style="width:100%;aspect-ratio:1;border-radius:18px;margin-bottom:14px;overflow:hidden;border:1px solid #2a2a2a;position:relative;"><img src="alterego.webp" alt="Обложка альбома Альтерэго" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+          <div class="card-title" style="font-weight:700;font-size:1rem;margin-bottom:4px;">Альтерэго (Rock)</div>
+          <div class="card-year" style="color:#777;font-size:.7rem;letter-spacing:.3px;font-weight:300;">2026 · Альбом · Рок</div>
+        </a>
+        <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="card" style="background:#121212;border-radius:24px;padding:16px 14px 20px;transition:transform .2s,background .2s;border:1px solid #1f1f1f;text-align:center;opacity:0;transform:translateY(20px);animation:fadeInUp .4s forwards;cursor:pointer;text-decoration:none;color:#f0f0f0;display:block;animation-delay:.30s;">
+          <div class="card-cover" style="width:100%;aspect-ratio:1;border-radius:18px;margin-bottom:14px;overflow:hidden;border:1px solid #2a2a2a;position:relative;"><img src="beautiful.webp" alt="Обложка сингла Beautiful" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+          <div class="card-title" style="font-weight:700;font-size:1rem;margin-bottom:4px;">Beautiful (Rock)</div>
+          <div class="card-year" style="color:#777;font-size:.7rem;letter-spacing:.3px;font-weight:300;">2026 · Сингл</div>
+        </a>
+        <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="card" style="background:#121212;border-radius:24px;padding:16px 14px 20px;transition:transform .2s,background .2s;border:1px solid #1f1f1f;text-align:center;opacity:0;transform:translateY(20px);animation:fadeInUp .4s forwards;cursor:pointer;text-decoration:none;color:#f0f0f0;display:block;animation-delay:.35s;">
+          <div class="card-cover" style="width:100%;aspect-ratio:1;border-radius:18px;margin-bottom:14px;overflow:hidden;border:1px solid #2a2a2a;position:relative;"><img src="chance.webp" alt="Обложка сингла Chance" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+          <div class="card-title" style="font-weight:700;font-size:1rem;margin-bottom:4px;">Chance English ver. (Rock)</div>
+          <div class="card-year" style="color:#777;font-size:.7rem;letter-spacing:.3px;font-weight:300;">2026 · Сингл</div>
+        </a>
+        <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="card" style="background:#121212;border-radius:24px;padding:16px 14px 20px;transition:transform .2s,background .2s;border:1px solid #1f1f1f;text-align:center;opacity:0;transform:translateY(20px);animation:fadeInUp .4s forwards;cursor:pointer;text-decoration:none;color:#f0f0f0;display:block;animation-delay:.40s;">
+          <div class="card-cover" style="width:100%;aspect-ratio:1;border-radius:18px;margin-bottom:14px;overflow:hidden;border:1px solid #2a2a2a;position:relative;"><img src="cloud.webp" alt="Обложка сингла Облака" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+          <div class="card-title" style="font-weight:700;font-size:1rem;margin-bottom:4px;">Облака (Rock)</div>
+          <div class="card-year" style="color:#777;font-size:.7rem;letter-spacing:.3px;font-weight:300;">2026 · Сингл</div>
+        </a>
+        <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="card" style="background:#121212;border-radius:24px;padding:16px 14px 20px;transition:transform .2s,background .2s;border:1px solid #1f1f1f;text-align:center;opacity:0;transform:translateY(20px);animation:fadeInUp .4s forwards;cursor:pointer;text-decoration:none;color:#f0f0f0;display:block;animation-delay:.45s;">
+          <div class="card-cover" style="width:100%;aspect-ratio:1;border-radius:18px;margin-bottom:14px;overflow:hidden;border:1px solid #2a2a2a;position:relative;"><img src="Heart.webp" alt="Обложка сингла Жги моё сердце" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+          <div class="card-title" style="font-weight:700;font-size:1rem;margin-bottom:4px;">Жги моё сердце (Pop)</div>
+          <div class="card-year" style="color:#777;font-size:.7rem;letter-spacing:.3px;font-weight:300;">2026 · Сингл</div>
+        </a>
+        <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="card" style="background:#121212;border-radius:24px;padding:16px 14px 20px;transition:transform .2s,background .2s;border:1px solid #1f1f1f;text-align:center;opacity:0;transform:translateY(20px);animation:fadeInUp .4s forwards;cursor:pointer;text-decoration:none;color:#f0f0f0;display:block;animation-delay:.50s;">
+          <div class="card-cover" style="width:100%;aspect-ratio:1;border-radius:18px;margin-bottom:14px;overflow:hidden;border:1px solid #2a2a2a;position:relative;"><img src="its%20my%20life.webp" alt="Обложка сингла It's My Life" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+          <div class="card-title" style="font-weight:700;font-size:1rem;margin-bottom:4px;">It's My Life (Hip-hop)</div>
+          <div class="card-year" style="color:#777;font-size:.7rem;letter-spacing:.3px;font-weight:300;">2026 · Сингл</div>
+        </a>
+        <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="card" style="background:#121212;border-radius:24px;padding:16px 14px 20px;transition:transform .2s,background .2s;border:1px solid #1f1f1f;text-align:center;opacity:0;transform:translateY(20px);animation:fadeInUp .4s forwards;cursor:pointer;text-decoration:none;color:#f0f0f0;display:block;animation-delay:.55s;">
+          <div class="card-cover" style="width:100%;aspect-ratio:1;border-radius:18px;margin-bottom:14px;overflow:hidden;border:1px solid #2a2a2a;position:relative;"><img src="love.webp" alt="Обложка сингла Смысл жизни любовь" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+          <div class="card-title" style="font-weight:700;font-size:1rem;margin-bottom:4px;">Смысл жизни любовь (Pop)</div>
+          <div class="card-year" style="color:#777;font-size:.7rem;letter-spacing:.3px;font-weight:300;">2026 · Сингл</div>
+        </a>
+        <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="card" style="background:#121212;border-radius:24px;padding:16px 14px 20px;transition:transform .2s,background .2s;border:1px solid #1f1f1f;text-align:center;opacity:0;transform:translateY(20px);animation:fadeInUp .4s forwards;cursor:pointer;text-decoration:none;color:#f0f0f0;display:block;animation-delay:.60s;">
+          <div class="card-cover" style="width:100%;aspect-ratio:1;border-radius:18px;margin-bottom:14px;overflow:hidden;border:1px solid #2a2a2a;position:relative;"><img src="what.webp" alt="Обложка сингла Ну почему?" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+          <div class="card-title" style="font-weight:700;font-size:1rem;margin-bottom:4px;">Ну почему? (Breaks)</div>
+          <div class="card-year" style="color:#777;font-size:.7rem;letter-spacing:.3px;font-weight:300;">2026 · Сингл</div>
+        </a>
+        <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="card" style="background:#121212;border-radius:24px;padding:16px 14px 20px;transition:transform .2s,background .2s;border:1px solid #1f1f1f;text-align:center;opacity:0;transform:translateY(20px);animation:fadeInUp .4s forwards;cursor:pointer;text-decoration:none;color:#f0f0f0;display:block;animation-delay:.65s;">
+          <div class="card-cover" style="width:100%;aspect-ratio:1;border-radius:18px;margin-bottom:14px;overflow:hidden;border:1px solid #2a2a2a;position:relative;"><img src="world.webp" alt="Обложка сингла Мой маленький мир" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+          <div class="card-title" style="font-weight:700;font-size:1rem;margin-bottom:4px;">Мой маленький мир (Pop)</div>
+          <div class="card-year" style="color:#777;font-size:.7rem;letter-spacing:.3px;font-weight:300;">2026 · Сингл</div>
+        </a>
+        <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="card" style="background:#121212;border-radius:24px;padding:16px 14px 20px;transition:transform .2s,background .2s;border:1px solid #1f1f1f;text-align:center;opacity:0;transform:translateY(20px);animation:fadeInUp .4s forwards;cursor:pointer;text-decoration:none;color:#f0f0f0;display:block;animation-delay:.70s;">
+          <div class="card-cover" style="width:100%;aspect-ratio:1;border-radius:18px;margin-bottom:14px;overflow:hidden;border:1px solid #2a2a2a;position:relative;"><img src="beautifulRU.webp" alt="Обложка сингла Моя красивая" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+          <div class="card-title" style="font-weight:700;font-size:1rem;margin-bottom:4px;">Моя красивая (Pop)</div>
+          <div class="card-year" style="color:#777;font-size:.7rem;letter-spacing:.3px;font-weight:300;">2026 · Сингл</div>
+        </a>
+        <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="card" style="background:#121212;border-radius:24px;padding:16px 14px 20px;transition:transform .2s,background .2s;border:1px solid #1f1f1f;text-align:center;opacity:0;transform:translateY(20px);animation:fadeInUp .4s forwards;cursor:pointer;text-decoration:none;color:#f0f0f0;display:block;animation-delay:.75s;">
+          <div class="card-cover" style="width:100%;aspect-ratio:1;border-radius:18px;margin-bottom:14px;overflow:hidden;border:1px solid #2a2a2a;position:relative;"><img src="chanceRU.webp" alt="Обложка сингла Шанс" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+          <div class="card-title" style="font-weight:700;font-size:1rem;margin-bottom:4px;">Шанс (Rock)</div>
+          <div class="card-year" style="color:#777;font-size:.7rem;letter-spacing:.3px;font-weight:300;">2026 · Сингл</div>
+        </a>
+      </div>
+    </div>
+  </section>
 
-  <!-- ===== СТРУКТУРИРОВАННЫЕ ДАННЫЕ (ПЕРЕНЕСЕНЫ В КОНЕЦ) ===== -->
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"MusicGroup","name":"BALM","alternateName":"БИЭЛЭМ","description":"BALM (БИЭЛЭМ) — экспериментальный музыкальный проект Беляева Алексея из Санкт-Петербурга. На стыке ню-метала, поп-мелодий и электроники. Создание коммерческой, детской музыки и написание на заказ без авторских отчислений.","url":"https://balm-music.ru/","founder":{"@type":"Person","name":"Беляев Алексей"},"genre":["Chillout","Electronic","Ambient","Lounge","Nu Metal","Pop","Rock"],"image":"https://balm-music.ru/BALM.webp","sameAs":["https://music.yandex.ru/artist/26471381","https://t.me/albe_spb"]}
+  <!-- ===== БИО ===== -->
+  <section class="bio scroll-margin" id="bio" style="padding:80px 0;background:#0e0e0e;">
+    <div class="container bio-grid" style="max-width:1440px;margin:0 auto;padding:0 80px;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;">
+      <div class="bio-img" style="border-radius:40px;overflow:hidden;border:1px solid #262626;background:#16161a;"><img src="BALM.webp" alt="BALM — экспериментальный музыкальный проект" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+      <div>
+        <h2 class="bio-title" style="font-size:clamp(2rem,3vw,2.4rem);font-weight:700;letter-spacing:-.02em;margin-bottom:20px;">О проекте BALM</h2>
+        <p class="bio-text" style="color:#bdbdbd;font-size:1.05rem;max-width:600px;margin-bottom:16px;font-weight:300;line-height:1.7;"><strong style="color:#f0f0f0;font-weight:700;">BALM</strong> — это экспериментальный музыкальный проект Алексея Беляева из Санкт-Петербурга. На стыке ню-метала, поп-мелодий и электроники рождается уникальный звук для тех, кто ищет настоящую эмоцию и качественный музыкальный контент без ограничений по авторским правам.</p>
+        <p class="bio-text" style="color:#bdbdbd;font-size:1.05rem;max-width:600px;margin-bottom:16px;font-weight:300;line-height:1.7;">Основная миссия проекта — сделать качественную музыку доступной для бизнеса и творческих проектов. Мы создаём коммерческую, детскую и фоновую музыку, а также пишем песни и стихи для мультипликации на заказ. Работаем в любых жанрах: от джаза до рока, от электроники до хип-хопа.</p>
+        <p class="bio-text" style="color:#bdbdbd;font-size:1.05rem;max-width:600px;margin-bottom:16px;font-weight:300;line-height:1.7;"><strong style="color:#f0f0f0;font-weight:700;">Ключевое преимущество:</strong> вся музыка BALM свободна от авторских отчислений РАО и ВОИС. Вы можете использовать её в любых коммерческих целях без дополнительных платежей.</p>
+        <div class="bio-stats" style="display:flex;gap:40px;margin-top:24px;flex-wrap:wrap;">
+          <div class="bio-stat" style="display:flex;flex-direction:column;align-items:center;"><span class="num" style="font-size:1.8rem;font-weight:700;color:#fff;">Санкт-Петербург</span><span class="lbl" style="font-size:.75rem;color:#777;letter-spacing:.5px;text-transform:uppercase;font-weight:300;">База проекта</span></div>
+          <div class="bio-stat" style="display:flex;flex-direction:column;align-items:center;"><span class="num" style="font-size:1.8rem;font-weight:700;color:#fff;">15+</span><span class="lbl" style="font-size:.75rem;color:#777;letter-spacing:.5px;text-transform:uppercase;font-weight:300;">Релизов</span></div>
+          <div class="bio-stat" style="display:flex;flex-direction:column;align-items:center;"><span class="num" style="font-size:1.8rem;font-weight:700;color:#fff;">Бесплатно</span><span class="lbl" style="font-size:.75rem;color:#777;letter-spacing:.5px;text-transform:uppercase;font-weight:300;">Демо-версия</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="faq scroll-margin" id="faq" style="padding:80px 0;background:#0b0b0b;border-bottom:1px solid #181818;">
+    <div class="container" style="max-width:1440px;margin:0 auto;padding:0 80px;width:100%;">
+      <h2 class="faq-title" style="font-size:clamp(1.8rem,3vw,2.2rem);font-weight:700;letter-spacing:-.02em;margin-bottom:48px;text-align:center;">Часто задаваемые вопросы</h2>
+      <div class="faq-list" style="max-width:820px;margin:0 auto;display:flex;flex-direction:column;gap:12px;">
+        <div class="faq-item" style="background:#121212;border-radius:16px;border:1px solid #1f1f1f;overflow:hidden;transition:border-color .3s;">
+          <button class="faq-q" data-faq-toggle style="width:100%;background:0 0;border:0;padding:18px 24px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-size:1.05rem;font-weight:500;color:#f0f0f0;text-align:left;transition:background .2s;gap:16px;"><span>Нужно ли платить РАО и ВОИС за использование музыки BALM?</span><span class="faq-icon" style="flex-shrink:0;width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(139,92,246,.12);color:#8b5cf6;transition:all .3s;"><i class="fas fa-chevron-down"></i></span></button>
+          <div class="faq-a" style="max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.34,1.56,.64,1),padding .3s;padding:0 24px;"><p style="color:#b0b0b0;font-size:.95rem;line-height:1.7;margin:0;font-weight:300;"><strong>Нет, не нужно.</strong> Музыка BALM полностью свободна от авторских отчислений. Вы платите <span class="hl" style="color:#4ade80;font-weight:500;">один раз</span> и больше никогда не платите РАО, ВОИС или другим организациям. Экономия до 162 000 ₽ в год. Подробнее в <a href="#" data-agreement style="color:#8b5cf6;text-decoration:none;border-bottom:1px solid rgba(139,92,246,.3);">Соглашении</a>.</p></div>
+        </div>
+        <div class="faq-item" style="background:#121212;border-radius:16px;border:1px solid #1f1f1f;overflow:hidden;transition:border-color .3s;">
+          <button class="faq-q" data-faq-toggle style="width:100%;background:0 0;border:0;padding:18px 24px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-size:1.05rem;font-weight:500;color:#f0f0f0;text-align:left;transition:background .2s;gap:16px;"><span>Вы пишете музыку для детских мультфильмов и анимации?</span><span class="faq-icon" style="flex-shrink:0;width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(139,92,246,.12);color:#8b5cf6;transition:all .3s;"><i class="fas fa-chevron-down"></i></span></button>
+          <div class="faq-a" style="max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.34,1.56,.64,1),padding .3s;padding:0 24px;"><p style="color:#b0b0b0;font-size:.95rem;line-height:1.7;margin:0;font-weight:300;"><strong>Да, мы создаём музыку для детской мультипликации.</strong> BALM пишет саундтреки, фоновую музыку и песенки для мультфильмов, детских программ и анимационных проектов. <a href="https://t.me/albe_spb" target="_blank" style="color:#8b5cf6;text-decoration:none;border-bottom:1px solid rgba(139,92,246,.3);">Обсудим вашу идею в Telegram</a>.</p></div>
+        </div>
+        <div class="faq-item" style="background:#121212;border-radius:16px;border:1px solid #1f1f1f;overflow:hidden;transition:border-color .3s;">
+          <button class="faq-q" data-faq-toggle style="width:100%;background:0 0;border:0;padding:18px 24px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-size:1.05rem;font-weight:500;color:#f0f0f0;text-align:left;transition:background .2s;gap:16px;"><span>Пишете ли вы стихи и песни для исполнителей с нуля?</span><span class="faq-icon" style="flex-shrink:0;width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(139,92,246,.12);color:#8b5cf6;transition:all .3s;"><i class="fas fa-chevron-down"></i></span></button>
+          <div class="faq-a" style="max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.34,1.56,.64,1),padding .3s;padding:0 24px;"><p style="color:#b0b0b0;font-size:.95rem;line-height:1.7;margin:0;font-weight:300;"><strong>Да, мы пишем стихи, тексты песен и полноценные треки для исполнителей на заказ.</strong> Можем создать материал под ваш образ, голос и стиль. <a href="https://t.me/albe_spb" target="_blank" style="color:#8b5cf6;text-decoration:none;border-bottom:1px solid rgba(139,92,246,.3);">Напишите в Telegram</a>.</p></div>
+        </div>
+        <div class="faq-item" style="background:#121212;border-radius:16px;border:1px solid #1f1f1f;overflow:hidden;transition:border-color .3s;">
+          <button class="faq-q" data-faq-toggle style="width:100%;background:0 0;border:0;padding:18px 24px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-size:1.05rem;font-weight:500;color:#f0f0f0;text-align:left;transition:background .2s;gap:16px;"><span>Можно ли приобрести готовые стихи и песни из каталога?</span><span class="faq-icon" style="flex-shrink:0;width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(139,92,246,.12);color:#8b5cf6;transition:all .3s;"><i class="fas fa-chevron-down"></i></span></button>
+          <div class="faq-a" style="max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.34,1.56,.64,1),padding .3s;padding:0 24px;"><p style="color:#b0b0b0;font-size:.95rem;line-height:1.7;margin:0;font-weight:300;"><strong>Да, некоторые авторские стихи и песни доступны для приобретения.</strong> Стоимость и условия обсуждаются индивидуально. <a href="https://t.me/albe_spb" target="_blank" style="color:#8b5cf6;text-decoration:none;border-bottom:1px solid rgba(139,92,246,.3);">Свяжитесь с нами в Telegram</a>.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ФУТЕР ===== -->
+  <footer class="container footer" style="max-width:1440px;margin:0 auto;padding:40px 80px 30px;border-top:1px solid #1a1a1a;display:flex;flex-direction:column;align-items:center;gap:20px;color:#5a5a5a;font-size:.9rem;">
+    <div class="footer-row" style="display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:20px 30px;width:100%;">
+      <div class="footer-platforms" style="display:none;flex-direction:column;align-items:center;gap:8px;width:100%;">
+        <div class="platform-row" style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;">
+          <a href="https://music.yandex.ru/artist/26471381" target="_blank" style="color:rgba(255,255,255,0.5);font-size:1.1rem;transition:color .3s;text-decoration:none;display:flex;align-items:center;gap:6px;">
+            <i class="fas fa-music" style="color:#FFCC00;"></i>
+            <span class="platform-label" style="font-size:.7rem;font-weight:300;color:rgba(255,255,255,0.3);">Яндекс Музыка</span>
+          </a>
+          <a href="https://music.apple.com/ru/artist/balm-биэлэм/6800941971" target="_blank" style="color:rgba(255,255,255,0.5);font-size:1.1rem;transition:color .3s;text-decoration:none;display:flex;align-items:center;gap:6px;">
+            <i class="fab fa-apple" style="color:#FC3C44;"></i>
+            <span class="platform-label" style="font-size:.7rem;font-weight:300;color:rgba(255,255,255,0.3);">Apple Music</span>
+          </a>
+        </div>
+        <div class="platform-row" style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;">
+          <a href="https://open.spotify.com/search/биэлэм" target="_blank" style="color:rgba(255,255,255,0.5);font-size:1.1rem;transition:color .3s;text-decoration:none;display:flex;align-items:center;gap:6px;">
+            <i class="fab fa-spotify" style="color:#1DB954;"></i>
+            <span class="platform-label" style="font-size:.7rem;font-weight:300;color:rgba(255,255,255,0.3);">Spotify</span>
+          </a>
+          <a href="https://zvuk.com/artist/214558962" target="_blank" style="color:rgba(255,255,255,0.5);font-size:1.1rem;transition:color .3s;text-decoration:none;display:flex;align-items:center;gap:6px;">
+            <i class="fas fa-headphones" style="color:#8B5CF6;"></i>
+            <span class="platform-label" style="font-size:.7rem;font-weight:300;color:rgba(255,255,255,0.3);">Zvuk</span>
+          </a>
+          <a href="https://vk.ru/albe_music" target="_blank" style="color:rgba(255,255,255,0.5);font-size:1.1rem;transition:color .3s;text-decoration:none;display:flex;align-items:center;gap:6px;">
+            <i class="fab fa-vk" style="color:#0077FF;"></i>
+            <span class="platform-label" style="font-size:.7rem;font-weight:300;color:rgba(255,255,255,0.3);">VK Музыка</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-row" style="display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:20px 30px;width:100%;">
+      <div class="footer-links" style="display:flex;gap:20px 30px;flex-wrap:wrap;justify-content:center;">
+        <a href="#" data-agreement style="color:#5a5a5a;text-decoration:none;font-size:.8rem;transition:color .2s;border-bottom:1px solid transparent;font-weight:300;">Пользовательское соглашение</a>
+        <a href="#" onclick="alert('Политика конфиденциальности: данные не передаются третьим лицам.');" style="color:#5a5a5a;text-decoration:none;font-size:.8rem;transition:color .2s;border-bottom:1px solid transparent;font-weight:300;">Политика конфиденциальности</a>
+      </div>
+    </div>
+
+    <div class="footer-row" style="display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:20px 30px;width:100%;">
+      <div class="footer-bottom" style="display:flex;align-items:center;justify-content:center;gap:8px;color:#5a5a5a;font-size:.8rem;width:100%;padding-top:12px;border-top:1px solid rgba(255,255,255,.04);flex-wrap:wrap;font-weight:300;">
+        <span>Разработано в</span>
+        <a href="https://t.me/albe_web" target="_blank" class="footer-albe" rel="noopener" style="display:inline-flex;align-items:center;text-decoration:none;color:#888;transition:color .2s;font-weight:500;line-height:0;">
+          <img src="Albe.webp" alt="Albe — разработка сайтов и веб-решений" loading="lazy" style="height:36px;width:auto;display:block;transition:opacity .2s;">
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== СКРИПТЫ (ЗАГРУЖАЮТСЯ В КОНЦЕ) ===== -->
+  <script>
+    (function() {
+      'use strict';
+
+      // === ДАННЫЕ ТРЕКОВ ===
+      const tracks = {
+        chillout: {
+          url: 'https://bandcamp.com/EmbeddedPlayer/track=1094038954/size=large/bgcol=333333/linkcol=ffffff/tracklist=false/artwork=small/transparent=true/',
+          label: 'Chillout · Бесплатная демо-версия'
+        },
+        jazz: {
+          url: 'https://bandcamp.com/EmbeddedPlayer/track=1281962718/size=large/bgcol=333333/linkcol=ffffff/tracklist=false/artwork=small/transparent=true/',
+          label: 'Jazz · Бесплатная демо-версия'
+        },
+        asian: {
+          url: 'https://bandcamp.com/EmbeddedPlayer/track=1278103208/size=large/bgcol=333333/linkcol=ffffff/tracklist=false/artwork=small/transparent=true/',
+          label: 'Asian · Бесплатная демо-версия'
+        },
+        turkish: {
+          url: 'https://bandcamp.com/EmbeddedPlayer/track=3390146074/size=large/bgcol=333333/linkcol=ffffff/tracklist=false/artwork=small/transparent=true/',
+          label: 'Turkish · Бесплатная демо-версия'
+        },
+        alternative: {
+          url: 'https://bandcamp.com/EmbeddedPlayer/track=575145445/size=large/bgcol=333333/linkcol=ffffff/tracklist=false/artwork=small/transparent=true/',
+          label: 'Alternative · Бесплатная демо-версия'
+        },
+        funk: {
+          url: 'https://bandcamp.com/EmbeddedPlayer/track=1888898478/size=large/bgcol=333333/linkcol=ffffff/tracklist=false/artwork=small/transparent=true/',
+          label: 'Funk · Бесплатная демо-версия'
+        },
+        piano: {
+          url: 'https://bandcamp.com/EmbeddedPlayer/track=3468308600/size=large/bgcol=333333/linkcol=ffffff/tracklist=false/artwork=small/transparent=true/',
+          label: 'Piano · Бесплатная демо-версия'
+        }
+      };
+
+      // === ПЕРЕКЛЮЧЕНИЕ ТРЕКОВ В HERO ===
+      (function() {
+        const tabs = document.querySelectorAll('#heroGenreTabs .genre-tab');
+        const iframe = document.getElementById('playerIframe');
+        const label = document.getElementById('playerLabel');
+
+        tabs.forEach(tab => {
+          tab.addEventListener('click', function() {
+            tabs.forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+
+            const genre = this.dataset.genre;
+            const track = tracks[genre];
+
+            if (track) {
+              iframe.src = track.url;
+              label.textContent = track.label;
+            }
+          });
+        });
+      })();
+
+      // === ПЕРЕКЛЮЧЕНИЕ ТРЕКОВ В BALM RADIO ===
+      (function() {
+        const tabs = document.querySelectorAll('#radioGenreTabs .genre-tab');
+        const iframe = document.getElementById('radioIframe');
+
+        tabs.forEach(tab => {
+          tab.addEventListener('click', function() {
+            tabs.forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+
+            const genre = this.dataset.genre;
+            const track = tracks[genre];
+
+            if (track) {
+              iframe.src = track.url;
+            }
+          });
+        });
+      })();
+
+      // === МОДАЛКА ПОДПИСКИ ===
+      var subscribeModal = document.getElementById('subscribeModal');
+      var subscribeOpen = document.querySelectorAll('[data-open-subscribe]');
+      var subscribeClose = subscribeModal.querySelector('[data-close-subscribe]');
+
+      subscribeOpen.forEach(function(el) {
+        el.addEventListener('click', function() {
+          subscribeModal.classList.add('open');
+          subscribeModal.style.display = 'flex';
+          document.body.style.overflow = 'hidden';
+        });
+      });
+
+      subscribeClose.addEventListener('click', function() {
+        subscribeModal.classList.remove('open');
+        subscribeModal.style.display = 'none';
+        document.body.style.overflow = '';
+      });
+
+      subscribeModal.addEventListener('click', function(e) {
+        if (e.target === this) {
+          this.classList.remove('open');
+          this.style.display = 'none';
+          document.body.style.overflow = '';
+        }
+      });
+
+      // === МОДАЛКА ОПЛАТЫ ===
+      var payModal = document.getElementById('payModal');
+      var payOpen = document.querySelector('[data-open-pay]');
+      var payClose = payModal.querySelector('[data-close-pay]');
+
+      if (payOpen) {
+        payOpen.addEventListener('click', function() {
+          subscribeModal.classList.remove('open');
+          subscribeModal.style.display = 'none';
+          payModal.classList.add('open');
+          payModal.style.display = 'flex';
+        });
+      }
+
+      payClose.addEventListener('click', function() {
+        payModal.classList.remove('open');
+        payModal.style.display = 'none';
+        document.body.style.overflow = '';
+      });
+
+      payModal.addEventListener('click', function(e) {
+        if (e.target === this) {
+          this.classList.remove('open');
+          this.style.display = 'none';
+          document.body.style.overflow = '';
+        }
+      });
+
+      // === МОДАЛКА КУПИТЬ МУЗЫКУ ===
+      var buyModal = document.getElementById('buyModal');
+      var buyOpen = document.querySelector('[data-open-buy]');
+      var buyClose = buyModal.querySelector('[data-close-buy]');
+      var agreeCheck = document.getElementById('agreeCheck');
+      var payBtn = document.getElementById('payBtn');
+
+      if (buyOpen) {
+        buyOpen.addEventListener('click', function(e) {
+          e.preventDefault();
+          buyModal.classList.add('open');
+          buyModal.style.display = 'flex';
+          document.body.style.overflow = 'hidden';
+          if (agreeCheck) {
+            agreeCheck.checked = false;
+          }
+          if (payBtn) {
+            payBtn.classList.add('btn-disabled');
+            payBtn.style.opacity = '.4';
+            payBtn.style.pointerEvents = 'none';
+          }
+        });
+      }
+
+      if (buyClose) {
+        buyClose.addEventListener('click', function() {
+          buyModal.classList.remove('open');
+          buyModal.style.display = 'none';
+          document.body.style.overflow = '';
+        });
+      }
+
+      buyModal.addEventListener('click', function(e) {
+        if (e.target === this) {
+          this.classList.remove('open');
+          this.style.display = 'none';
+          document.body.style.overflow = '';
+        }
+      });
+
+      if (agreeCheck && payBtn) {
+        agreeCheck.addEventListener('change', function() {
+          if (this.checked) {
+            payBtn.classList.remove('btn-disabled');
+            payBtn.style.opacity = '1';
+            payBtn.style.pointerEvents = 'all';
+          } else {
+            payBtn.classList.add('btn-disabled');
+            payBtn.style.opacity = '.4';
+            payBtn.style.pointerEvents = 'none';
+          }
+        });
+      }
+
+      // === МОДАЛКА СОГЛАШЕНИЯ ===
+      var agreeModal = document.getElementById('agreementModal');
+      var agreeOpen = document.querySelectorAll('[data-agreement]');
+      var agreeClose = agreeModal.querySelector('[data-close-agreement]');
+
+      agreeOpen.forEach(function(el) {
+        el.addEventListener('click', function(e) {
+          e.preventDefault();
+          agreeModal.classList.add('open');
+          agreeModal.style.display = 'flex';
+          document.body.style.overflow = 'hidden';
+        });
+      });
+
+      if (agreeClose) {
+        agreeClose.addEventListener('click', function() {
+          agreeModal.classList.remove('open');
+          agreeModal.style.display = 'none';
+          document.body.style.overflow = '';
+        });
+      }
+
+      agreeModal.addEventListener('click', function(e) {
+        if (e.target === this) {
+          this.classList.remove('open');
+          this.style.display = 'none';
+          document.body.style.overflow = '';
+        }
+      });
+
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          if (subscribeModal) {
+            subscribeModal.classList.remove('open');
+            subscribeModal.style.display = 'none';
+          }
+          if (payModal) {
+            payModal.classList.remove('open');
+            payModal.style.display = 'none';
+          }
+          if (buyModal) {
+            buyModal.classList.remove('open');
+            buyModal.style.display = 'none';
+          }
+          if (agreeModal) {
+            agreeModal.classList.remove('open');
+            agreeModal.style.display = 'none';
+          }
+          document.body.style.overflow = '';
+        }
+      });
+
+      // === МЕНЮ ===
+      var hamburger = document.getElementById('hamburger');
+      var mobileMenu = document.getElementById('mobileMenu');
+
+      hamburger.addEventListener('click', function() {
+        this.classList.toggle('active');
+        if (mobileMenu.style.display === 'flex') {
+          mobileMenu.style.display = 'none';
+          this.setAttribute('aria-expanded', 'false');
+        } else {
+          mobileMenu.style.display = 'flex';
+          this.setAttribute('aria-expanded', 'true');
+        }
+      });
+
+      mobileMenu.querySelectorAll('[data-close]').forEach(function(el) {
+        el.addEventListener('click', function() {
+          hamburger.classList.remove('active');
+          mobileMenu.style.display = 'none';
+          hamburger.setAttribute('aria-expanded', 'false');
+        });
+      });
+
+      // === РЕЛИЗЫ ===
+      var cards = document.querySelectorAll('.card');
+      var toggleBtn = document.getElementById('showAllBtn');
+      var allVisible = false;
+
+      if (toggleBtn) {
+        toggleBtn.addEventListener('click', function() {
+          allVisible = !allVisible;
+          cards.forEach(function(card, i) {
+            if (!allVisible && i >= 3) {
+              card.classList.add('hidden');
+              card.style.display = 'none';
+            } else {
+              card.classList.remove('hidden');
+              card.style.display = 'block';
+            }
+          });
+          this.innerHTML = allVisible ? 'Скрыть релизы <i class="fas fa-chevron-up"></i>' : 'Все релизы <i class="fas fa-chevron-down"></i>';
+          this.classList.toggle('rotated');
+        });
+      }
+
+      cards.forEach(function(card, i) {
+        if (i >= 3) {
+          card.classList.add('hidden');
+          card.style.display = 'none';
+        }
+      });
+
+      // === FAQ ===
+      document.querySelectorAll('[data-faq-toggle]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var item = this.closest('.faq-item');
+          var isActive = item.classList.contains('active');
+          document.querySelectorAll('.faq-item.active').forEach(function(el) {
+            if (el !== item) {
+              el.classList.remove('active');
+              el.querySelector('[data-faq-toggle]').setAttribute('aria-expanded', 'false');
+            }
+          });
+          item.classList.toggle('active');
+          this.setAttribute('aria-expanded', !isActive);
+        });
+      });
+
+    })();
   </script>
 </body>
 </html>
