@@ -47,97 +47,197 @@
   </style>
 </head>
 <body>
-  <div class="rotate-warning" id="rotateWarning"><i class="fas fa-rotate"></i><h2>Поверните телефон</h2><p>Для удобного просмотра используйте вертикальный режим</p></div>
+  <div class="rotate-warning" id="rotateWarning"><i class="fas fa-rotate" aria-hidden="true"></i><h2>Поверните телефон</h2><p>Для удобного просмотра используйте вертикальный режим</p></div>
 
-  <header class="navbar">
-    <a href="#player" class="logo">BALM</a>
+  <header class="navbar" role="banner">
+    <a href="#player" class="logo" aria-label="BALM — на главную">BALM</a>
     <div class="nav-platforms">
-      <a href="https://music.yandex.ru/artist/26471381" target="_blank"><i class="fas fa-music"></i><span class="platform-label">Яндекс Музыка</span></a>
-      <a href="https://music.apple.com/ru/artist/balm-биэлэм/6800941971" target="_blank"><i class="fab fa-apple"></i><span class="platform-label">Apple Music</span></a>
-      <a href="https://open.spotify.com/search/биэлэм" target="_blank"><i class="fab fa-spotify"></i><span class="platform-label">Spotify</span></a>
-      <a href="https://zvuk.com/artist/214558962" target="_blank"><i class="fas fa-headphones"></i><span class="platform-label">Zvuk</span></a>
-      <a href="https://vk.ru/albe_music" target="_blank"><i class="fab fa-vk"></i><span class="platform-label">VK Музыка</span></a>
+      <a href="https://music.yandex.ru/artist/26471381" target="_blank" aria-label="Яндекс Музыка"><i class="fas fa-music" aria-hidden="true"></i><span class="platform-label">Яндекс Музыка</span></a>
+      <a href="https://music.apple.com/ru/artist/balm-биэлэм/6800941971" target="_blank" aria-label="Apple Music"><i class="fab fa-apple" aria-hidden="true"></i><span class="platform-label">Apple Music</span></a>
+      <a href="https://open.spotify.com/search/биэлэм" target="_blank" aria-label="Spotify"><i class="fab fa-spotify" aria-hidden="true"></i><span class="platform-label">Spotify</span></a>
+      <a href="https://zvuk.com/artist/214558962" target="_blank" aria-label="Zvuk"><i class="fas fa-headphones" aria-hidden="true"></i><span class="platform-label">Zvuk</span></a>
+      <a href="https://vk.ru/albe_music" target="_blank" aria-label="VK Музыка"><i class="fab fa-vk" aria-hidden="true"></i><span class="platform-label">VK Музыка</span></a>
     </div>
     <div class="navbar-actions">
-      <a href="https://tips.tips/000481710" target="_blank" class="btn btn-heart" rel="noopener"><i class="fas fa-heart"></i> Поддержать</a>
+      <a href="https://tips.tips/000481710" target="_blank" class="btn btn-heart" rel="noopener" aria-label="Поддержать проект"><i class="fas fa-heart" aria-hidden="true"></i> Поддержать</a>
       <button class="hamburger" id="hamburger" aria-label="Меню" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </header>
 
-  <nav class="mobile-menu" id="mobileMenu">
+  <nav class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Мобильное меню">
     <a href="#player" data-close>Плеер</a>
     <a href="#copyright-free" data-close>Без авторских прав</a>
     <a href="#releases" data-close>Релизы</a>
     <a href="#bio" data-close>Био</a>
     <a href="#faq" data-close>FAQ</a>
-    <a href="https://t.me/albe_spb" target="_blank" data-close><i class="fab fa-telegram"></i> Связаться</a>
+    <a href="https://t.me/albe_spb" target="_blank" data-close><i class="fab fa-telegram" aria-hidden="true"></i> Связаться</a>
   </nav>
 
   <!-- Модалки -->
-  <div class="modal-overlay" id="subscribeModal"><div class="modal"><button class="modal-close" data-close="subscribeModal">&times;</button><h2 class="modal-title">🎵 BALM Premium</h2><p class="modal-sub">Неограниченный доступ ко всей музыке BALM без авторских прав</p><ul class="modal-features"><li><i class="fas fa-check"></i> Все жанры: Chillout, Jazz, Asian, Turkish, Alternative, Funk, Piano</li><li><i class="fas fa-check"></i> Неограниченный доступ к любой музыке</li><li><i class="fas fa-check"></i> Без отчислений РАО и ВОИС</li><li><i class="fas fa-check"></i> Использование в любых коммерческих проектах</li><li><i class="fas fa-check"></i> Постоянное обновление библиотеки</li></ul><div class="modal-price"><div class="modal-price-item"><span>Подписка</span><span class="sum">500 ₽ / месяц</span></div></div><button class="btn btn-primary btn-full" data-open="payModal">Оформить подписку</button></div></div>
+  <div class="modal-overlay" id="subscribeModal" role="dialog" aria-modal="true" aria-labelledby="subscribeModalTitle">
+    <div class="modal">
+      <button class="modal-close" data-close="subscribeModal" aria-label="Закрыть окно подписки">&times;</button>
+      <h2 class="modal-title" id="subscribeModalTitle">🎵 BALM Premium</h2>
+      <p class="modal-sub">Неограниченный доступ ко всей музыке BALM без авторских прав</p>
+      <ul class="modal-features">
+        <li><i class="fas fa-check" aria-hidden="true"></i> Все жанры: Chillout, Jazz, Asian, Turkish, Alternative, Funk, Piano</li>
+        <li><i class="fas fa-check" aria-hidden="true"></i> Неограниченный доступ к любой музыке</li>
+        <li><i class="fas fa-check" aria-hidden="true"></i> Без отчислений РАО и ВОИС</li>
+        <li><i class="fas fa-check" aria-hidden="true"></i> Использование в любых коммерческих проектах</li>
+        <li><i class="fas fa-check" aria-hidden="true"></i> Постоянное обновление библиотеки</li>
+      </ul>
+      <div class="modal-price">
+        <div class="modal-price-item"><span>Подписка</span><span class="sum">500 ₽ / месяц</span></div>
+      </div>
+      <button class="btn btn-primary btn-full" data-open="payModal">Оформить подписку</button>
+    </div>
+  </div>
 
-  <div class="modal-pay-overlay" id="payModal"><div class="modal-pay"><button class="modal-pay-close" data-close="payModal">&times;</button><h2 class="modal-title">Оплатить подписку</h2><p class="modal-sub" style="margin-bottom:20px;">Вы оформляете подписку на BALM Premium за 500 ₽/месяц.</p><a href="https://tips.tips/000481739" target="_blank" class="btn btn-primary btn-full" rel="noopener"><i class="fas fa-credit-card"></i> Оплатить 500 ₽</a><p style="margin-top:16px;font-size:.8rem;color:#666;text-align:center;font-family:var(--font-main);font-weight:300;">После оплаты вы получите доступ ко всей музыке BALM</p></div></div>
+  <div class="modal-pay-overlay" id="payModal" role="dialog" aria-modal="true" aria-labelledby="payModalTitle">
+    <div class="modal-pay">
+      <button class="modal-pay-close" data-close="payModal" aria-label="Закрыть окно оплаты">&times;</button>
+      <h2 class="modal-title" id="payModalTitle">Оплатить подписку</h2>
+      <p class="modal-sub" style="margin-bottom:20px;">Вы оформляете подписку на BALM Premium за 500 ₽/месяц.</p>
+      <a href="https://tips.tips/000481739" target="_blank" class="btn btn-primary btn-full" rel="noopener" aria-label="Оплатить 500 рублей"><i class="fas fa-credit-card" aria-hidden="true"></i> Оплатить 500 ₽</a>
+      <p style="margin-top:16px;font-size:.8rem;color:#666;text-align:center;font-family:var(--font-main);font-weight:300;">После оплаты вы получите доступ ко всей музыке BALM</p>
+    </div>
+  </div>
 
-  <div class="modal-buy-overlay" id="buyModal"><div class="modal-buy"><button class="modal-buy-close" data-close="buyModal">&times;</button><h2 class="modal-title">Приобрести музыку без авторских прав</h2><p class="modal-sub">Вы можете приобрести 2 часа студийной уникальной Chillout музыки для коммерческих целей без ограничений. Отчисления не требуются — платите один раз и пользуетесь бессрочно.</p><div class="modal-price"><div class="modal-price-item"><span>Джазовая музыка</span><span class="sum">1 час · 1500 ₽</span></div><div class="modal-price-item"><span>Турецкая музыка</span><span class="sum">1 час · 1000 ₽</span></div><div class="modal-price-item"><span style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">Полный пакет — 2 часа <span class="sale-badge">🔥 Супер-акция</span></span><span style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:flex-end;"><span class="old">2500 ₽</span><span class="new">300 ₽</span></span></div></div><div class="modal-comment"><i class="fas fa-info-circle" style="margin-right:8px;color:var(--accent)"></i> После оплаты укажите в комментарии: <strong>Telegram, VK или email</strong> — мы отправим ссылку.</div><div class="modal-agree"><input type="checkbox" id="agreeCheck"><label for="agreeCheck">Я ознакомлен(а) и согласен(на) с <a href="#" data-agreement>условиями приобретения</a> и обработкой данных</label></div><a href="https://tips.tips/000481739" target="_blank" class="btn btn-primary btn-full btn-disabled" id="payBtn" rel="noopener"><i class="fas fa-credit-card"></i> Оплатить и получить музыку</a></div></div>
+  <div class="modal-buy-overlay" id="buyModal" role="dialog" aria-modal="true" aria-labelledby="buyModalTitle">
+    <div class="modal-buy">
+      <button class="modal-buy-close" data-close="buyModal" aria-label="Закрыть окно покупки">&times;</button>
+      <h2 class="modal-title" id="buyModalTitle">Приобрести музыку без авторских прав</h2>
+      <p class="modal-sub">Вы можете приобрести 2 часа студийной уникальной Chillout музыки для коммерческих целей без ограничений. Отчисления не требуются — платите один раз и пользуетесь бессрочно.</p>
+      <div class="modal-price">
+        <div class="modal-price-item"><span>Джазовая музыка</span><span class="sum">1 час · 1500 ₽</span></div>
+        <div class="modal-price-item"><span>Турецкая музыка</span><span class="sum">1 час · 1000 ₽</span></div>
+        <div class="modal-price-item">
+          <span style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">Полный пакет — 2 часа <span class="sale-badge">🔥 Супер-акция</span></span>
+          <span style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:flex-end;"><span class="old">2500 ₽</span><span class="new">300 ₽</span></span>
+        </div>
+      </div>
+      <div class="modal-comment"><i class="fas fa-info-circle" style="margin-right:8px;color:var(--accent)" aria-hidden="true"></i> После оплаты укажите в комментарии: <strong>Telegram, VK или email</strong> — мы отправим ссылку.</div>
+      <div class="modal-agree">
+        <input type="checkbox" id="agreeCheck">
+        <label for="agreeCheck">Я ознакомлен(а) и согласен(на) с <a href="#" data-agreement>условиями приобретения</a> и обработкой данных</label>
+      </div>
+      <a href="https://tips.tips/000481739" target="_blank" class="btn btn-primary btn-full btn-disabled" id="payBtn" rel="noopener" aria-label="Оплатить и получить музыку"><i class="fas fa-credit-card" aria-hidden="true"></i> Оплатить и получить музыку</a>
+    </div>
+  </div>
 
-  <div class="agree-overlay" id="agreementModal" aria-hidden="true" data-nosnippet><div class="agree"><button class="agree-close" data-close="agreementModal">&times;</button><h2 class="agree-title">ИНФОРМАЦИОННОЕ СОГЛАШЕНИЕ</h2><div class="agree-sub">по использованию музыки BALM (БИЭЛЭМ) без авторских прав</div><div class="agree-section"><p style="font-size:.85rem;color:#888;margin-bottom:12px;">Настоящее Соглашение носит информационный характер и не является публичной офертой.</p><h3>1. Общие положения</h3><p>1.1. Настоящее Соглашение информирует о правилах использования музыкальных произведений артиста BALM (БИЭЛЭМ) (Беляев Алексей).</p><p>1.2. Совершая разовый платёж за музыку, вы соглашаетесь с условиями, описанными ниже.</p></div><div class="agree-section"><h3>2. Что вы получаете</h3><ul><li><span class="check">✅</span> Право использовать музыку в коммерческих и некоммерческих целях без ограничений.</li><li><span class="check">✅</span> Право транслировать музыку в любых общественных местах.</li><li><span class="check">✅</span> Право использовать бессрочно — один раз заплатили, пользуетесь всегда.</li><li><span class="check">✅</span> Без отчислений — никаких выплат в РАО, ВОИС и другие организации.</li></ul></div><div class="agree-section"><h3>3. Чего делать НЕЛЬЗЯ</h3><ul><li><span class="cross">❌</span> Выдавать музыку за свою (указывайте автора: BALM (БИЭЛЭМ)).</li><li><span class="cross">❌</span> Передавать или продавать музыку третьим лицам.</li><li><span class="cross">❌</span> Изменять, переделывать или создавать ремиксы без разрешения.</li></ul></div><div class="agree-section"><h3>4. Что нужно для легального использования</h3><p>Достаточно иметь:</p><ul><li>Настоящее Соглашение</li><li>Подтверждение оплаты (чек или скриншот)</li></ul><p style="margin-top:8px;">Эти документы подтверждают, что вы используете музыку легально.</p></div><div class="agree-section"><h3>5. Сравнение: выгода для бизнеса</h3><p style="margin-bottom:8px;">Вместо того чтобы платить РАО и ВОИС ежемесячно, вы платите один раз:</p><div class="agree-table"><table><thead><tr><th>Тип объекта</th><th>Экономия за год (на 100 м²)</th></tr></thead><tbody><tr><td>Кафе и рестораны</td><td class="hl">от 108 000 ₽</td></tr><tr><td>Бары и ночные клубы</td><td class="hl">от 162 000 ₽</td></tr><tr><td>Салоны красоты и спа</td><td class="hl">от 90 000 ₽</td></tr><tr><td>Фитнес-клубы</td><td class="hl">от 72 000 ₽</td></tr></tbody></table></div><p style="margin-top:10px;color:var(--success);font-weight:700;">Вы платите один раз — и больше никаких ежемесячных отчислений!</p></div><div class="agree-footer">© 2026 BALM (БИЭЛЭМ) · Беляев Алексей · Все права защищены</div></div></div>
+  <div class="agree-overlay" id="agreementModal" role="dialog" aria-modal="true" aria-labelledby="agreementModalTitle" data-nosnippet>
+    <div class="agree">
+      <button class="agree-close" data-close="agreementModal" aria-label="Закрыть соглашение">&times;</button>
+      <h2 class="agree-title" id="agreementModalTitle">ИНФОРМАЦИОННОЕ СОГЛАШЕНИЕ</h2>
+      <div class="agree-sub">по использованию музыки BALM (БИЭЛЭМ) без авторских прав</div>
+      <div class="agree-section">
+        <p style="font-size:.85rem;color:#888;margin-bottom:12px;">Настоящее Соглашение носит информационный характер и не является публичной офертой.</p>
+        <h3>1. Общие положения</h3>
+        <p>1.1. Настоящее Соглашение информирует о правилах использования музыкальных произведений артиста BALM (БИЭЛЭМ) (Беляев Алексей).</p>
+        <p>1.2. Совершая разовый платёж за музыку, вы соглашаетесь с условиями, описанными ниже.</p>
+      </div>
+      <div class="agree-section">
+        <h3>2. Что вы получаете</h3>
+        <ul>
+          <li><span class="check">✅</span> Право использовать музыку в коммерческих и некоммерческих целях без ограничений.</li>
+          <li><span class="check">✅</span> Право транслировать музыку в любых общественных местах.</li>
+          <li><span class="check">✅</span> Право использовать бессрочно — один раз заплатили, пользуетесь всегда.</li>
+          <li><span class="check">✅</span> Без отчислений — никаких выплат в РАО, ВОИС и другие организации.</li>
+        </ul>
+      </div>
+      <div class="agree-section">
+        <h3>3. Чего делать НЕЛЬЗЯ</h3>
+        <ul>
+          <li><span class="cross">❌</span> Выдавать музыку за свою (указывайте автора: BALM (БИЭЛЭМ)).</li>
+          <li><span class="cross">❌</span> Передавать или продавать музыку третьим лицам.</li>
+          <li><span class="cross">❌</span> Изменять, переделывать или создавать ремиксы без разрешения.</li>
+        </ul>
+      </div>
+      <div class="agree-section">
+        <h3>4. Что нужно для легального использования</h3>
+        <p>Достаточно иметь:</p>
+        <ul>
+          <li>Настоящее Соглашение</li>
+          <li>Подтверждение оплаты (чек или скриншот)</li>
+        </ul>
+        <p style="margin-top:8px;">Эти документы подтверждают, что вы используете музыку легально.</p>
+      </div>
+      <div class="agree-section">
+        <h3>5. Сравнение: выгода для бизнеса</h3>
+        <p style="margin-bottom:8px;">Вместо того чтобы платить РАО и ВОИС ежемесячно, вы платите один раз:</p>
+        <div class="agree-table">
+          <table>
+            <thead><tr><th>Тип объекта</th><th>Экономия за год (на 100 м²)</th></tr></thead>
+            <tbody>
+              <tr><td>Кафе и рестораны</td><td class="hl">от 108 000 ₽</td></tr>
+              <tr><td>Бары и ночные клубы</td><td class="hl">от 162 000 ₽</td></tr>
+              <tr><td>Салоны красоты и спа</td><td class="hl">от 90 000 ₽</td></tr>
+              <tr><td>Фитнес-клубы</td><td class="hl">от 72 000 ₽</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="margin-top:10px;color:var(--success);font-weight:700;">Вы платите один раз — и больше никаких ежемесячных отчислений!</p>
+      </div>
+      <div class="agree-footer">© 2026 BALM (БИЭЛЭМ) · Беляев Алексей · Все права защищены</div>
+    </div>
+  </div>
 
   <!-- HERO -->
-  <section class="hero" id="player">
+  <section class="hero" id="player" role="main" aria-label="Главный плеер">
     <img class="hero-img" src="BALMherob.webp" alt="BALM — экспериментальная музыка без авторских прав для бизнеса и видео. Обложка проекта на фоне космоса." loading="lazy" width="1440" height="900">
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <h1 class="hero-title">BALM</h1>
       <h2 class="hero-subtitle">БИЭЛЭМ</h2>
       <div class="hero-player-wrapper">
-        <div class="genre-tabs" id="heroGenreTabs"></div>
+        <div class="genre-tabs" id="heroGenreTabs" role="tablist" aria-label="Выбор жанра"></div>
         <div class="hero-player" id="heroPlayer">
-          <iframe id="playerIframe" style="border:0;width:100%;height:120px;" src="https://bandcamp.com/EmbeddedPlayer/track=1094038954/size=large/bgcol=333333/linkcol=ffffff/tracklist=false/artwork=small/transparent=true/" seamless><a href="https://balm2.bandcamp.com/track/chillout-mix-free">Chillout mix (Free) by BALM</a></iframe>
+          <iframe id="playerIframe" style="border:0;width:100%;height:120px;" src="https://bandcamp.com/EmbeddedPlayer/track=1094038954/size=large/bgcol=333333/linkcol=ffffff/tracklist=false/artwork=small/transparent=true/" seamless title="Bandcamp плеер: демо-трек Chillout"></iframe>
           <div class="player-label" id="playerLabel">Chillout · Бесплатная демо-версия</div>
         </div>
       </div>
-      <a href="https://disk.yandex.com/d/-E67dJQXa2KYsg" target="_blank" class="btn btn-primary hero-donate" rel="noopener"><i class="fas fa-download"></i> Скачать бесплатно</a>
+      <a href="https://disk.yandex.com/d/-E67dJQXa2KYsg" target="_blank" class="btn btn-primary hero-donate" rel="noopener" aria-label="Скачать бесплатную демо-версию"><i class="fas fa-download" aria-hidden="true"></i> Скачать бесплатно</a>
     </div>
   </section>
 
   <!-- MUSIC WITHOUT COPYRIGHT -->
-  <section class="cf scroll-margin" id="copyright-free">
+  <section class="cf scroll-margin" id="copyright-free" aria-labelledby="copyrightFreeTitle">
     <div class="container">
       <div class="cf-grid">
         <div class="cf-text">
-          <div class="cf-badge"><i class="fas fa-shield-alt" style="margin-right:8px"></i> Royalty Free</div>
-          <h2 class="cf-title"><i class="fas fa-check-circle"></i> Музыка без авторских прав для фона, бизнеса и видео</h2>
+          <div class="cf-badge"><i class="fas fa-shield-alt" style="margin-right:8px" aria-hidden="true"></i> Royalty Free</div>
+          <h2 class="cf-title" id="copyrightFreeTitle"><i class="fas fa-check-circle" aria-hidden="true"></i> Музыка без авторских прав для фона, бизнеса и видео</h2>
           <p class="cf-desc">Музыка BALM создана для использования в коммерческих и некоммерческих проектах. <strong>Никаких отчислений РАО и ВОИС</strong> — платите один раз и используете бессрочно.</p>
           <ul class="cf-features">
-            <li><i class="fas fa-check-circle"></i> Для ресторанов, ТЦ, салонов красоты</li>
-            <li><i class="fas fa-check-circle"></i> Для YouTube, TikTok, рекламы</li>
-            <li><i class="fas fa-check-circle"></i> Для игр, подкастов, презентаций</li>
-            <li><i class="fas fa-check-circle"></i> Без ограничений по тиражам и срокам</li>
+            <li><i class="fas fa-check-circle" aria-hidden="true"></i> Для ресторанов, ТЦ, салонов красоты</li>
+            <li><i class="fas fa-check-circle" aria-hidden="true"></i> Для YouTube, TikTok, рекламы</li>
+            <li><i class="fas fa-check-circle" aria-hidden="true"></i> Для игр, подкастов, презентаций</li>
+            <li><i class="fas fa-check-circle" aria-hidden="true"></i> Без ограничений по тиражам и срокам</li>
           </ul>
           <div class="cf-legal">
-            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-check-circle" aria-hidden="true"></i>
             <div class="text"><strong>✅ Скачайте бесплатную демо-версию</strong><br>Полная версия — 2 часа уникальной музыки. <strong>Экономьте до 162 000 ₽ в год</strong> на отчислениях за фоновую музыку.</div>
           </div>
         </div>
         <div class="cf-player">
           <div class="demo">
             <div class="demo-track">
-              <div class="demo-art"><i class="fas fa-headphones"></i></div>
+              <div class="demo-art"><i class="fas fa-headphones" aria-hidden="true"></i></div>
               <div class="demo-meta">
                 <div class="name">BALM RADIO</div>
                 <div class="artist">Слушай онлайн · Без авторских прав</div>
               </div>
             </div>
-            <div class="genre-tabs" id="radioGenreTabs"></div>
+            <div class="genre-tabs" id="radioGenreTabs" role="tablist" aria-label="Выбор жанра радио"></div>
             <div class="radio-wrapper locked" id="radioWrapper">
-              <iframe id="radioIframe" style="border:0;width:100%;height:120px;" src="https://bandcamp.com/EmbeddedPlayer/track=1094038954/size=large/bgcol=333333/linkcol=ffffff/tracklist=false/artwork=small/transparent=true/" seamless><a href="https://balm2.bandcamp.com/track/chillout-mix-free">Chillout mix (Free) by BALM</a></iframe>
-              <div class="radio-lock-overlay" data-open="subscribeModal"><i class="fas fa-lock"></i><span>Оформить подписку</span></div>
+              <iframe id="radioIframe" style="border:0;width:100%;height:120px;" src="https://bandcamp.com/EmbeddedPlayer/track=1094038954/size=large/bgcol=333333/linkcol=ffffff/tracklist=false/artwork=small/transparent=true/" seamless title="Bandcamp плеер: радио BALM (заблокировано)"></iframe>
+              <div class="radio-lock-overlay" data-open="subscribeModal"><i class="fas fa-lock" aria-hidden="true"></i><span>Оформить подписку</span></div>
             </div>
-            <div class="demo-tag"><i class="fas fa-headphones" style="margin-right:6px"></i> BALM RADIO · Все жанры · Без рекламы</div>
+            <div class="demo-tag"><i class="fas fa-headphones" style="margin-right:6px" aria-hidden="true"></i> BALM RADIO · Все жанры · Без рекламы</div>
           </div>
           <div class="btn-group">
-            <button class="btn btn-primary" data-open="subscribeModal"><i class="fas fa-crown"></i> Оформить подписку</button>
-            <button class="btn btn-primary" data-open="buyModal"><i class="fas fa-shopping-cart"></i> Купить музыку для бизнеса</button>
+            <button class="btn btn-primary" data-open="subscribeModal" aria-label="Оформить подписку BALM Premium"><i class="fas fa-crown" aria-hidden="true"></i> Оформить подписку</button>
+            <button class="btn btn-primary" data-open="buyModal" aria-label="Купить музыку для бизнеса"><i class="fas fa-shopping-cart" aria-hidden="true"></i> Купить музыку для бизнеса</button>
           </div>
         </div>
       </div>
@@ -145,22 +245,22 @@
   </section>
 
   <!-- RELEASES -->
-  <section class="releases scroll-margin" id="releases">
+  <section class="releases scroll-margin" id="releases" aria-labelledby="releasesTitle">
     <div class="container">
       <div class="releases-header">
-        <h2 class="releases-title">Новые релизы BALM</h2>
-        <button class="releases-toggle" id="showAllBtn">Все релизы <i class="fas fa-chevron-down"></i></button>
+        <h2 class="releases-title" id="releasesTitle">Новые релизы BALM</h2>
+        <button class="releases-toggle" id="showAllBtn" aria-label="Показать или скрыть все релизы">Все релизы <i class="fas fa-chevron-down" aria-hidden="true"></i></button>
       </div>
       <div class="releases-grid" id="releaseGrid"></div>
     </div>
   </section>
 
   <!-- BIO -->
-  <section class="bio scroll-margin" id="bio">
+  <section class="bio scroll-margin" id="bio" aria-labelledby="bioTitle">
     <div class="container bio-grid">
       <div class="bio-img"><img src="BALM.webp" alt="BALM — экспериментальный музыкальный проект" loading="lazy" width="600" height="600"></div>
       <div>
-        <h2 class="bio-title">О проекте BALM</h2>
+        <h2 class="bio-title" id="bioTitle">О проекте BALM</h2>
         <p class="bio-text"><strong>BALM</strong> — это экспериментальный музыкальный проект Алексея Беляева из Санкт-Петербурга. На стыке ню-метала, поп-мелодий и электроники рождается уникальный звук для тех, кто ищет настоящую эмоцию и качественный музыкальный контент без ограничений по авторским правам.</p>
         <p class="bio-text">Основная миссия проекта — сделать качественную музыку доступной для бизнеса и творческих проектов. Мы создаём коммерческую, детскую и фоновую музыку, а также пишем песни и стихи для мультипликации на заказ. Работаем в любых жанрах: от джаза до рока, от электроники до хип-хопа.</p>
         <p class="bio-text"><strong>Ключевое преимущество:</strong> вся музыка BALM свободна от авторских отчислений РАО и ВОИС. Вы можете использовать её в любых коммерческих целях без дополнительных платежей.</p>
@@ -174,23 +274,23 @@
   </section>
 
   <!-- FAQ -->
-  <section class="faq scroll-margin" id="faq">
+  <section class="faq scroll-margin" id="faq" aria-labelledby="faqTitle">
     <div class="container">
-      <h2 class="faq-title">Часто задаваемые вопросы</h2>
+      <h2 class="faq-title" id="faqTitle">Часто задаваемые вопросы</h2>
       <div class="faq-list">
-        <div class="faq-item"><button class="faq-q" data-faq-toggle><span>Нужно ли платить РАО и ВОИС за использование музыки BALM?</span><span class="faq-icon"><i class="fas fa-chevron-down"></i></span></button><div class="faq-a"><p><strong>Нет, не нужно.</strong> Музыка BALM полностью свободна от авторских отчислений. Вы платите <span class="hl">один раз</span> и больше никогда не платите РАО, ВОИС или другим организациям. Экономия до 162 000 ₽ в год. Подробнее в <a href="#" data-agreement>Соглашении</a>.</p></div></div>
-        <div class="faq-item"><button class="faq-q" data-faq-toggle><span>Вы пишете музыку для детских мультфильмов и анимации?</span><span class="faq-icon"><i class="fas fa-chevron-down"></i></span></button><div class="faq-a"><p><strong>Да, мы создаём музыку для детской мультипликации.</strong> BALM пишет саундтреки, фоновую музыку и песенки для мультфильмов, детских программ и анимационных проектов. <a href="https://t.me/albe_spb" target="_blank">Обсудим вашу идею в Telegram</a>.</p></div></div>
-        <div class="faq-item"><button class="faq-q" data-faq-toggle><span>Пишете ли вы стихи и песни для исполнителей с нуля?</span><span class="faq-icon"><i class="fas fa-chevron-down"></i></span></button><div class="faq-a"><p><strong>Да, мы пишем стихи, тексты песен и полноценные треки для исполнителей на заказ.</strong> Можем создать материал под ваш образ, голос и стиль. <a href="https://t.me/albe_spb" target="_blank">Напишите в Telegram</a>.</p></div></div>
-        <div class="faq-item"><button class="faq-q" data-faq-toggle><span>Можно ли приобрести готовые стихи и песни из каталога?</span><span class="faq-icon"><i class="fas fa-chevron-down"></i></span></button><div class="faq-a"><p><strong>Да, некоторые авторские стихи и песни доступны для приобретения.</strong> Стоимость и условия обсуждаются индивидуально. <a href="https://t.me/albe_spb" target="_blank">Свяжитесь с нами в Telegram</a>.</p></div></div>
+        <div class="faq-item"><button class="faq-q" data-faq-toggle aria-expanded="false"><span>Нужно ли платить РАО и ВОИС за использование музыки BALM?</span><span class="faq-icon"><i class="fas fa-chevron-down" aria-hidden="true"></i></span></button><div class="faq-a"><p><strong>Нет, не нужно.</strong> Музыка BALM полностью свободна от авторских отчислений. Вы платите <span class="hl">один раз</span> и больше никогда не платите РАО, ВОИС или другим организациям. Экономия до 162 000 ₽ в год. Подробнее в <a href="#" data-agreement>Соглашении</a>.</p></div></div>
+        <div class="faq-item"><button class="faq-q" data-faq-toggle aria-expanded="false"><span>Вы пишете музыку для детских мультфильмов и анимации?</span><span class="faq-icon"><i class="fas fa-chevron-down" aria-hidden="true"></i></span></button><div class="faq-a"><p><strong>Да, мы создаём музыку для детской мультипликации.</strong> BALM пишет саундтреки, фоновую музыку и песенки для мультфильмов, детских программ и анимационных проектов. <a href="https://t.me/albe_spb" target="_blank">Обсудим вашу идею в Telegram</a>.</p></div></div>
+        <div class="faq-item"><button class="faq-q" data-faq-toggle aria-expanded="false"><span>Пишете ли вы стихи и песни для исполнителей с нуля?</span><span class="faq-icon"><i class="fas fa-chevron-down" aria-hidden="true"></i></span></button><div class="faq-a"><p><strong>Да, мы пишем стихи, тексты песен и полноценные треки для исполнителей на заказ.</strong> Можем создать материал под ваш образ, голос и стиль. <a href="https://t.me/albe_spb" target="_blank">Напишите в Telegram</a>.</p></div></div>
+        <div class="faq-item"><button class="faq-q" data-faq-toggle aria-expanded="false"><span>Можно ли приобрести готовые стихи и песни из каталога?</span><span class="faq-icon"><i class="fas fa-chevron-down" aria-hidden="true"></i></span></button><div class="faq-a"><p><strong>Да, некоторые авторские стихи и песни доступны для приобретения.</strong> Стоимость и условия обсуждаются индивидуально. <a href="https://t.me/albe_spb" target="_blank">Свяжитесь с нами в Telegram</a>.</p></div></div>
       </div>
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer class="container footer">
-    <div class="footer-row"><div class="footer-platforms"><div class="platform-row"><a href="https://music.yandex.ru/artist/26471381" target="_blank"><i class="fas fa-music" style="color:#FFCC00;"></i><span class="platform-label">Яндекс Музыка</span></a><a href="https://music.apple.com/ru/artist/balm-биэлэм/6800941971" target="_blank"><i class="fab fa-apple" style="color:#FC3C44;"></i><span class="platform-label">Apple Music</span></a></div><div class="platform-row"><a href="https://open.spotify.com/search/биэлэм" target="_blank"><i class="fab fa-spotify" style="color:#1DB954;"></i><span class="platform-label">Spotify</span></a><a href="https://zvuk.com/artist/214558962" target="_blank"><i class="fas fa-headphones" style="color:#8B5CF6;"></i><span class="platform-label">Zvuk</span></a><a href="https://vk.ru/albe_music" target="_blank"><i class="fab fa-vk" style="color:#0077FF;"></i><span class="platform-label">VK Музыка</span></a></div></div></div>
-    <div class="footer-row"><div class="footer-links"><a href="#" data-agreement>Пользовательское соглашение</a><a href="#" onclick="alert('Политика конфиденциальности: данные не передаются третьим лицам.');">Политика конфиденциальности</a></div></div>
-    <div class="footer-row"><div class="footer-bottom"><span>Разработано в</span><a href="https://t.me/albe_web" target="_blank" class="footer-albe" rel="noopener"><img src="Albe.webp" alt="Albe — разработка сайтов и веб-решений" loading="lazy" width="36" height="36"></a></div></div>
+  <footer class="container footer" role="contentinfo">
+    <div class="footer-row"><div class="footer-platforms"><div class="platform-row"><a href="https://music.yandex.ru/artist/26471381" target="_blank" aria-label="Яндекс Музыка"><i class="fas fa-music" style="color:#FFCC00;" aria-hidden="true"></i><span class="platform-label">Яндекс Музыка</span></a><a href="https://music.apple.com/ru/artist/balm-биэлэм/6800941971" target="_blank" aria-label="Apple Music"><i class="fab fa-apple" style="color:#FC3C44;" aria-hidden="true"></i><span class="platform-label">Apple Music</span></a></div><div class="platform-row"><a href="https://open.spotify.com/search/биэлэм" target="_blank" aria-label="Spotify"><i class="fab fa-spotify" style="color:#1DB954;" aria-hidden="true"></i><span class="platform-label">Spotify</span></a><a href="https://zvuk.com/artist/214558962" target="_blank" aria-label="Zvuk"><i class="fas fa-headphones" style="color:#8B5CF6;" aria-hidden="true"></i><span class="platform-label">Zvuk</span></a><a href="https://vk.ru/albe_music" target="_blank" aria-label="VK Музыка"><i class="fab fa-vk" style="color:#0077FF;" aria-hidden="true"></i><span class="platform-label">VK Музыка</span></a></div></div></div>
+    <div class="footer-row"><div class="footer-links"><a href="#" data-agreement>Пользовательское соглашение</a><a href="#" onclick="alert('Политика конфиденциальности: данные не передаются третьим лицам.');" aria-label="Политика конфиденциальности">Политика конфиденциальности</a></div></div>
+    <div class="footer-row"><div class="footer-bottom"><span>Разработано в</span><a href="https://t.me/albe_web" target="_blank" class="footer-albe" rel="noopener" aria-label="Albe — разработка сайтов"><img src="Albe.webp" alt="Albe — разработка сайтов и веб-решений" loading="lazy" width="36" height="36"></a></div></div>
   </footer>
 
   <script defer>
@@ -297,7 +397,6 @@
       };
 
       const RELEASES = [
-        // Новый релиз – первым!
         { title: 'Signal acquired (Funky Break)', img: 'signal.webp', year: '2026 · Альбом · Фанк', new: true, link: 'https://music.yandex.ru/artist/26471381' },
         { title: 'Клуб на дне (Минимал-техно)', img: 'rage.webp', year: '2026 · Сингл · Техно', new: true, link: 'https://music.yandex.ru/artist/26471381' },
         { title: 'Последняя любовь', img: 'last.webp', year: '2026 · Дабл-сингл · Поп', new: true, link: 'https://music.yandex.ru/artist/26471381' },
@@ -319,15 +418,16 @@
       const initHeroTabs = () => {
         const container = document.getElementById('heroGenreTabs');
         if (!container) return;
-        container.innerHTML = GENRES.map(g => `<button class="genre-tab${g.id === 'chillout' ? ' active' : ''}" data-genre="${g.id}">${g.label}</button>`).join('');
+        container.innerHTML = GENRES.map(g => `<button class="genre-tab${g.id === 'chillout' ? ' active' : ''}" data-genre="${g.id}" role="tab" aria-selected="${g.id === 'chillout' ? 'true' : 'false'}">${g.label}</button>`).join('');
         const iframe = document.getElementById('playerIframe');
         const label = document.getElementById('playerLabel');
         if (iframe) {
           container.addEventListener('click', (e) => {
             const tab = e.target.closest('.genre-tab');
             if (!tab) return;
-            container.querySelectorAll('.genre-tab').forEach(t => t.classList.remove('active'));
+            container.querySelectorAll('.genre-tab').forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
             tab.classList.add('active');
+            tab.setAttribute('aria-selected', 'true');
             const track = TRACKS[tab.dataset.genre];
             if (track) {
               iframe.src = track.url;
@@ -340,14 +440,15 @@
       const initRadioTabs = () => {
         const container = document.getElementById('radioGenreTabs');
         if (!container) return;
-        container.innerHTML = GENRES.map(g => `<button class="genre-tab${g.id === 'chillout' ? ' active' : ''}" data-genre="${g.id}">${g.label}</button>`).join('');
+        container.innerHTML = GENRES.map(g => `<button class="genre-tab${g.id === 'chillout' ? ' active' : ''}" data-genre="${g.id}" role="tab" aria-selected="${g.id === 'chillout' ? 'true' : 'false'}">${g.label}</button>`).join('');
         const iframe = document.getElementById('radioIframe');
         if (iframe) {
           container.addEventListener('click', (e) => {
             const tab = e.target.closest('.genre-tab');
             if (!tab) return;
-            container.querySelectorAll('.genre-tab').forEach(t => t.classList.remove('active'));
+            container.querySelectorAll('.genre-tab').forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
             tab.classList.add('active');
+            tab.setAttribute('aria-selected', 'true');
             const track = TRACKS[tab.dataset.genre];
             if (track) iframe.src = track.url;
           });
@@ -358,7 +459,7 @@
         const grid = document.getElementById('releaseGrid');
         if (!grid) return;
         grid.innerHTML = RELEASES.map((r, i) =>
-          `<a href="${r.link}" target="_blank" class="card${i >= 3 ? ' hidden' : ''}">
+          `<a href="${r.link}" target="_blank" class="card${i >= 3 ? ' hidden' : ''}" aria-label="${r.title}">
             <div class="card-cover"><img src="${r.img}" alt="${r.title}" loading="lazy" width="200" height="200">${r.new ? '<span class="card-new">NEW</span>' : ''}</div>
             <div class="card-title">${r.title}</div>
             <div class="card-year">${r.year}</div>
@@ -371,7 +472,7 @@
           toggleBtn.addEventListener('click', () => {
             allVisible = !allVisible;
             cards.forEach((card, i) => card.classList.toggle('hidden', !allVisible && i >= 3));
-            toggleBtn.innerHTML = allVisible ? 'Скрыть релизы <i class="fas fa-chevron-up"></i>' : 'Все релизы <i class="fas fa-chevron-down"></i>';
+            toggleBtn.innerHTML = allVisible ? 'Скрыть релизы <i class="fas fa-chevron-up" aria-hidden="true"></i>' : 'Все релизы <i class="fas fa-chevron-down" aria-hidden="true"></i>';
             toggleBtn.classList.toggle('rotated');
           });
         }
@@ -409,7 +510,6 @@
         }
       };
 
-      // Запуск микро-задач
       schedule(initHeroTabs, 10);
       schedule(initRadioTabs, 20);
       schedule(initReleases, 30);
