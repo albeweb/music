@@ -495,7 +495,7 @@
         const grid = document.getElementById('releaseGrid');
         if (!grid) return;
         grid.innerHTML = RELEASES.map((r, i) =>
-          `<a href="${r.link}" target="_blank" class="card${i >= 3 ? ' hidden' : ''}" aria-label="${r.title}">
+          `<a href="${r.link}" target="_blank" class="card${i >= 4 ? ' hidden' : ''}" aria-label="${r.title}">
             <div class="card-cover"><img src="${r.img}" alt="${r.title}" width="200" height="200">${r.new ? '<span class="card-new">NEW</span>' : ''}</div>
             <div class="card-title">${r.title}</div>
             <div class="card-year">${r.year}</div>
@@ -507,7 +507,7 @@
         if (toggleBtn) {
           toggleBtn.addEventListener('click', () => {
             allVisible = !allVisible;
-            cards.forEach((card, i) => card.classList.toggle('hidden', !allVisible && i >= 3));
+            cards.forEach((card, i) => card.classList.toggle('hidden', !allVisible && i >= 4));
             toggleBtn.innerHTML = allVisible ? 'Скрыть релизы <i class="fas fa-chevron-up" aria-hidden="true"></i>' : 'Все релизы <i class="fas fa-chevron-down" aria-hidden="true"></i>';
             toggleBtn.classList.toggle('rotated');
           });
