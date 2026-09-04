@@ -84,25 +84,21 @@
     ::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #a78bfa, #6ee7b7); }
     * { scrollbar-width: thin; scrollbar-color: #8b5cf6 #0b0b0b; }
 
+    /* ===== СКРЫТИЕ СИСТЕМНОЙ КНОПКИ "НАВЕРХ" В SAFARI ===== */
+    body { -webkit-touch-callout: none !important; }
+    ._2ZxqK, ._1ZxqK, ._3ZxqK, ._WZxqK, ._XZxqK, ._YZxqK, .scroll-to-top, .scroll-top { display: none !important; }
+    @supports (-webkit-touch-callout: none) {
+      body { -webkit-touch-callout: none !important; -webkit-user-select: none !important; }
+    }
+
     /* ===== ПЕРЕМЕННЫЕ ===== */
     :root {
-      --bg: #0b0b0b;
-      --bg2: #0d0d0d;
-      --bg3: #121212;
-      --text: #f0f0f0;
-      --text2: #b0b0b0;
-      --text3: #777;
-      --border: #1f1f1f;
-      --border2: #3a3a3a;
-      --accent: #8b5cf6;
-      --success: #4ade80;
-      --danger: #ef4444;
-      --btn-py: 14px;
-      --btn-px: 28px;
-      --btn-r: 60px;
-      --btn-fs: .95rem;
-      --pad: 80px;
-      --gap: 30px;
+      --bg: #0b0b0b; --bg2: #0d0d0d; --bg3: #121212;
+      --text: #f0f0f0; --text2: #b0b0b0; --text3: #777;
+      --border: #1f1f1f; --border2: #3a3a3a;
+      --accent: #8b5cf6; --success: #4ade80; --danger: #ef4444;
+      --btn-py: 14px; --btn-px: 28px; --btn-r: 60px; --btn-fs: .95rem;
+      --pad: 80px; --gap: 30px;
       --font-main: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     }
     @media (max-width:768px){:root{--pad:20px;--gap:20px;--btn-py:12px;--btn-px:20px;--btn-fs:.85rem}}
@@ -135,6 +131,7 @@
     .btn-heart .fa-heart{color:red}
     .btn-full{width:100%}
     .btn-disabled{opacity:.4;pointer-events:none}
+    .btn-disabled.active{opacity:1;pointer-events:all}
     .btn-group{display:flex;gap:16px;flex-wrap:wrap}
     .btn-group .btn{flex:1 1 200px;min-width:140px}
     @media(max-width:480px){.btn-group .btn{flex:1 1 100%}}
@@ -357,7 +354,7 @@
     .demo-tag{margin-top:14px;font-size:.7rem;color:#555;text-align:center;border-top:1px solid rgba(255,255,255,.04);padding-top:14px;font-family:var(--font-main);font-weight:300}
     @media(max-width:480px){.demo{padding:16px 14px}.demo .radio-wrapper iframe{height:100px}.demo-track{gap:12px}.demo-art{width:44px;height:44px;font-size:1.2rem}}
 
-    /* ===== УНИВЕРСАЛЬНАЯ МОДАЛКА ===== */
+    /* ===== МОДАЛКИ ===== */
     .modal-overlay{
       display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);backdrop-filter:blur(8px);
       z-index:99999;align-items:center;justify-content:center;padding:20px
@@ -371,10 +368,10 @@
     @media(max-width:480px){.modal{padding:24px 16px;border-radius:20px}}
     .modal-close{
       position:absolute;top:16px;right:20px;background:0 0;border:0;color:#666;
-      font-size:1.6rem;cursor:pointer;transition:color .2s;z-index:10
+      font-size:1.4rem;cursor:pointer;transition:color .2s
     }
     .modal-close:hover{color:#fff}
-    .modal-title{font-size:1.8rem;font-weight:700;margin-bottom:8px;background:linear-gradient(135deg,#fff,#a0a0a0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-family:var(--font-main)}
+    .modal-title{font-size:1.8rem;font-weight:700;margin-bottom:16px;background:linear-gradient(135deg,#fff,#a0a0a0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-family:var(--font-main)}
     @media(max-width:480px){.modal-title{font-size:1.4rem}}
     .modal-sub{font-size:1rem;color:var(--text2);line-height:1.7;margin-bottom:20px;font-family:var(--font-main);font-weight:300}
     @media(max-width:480px){.modal-sub{font-size:.9rem}}
@@ -382,41 +379,92 @@
     .modal-price-item{display:flex;justify-content:space-between;color:#ccc;font-size:1rem;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04);font-family:var(--font-main);font-weight:300}
     .modal-price-item:last-child{border-bottom:0}
     .modal-price-item .sum{color:var(--success);font-weight:700}
-    .modal-price-item .old{text-decoration:line-through;color:#888;margin-right:8px}
-    .modal-price-item .new{color:var(--success);font-weight:700}
-    .modal-price-item .sale{background:rgba(239,68,68,.15);color:var(--danger);font-size:.7rem;padding:2px 10px;border-radius:60px;border:1px solid rgba(239,68,68,.2);margin-left:8px;font-weight:500}
+    .modal-btn{width:100%}
     .modal-features{margin:16px 0;list-style:none;padding:0}
     .modal-features li{padding:8px 0;color:var(--text2);font-family:var(--font-main);font-weight:300;display:flex;align-items:center;gap:10px;font-size:.95rem}
     .modal-features li .fa-check{color:var(--success);width:20px;flex-shrink:0}
-    .modal-agree{display:flex;align-items:center;gap:12px;margin-bottom:24px;cursor:pointer;padding:8px 12px;border-radius:12px;transition:background .2s}
-    .modal-agree:hover{background:rgba(255,255,255,.03)}
-    .modal-agree input[type=checkbox]{width:20px;height:20px;accent-color:var(--accent);cursor:pointer;flex-shrink:0;margin:0}
-    .modal-agree label{font-size:.85rem;color:var(--text2);cursor:pointer;line-height:1.4;flex:1;font-family:var(--font-main);font-weight:300}
-    .modal-agree label a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(139,92,246,.3);cursor:pointer}
-    .modal-agree label a:hover{border-color:var(--accent)}
-    .modal-comment{font-size:.85rem;color:#888;margin-bottom:16px;padding:12px 16px;background:rgba(139,92,246,.06);border-radius:12px;border:1px solid rgba(139,92,246,.1);font-family:var(--font-main);font-weight:300}
-    .modal-btn{width:100%}
 
-    /* ===== МОДАЛКА СОГЛАШЕНИЯ (увеличенная) ===== */
-    .modal-lg { max-width: 720px; }
-    .modal-lg .agree-sub{font-size:.85rem;color:#888;margin-bottom:24px;border-bottom:1px solid rgba(255,255,255,.05);padding-bottom:16px;font-family:var(--font-main);font-weight:300}
-    .modal-lg .agree-section{margin-bottom:24px}
-    .modal-lg .agree-section h3{font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:8px;font-family:var(--font-main)}
-    .modal-lg .agree-section p,.modal-lg .agree-section li{font-size:.95rem;color:var(--text2);line-height:1.7;font-family:var(--font-main);font-weight:300}
-    .modal-lg .agree-section ul{list-style:none;padding-left:0}
-    .modal-lg .agree-section ul li{padding:4px 0 4px 24px;position:relative}
-    .modal-lg .agree-section ul li::before{content:'•';position:absolute;left:4px;color:var(--accent)}
-    .modal-lg .agree-section .check{color:var(--success);margin-right:8px}
-    .modal-lg .agree-section .cross{color:var(--danger);margin-right:8px}
-    .modal-lg .agree-table{background:rgba(255,255,255,.03);border-radius:12px;padding:16px 20px;border:1px solid rgba(255,255,255,.05);overflow-x:auto;margin-top:8px}
-    .modal-lg .agree-table table{width:100%;border-collapse:collapse;font-size:.85rem}
-    .modal-lg .agree-table th,.modal-lg .agree-table td{padding:8px 12px;text-align:left;border-bottom:1px solid rgba(255,255,255,.04)}
-    .modal-lg .agree-table th{color:#888;font-weight:700;font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;font-family:var(--font-main)}
-    .modal-lg .agree-table td{color:#ccc;font-family:var(--font-main);font-weight:300}
-    .modal-lg .agree-table .hl{color:var(--success);font-weight:700}
-    .modal-lg .agree-footer{margin-top:24px;padding-top:16px;border-top:1px solid rgba(255,255,255,.05);font-size:.8rem;color:#666;text-align:center;font-family:var(--font-main);font-weight:300}
-    @media(max-width:768px){.modal-lg .modal{padding:28px 20px}.modal-lg .modal-title{font-size:1.4rem}}
-    @media(max-width:480px){.modal-lg .modal{padding:20px 14px;border-radius:20px}.modal-lg .modal-title{font-size:1.2rem}.modal-lg .agree-section p,.modal-lg .agree-section li{font-size:.85rem}}
+    /* ===== МОДАЛКА ОПЛАТЫ ===== */
+    .modal-pay-overlay{
+      display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);backdrop-filter:blur(8px);
+      z-index:99999;align-items:center;justify-content:center;padding:20px
+    }
+    .modal-pay-overlay.open{display:flex}
+    .modal-pay{
+      background:#141414;border-radius:28px;max-width:560px;width:100%;padding:40px 36px;
+      border:1px solid rgba(255,255,255,.06);box-shadow:0 40px 80px rgba(0,0,0,.8);
+      position:relative;max-height:90vh;overflow-y:auto
+    }
+    @media(max-width:480px){.modal-pay{padding:24px 16px;border-radius:20px}}
+    .modal-pay-close{
+      position:absolute;top:16px;right:20px;background:0 0;border:0;color:#666;
+      font-size:1.4rem;cursor:pointer;transition:color .2s
+    }
+    .modal-pay-close:hover{color:#fff}
+
+    /* ===== МОДАЛКА КУПИТЬ МУЗЫКУ ===== */
+    .modal-buy-overlay{
+      display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);backdrop-filter:blur(8px);
+      z-index:99999;align-items:center;justify-content:center;padding:20px
+    }
+    .modal-buy-overlay.open{display:flex}
+    .modal-buy{
+      background:#141414;border-radius:28px;max-width:560px;width:100%;padding:40px 36px;
+      border:1px solid rgba(255,255,255,.06);box-shadow:0 40px 80px rgba(0,0,0,.8);
+      position:relative;max-height:90vh;overflow-y:auto
+    }
+    @media(max-width:480px){.modal-buy{padding:24px 16px;border-radius:20px}}
+    .modal-buy-close{
+      position:absolute;top:16px;right:20px;background:0 0;border:0;color:#666;
+      font-size:1.4rem;cursor:pointer;transition:color .2s
+    }
+    .modal-buy-close:hover{color:#fff}
+    .modal-buy .modal-price-item .old{text-decoration:line-through;color:#888;margin-right:8px}
+    .modal-buy .modal-price-item .new{color:var(--success);font-weight:700}
+    .modal-buy .modal-price-item .sale{background:rgba(239,68,68,.15);color:var(--danger);font-size:.7rem;padding:2px 10px;border-radius:60px;border:1px solid rgba(239,68,68,.2);margin-left:8px;font-weight:500}
+    .modal-buy .modal-agree{display:flex;align-items:center;gap:12px;margin-bottom:24px;cursor:pointer;padding:8px 12px;border-radius:12px;transition:background .2s}
+    .modal-buy .modal-agree:hover{background:rgba(255,255,255,.03)}
+    .modal-buy .modal-agree input[type=checkbox]{width:20px;height:20px;accent-color:var(--accent);cursor:pointer;flex-shrink:0;margin:0}
+    .modal-buy .modal-agree label{font-size:.85rem;color:var(--text2);cursor:pointer;line-height:1.4;flex:1;font-family:var(--font-main);font-weight:300}
+    .modal-buy .modal-agree label a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(139,92,246,.3);cursor:pointer}
+    .modal-buy .modal-agree label a:hover{border-color:var(--accent)}
+    .modal-buy .modal-comment{font-size:.85rem;color:#888;margin-bottom:16px;padding:12px 16px;background:rgba(139,92,246,.06);border-radius:12px;border:1px solid rgba(139,92,246,.1);font-family:var(--font-main);font-weight:300}
+
+    /* ===== МОДАЛКА СОГЛАШЕНИЯ ===== */
+    .agree-overlay{
+      display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(12px);
+      z-index:99999;align-items:center;justify-content:center;padding:20px
+    }
+    .agree-overlay.open{display:flex}
+    .agree{
+      background:#141414;border-radius:28px;max-width:720px;width:100%;max-height:85vh;
+      overflow-y:auto;padding:40px 44px;border:1px solid rgba(255,255,255,.06);
+      box-shadow:0 40px 80px rgba(0,0,0,.8);position:relative
+    }
+    .agree-close{
+      position:absolute;top:16px;right:20px;background:0 0;border:0;color:#666;
+      font-size:1.6rem;cursor:pointer;transition:color .2s;z-index:10
+    }
+    .agree-close:hover{color:#fff}
+    .agree-title{font-size:1.8rem;font-weight:700;background:linear-gradient(135deg,#fff,#a0a0a0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:4px;font-family:var(--font-main)}
+    .agree-sub{font-size:.85rem;color:#888;margin-bottom:24px;border-bottom:1px solid rgba(255,255,255,.05);padding-bottom:16px;font-family:var(--font-main);font-weight:300}
+    .agree-section{margin-bottom:24px}
+    .agree-section h3{font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:8px;font-family:var(--font-main)}
+    .agree-section p,.agree-section li{font-size:.95rem;color:var(--text2);line-height:1.7;font-family:var(--font-main);font-weight:300}
+    .agree-section ul{list-style:none;padding-left:0}
+    .agree-section ul li{padding:4px 0 4px 24px;position:relative}
+    .agree-section ul li::before{content:'•';position:absolute;left:4px;color:var(--accent)}
+    .agree-section .check{color:var(--success);margin-right:8px}
+    .agree-section .cross{color:var(--danger);margin-right:8px}
+    .agree-table{background:rgba(255,255,255,.03);border-radius:12px;padding:16px 20px;border:1px solid rgba(255,255,255,.05);overflow-x:auto;margin-top:8px}
+    .agree-table table{width:100%;border-collapse:collapse;font-size:.85rem}
+    .agree-table th,.agree-table td{padding:8px 12px;text-align:left;border-bottom:1px solid rgba(255,255,255,.04)}
+    .agree-table th{color:#888;font-weight:700;font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;font-family:var(--font-main)}
+    .agree-table td{color:#ccc;font-family:var(--font-main);font-weight:300}
+    .agree-table .hl{color:var(--success);font-weight:700}
+    .agree-footer{margin-top:24px;padding-top:16px;border-top:1px solid rgba(255,255,255,.05);font-size:.8rem;color:#666;text-align:center;font-family:var(--font-main);font-weight:300}
+    @media(max-width:768px){.agree{padding:28px 20px}.agree-title{font-size:1.4rem}}
+    @media(max-width:480px){.agree{padding:20px 14px;border-radius:20px}.agree-title{font-size:1.2rem}.agree-section p,.agree-section li{font-size:.85rem}}
 
     /* ===== РЕЛИЗЫ ===== */
     .releases{padding:80px 0;background:var(--bg);border-bottom:1px solid #181818}
@@ -440,6 +488,7 @@
     .card-cover{width:100%;aspect-ratio:1;border-radius:18px;margin-bottom:14px;overflow:hidden;border:1px solid #2a2a2a;position:relative}
     .card-cover img{width:100%;height:100%;object-fit:cover;display:block}
     .card-new{position:absolute;top:8px;right:8px;background:linear-gradient(135deg,var(--danger),#dc2626);color:#fff;font-size:.55rem;padding:2px 10px;border-radius:60px;font-weight:700;text-transform:uppercase;animation:pulse 1.5s infinite;box-shadow:0 4px 15px rgba(239,68,68,.4);font-family:var(--font-main)}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.6}}
     .card-title{font-weight:700;font-size:1rem;margin-bottom:4px;font-family:var(--font-main)}
     .card-year{color:var(--text3);font-size:.7rem;letter-spacing:.3px;font-family:var(--font-main);font-weight:300}
     @media(max-width:768px){.card{padding:14px 12px 16px;border-radius:18px}.card-cover{border-radius:14px;margin-bottom:10px}.card-title{font-size:.9rem}.card-year{font-size:.65rem}}
@@ -541,8 +590,6 @@
     .rotate-warning i { font-size: 4rem; color: #8b5cf6; margin-bottom: 24px; }
     .rotate-warning h2 { font-size: 1.8rem; font-weight: 600; margin-bottom: 12px; }
     .rotate-warning p { color: #888; font-size: 1rem; max-width: 360px; line-height: 1.6; }
-
-    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
   </style>
 </head>
 <body>
@@ -557,7 +604,6 @@
   <!-- ===== ШАПКА ===== -->
   <header class="navbar">
     <a href="#player" class="logo">BALM</a>
-
     <div class="nav-platforms">
       <a href="https://music.yandex.ru/artist/26471381" target="_blank"><i class="fas fa-music"></i><span class="platform-label">Яндекс Музыка</span></a>
       <a href="https://music.apple.com/ru/artist/balm-биэлэм/6800941971" target="_blank"><i class="fab fa-apple"></i><span class="platform-label">Apple Music</span></a>
@@ -565,7 +611,6 @@
       <a href="https://zvuk.com/artist/214558962" target="_blank"><i class="fas fa-headphones"></i><span class="platform-label">Zvuk</span></a>
       <a href="https://vk.ru/albe_music" target="_blank"><i class="fab fa-vk"></i><span class="platform-label">VK Музыка</span></a>
     </div>
-
     <div class="navbar-actions">
       <a href="https://tips.tips/000481710" target="_blank" class="btn btn-heart" rel="noopener"><i class="fas fa-heart"></i> Поддержать</a>
       <button class="hamburger" id="hamburger" aria-label="Меню" aria-expanded="false"><span></span><span></span><span></span></button>
@@ -582,15 +627,119 @@
     <a href="https://t.me/albe_spb" target="_blank" data-close><i class="fab fa-telegram"></i> Связаться</a>
   </nav>
 
-  <!-- ===== УНИВЕРСАЛЬНАЯ МОДАЛКА (контент подставляется через JS) ===== -->
-  <div class="modal-overlay" id="modalOverlay">
-    <div class="modal" id="modalContent">
-      <button class="modal-close" id="modalClose">&times;</button>
-      <div id="modalBody"></div>
+  <!-- ===== МОДАЛКА ПОДПИСКИ ===== -->
+  <div class="modal-overlay" id="subscribeModal">
+    <div class="modal">
+      <button class="modal-close" data-close-subscribe>&times;</button>
+      <h2 class="modal-title">🎵 BALM Premium</h2>
+      <p class="modal-sub">Неограниченный доступ ко всей музыке BALM без авторских прав</p>
+      <ul class="modal-features">
+        <li><i class="fas fa-check"></i> Все жанры: Chillout, Jazz, Asian, Turkish, Alternative, Funk, Piano</li>
+        <li><i class="fas fa-check"></i> Неограниченный доступ к любой музыке</li>
+        <li><i class="fas fa-check"></i> Без отчислений РАО и ВОИС</li>
+        <li><i class="fas fa-check"></i> Использование в любых коммерческих проектах</li>
+        <li><i class="fas fa-check"></i> Постоянное обновление библиотеки</li>
+      </ul>
+      <div class="modal-price">
+        <div class="modal-price-item"><span>Подписка</span><span class="sum">500 ₽ / месяц</span></div>
+      </div>
+      <button class="btn btn-primary btn-full" data-open-pay>Оформить подписку</button>
     </div>
   </div>
 
-  <!-- ===== HERO С ПЛЕЕРОМ И ТАБАМИ ===== -->
+  <!-- ===== МОДАЛКА ОПЛАТЫ ===== -->
+  <div class="modal-pay-overlay" id="payModal">
+    <div class="modal-pay">
+      <button class="modal-pay-close" data-close-pay>&times;</button>
+      <h2 class="modal-title">Оплатить подписку</h2>
+      <p class="modal-sub" style="margin-bottom:20px;">Вы оформляете подписку на BALM Premium за 500 ₽/месяц.</p>
+      <a href="https://tips.tips/000481739" target="_blank" class="btn btn-primary btn-full" rel="noopener"><i class="fas fa-credit-card"></i> Оплатить 500 ₽</a>
+      <p style="margin-top:16px;font-size:.8rem;color:#666;text-align:center;font-family:var(--font-main);font-weight:300;">После оплаты вы получите доступ ко всей музыке BALM</p>
+    </div>
+  </div>
+
+  <!-- ===== МОДАЛКА КУПИТЬ МУЗЫКУ ===== -->
+  <div class="modal-buy-overlay" id="buyModal">
+    <div class="modal-buy">
+      <button class="modal-buy-close" data-close-buy>&times;</button>
+      <h2 class="modal-title">Приобрести музыку без авторских прав</h2>
+      <p class="modal-sub">Вы можете приобрести 2 часа студийной уникальной Chillout музыки для коммерческих целей без ограничений. Отчисления не требуются — платите один раз и пользуетесь бессрочно.</p>
+      <div class="modal-price">
+        <div class="modal-price-item"><span>Джазовая музыка</span><span class="sum">1 час · 1500 ₽</span></div>
+        <div class="modal-price-item"><span>Турецкая музыка</span><span class="sum">1 час · 1000 ₽</span></div>
+        <div class="modal-price-item">
+          <span style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">Полный пакет — 2 часа <span class="sale">🔥 Супер-акция</span></span>
+          <span style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:flex-end;"><span class="old">2500 ₽</span><span class="new">300 ₽</span></span>
+        </div>
+      </div>
+      <div class="modal-comment"><i class="fas fa-info-circle" style="margin-right:8px;color:var(--accent)"></i> После оплаты укажите в комментарии: <strong>Telegram, VK или email</strong> — мы отправим ссылку.</div>
+      <div class="modal-agree">
+        <input type="checkbox" id="agreeCheck">
+        <label for="agreeCheck">Я ознакомлен(а) и согласен(на) с <a href="#" data-agreement>условиями приобретения</a> и обработкой данных</label>
+      </div>
+      <a href="https://tips.tips/000481739" target="_blank" class="btn btn-primary btn-full btn-disabled" id="payBtn" rel="noopener"><i class="fas fa-credit-card"></i> Оплатить и получить музыку</a>
+    </div>
+  </div>
+
+  <!-- ===== МОДАЛКА СОГЛАШЕНИЯ ===== -->
+  <div class="agree-overlay" id="agreementModal" aria-hidden="true" data-nosnippet>
+    <div class="agree">
+      <button class="agree-close" data-close-agreement>&times;</button>
+      <h2 class="agree-title">ИНФОРМАЦИОННОЕ СОГЛАШЕНИЕ</h2>
+      <div class="agree-sub">по использованию музыки BALM (БИЭЛЭМ) без авторских прав</div>
+      <div class="agree-section">
+        <p style="font-size:.85rem;color:#888;margin-bottom:12px;">Настоящее Соглашение носит информационный характер и не является публичной офертой.</p>
+        <h3>1. Общие положения</h3>
+        <p>1.1. Настоящее Соглашение информирует о правилах использования музыкальных произведений артиста BALM (БИЭЛЭМ) (Беляев Алексей).</p>
+        <p>1.2. Совершая разовый платёж за музыку, вы соглашаетесь с условиями, описанными ниже.</p>
+      </div>
+      <div class="agree-section">
+        <h3>2. Что вы получаете</h3>
+        <ul>
+          <li><span class="check">✅</span> Право использовать музыку в коммерческих и некоммерческих целях без ограничений.</li>
+          <li><span class="check">✅</span> Право транслировать музыку в любых общественных местах.</li>
+          <li><span class="check">✅</span> Право использовать бессрочно — один раз заплатили, пользуетесь всегда.</li>
+          <li><span class="check">✅</span> Без отчислений — никаких выплат в РАО, ВОИС и другие организации.</li>
+        </ul>
+      </div>
+      <div class="agree-section">
+        <h3>3. Чего делать НЕЛЬЗЯ</h3>
+        <ul>
+          <li><span class="cross">❌</span> Выдавать музыку за свою (указывайте автора: BALM (БИЭЛЭМ)).</li>
+          <li><span class="cross">❌</span> Передавать или продавать музыку третьим лицам.</li>
+          <li><span class="cross">❌</span> Изменять, переделывать или создавать ремиксы без разрешения.</li>
+        </ul>
+      </div>
+      <div class="agree-section">
+        <h3>4. Что нужно для легального использования</h3>
+        <p>Достаточно иметь:</p>
+        <ul>
+          <li>Настоящее Соглашение</li>
+          <li>Подтверждение оплаты (чек или скриншот)</li>
+        </ul>
+        <p style="margin-top:8px;">Эти документы подтверждают, что вы используете музыку легально.</p>
+      </div>
+      <div class="agree-section">
+        <h3>5. Сравнение: выгода для бизнеса</h3>
+        <p style="margin-bottom:8px;">Вместо того чтобы платить РАО и ВОИС ежемесячно, вы платите один раз:</p>
+        <div class="agree-table">
+          <table>
+            <thead><tr><th>Тип объекта</th><th>Экономия за год (на 100 м²)</th></tr></thead>
+            <tbody>
+              <tr><td>Кафе и рестораны</td><td class="hl">от 108 000 ₽</td></tr>
+              <tr><td>Бары и ночные клубы</td><td class="hl">от 162 000 ₽</td></tr>
+              <tr><td>Салоны красоты и спа</td><td class="hl">от 90 000 ₽</td></tr>
+              <tr><td>Фитнес-клубы</td><td class="hl">от 72 000 ₽</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="margin-top:10px;color:var(--success);font-weight:700;">Вы платите один раз — и больше никаких ежемесячных отчислений!</p>
+      </div>
+      <div class="agree-footer">© 2026 BALM (БИЭЛЭМ) · Беляев Алексей · Все права защищены</div>
+    </div>
+  </div>
+
+  <!-- ===== HERO ===== -->
   <section class="hero" id="player">
     <img class="hero-img" src="BALMherob.webp" alt="BALM — экспериментальная музыка без авторских прав для бизнеса и видео. Обложка проекта на фоне космоса." loading="lazy">
     <div class="hero-overlay"></div>
@@ -608,7 +757,6 @@
           <button class="genre-tab" data-genre="funk">Funk</button>
           <button class="genre-tab" data-genre="piano">Piano</button>
         </div>
-
         <div class="hero-player" id="heroPlayer">
           <iframe id="playerIframe" style="border:0;width:100%;height:120px;" src="https://bandcamp.com/EmbeddedPlayer/track=1094038954/size=large/bgcol=333333/linkcol=ffffff/tracklist=false/artwork=small/transparent=true/" seamless><a href="https://balm2.bandcamp.com/track/chillout-mix-free">Chillout mix (Free) by BALM</a></iframe>
           <div class="player-label" id="playerLabel">Chillout · Бесплатная демо-версия</div>
@@ -658,13 +806,13 @@
             </div>
             <div class="radio-wrapper locked" id="radioWrapper">
               <iframe id="radioIframe" style="border:0;width:100%;height:120px;" src="https://bandcamp.com/EmbeddedPlayer/track=1094038954/size=large/bgcol=333333/linkcol=ffffff/tracklist=false/artwork=small/transparent=true/" seamless><a href="https://balm2.bandcamp.com/track/chillout-mix-free">Chillout mix (Free) by BALM</a></iframe>
-              <div class="radio-lock-overlay" id="radioLockOverlay" data-modal="subscribe"><i class="fas fa-lock"></i><span>Оформить подписку</span></div>
+              <div class="radio-lock-overlay" id="radioLockOverlay" data-open-subscribe><i class="fas fa-lock"></i><span>Оформить подписку</span></div>
             </div>
             <div class="demo-tag"><i class="fas fa-headphones" style="margin-right:6px"></i> BALM RADIO · Все жанры · Без рекламы</div>
           </div>
           <div class="btn-group">
-            <button class="btn btn-primary" data-modal="subscribe"><i class="fas fa-crown"></i> Оформить подписку</button>
-            <button class="btn btn-primary" data-modal="buy"><i class="fas fa-shopping-cart"></i> Купить музыку для бизнеса</button>
+            <button class="btn btn-primary" data-open-subscribe><i class="fas fa-crown"></i> Оформить подписку</button>
+            <button class="btn btn-primary" data-open-buy><i class="fas fa-shopping-cart"></i> Купить музыку для бизнеса</button>
           </div>
         </div>
       </div>
@@ -783,7 +931,7 @@
       <div class="faq-list">
         <div class="faq-item">
           <button class="faq-q" data-faq-toggle><span>Нужно ли платить РАО и ВОИС за использование музыки BALM?</span><span class="faq-icon"><i class="fas fa-chevron-down"></i></span></button>
-          <div class="faq-a"><p><strong>Нет, не нужно.</strong> Музыка BALM полностью свободна от авторских отчислений. Вы платите <span class="hl">один раз</span> и больше никогда не платите РАО, ВОИС или другим организациям. Экономия до 162 000 ₽ в год. Подробнее в <a href="#" data-modal="agreement">Соглашении</a>.</p></div>
+          <div class="faq-a"><p><strong>Нет, не нужно.</strong> Музыка BALM полностью свободна от авторских отчислений. Вы платите <span class="hl">один раз</span> и больше никогда не платите РАО, ВОИС или другим организациям. Экономия до 162 000 ₽ в год. Подробнее в <a href="#" data-agreement>Соглашении</a>.</p></div>
         </div>
         <div class="faq-item">
           <button class="faq-q" data-faq-toggle><span>Вы пишете музыку для детских мультфильмов и анимации?</span><span class="faq-icon"><i class="fas fa-chevron-down"></i></span></button>
@@ -819,7 +967,7 @@
 
     <div class="footer-row">
       <div class="footer-links">
-        <a href="#" data-modal="agreement">Пользовательское соглашение</a>
+        <a href="#" data-agreement>Пользовательское соглашение</a>
         <a href="#" onclick="alert('Политика конфиденциальности: данные не передаются третьим лицам.');">Политика конфиденциальности</a>
       </div>
     </div>
@@ -847,13 +995,13 @@
     })();
   </script>
 
-  <!-- ===== ЕДИНЫЙ СКРИПТ ===== -->
+  <!-- ===== СКРИПТЫ ===== -->
   <script>
     (function() {
       'use strict';
 
       // ===== ДАННЫЕ ТРЕКОВ =====
-      const TRACKS = {
+      var TRACKS = {
         chillout: { url: 'https://bandcamp.com/EmbeddedPlayer/track=1094038954/size=large/bgcol=333333/linkcol=ffffff/tracklist=false/artwork=small/transparent=true/', label: 'Chillout · Бесплатная демо-версия' },
         jazz: { url: 'https://bandcamp.com/EmbeddedPlayer/track=1281962718/size=large/bgcol=333333/linkcol=ffffff/tracklist=false/artwork=small/transparent=true/', label: 'Jazz · Бесплатная демо-версия' },
         asian: { url: 'https://bandcamp.com/EmbeddedPlayer/track=1278103208/size=large/bgcol=333333/linkcol=ffffff/tracklist=false/artwork=small/transparent=true/', label: 'Asian · Бесплатная демо-версия' },
@@ -863,202 +1011,20 @@
         piano: { url: 'https://bandcamp.com/EmbeddedPlayer/track=3468308600/size=large/bgcol=333333/linkcol=ffffff/tracklist=false/artwork=small/transparent=true/', label: 'Piano · Бесплатная демо-версия' }
       };
 
-      // ===== ДАННЫЕ МОДАЛОК =====
-      const MODALS = {
-        subscribe: {
-          title: '🎵 BALM Premium',
-          sub: 'Неограниченный доступ ко всей музыке BALM без авторских прав',
-          features: [
-            'Все жанры: Chillout, Jazz, Asian, Turkish, Alternative, Funk, Piano',
-            'Неограниченный доступ к любой музыке',
-            'Без отчислений РАО и ВОИС',
-            'Использование в любых коммерческих проектах',
-            'Постоянное обновление библиотеки'
-          ],
-          price: { label: 'Подписка', amount: '500 ₽ / месяц' },
-          button: { text: 'Оформить подписку', href: 'https://tips.tips/000481739', icon: 'fa-credit-card' }
-        },
-        buy: {
-          title: 'Приобрести музыку без авторских прав',
-          sub: 'Вы можете приобрести 2 часа студийной уникальной Chillout музыки для коммерческих целей без ограничений. Отчисления не требуются — платите один раз и пользуетесь бессрочно.',
-          priceItems: [
-            { label: 'Джазовая музыка', amount: '1 час · 1500 ₽' },
-            { label: 'Турецкая музыка', amount: '1 час · 1000 ₽' },
-            { label: 'Полный пакет — 2 часа', amount: '<span class="old">2500 ₽</span><span class="new">300 ₽</span>', badge: '🔥 Супер-акция' }
-          ],
-          comment: 'После оплаты укажите в комментарии: <strong>Telegram, VK или email</strong> — мы отправим ссылку.',
-          agree: true,
-          button: { text: 'Оплатить и получить музыку', href: 'https://tips.tips/000481739', icon: 'fa-credit-card' }
-        },
-        agreement: {
-          title: 'ИНФОРМАЦИОННОЕ СОГЛАШЕНИЕ',
-          sub: 'по использованию музыки BALM (БИЭЛЭМ) без авторских прав',
-          large: true,
-          content: `
-            <p style="font-size:.85rem;color:#888;margin-bottom:12px;">Настоящее Соглашение носит информационный характер и не является публичной офертой.</p>
-            <div class="agree-section"><h3>1. Общие положения</h3><p>1.1. Настоящее Соглашение информирует о правилах использования музыкальных произведений артиста BALM (БИЭЛЭМ) (Беляев Алексей).</p><p>1.2. Совершая разовый платёж за музыку, вы соглашаетесь с условиями, описанными ниже.</p></div>
-            <div class="agree-section"><h3>2. Что вы получаете</h3><ul><li><span class="check">✅</span> Право использовать музыку в коммерческих и некоммерческих целях без ограничений.</li><li><span class="check">✅</span> Право транслировать музыку в любых общественных местах.</li><li><span class="check">✅</span> Право использовать бессрочно — один раз заплатили, пользуетесь всегда.</li><li><span class="check">✅</span> Без отчислений — никаких выплат в РАО, ВОИС и другие организации.</li></ul></div>
-            <div class="agree-section"><h3>3. Чего делать НЕЛЬЗЯ</h3><ul><li><span class="cross">❌</span> Выдавать музыку за свою (указывайте автора: BALM (БИЭЛЭМ)).</li><li><span class="cross">❌</span> Передавать или продавать музыку третьим лицам.</li><li><span class="cross">❌</span> Изменять, переделывать или создавать ремиксы без разрешения.</li></ul></div>
-            <div class="agree-section"><h3>4. Что нужно для легального использования</h3><p>Достаточно иметь:</p><ul><li>Настоящее Соглашение</li><li>Подтверждение оплаты (чек или скриншот)</li></ul><p style="margin-top:8px;">Эти документы подтверждают, что вы используете музыку легально.</p></div>
-            <div class="agree-section"><h3>5. Сравнение: выгода для бизнеса</h3><p style="margin-bottom:8px;">Вместо того чтобы платить РАО и ВОИС ежемесячно, вы платите один раз:</p><div class="agree-table"><table><thead><tr><th>Тип объекта</th><th>Экономия за год (на 100 м²)</th></tr></thead><tbody><tr><td>Кафе и рестораны</td><td class="hl">от 108 000 ₽</td></tr><tr><td>Бары и ночные клубы</td><td class="hl">от 162 000 ₽</td></tr><tr><td>Салоны красоты и спа</td><td class="hl">от 90 000 ₽</td></tr><tr><td>Фитнес-клубы</td><td class="hl">от 72 000 ₽</td></tr></tbody></table></div><p style="margin-top:10px;color:var(--success);font-weight:700;">Вы платите один раз — и больше никаких ежемесячных отчислений!</p></div>
-            <div class="agree-footer">© 2026 BALM (БИЭЛЭМ) · Беляев Алексей · Все права защищены</div>
-          `
-        }
-      };
-
-      // ===== УНИВЕРСАЛЬНЫЙ МЕНЕДЖЕР МОДАЛОК =====
-      const modalOverlay = document.getElementById('modalOverlay');
-      const modalContent = document.getElementById('modalContent');
-      const modalBody = document.getElementById('modalBody');
-      const modalClose = document.getElementById('modalClose');
-
-      function openModal(type) {
-        const data = MODALS[type];
-        if (!data) return;
-
-        // Сбрасываем классы
-        modalContent.classList.remove('modal-lg');
-
-        // Добавляем класс для большого соглашения
-        if (data.large) {
-          modalContent.classList.add('modal-lg');
-        }
-
-        // Строим содержимое
-        let html = '';
-
-        // Заголовок
-        if (data.title) {
-          html += `<h2 class="modal-title">${data.title}</h2>`;
-        }
-
-        // Подзаголовок
-        if (data.sub) {
-          html += `<p class="modal-sub">${data.sub}</p>`;
-        }
-
-        // Особый контент для соглашения
-        if (data.content) {
-          html += data.content;
-        } else {
-          // Список возможностей
-          if (data.features && data.features.length) {
-            html += `<ul class="modal-features">`;
-            data.features.forEach(f => {
-              html += `<li><i class="fas fa-check"></i> ${f}</li>`;
-            });
-            html += `</ul>`;
-          }
-
-          // Цены
-          if (data.priceItems && data.priceItems.length) {
-            html += `<div class="modal-price">`;
-            data.priceItems.forEach(item => {
-              let label = item.label;
-              if (item.badge) {
-                label += ` <span class="sale">${item.badge}</span>`;
-              }
-              html += `<div class="modal-price-item"><span>${label}</span><span class="sum">${item.amount}</span></div>`;
-            });
-            html += `</div>`;
-          } else if (data.price) {
-            html += `<div class="modal-price"><div class="modal-price-item"><span>${data.price.label}</span><span class="sum">${data.price.amount}</span></div></div>`;
-          }
-
-          // Комментарий
-          if (data.comment) {
-            html += `<div class="modal-comment"><i class="fas fa-info-circle" style="margin-right:8px;color:var(--accent)"></i> ${data.comment}</div>`;
-          }
-
-          // Согласие
-          if (data.agree) {
-            html += `
-              <div class="modal-agree">
-                <input type="checkbox" id="agreeCheck">
-                <label for="agreeCheck">Я ознакомлен(а) и согласен(на) с <a href="#" data-modal="agreement">условиями приобретения</a> и обработкой данных</label>
-              </div>
-            `;
-          }
-
-          // Кнопка
-          if (data.button) {
-            const disabled = data.agree ? ' btn-disabled' : '';
-            html += `<a href="${data.button.href}" target="_blank" class="btn btn-primary btn-full${disabled}" id="modalPayBtn" rel="noopener"><i class="fas ${data.button.icon}"></i> ${data.button.text}</a>`;
-          }
-        }
-
-        modalBody.innerHTML = html;
-
-        // Обработчик для согласия в модалке покупки
-        if (type === 'buy') {
-          const agreeCheck = document.getElementById('agreeCheck');
-          const payBtn = document.getElementById('modalPayBtn');
-          if (agreeCheck && payBtn) {
-            agreeCheck.addEventListener('change', function() {
-              payBtn.classList.toggle('btn-disabled', !this.checked);
-            });
-          }
-        }
-
-        // Перенаправляем клики по data-modal внутри модалки
-        modalBody.querySelectorAll('[data-modal]').forEach(el => {
-          el.addEventListener('click', function(e) {
-            e.preventDefault();
-            const modalType = this.dataset.modal;
-            if (modalType && MODALS[modalType]) {
-              openModal(modalType);
-            }
-          });
-        });
-
-        modalOverlay.classList.add('open');
-        document.body.style.overflow = 'hidden';
-      }
-
-      function closeModal() {
-        modalOverlay.classList.remove('open');
-        document.body.style.overflow = '';
-      }
-
-      // Клик по overlay
-      modalOverlay.addEventListener('click', function(e) {
-        if (e.target === this) closeModal();
-      });
-
-      // Клик по крестику
-      modalClose.addEventListener('click', closeModal);
-
-      // Escape
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') closeModal();
-      });
-
-      // Открытие модалок через data-modal атрибуты
-      document.querySelectorAll('[data-modal]').forEach(el => {
-        el.addEventListener('click', function(e) {
-          e.preventDefault();
-          const type = this.dataset.modal;
-          if (type && MODALS[type]) {
-            openModal(type);
-          }
-        });
-      });
-
-      // ===== УНИВЕРСАЛЬНЫЙ МЕНЕДЖЕР ТАБОВ =====
+      // ===== ТАБЫ =====
       function initTabs(containerId, iframeId, labelId) {
-        const container = document.getElementById(containerId);
-        const iframe = document.getElementById(iframeId);
-        const label = labelId ? document.getElementById(labelId) : null;
-
+        var container = document.getElementById(containerId);
+        var iframe = document.getElementById(iframeId);
+        var label = labelId ? document.getElementById(labelId) : null;
         if (!container || !iframe) return;
 
-        container.querySelectorAll('.genre-tab').forEach(tab => {
+        container.querySelectorAll('.genre-tab').forEach(function(tab) {
           tab.addEventListener('click', function() {
-            container.querySelectorAll('.genre-tab').forEach(t => t.classList.remove('active'));
+            container.querySelectorAll('.genre-tab').forEach(function(t) { t.classList.remove('active'); });
             this.classList.add('active');
 
-            const genre = this.dataset.genre;
-            const track = TRACKS[genre];
+            var genre = this.dataset.genre;
+            var track = TRACKS[genre];
             if (track) {
               iframe.src = track.url;
               if (label) label.textContent = track.label;
@@ -1067,72 +1033,136 @@
         });
       }
 
-      // Инициализация табов
       initTabs('heroGenreTabs', 'playerIframe', 'playerLabel');
       initTabs('radioGenreTabs', 'radioIframe', null);
 
-      // ===== СКРЫТИЕ АДРЕСНОЙ СТРОКИ =====
-      function hideAddressBar() {
-        if (window.innerWidth < 768 && window.scrollY < 1) {
-          window.scrollTo(0, 1);
-        }
-      }
-      window.addEventListener('load', function() {
-        setTimeout(hideAddressBar, 300);
-        setTimeout(hideAddressBar, 1000);
-      });
-      window.addEventListener('orientationchange', function() {
-        setTimeout(hideAddressBar, 500);
-      });
-      let resizeTimer;
-      window.addEventListener('resize', function() {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(hideAddressBar, 300);
-      });
-      document.addEventListener('touchstart', function() {
-        setTimeout(hideAddressBar, 100);
-      }, { passive: true });
+      // ===== МОДАЛКИ =====
+      // Подписка
+      var subscribeModal = document.getElementById('subscribeModal');
+      var subscribeOpen = document.querySelectorAll('[data-open-subscribe]');
+      var subscribeClose = subscribeModal.querySelector('[data-close-subscribe]');
 
-      // ===== БЛОКИРОВКА ГОРИЗОНТАЛЬНОГО РЕЖИМА =====
-      function initOrientationLock() {
-        const isMobile = window.innerWidth < 768 || /Android|iPhone|iPad|iPod|BlackBerry|Opera Mini|IEMobile/i.test(navigator.userAgent);
-        if (!isMobile) return;
-
-        const warning = document.getElementById('rotateWarning');
-
-        function checkOrientation() {
-          if (window.innerWidth > window.innerHeight) {
-            warning.classList.add('active');
-          } else {
-            warning.classList.remove('active');
-          }
-        }
-
-        checkOrientation();
-        window.addEventListener('resize', checkOrientation);
-        window.addEventListener('orientationchange', function() {
-          setTimeout(checkOrientation, 300);
+      subscribeOpen.forEach(function(el) {
+        el.addEventListener('click', function() {
+          subscribeModal.classList.add('open');
+          document.body.style.overflow = 'hidden';
         });
+      });
 
-        if (screen.orientation && screen.orientation.lock) {
-          screen.orientation.lock('portrait').catch(function() {});
-          screen.orientation.addEventListener('change', function() {
-            if (screen.orientation.type.includes('landscape')) {
-              screen.orientation.lock('portrait').catch(function() {});
-            }
-          });
+      subscribeClose.addEventListener('click', function() {
+        subscribeModal.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+
+      subscribeModal.addEventListener('click', function(e) {
+        if (e.target === this) {
+          this.classList.remove('open');
+          document.body.style.overflow = '';
         }
+      });
+
+      // Оплата
+      var payModal = document.getElementById('payModal');
+      var payOpen = document.querySelector('[data-open-pay]');
+      var payClose = payModal.querySelector('[data-close-pay]');
+
+      if (payOpen) {
+        payOpen.addEventListener('click', function() {
+          subscribeModal.classList.remove('open');
+          payModal.classList.add('open');
+        });
       }
 
-      if (document.readyState === 'complete') {
-        initOrientationLock();
-      } else {
-        window.addEventListener('load', initOrientationLock);
+      payClose.addEventListener('click', function() {
+        payModal.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+
+      payModal.addEventListener('click', function(e) {
+        if (e.target === this) {
+          this.classList.remove('open');
+          document.body.style.overflow = '';
+        }
+      });
+
+      // Купить
+      var buyModal = document.getElementById('buyModal');
+      var buyOpen = document.querySelector('[data-open-buy]');
+      var buyClose = buyModal.querySelector('[data-close-buy]');
+      var agreeCheck = document.getElementById('agreeCheck');
+      var payBtn = document.getElementById('payBtn');
+
+      if (buyOpen) {
+        buyOpen.addEventListener('click', function(e) {
+          e.preventDefault();
+          buyModal.classList.add('open');
+          document.body.style.overflow = 'hidden';
+          if (agreeCheck) agreeCheck.checked = false;
+          if (payBtn) payBtn.classList.add('btn-disabled');
+        });
       }
+
+      if (buyClose) {
+        buyClose.addEventListener('click', function() {
+          buyModal.classList.remove('open');
+          document.body.style.overflow = '';
+        });
+      }
+
+      buyModal.addEventListener('click', function(e) {
+        if (e.target === this) {
+          this.classList.remove('open');
+          document.body.style.overflow = '';
+        }
+      });
+
+      if (agreeCheck && payBtn) {
+        agreeCheck.addEventListener('change', function() {
+          payBtn.classList.toggle('btn-disabled', !this.checked);
+        });
+      }
+
+      // Соглашение
+      var agreeModal = document.getElementById('agreementModal');
+      var agreeOpen = document.querySelectorAll('[data-agreement]');
+      var agreeClose = agreeModal.querySelector('[data-close-agreement]');
+
+      agreeOpen.forEach(function(el) {
+        el.addEventListener('click', function(e) {
+          e.preventDefault();
+          agreeModal.classList.add('open');
+          document.body.style.overflow = 'hidden';
+        });
+      });
+
+      if (agreeClose) {
+        agreeClose.addEventListener('click', function() {
+          agreeModal.classList.remove('open');
+          document.body.style.overflow = '';
+        });
+      }
+
+      agreeModal.addEventListener('click', function(e) {
+        if (e.target === this) {
+          this.classList.remove('open');
+          document.body.style.overflow = '';
+        }
+      });
+
+      // Escape
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          if (subscribeModal) subscribeModal.classList.remove('open');
+          if (payModal) payModal.classList.remove('open');
+          if (buyModal) buyModal.classList.remove('open');
+          if (agreeModal) agreeModal.classList.remove('open');
+          document.body.style.overflow = '';
+        }
+      });
 
       // ===== МЕНЮ =====
-      const hamburger = document.getElementById('hamburger');
-      const mobileMenu = document.getElementById('mobileMenu');
+      var hamburger = document.getElementById('hamburger');
+      var mobileMenu = document.getElementById('mobileMenu');
 
       hamburger.addEventListener('click', function() {
         this.classList.toggle('active');
@@ -1140,7 +1170,7 @@
         this.setAttribute('aria-expanded', mobileMenu.classList.contains('open'));
       });
 
-      mobileMenu.querySelectorAll('[data-close]').forEach(el => {
+      mobileMenu.querySelectorAll('[data-close]').forEach(function(el) {
         el.addEventListener('click', function() {
           hamburger.classList.remove('active');
           mobileMenu.classList.remove('open');
@@ -1149,9 +1179,9 @@
       });
 
       // ===== РЕЛИЗЫ =====
-      const cards = document.querySelectorAll('.card');
-      const toggleBtn = document.getElementById('showAllBtn');
-      let allVisible = false;
+      var cards = document.querySelectorAll('.card');
+      var toggleBtn = document.getElementById('showAllBtn');
+      var allVisible = false;
 
       if (toggleBtn) {
         toggleBtn.addEventListener('click', function() {
@@ -1183,6 +1213,69 @@
           this.setAttribute('aria-expanded', !isActive);
         });
       });
+
+      // ===== СКРЫТИЕ АДРЕСНОЙ СТРОКИ =====
+      function hideAddressBar() {
+        if (window.innerWidth < 768 && window.scrollY < 1) {
+          window.scrollTo(0, 1);
+        }
+      }
+
+      window.addEventListener('load', function() {
+        setTimeout(hideAddressBar, 300);
+        setTimeout(hideAddressBar, 1000);
+      });
+
+      window.addEventListener('orientationchange', function() {
+        setTimeout(hideAddressBar, 500);
+      });
+
+      var resizeTimer;
+      window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(hideAddressBar, 300);
+      });
+
+      document.addEventListener('touchstart', function() {
+        setTimeout(hideAddressBar, 100);
+      }, { passive: true });
+
+      // ===== БЛОКИРОВКА ГОРИЗОНТАЛЬНОГО РЕЖИМА =====
+      function initOrientationLock() {
+        var isMobile = window.innerWidth < 768 || /Android|iPhone|iPad|iPod|BlackBerry|Opera Mini|IEMobile/i.test(navigator.userAgent);
+        if (!isMobile) return;
+
+        var warning = document.getElementById('rotateWarning');
+
+        function checkOrientation() {
+          if (window.innerWidth > window.innerHeight) {
+            warning.classList.add('active');
+          } else {
+            warning.classList.remove('active');
+          }
+        }
+
+        checkOrientation();
+        window.addEventListener('resize', checkOrientation);
+        window.addEventListener('orientationchange', function() {
+          setTimeout(checkOrientation, 300);
+        });
+
+        if (screen.orientation && screen.orientation.lock) {
+          screen.orientation.lock('portrait').catch(function() {});
+          screen.orientation.addEventListener('change', function() {
+            if (screen.orientation.type.includes('landscape')) {
+              screen.orientation.lock('portrait').catch(function() {});
+            }
+          });
+        }
+      }
+
+      if (document.readyState === 'complete') {
+        initOrientationLock();
+      } else {
+        window.addEventListener('load', initOrientationLock);
+      }
 
     })();
   </script>
