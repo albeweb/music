@@ -30,9 +30,9 @@
   <meta name="author" content="BALM (БИЭЛЭМ)">
   <meta name="theme-color" content="#0b0b0b">
 
-  <!-- ===== ФАВИКОН ===== -->
-  <link rel="icon" type="image/x-icon" href="https://balm-music.ru/favicon.ico">
-  <link rel="shortcut icon" href="https://balm-music.ru/favicon.ico">
+  <!-- ===== ФАВИКОН (исправлен) ===== -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%238b5cf6'/%3E%3Ctext x='50' y='68' font-size='48' text-anchor='middle' fill='white' font-family='Arial' font-weight='bold'%3EB%3C/text%3E%3C/svg%3E">
+  <link rel="shortcut icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%238b5cf6'/%3E%3Ctext x='50' y='68' font-size='48' text-anchor='middle' fill='white' font-family='Arial' font-weight='bold'%3EB%3C/text%3E%3C/svg%3E">
 
   <!-- ===== СТРУКТУРИРОВАННЫЕ ДАННЫЕ ===== -->
   <script type="application/ld+json">
@@ -45,13 +45,24 @@
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://balm-music.ru/"},{"@type":"ListItem","position":2,"name":"Музыка без авторских прав","item":"https://balm-music.ru/#copyright-free"},{"@type":"ListItem","position":3,"name":"Релизы BALM","item":"https://balm-music.ru/#releases"}]}
   </script>
 
-  <!-- ===== ЛОКАЛЬНЫЕ ШРИФТЫ ===== -->
+  <!-- ===== ШРИФТЫ (предзагрузка) ===== -->
   <link rel="preload" as="font" type="font/woff2" href="Geist-Bold.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="Geist-Regular.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="Geist-Medium.woff2" crossorigin>
 
-  <!-- ===== FONT AWESOME ===== -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- ===== FONT AWESOME (оптимизированная загрузка) ===== -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
+
+  <!-- ===== GOOGLE ANALYTICS (оптимизирован) ===== -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
 
   <style>
     /* ===== ПОДКЛЮЧЕНИЕ ШРИФТОВ ===== */
@@ -83,13 +94,6 @@
     ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #8b5cf6, #4ade80); border-radius: 10px; }
     ::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #a78bfa, #6ee7b7); }
     * { scrollbar-width: thin; scrollbar-color: #8b5cf6 #0b0b0b; }
-
-    /* ===== СКРЫТИЕ СИСТЕМНОЙ КНОПКИ "НАВЕРХ" В SAFARI ===== */
-    body { -webkit-touch-callout: none !important; }
-    ._2ZxqK, ._1ZxqK, ._3ZxqK, ._WZxqK, ._XZxqK, ._YZxqK, .scroll-to-top, .scroll-top { display: none !important; }
-    @supports (-webkit-touch-callout: none) {
-      body { -webkit-touch-callout: none !important; -webkit-user-select: none !important; }
-    }
 
     /* ===== ПЕРЕМЕННЫЕ ===== */
     :root {
@@ -131,7 +135,6 @@
     .btn-heart .fa-heart{color:red}
     .btn-full{width:100%}
     .btn-disabled{opacity:.4;pointer-events:none}
-    .btn-disabled.active{opacity:1;pointer-events:all}
     .btn-group{display:flex;gap:16px;flex-wrap:wrap}
     .btn-group .btn{flex:1 1 200px;min-width:140px}
     @media(max-width:480px){.btn-group .btn{flex:1 1 100%}}
@@ -758,7 +761,7 @@
           <button class="genre-tab" data-genre="piano">Piano</button>
         </div>
         <div class="hero-player" id="heroPlayer">
-          <iframe id="playerIframe" style="border:0;width:100%;height:120px;" src="https://bandcamp.com/EmbeddedPlayer/track=1094038954/size=large/bgcol=333333/linkcol=ffffff/tracklist=false/artwork=small/transparent=true/" seamless><a href="https://balm2.bandcamp.com/track/chillout-mix-free">Chillout mix (Free) by BALM</a></iframe>
+          <iframe id="playerIframe" style="border:0;width:100%;height:120px;" src="https://bandcamp.com/EmbeddedPlayer/track=1094038954/size=large/bgcol=333333/linkcol=ffffff/tracklist=false/artwork=small/transparent=true/" loading="lazy" seamless><a href="https://balm2.bandcamp.com/track/chillout-mix-free">Chillout mix (Free) by BALM</a></iframe>
           <div class="player-label" id="playerLabel">Chillout · Бесплатная демо-версия</div>
         </div>
       </div>
@@ -805,7 +808,7 @@
               <button class="genre-tab" data-genre="piano">Piano</button>
             </div>
             <div class="radio-wrapper locked" id="radioWrapper">
-              <iframe id="radioIframe" style="border:0;width:100%;height:120px;" src="https://bandcamp.com/EmbeddedPlayer/track=1094038954/size=large/bgcol=333333/linkcol=ffffff/tracklist=false/artwork=small/transparent=true/" seamless><a href="https://balm2.bandcamp.com/track/chillout-mix-free">Chillout mix (Free) by BALM</a></iframe>
+              <iframe id="radioIframe" style="border:0;width:100%;height:120px;" src="https://bandcamp.com/EmbeddedPlayer/track=1094038954/size=large/bgcol=333333/linkcol=ffffff/tracklist=false/artwork=small/transparent=true/" loading="lazy" seamless><a href="https://balm2.bandcamp.com/track/chillout-mix-free">Chillout mix (Free) by BALM</a></iframe>
               <div class="radio-lock-overlay" id="radioLockOverlay" data-open-subscribe><i class="fas fa-lock"></i><span>Оформить подписку</span></div>
             </div>
             <div class="demo-tag"><i class="fas fa-headphones" style="margin-right:6px"></i> BALM RADIO · Все жанры · Без рекламы</div>
@@ -980,8 +983,8 @@
     </div>
   </footer>
 
-  <!-- ===== Tawk.to ===== -->
-  <script>
+  <!-- ===== Tawk.to (ОТЛОЖЕННАЯ ЗАГРУЗКА) ===== -->
+  <script defer>
     var Tawk_API = Tawk_API || {};
     var Tawk_LoadStart = new Date();
     (function() {
@@ -995,8 +998,8 @@
     })();
   </script>
 
-  <!-- ===== СКРИПТЫ ===== -->
-  <script>
+  <!-- ===== ОСНОВНОЙ СКРИПТ (ОТЛОЖЕННАЯ ЗАГРУЗКА) ===== -->
+  <script defer>
     (function() {
       'use strict';
 
@@ -1033,6 +1036,7 @@
         });
       }
 
+      // Инициализация табов
       initTabs('heroGenreTabs', 'playerIframe', 'playerLabel');
       initTabs('radioGenreTabs', 'radioIframe', null);
 
