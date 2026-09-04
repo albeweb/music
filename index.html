@@ -79,20 +79,30 @@
       transform: translateY(-3px);
       box-shadow: 0 8px 30px rgba(139,92,246,.4);
     }
+
+    /* ===== КНОПКА "ПОДДЕРЖАТЬ" (обводка градиент, прозрачный фон) ===== */
     .btn-heart {
-      background: var(--accent);
-      box-shadow: 0 4px 16px rgba(139,92,246,.25);
-      padding: 8px 18px;
-      min-height: 38px;
-      font-size: var(--btn-fs);
+      background: transparent;
+      border: 2px solid transparent;
+      background-image: linear-gradient(var(--bg), var(--bg)), linear-gradient(135deg, var(--accent), var(--success));
+      background-origin: border-box;
+      background-clip: padding-box, border-box;
+      box-shadow: none;
+      padding: 4px 14px;
+      min-height: auto;
+      height: auto;
+      font-size: 1rem;
+      color: #fff;
+    }
+    .btn-heart .fa-heart {
+      color: #fff;
+      font-size: 1rem;
     }
     .btn-heart:hover {
       transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(139,92,246,.2);
     }
-    .btn-heart .fa-heart {
-      color: red;
-      font-size: 1.4rem;
-    }
+
     .btn-full {
       width: 100%;
     }
@@ -111,7 +121,8 @@
     }
     @media(max-width:480px){
       .btn-group .btn{flex:1 1 100%}
-      .btn-heart{padding:6px 12px;min-height:32px}
+      .btn-heart{padding:4px 12px;font-size:.9rem}
+      .btn-heart .fa-heart{font-size:.9rem}
       .btn i{font-size:1.2rem}
     }
 
