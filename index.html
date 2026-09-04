@@ -9,6 +9,13 @@
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://balm-music.ru/">
 
+  <!-- ===== PRE-CONNECT ДЛЯ УСКОРЕНИЯ ===== -->
+  <link rel="preconnect" href="https://bandcamp.com">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://embed.tawk.to">
+  <link rel="dns-prefetch" href="https://bandcamp.com">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+
   <!-- ===== МЕТА-ТЕГИ ДЛЯ СОЦСЕТЕЙ ===== -->
   <meta property="og:title" content="Официальный сайт BALM (БИЭЛЭМ) — музыка без авторских прав для бизнеса и видео">
   <meta property="og:description" content="Уникальная экспериментальная музыка для бизнеса, рекламы, видео и мультипликации. Без отчислений РАО и ВОИС. Скачать бесплатно демо.">
@@ -929,7 +936,7 @@
 
   <!-- ===== HERO С ПЛЕЕРОМ И ТАБАМИ ===== -->
   <section class="hero" id="player">
-    <img class="hero-img" src="BALMherob.webp" alt="BALM — экспериментальная музыка без авторских прав для бизнеса и видео. Обложка проекта на фоне космоса." loading="lazy">
+    <img class="hero-img" src="BALMherob.webp" alt="BALM — экспериментальная музыка без авторских прав для бизнеса и видео. Обложка проекта на фоне космоса." loading="lazy" decoding="async">
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <h1 class="hero-title">BALM</h1>
@@ -948,13 +955,15 @@
           <button class="genre-tab" data-genre="piano">Piano</button>
         </div>
 
-        <!-- Плеер -->
+        <!-- Плеер (загружается сразу, т.к. в видимой области) -->
         <div class="hero-player" id="heroPlayer">
           <iframe 
             id="playerIframe"
             style="border: 0; width: 100%; height: 120px;" 
             src="https://bandcamp.com/EmbeddedPlayer/track=1094038954/size=large/bgcol=333333/linkcol=ffffff/tracklist=false/artwork=small/transparent=true/" 
-            seamless>
+            seamless
+            loading="eager"
+            aria-label="Музыкальный плеер BALM — Chillout демо">
             <a href="https://balm2.bandcamp.com/track/chillout-mix-free">Chillout mix (Free) by BALM</a>
           </iframe>
           <div class="player-label" id="playerLabel">Chillout · Бесплатная демо-версия</div>
@@ -989,7 +998,7 @@
         <div class="cf-player">
           <div class="demo">
             <div class="demo-track">
-              <div class="demo-art"><i class="fas fa-headphones"></i></div>
+              <div class="demo-art"><i class="fas fa-headphones" aria-hidden="true"></i></div>
               <div class="demo-meta">
                 <div class="name">BALM RADIO</div>
                 <div class="artist">Слушай онлайн · Без авторских прав</div>
@@ -1006,13 +1015,22 @@
               <button class="genre-tab" data-genre="piano">Piano</button>
             </div>
             <div class="radio-wrapper locked" id="radioWrapper">
-              <iframe id="radioIframe" style="border: 0; width: 100%; height: 120px;" src="https://bandcamp.com/EmbeddedPlayer/track=1094038954/size=large/bgcol=333333/linkcol=ffffff/tracklist=false/artwork=small/transparent=true/" seamless><a href="https://balm2.bandcamp.com/track/chillout-mix-free">Chillout mix (Free) by BALM</a></iframe>
+              <!-- ЛЕНИВАЯ ЗАГРУЗКА: используем data-src вместо src -->
+              <iframe 
+                id="radioIframe"
+                style="border: 0; width: 100%; height: 120px;" 
+                data-src="https://bandcamp.com/EmbeddedPlayer/track=1094038954/size=large/bgcol=333333/linkcol=ffffff/tracklist=false/artwork=small/transparent=true/"
+                seamless
+                loading="lazy"
+                aria-label="BALM RADIO — музыка без авторских прав">
+                <a href="https://balm2.bandcamp.com/track/chillout-mix-free">Chillout mix (Free) by BALM</a>
+              </iframe>
               <div class="radio-lock-overlay" id="radioLockOverlay" data-open-subscribe>
                 <i class="fas fa-lock"></i>
                 <span>Оформить подписку</span>
               </div>
             </div>
-            <div class="demo-tag"><i class="fas fa-headphones" style="margin-right:6px"></i> BALM RADIO · Все жанры · Без рекламы</div>
+            <div class="demo-tag"><i class="fas fa-headphones" style="margin-right:6px" aria-hidden="true"></i> BALM RADIO · Все жанры · Без рекламы</div>
           </div>
           <div class="btn-group">
             <button class="btn btn-primary" data-open-subscribe><i class="fas fa-crown"></i> Оформить подписку</button>
@@ -1032,77 +1050,77 @@
       </div>
       <div class="releases-grid" id="releaseGrid">
         <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="card">
-          <div class="card-cover"><img src="rage.webp" alt="Обложка сингла Клуб на дне" loading="lazy"><span class="card-new">NEW</span></div>
+          <div class="card-cover"><img src="rage.webp" alt="Обложка сингла Клуб на дне" loading="lazy" decoding="async"><span class="card-new">NEW</span></div>
           <div class="card-title">Клуб на дне (Минимал-техно)</div>
           <div class="card-year">2026 · Сингл · Техно</div>
         </a>
         <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="card">
-          <div class="card-cover"><img src="last.webp" alt="Обложка сингла Последняя любовь" loading="lazy"><span class="card-new">NEW</span></div>
+          <div class="card-cover"><img src="last.webp" alt="Обложка сингла Последняя любовь" loading="lazy" decoding="async"><span class="card-new">NEW</span></div>
           <div class="card-title">Последняя любовь</div>
           <div class="card-year">2026 · Дабл-сингл · Поп</div>
         </a>
         <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="card">
-          <div class="card-cover"><img src="Jazz.webp" alt="Обложка альбома Jazz" loading="lazy"><span class="card-new">NEW</span></div>
+          <div class="card-cover"><img src="Jazz.webp" alt="Обложка альбома Jazz" loading="lazy" decoding="async"><span class="card-new">NEW</span></div>
           <div class="card-title">Jazz</div>
           <div class="card-year">2026 · Альбом · Джаз</div>
         </a>
         <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="card">
-          <div class="card-cover"><img src="stars.webp" alt="Обложка сингла К звездам" loading="lazy"></div>
+          <div class="card-cover"><img src="stars.webp" alt="Обложка сингла К звездам" loading="lazy" decoding="async"></div>
           <div class="card-title">К звездам (Rock / Jazz / Piano)</div>
           <div class="card-year">2026 · Трипл-сингл</div>
         </a>
         <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="card">
-          <div class="card-cover"><img src="alterego.webp" alt="Обложка альбома Альтерэго" loading="lazy"></div>
+          <div class="card-cover"><img src="alterego.webp" alt="Обложка альбома Альтерэго" loading="lazy" decoding="async"></div>
           <div class="card-title">Альтерэго (Rock)</div>
           <div class="card-year">2026 · Альбом · Рок</div>
         </a>
         <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="card">
-          <div class="card-cover"><img src="beautiful.webp" alt="Обложка сингла Beautiful" loading="lazy"></div>
+          <div class="card-cover"><img src="beautiful.webp" alt="Обложка сингла Beautiful" loading="lazy" decoding="async"></div>
           <div class="card-title">Beautiful (Rock)</div>
           <div class="card-year">2026 · Сингл</div>
         </a>
         <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="card">
-          <div class="card-cover"><img src="chance.webp" alt="Обложка сингла Chance" loading="lazy"></div>
+          <div class="card-cover"><img src="chance.webp" alt="Обложка сингла Chance" loading="lazy" decoding="async"></div>
           <div class="card-title">Chance English ver. (Rock)</div>
           <div class="card-year">2026 · Сингл</div>
         </a>
         <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="card">
-          <div class="card-cover"><img src="cloud.webp" alt="Обложка сингла Облака" loading="lazy"></div>
+          <div class="card-cover"><img src="cloud.webp" alt="Обложка сингла Облака" loading="lazy" decoding="async"></div>
           <div class="card-title">Облака (Rock)</div>
           <div class="card-year">2026 · Сингл</div>
         </a>
         <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="card">
-          <div class="card-cover"><img src="Heart.webp" alt="Обложка сингла Жги моё сердце" loading="lazy"></div>
+          <div class="card-cover"><img src="Heart.webp" alt="Обложка сингла Жги моё сердце" loading="lazy" decoding="async"></div>
           <div class="card-title">Жги моё сердце (Pop)</div>
           <div class="card-year">2026 · Сингл</div>
         </a>
         <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="card">
-          <div class="card-cover"><img src="its%20my%20life.webp" alt="Обложка сингла It's My Life" loading="lazy"></div>
+          <div class="card-cover"><img src="its%20my%20life.webp" alt="Обложка сингла It's My Life" loading="lazy" decoding="async"></div>
           <div class="card-title">It's My Life (Hip-hop)</div>
           <div class="card-year">2026 · Сингл</div>
         </a>
         <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="card">
-          <div class="card-cover"><img src="love.webp" alt="Обложка сингла Смысл жизни любовь" loading="lazy"></div>
+          <div class="card-cover"><img src="love.webp" alt="Обложка сингла Смысл жизни любовь" loading="lazy" decoding="async"></div>
           <div class="card-title">Смысл жизни любовь (Pop)</div>
           <div class="card-year">2026 · Сингл</div>
         </a>
         <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="card">
-          <div class="card-cover"><img src="what.webp" alt="Обложка сингла Ну почему?" loading="lazy"></div>
+          <div class="card-cover"><img src="what.webp" alt="Обложка сингла Ну почему?" loading="lazy" decoding="async"></div>
           <div class="card-title">Ну почему? (Breaks)</div>
           <div class="card-year">2026 · Сингл</div>
         </a>
         <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="card">
-          <div class="card-cover"><img src="world.webp" alt="Обложка сингла Мой маленький мир" loading="lazy"></div>
+          <div class="card-cover"><img src="world.webp" alt="Обложка сингла Мой маленький мир" loading="lazy" decoding="async"></div>
           <div class="card-title">Мой маленький мир (Pop)</div>
           <div class="card-year">2026 · Сингл</div>
         </a>
         <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="card">
-          <div class="card-cover"><img src="beautifulRU.webp" alt="Обложка сингла Моя красивая" loading="lazy"></div>
+          <div class="card-cover"><img src="beautifulRU.webp" alt="Обложка сингла Моя красивая" loading="lazy" decoding="async"></div>
           <div class="card-title">Моя красивая (Pop)</div>
           <div class="card-year">2026 · Сингл</div>
         </a>
         <a href="https://music.yandex.ru/artist/26471381" target="_blank" class="card">
-          <div class="card-cover"><img src="chanceRU.webp" alt="Обложка сингла Шанс" loading="lazy"></div>
+          <div class="card-cover"><img src="chanceRU.webp" alt="Обложка сингла Шанс" loading="lazy" decoding="async"></div>
           <div class="card-title">Шанс (Rock)</div>
           <div class="card-year">2026 · Сингл</div>
         </a>
@@ -1113,7 +1131,7 @@
   <!-- ===== БИО ===== -->
   <section class="bio scroll-margin" id="bio">
     <div class="container bio-grid">
-      <div class="bio-img"><img src="BALM.webp" alt="BALM — экспериментальный музыкальный проект" loading="lazy"></div>
+      <div class="bio-img"><img src="BALM.webp" alt="BALM — экспериментальный музыкальный проект" loading="lazy" decoding="async"></div>
       <div>
         <h2 class="bio-title">О проекте BALM</h2>
         <p class="bio-text"><strong>BALM</strong> — это экспериментальный музыкальный проект Алексея Беляева из Санкт-Петербурга. На стыке ню-метала, поп-мелодий и электроники рождается уникальный звук для тех, кто ищет настоящую эмоцию и качественный музыкальный контент без ограничений по авторским правам.</p>
@@ -1160,25 +1178,25 @@
       <div class="footer-platforms">
         <div class="platform-row">
           <a href="https://music.yandex.ru/artist/26471381" target="_blank">
-            <i class="fas fa-music" style="color:#FFCC00;"></i>
+            <i class="fas fa-music" style="color:#FFCC00;" aria-hidden="true"></i>
             <span class="platform-label">Яндекс Музыка</span>
           </a>
           <a href="https://music.apple.com/ru/artist/balm-биэлэм/6800941971" target="_blank">
-            <i class="fab fa-apple" style="color:#FC3C44;"></i>
+            <i class="fab fa-apple" style="color:#FC3C44;" aria-hidden="true"></i>
             <span class="platform-label">Apple Music</span>
           </a>
         </div>
         <div class="platform-row">
           <a href="https://open.spotify.com/search/биэлэм" target="_blank">
-            <i class="fab fa-spotify" style="color:#1DB954;"></i>
+            <i class="fab fa-spotify" style="color:#1DB954;" aria-hidden="true"></i>
             <span class="platform-label">Spotify</span>
           </a>
           <a href="https://zvuk.com/artist/214558962" target="_blank">
-            <i class="fas fa-headphones" style="color:#8B5CF6;"></i>
+            <i class="fas fa-headphones" style="color:#8B5CF6;" aria-hidden="true"></i>
             <span class="platform-label">Zvuk</span>
           </a>
           <a href="https://vk.ru/albe_music" target="_blank">
-            <i class="fab fa-vk" style="color:#0077FF;"></i>
+            <i class="fab fa-vk" style="color:#0077FF;" aria-hidden="true"></i>
             <span class="platform-label">VK Музыка</span>
           </a>
         </div>
@@ -1188,7 +1206,7 @@
     <div class="footer-row">
       <div class="footer-links">
         <a href="#" data-agreement>Пользовательское соглашение</a>
-        <a href="#" onclick="alert('Политика конфиденциальности: данные не передаются третьим лицам.');">Политика конфиденциальности</a>
+        <a href="#" data-privacy>Политика конфиденциальности</a>
       </div>
     </div>
 
@@ -1196,68 +1214,44 @@
       <div class="footer-bottom">
         <span>Разработано в</span>
         <a href="https://t.me/albe_web" target="_blank" class="footer-albe" rel="noopener">
-          <img src="Albe.webp" alt="Albe — разработка сайтов и веб-решений" loading="lazy">
+          <img src="Albe.webp" alt="Albe — разработка сайтов и веб-решений" loading="lazy" decoding="async">
         </a>
       </div>
     </div>
   </footer>
 
-  <!-- ===== Tawk.to ===== -->
-  <script>
-    var Tawk_API = Tawk_API || {};
-    var Tawk_LoadStart = new Date();
-    (function() {
-      var s1 = document.createElement("script");
-      var s0 = document.getElementsByTagName("script")[0];
-      s1.async = true;
-      s1.src = 'https://embed.tawk.to/6a8ed1a4067fac344b1dc207/1k0v4lbp5';
-      s1.charset = 'UTF-8';
-      s1.setAttribute('crossorigin', '*');
-      s0.parentNode.insertBefore(s1, s0);
-    })();
-  </script>
-
-  <!-- ===== СКРИПТЫ ===== -->
+  <!-- ===== СКРИПТЫ (все в одном месте) ===== -->
   <script>
     (function() {
       'use strict';
 
-      // === СКРЫТИЕ АДРЕСНОЙ СТРОКИ НА МОБИЛЬНЫХ ===
+      // === 1. СКРЫТИЕ АДРЕСНОЙ СТРОКИ НА МОБИЛЬНЫХ ===
       function hideAddressBar() {
         var isMobile = window.innerWidth < 768 || /Android|iPhone|iPad|iPod|BlackBerry|Opera Mini|IEMobile/i.test(navigator.userAgent);
         if (!isMobile) return;
-        
         if (window.scrollY < 1) {
           window.scrollTo(0, 1);
         }
       }
 
-      // Запускаем при загрузке
       window.addEventListener('load', function() {
         setTimeout(hideAddressBar, 300);
         setTimeout(hideAddressBar, 1000);
       });
-
-      // При изменении ориентации
       window.addEventListener('orientationchange', function() {
         setTimeout(hideAddressBar, 500);
       });
-
-      // При изменении размера
       var resizeTimer;
       window.addEventListener('resize', function() {
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(hideAddressBar, 300);
       });
-
-      // При касании (для надёжности)
       document.addEventListener('touchstart', function() {
         setTimeout(hideAddressBar, 100);
       }, { passive: true });
 
-      // === БЛОКИРОВКА ГОРИЗОНТАЛЬНОГО РЕЖИМА НА МОБИЛЬНЫХ ===
+      // === 2. БЛОКИРОВКА ГОРИЗОНТАЛЬНОГО РЕЖИМА ===
       function initOrientationLock() {
-        // Проверяем, что это мобильное устройство
         var isMobile = window.innerWidth < 768 || /Android|iPhone|iPad|iPod|BlackBerry|Opera Mini|IEMobile/i.test(navigator.userAgent);
         if (!isMobile) return;
 
@@ -1272,18 +1266,12 @@
           }
         }
 
-        // Проверяем при загрузке
         checkOrientation();
-
-        // Следим за изменением размера
         window.addEventListener('resize', checkOrientation);
-
-        // Следим за изменением ориентации (с задержкой для iOS)
         window.addEventListener('orientationchange', function() {
           setTimeout(checkOrientation, 300);
         });
 
-        // Пытаемся заблокировать через API (если доступно)
         if (screen.orientation && screen.orientation.lock) {
           screen.orientation.lock('portrait').catch(function() {});
           screen.orientation.addEventListener('change', function() {
@@ -1294,14 +1282,13 @@
         }
       }
 
-      // Запускаем при загрузке
       if (document.readyState === 'complete') {
         initOrientationLock();
       } else {
         window.addEventListener('load', initOrientationLock);
       }
 
-      // === ДАННЫЕ ТРЕКОВ ===
+      // === 3. ДАННЫЕ ТРЕКОВ ===
       const tracks = {
         chillout: {
           url: 'https://bandcamp.com/EmbeddedPlayer/track=1094038954/size=large/bgcol=333333/linkcol=ffffff/tracklist=false/artwork=small/transparent=true/',
@@ -1333,19 +1320,19 @@
         }
       };
 
-      // === ПЕРЕКЛЮЧЕНИЕ ТРЕКОВ В HERO ===
+      // === 4. ПЕРЕКЛЮЧЕНИЕ ТРЕКОВ В HERO ===
       (function() {
-        const tabs = document.querySelectorAll('#heroGenreTabs .genre-tab');
-        const iframe = document.getElementById('playerIframe');
-        const label = document.getElementById('playerLabel');
+        var tabs = document.querySelectorAll('#heroGenreTabs .genre-tab');
+        var iframe = document.getElementById('playerIframe');
+        var label = document.getElementById('playerLabel');
 
-        tabs.forEach(tab => {
+        tabs.forEach(function(tab) {
           tab.addEventListener('click', function() {
-            tabs.forEach(t => t.classList.remove('active'));
+            tabs.forEach(function(t) { t.classList.remove('active'); });
             this.classList.add('active');
 
-            const genre = this.dataset.genre;
-            const track = tracks[genre];
+            var genre = this.dataset.genre;
+            var track = tracks[genre];
 
             if (track) {
               iframe.src = track.url;
@@ -1355,18 +1342,18 @@
         });
       })();
 
-      // === ПЕРЕКЛЮЧЕНИЕ ТРЕКОВ В BALM RADIO ===
+      // === 5. ПЕРЕКЛЮЧЕНИЕ ТРЕКОВ В BALM RADIO ===
       (function() {
-        const tabs = document.querySelectorAll('#radioGenreTabs .genre-tab');
-        const iframe = document.getElementById('radioIframe');
+        var tabs = document.querySelectorAll('#radioGenreTabs .genre-tab');
+        var iframe = document.getElementById('radioIframe');
 
-        tabs.forEach(tab => {
+        tabs.forEach(function(tab) {
           tab.addEventListener('click', function() {
-            tabs.forEach(t => t.classList.remove('active'));
+            tabs.forEach(function(t) { t.classList.remove('active'); });
             this.classList.add('active');
 
-            const genre = this.dataset.genre;
-            const track = tracks[genre];
+            var genre = this.dataset.genre;
+            var track = tracks[genre];
 
             if (track) {
               iframe.src = track.url;
@@ -1375,7 +1362,41 @@
         });
       })();
 
-      // === МОДАЛКА ПОДПИСКИ ===
+      // === 6. ЛЕНИВАЯ ЗАГРУЗКА IFRAME (BALM RADIO) ===
+      function lazyLoadIframes() {
+        var iframes = document.querySelectorAll('iframe[data-src]');
+        
+        if ('IntersectionObserver' in window) {
+          var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+              if (entry.isIntersecting) {
+                var iframe = entry.target;
+                iframe.src = iframe.dataset.src;
+                iframe.removeAttribute('data-src');
+                observer.unobserve(iframe);
+              }
+            });
+          }, { rootMargin: '100px' });
+          
+          iframes.forEach(function(iframe) {
+            observer.observe(iframe);
+          });
+        } else {
+          // Fallback для старых браузеров
+          iframes.forEach(function(iframe) {
+            iframe.src = iframe.dataset.src;
+          });
+        }
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', lazyLoadIframes);
+      } else {
+        lazyLoadIframes();
+      }
+
+      // === 7. МОДАЛКИ ===
+      // Подписка
       var subscribeModal = document.getElementById('subscribeModal');
       var subscribeOpen = document.querySelectorAll('[data-open-subscribe]');
       var subscribeClose = subscribeModal.querySelector('[data-close-subscribe]');
@@ -1399,7 +1420,7 @@
         }
       });
 
-      // === МОДАЛКА ОПЛАТЫ ===
+      // Оплата
       var payModal = document.getElementById('payModal');
       var payOpen = document.querySelector('[data-open-pay]');
       var payClose = payModal.querySelector('[data-close-pay]');
@@ -1423,7 +1444,7 @@
         }
       });
 
-      // === МОДАЛКА КУПИТЬ МУЗЫКУ ===
+      // Купить музыку
       var buyModal = document.getElementById('buyModal');
       var buyOpen = document.querySelector('[data-open-buy]');
       var buyClose = buyModal.querySelector('[data-close-buy]');
@@ -1464,7 +1485,7 @@
         });
       }
 
-      // === МОДАЛКА СОГЛАШЕНИЯ ===
+      // Соглашение
       var agreeModal = document.getElementById('agreementModal');
       var agreeOpen = document.querySelectorAll('[data-agreement]');
       var agreeClose = agreeModal.querySelector('[data-close-agreement]');
@@ -1491,6 +1512,22 @@
         }
       });
 
+      // Политика конфиденциальности
+      var privacyLink = document.querySelector('[data-privacy]');
+      if (privacyLink) {
+        privacyLink.addEventListener('click', function(e) {
+          e.preventDefault();
+          // Можно заменить на модальное окно или открыть страницу
+          var msg = 'Политика конфиденциальности:\n\n' +
+                    '1. Мы собираем только те данные, которые вы предоставляете добровольно.\n' +
+                    '2. Данные не передаются третьим лицам.\n' +
+                    '3. Мы используем cookies для улучшения работы сайта.\n' +
+                    '4. Вы можете запросить удаление своих данных в любой момент.';
+          alert(msg);
+        });
+      }
+
+      // Escape
       document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
           if (subscribeModal) subscribeModal.classList.remove('open');
@@ -1501,7 +1538,7 @@
         }
       });
 
-      // === МЕНЮ ===
+      // === 8. МЕНЮ ===
       var hamburger = document.getElementById('hamburger');
       var mobileMenu = document.getElementById('mobileMenu');
 
@@ -1519,7 +1556,7 @@
         });
       });
 
-      // === РЕЛИЗЫ ===
+      // === 9. РЕЛИЗЫ ===
       var cards = document.querySelectorAll('.card');
       var toggleBtn = document.getElementById('showAllBtn');
       var allVisible = false;
@@ -1539,7 +1576,7 @@
         if (i >= 3) card.classList.add('hidden');
       });
 
-      // === FAQ ===
+      // === 10. FAQ ===
       document.querySelectorAll('[data-faq-toggle]').forEach(function(btn) {
         btn.addEventListener('click', function() {
           var item = this.closest('.faq-item');
@@ -1554,6 +1591,21 @@
           this.setAttribute('aria-expanded', !isActive);
         });
       });
+
+      // === 11. ОТЛОЖЕННАЯ ЗАГРУЗКА Tawk.to (через 4 секунды) ===
+      setTimeout(function() {
+        var Tawk_API = Tawk_API || {};
+        var Tawk_LoadStart = new Date();
+        (function() {
+          var s1 = document.createElement("script");
+          var s0 = document.getElementsByTagName("script")[0];
+          s1.async = true;
+          s1.src = 'https://embed.tawk.to/6a8ed1a4067fac344b1dc207/1k0v4lbp5';
+          s1.charset = 'UTF-8';
+          s1.setAttribute('crossorigin', '*');
+          s0.parentNode.insertBefore(s1, s0);
+        })();
+      }, 4000);
 
     })();
   </script>
