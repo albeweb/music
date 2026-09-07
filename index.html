@@ -86,7 +86,7 @@
       --text2: #333333;
       --text3: #666666;
       --border: #cccccc;
-      --hero-overlay: rgba(255,255,255,0.55);
+      --hero-overlay: rgba(0,0,0,0.5);  /* затемняем вместо светлого засвета */
       --card-bg: #f0f0f2;
       --demo-bg: rgba(255,255,255,0.85);
       --modal-bg: #fafafa;
@@ -183,29 +183,30 @@
       box-shadow: 0 8px 30px rgba(29,185,84,.4);
     }
 
+    /* ===== КНОПКА "ПОДДЕРЖАТЬ" — ГРАДИЕНТНЫЙ ФОН ===== */
     .btn-heart {
-      background: transparent;
-      border: 2px solid transparent;
-      background-image: linear-gradient(var(--bg), var(--bg)), linear-gradient(135deg, var(--accent), var(--success));
-      background-origin: border-box;
-      background-clip: padding-box, border-box;
-      box-shadow: none;
+      background: linear-gradient(135deg, var(--accent), var(--success));
+      border: none;
+      box-shadow: 0 4px 20px rgba(252,60,68,0.3);
       padding: 4px 14px;
       min-height: auto;
       height: auto;
       font-size: 1rem;
       color: #fff;
     }
-    body.light-theme .btn-heart {
-      background-image: linear-gradient(#f5f5f7, #f5f5f7), linear-gradient(135deg, var(--accent), var(--success));
-    }
     .btn-heart .fa-heart {
       color: #fff;
       font-size: 1rem;
+      text-shadow: none;
     }
     .btn-heart:hover {
       transform: translateY(-2px);
-      box-shadow: 0 4px 16px rgba(252,60,68,.2);
+      box-shadow: 0 8px 30px rgba(252,60,68,0.4);
+    }
+    /* Для светлой темы градиент остаётся тем же */
+    body.light-theme .btn-heart {
+      background: linear-gradient(135deg, var(--accent), var(--success));
+      box-shadow: 0 4px 20px rgba(252,60,68,0.3);
     }
 
     .btn-full {width:100%}
@@ -746,7 +747,6 @@
       const themeIcon = document.getElementById('themeIcon');
       const body = document.body;
 
-      // Проверяем сохранённую тему или системную
       const savedTheme = localStorage.getItem('balm-theme');
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
       const isDark = savedTheme ? savedTheme === 'dark' : prefersDark;
