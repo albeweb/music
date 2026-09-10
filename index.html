@@ -28,13 +28,47 @@
   <link rel="icon" type="image/x-icon" href="https://balm-music.ru/favicon.ico">
   <link rel="shortcut icon" href="https://balm-music.ru/favicon.ico">
 
-  <!-- Возвращено как было: preconnect без crossorigin для Bandcamp -->
-  <link rel="preconnect" href="https://s4.bcbits.com">
-  <link rel="dns-prefetch" href="https://bandcamp.com">
+  <!-- Preconnect к CDN Bandcamp — с crossorigin, иначе плеер грузится медленно -->
+  <link rel="preconnect" href="https://s4.bcbits.com" crossorigin>
   <link rel="preload" as="image" href="BALMherob.webp" fetchpriority="high">
   <link rel="preload" as="font" type="font/woff2" href="Geist-Bold.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="Geist-Regular.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="Geist-Medium.woff2" crossorigin>
+
+  <!--
+    ОПЦИОНАЛЬНО: отложенная загрузка Google Tag Manager.
+    Раскомментируй блок ниже ТОЛЬКО если найдёшь и удалишь источник GTM
+    (тот, что сейчас грузит gtm.js?id=GTM-TKFS52TF). Иначе будет двойная загрузка.
+  -->
+  <!--
+  <script>
+  (function(w, d, id, delay, l) {
+    let loaded = false;
+    function loadGTM() {
+      if (loaded) return;
+      loaded = true;
+      const s = d.createElement("script");
+      s.async = 1;
+      s.src = "https://www.googletagmanager.com/gtm.js?id=" + id;
+      s.onload = () => {
+        w[l] = w[l] || [];
+        w[l].push({ event: "gtm.js", "gtm.start": Date.now(), "gtm.uniqueEventId": 0 });
+      };
+      d.head.appendChild(s);
+    }
+    function trigger() {
+      loadGTM();
+      ["scroll","pointerdown","keydown","touchstart","mousemove"].forEach(ev => {
+        d.removeEventListener(ev, trigger, { passive: true });
+      });
+    }
+    d.addEventListener("DOMContentLoaded", () => setTimeout(loadGTM, delay));
+    ["scroll","pointerdown","keydown","touchstart","mousemove"].forEach(ev => {
+      d.addEventListener(ev, trigger, { passive: true, once: true });
+    });
+  })(window, document, "GTM-TKFS52TF", 3500, "dataLayer");
+  </script>
+  -->
 
   <style>
     /* ===== ШРИФТЫ ===== */
@@ -219,27 +253,17 @@
     }
     .mobile-menu a:hover{color:#fff}
     .mobile-menu > a:last-of-type{border-bottom:0}
-
-    /* ===== ПЛАТФОРМЫ В МОБИЛЬНОМ МЕНЮ ===== */
     .mobile-platforms{
-      display:none;
-      flex-wrap:wrap;
-      justify-content:center;
-      gap:14px 22px;
-      padding-top:18px;
-      margin-top:4px;
-      border-top:1px solid rgba(255,255,255,.08);
-      width:100%;
+      display:none;flex-wrap:wrap;justify-content:center;gap:14px 22px;
+      padding-top:18px;margin-top:4px;
+      border-top:1px solid rgba(255,255,255,.08);width:100%;
     }
     @media(max-width:768px){.mobile-platforms{display:flex}}
     .mobile-menu .mobile-platforms a{
       display:inline-flex;align-items:center;gap:7px;
-      color:rgba(255,255,255,.65);
-      font-size:.8rem;font-weight:400;
-      text-transform:none;letter-spacing:.02em;
-      padding:4px 0;border-bottom:none;
-      transition:color .3s;
-      white-space:nowrap;
+      color:rgba(255,255,255,.65);font-size:.8rem;font-weight:400;
+      text-transform:none;letter-spacing:.02em;padding:4px 0;
+      border-bottom:none;transition:color .3s;white-space:nowrap;
     }
     .mobile-menu .mobile-platforms a:hover{color:#fff;border-bottom:none}
     .mobile-menu .mobile-platforms a .ico{font-size:1.15rem}
@@ -707,11 +731,9 @@
 </head>
 <body>
 
-  <!-- ===== SVG-СПРАЙТ ИКОНОК ===== -->
+  <!-- SVG-СПРАЙТ ИКОНОК -->
   <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true" focusable="false">
-    <symbol id="i-yandex-music" viewBox="0 0 24 24">
-      <path d="M12 2 L13.5 8.5 L20 8 L14.5 12 L20 16 L13.5 15.5 L12 22 L10.5 15.5 L4 16 L9.5 12 L4 8 L10.5 8.5 Z" fill="currentColor"/>
-    </symbol>
+    <symbol id="i-yandex-music" viewBox="0 0 24 24"><path d="M12 2 L13.5 8.5 L20 8 L14.5 12 L20 16 L13.5 15.5 L12 22 L10.5 15.5 L4 16 L9.5 12 L4 8 L10.5 8.5 Z" fill="currentColor"/></symbol>
     <symbol id="i-apple" viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></symbol>
     <symbol id="i-spotify" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.586 14.424a.622.622 0 0 1-.857.207c-2.348-1.435-5.304-1.76-8.785-.964a.622.622 0 1 1-.277-1.215c3.809-.87 7.077-.496 9.712 1.115a.622.622 0 0 1 .207.857zm1.223-2.722a.78.78 0 0 1-1.072.257c-2.687-1.652-6.785-2.131-9.965-1.166a.78.78 0 1 1-.452-1.494c3.632-1.102 8.147-.568 11.232 1.33a.78.78 0 0 1 .257 1.073zm.105-2.835C14.692 8.95 9.375 8.775 6.297 9.71a.935.935 0 1 1-.542-1.79c3.532-1.072 9.404-.865 13.115 1.338a.935.935 0 0 1-.956 1.61z"/></symbol>
     <symbol id="i-headphones" viewBox="0 0 24 24"><path d="M12 1a9 9 0 0 0-9 9v7a3 3 0 0 0 3 3h3v-8H5v-2a7 7 0 0 1 14 0v2h-4v8h3a3 3 0 0 0 3-3v-7a9 9 0 0 0-9-9z"/></symbol>
@@ -804,7 +826,6 @@
     </div>
   </nav>
 
-  <!-- МОДАЛКА ПОДПИСКИ -->
   <div class="modal-overlay" id="subscribeModal" role="dialog" aria-modal="true" aria-labelledby="subscribeModalTitle">
     <div class="modal">
       <button class="modal-close" data-close="subscribeModal" aria-label="Закрыть окно подписки">&times;</button>
@@ -826,7 +847,6 @@
     </div>
   </div>
 
-  <!-- МОДАЛКА ОПЛАТЫ -->
   <div class="modal-pay-overlay" id="payModal" role="dialog" aria-modal="true" aria-labelledby="payModalTitle">
     <div class="modal-pay">
       <button class="modal-pay-close" data-close="payModal" aria-label="Закрыть окно оплаты">&times;</button>
@@ -839,7 +859,6 @@
     </div>
   </div>
 
-  <!-- МОДАЛКА ПОКУПКИ -->
   <div class="modal-buy-overlay" id="buyModal" role="dialog" aria-modal="true" aria-labelledby="buyModalTitle">
     <div class="modal-buy">
       <button class="modal-buy-close" data-close="buyModal" aria-label="Закрыть окно покупки">&times;</button>
@@ -867,7 +886,6 @@
     </div>
   </div>
 
-  <!-- МОДАЛКА СОГЛАШЕНИЯ -->
   <div class="agree-overlay" id="agreementModal" role="dialog" aria-modal="true" aria-labelledby="agreementModalTitle" data-nosnippet>
     <div class="agree">
       <button class="agree-close" data-close="agreementModal" aria-label="Закрыть соглашение">&times;</button>
@@ -925,7 +943,6 @@
     </div>
   </div>
 
-  <!-- HERO -->
   <section class="hero" id="player" role="main" aria-label="Главный плеер">
     <img class="hero-img" src="BALMherob.webp" alt="BALM — фоновая музыка без авторских прав для бизнеса и видео. Обложка проекта на фоне космоса." width="1440" height="900" fetchpriority="high" decoding="async">
     <div class="hero-overlay"></div>
@@ -945,7 +962,6 @@
     </div>
   </section>
 
-  <!-- БЕЗ АВТОРСКИХ ПРАВ -->
   <section class="cf scroll-margin" id="copyright-free" aria-labelledby="copyrightFreeTitle">
     <div class="container">
       <div class="cf-grid">
@@ -1005,7 +1021,6 @@
     </div>
   </section>
 
-  <!-- РЕЛИЗЫ -->
   <section class="releases scroll-margin" id="releases" aria-labelledby="releasesTitle">
     <div class="container">
       <div class="releases-header">
@@ -1016,118 +1031,82 @@
       </div>
       <div class="releases-grid" id="releaseGrid">
         <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" class="card" aria-label="Signal acquired (Funky Break)">
-          <div class="card-cover">
-            <img src="signal.webp" alt="Signal acquired (Funky Break)" width="200" height="200" loading="lazy" decoding="async">
-            <span class="card-new">New</span>
-          </div>
+          <div class="card-cover"><img src="signal.webp" alt="Signal acquired (Funky Break)" width="200" height="200" loading="lazy" decoding="async"><span class="card-new">New</span></div>
           <div class="card-title">Signal acquired (Funky Break)</div>
           <div class="card-year">2026 · Альбом · Фанк</div>
         </a>
         <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" class="card" aria-label="Клуб на дне (Минимал-техно)">
-          <div class="card-cover">
-            <img src="rage.webp" alt="Клуб на дне (Минимал-техно)" width="200" height="200" loading="lazy" decoding="async">
-            <span class="card-new">New</span>
-          </div>
+          <div class="card-cover"><img src="rage.webp" alt="Клуб на дне (Минимал-техно)" width="200" height="200" loading="lazy" decoding="async"><span class="card-new">New</span></div>
           <div class="card-title">Клуб на дне (Минимал-техно)</div>
           <div class="card-year">2026 · Сингл · Техно</div>
         </a>
         <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" class="card" aria-label="Последняя любовь">
-          <div class="card-cover">
-            <img src="last.webp" alt="Последняя любовь" width="200" height="200" loading="lazy" decoding="async">
-            <span class="card-new">New</span>
-          </div>
+          <div class="card-cover"><img src="last.webp" alt="Последняя любовь" width="200" height="200" loading="lazy" decoding="async"><span class="card-new">New</span></div>
           <div class="card-title">Последняя любовь</div>
           <div class="card-year">2026 · Дабл-сингл · Поп</div>
         </a>
         <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" class="card" aria-label="Jazz">
-          <div class="card-cover">
-            <img src="Jazz.webp" alt="Jazz" width="200" height="200" loading="lazy" decoding="async">
-            <span class="card-new">New</span>
-          </div>
+          <div class="card-cover"><img src="Jazz.webp" alt="Jazz" width="200" height="200" loading="lazy" decoding="async"><span class="card-new">New</span></div>
           <div class="card-title">Jazz</div>
           <div class="card-year">2026 · Альбом · Джаз</div>
         </a>
         <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" class="card hidden" aria-label="К звездам (Rock / Jazz / Piano)">
-          <div class="card-cover">
-            <img src="stars.webp" alt="К звездам (Rock / Jazz / Piano)" width="200" height="200" loading="lazy" decoding="async">
-          </div>
+          <div class="card-cover"><img src="stars.webp" alt="К звездам (Rock / Jazz / Piano)" width="200" height="200" loading="lazy" decoding="async"></div>
           <div class="card-title">К звездам (Rock / Jazz / Piano)</div>
           <div class="card-year">2026 · Трипл-сингл</div>
         </a>
         <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" class="card hidden" aria-label="Альтерэго (Rock)">
-          <div class="card-cover">
-            <img src="alterego.webp" alt="Альтерэго (Rock)" width="200" height="200" loading="lazy" decoding="async">
-          </div>
+          <div class="card-cover"><img src="alterego.webp" alt="Альтерэго (Rock)" width="200" height="200" loading="lazy" decoding="async"></div>
           <div class="card-title">Альтерэго (Rock)</div>
           <div class="card-year">2026 · Альбом · Рок</div>
         </a>
         <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" class="card hidden" aria-label="Beautiful (Rock)">
-          <div class="card-cover">
-            <img src="beautiful.webp" alt="Beautiful (Rock)" width="200" height="200" loading="lazy" decoding="async">
-          </div>
+          <div class="card-cover"><img src="beautiful.webp" alt="Beautiful (Rock)" width="200" height="200" loading="lazy" decoding="async"></div>
           <div class="card-title">Beautiful (Rock)</div>
           <div class="card-year">2026 · Сингл</div>
         </a>
         <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" class="card hidden" aria-label="Chance English ver. (Rock)">
-          <div class="card-cover">
-            <img src="chance.webp" alt="Chance English ver. (Rock)" width="200" height="200" loading="lazy" decoding="async">
-          </div>
+          <div class="card-cover"><img src="chance.webp" alt="Chance English ver. (Rock)" width="200" height="200" loading="lazy" decoding="async"></div>
           <div class="card-title">Chance English ver. (Rock)</div>
           <div class="card-year">2026 · Сингл</div>
         </a>
         <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" class="card hidden" aria-label="Облака (Rock)">
-          <div class="card-cover">
-            <img src="cloud.webp" alt="Облака (Rock)" width="200" height="200" loading="lazy" decoding="async">
-          </div>
+          <div class="card-cover"><img src="cloud.webp" alt="Облака (Rock)" width="200" height="200" loading="lazy" decoding="async"></div>
           <div class="card-title">Облака (Rock)</div>
           <div class="card-year">2026 · Сингл</div>
         </a>
         <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" class="card hidden" aria-label="Жги моё сердце (Pop)">
-          <div class="card-cover">
-            <img src="Heart.webp" alt="Жги моё сердце (Pop)" width="200" height="200" loading="lazy" decoding="async">
-          </div>
+          <div class="card-cover"><img src="Heart.webp" alt="Жги моё сердце (Pop)" width="200" height="200" loading="lazy" decoding="async"></div>
           <div class="card-title">Жги моё сердце (Pop)</div>
           <div class="card-year">2026 · Сингл</div>
         </a>
         <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" class="card hidden" aria-label="It's My Life (Hip-hop)">
-          <div class="card-cover">
-            <img src="its-my-life.webp" alt="It's My Life (Hip-hop)" width="200" height="200" loading="lazy" decoding="async">
-          </div>
+          <div class="card-cover"><img src="its-my-life.webp" alt="It's My Life (Hip-hop)" width="200" height="200" loading="lazy" decoding="async"></div>
           <div class="card-title">It's My Life (Hip-hop)</div>
           <div class="card-year">2026 · Сингл</div>
         </a>
         <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" class="card hidden" aria-label="Смысл жизни любовь (Pop)">
-          <div class="card-cover">
-            <img src="love.webp" alt="Смысл жизни любовь (Pop)" width="200" height="200" loading="lazy" decoding="async">
-          </div>
+          <div class="card-cover"><img src="love.webp" alt="Смысл жизни любовь (Pop)" width="200" height="200" loading="lazy" decoding="async"></div>
           <div class="card-title">Смысл жизни любовь (Pop)</div>
           <div class="card-year">2026 · Сингл</div>
         </a>
         <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" class="card hidden" aria-label="Ну почему? (Breaks)">
-          <div class="card-cover">
-            <img src="what.webp" alt="Ну почему? (Breaks)" width="200" height="200" loading="lazy" decoding="async">
-          </div>
+          <div class="card-cover"><img src="what.webp" alt="Ну почему? (Breaks)" width="200" height="200" loading="lazy" decoding="async"></div>
           <div class="card-title">Ну почему? (Breaks)</div>
           <div class="card-year">2026 · Сингл</div>
         </a>
         <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" class="card hidden" aria-label="Мой маленький мир (Pop)">
-          <div class="card-cover">
-            <img src="world.webp" alt="Мой маленький мир (Pop)" width="200" height="200" loading="lazy" decoding="async">
-          </div>
+          <div class="card-cover"><img src="world.webp" alt="Мой маленький мир (Pop)" width="200" height="200" loading="lazy" decoding="async"></div>
           <div class="card-title">Мой маленький мир (Pop)</div>
           <div class="card-year">2026 · Сингл</div>
         </a>
         <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" class="card hidden" aria-label="Моя красивая (Pop)">
-          <div class="card-cover">
-            <img src="beautifulRU.webp" alt="Моя красивая (Pop)" width="200" height="200" loading="lazy" decoding="async">
-          </div>
+          <div class="card-cover"><img src="beautifulRU.webp" alt="Моя красивая (Pop)" width="200" height="200" loading="lazy" decoding="async"></div>
           <div class="card-title">Моя красивая (Pop)</div>
           <div class="card-year">2026 · Сингл</div>
         </a>
         <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" class="card hidden" aria-label="Шанс (Rock)">
-          <div class="card-cover">
-            <img src="chanceRU.webp" alt="Шанс (Rock)" width="200" height="200" loading="lazy" decoding="async">
-          </div>
+          <div class="card-cover"><img src="chanceRU.webp" alt="Шанс (Rock)" width="200" height="200" loading="lazy" decoding="async"></div>
           <div class="card-title">Шанс (Rock)</div>
           <div class="card-year">2026 · Сингл</div>
         </a>
@@ -1135,7 +1114,6 @@
     </div>
   </section>
 
-  <!-- BIO -->
   <section class="bio scroll-margin" id="bio" aria-labelledby="bioTitle">
     <div class="container bio-grid">
       <div class="bio-img">
@@ -1155,52 +1133,30 @@
     </div>
   </section>
 
-  <!-- FAQ -->
   <section class="faq scroll-margin" id="faq" aria-labelledby="faqTitle">
     <div class="container">
       <h2 class="faq-title" id="faqTitle">Часто задаваемые вопросы</h2>
       <div class="faq-list">
         <details class="faq-item">
-          <summary class="faq-q">
-            <span>Нужно ли платить РАО и ВОИС за использование музыки BALM?</span>
-            <span class="faq-icon"><svg class="ico" aria-hidden="true"><use href="#i-chevron-down"/></svg></span>
-          </summary>
-          <div class="faq-a">
-            <p><strong>Нет, не нужно.</strong> Музыка BALM полностью свободна от авторских отчислений. Вы платите <span class="hl">один раз</span> и больше никогда не платите РАО, ВОИС или другим организациям. Экономия до 162 000 ₽ в год. Подробнее в <a href="#" data-agreement>Соглашении</a>.</p>
-          </div>
+          <summary class="faq-q"><span>Нужно ли платить РАО и ВОИС за использование музыки BALM?</span><span class="faq-icon"><svg class="ico" aria-hidden="true"><use href="#i-chevron-down"/></svg></span></summary>
+          <div class="faq-a"><p><strong>Нет, не нужно.</strong> Музыка BALM полностью свободна от авторских отчислений. Вы платите <span class="hl">один раз</span> и больше никогда не платите РАО, ВОИС или другим организациям. Экономия до 162 000 ₽ в год. Подробнее в <a href="#" data-agreement>Соглашении</a>.</p></div>
         </details>
         <details class="faq-item">
-          <summary class="faq-q">
-            <span>Вы пишете музыку для детских мультфильмов и анимации?</span>
-            <span class="faq-icon"><svg class="ico" aria-hidden="true"><use href="#i-chevron-down"/></svg></span>
-          </summary>
-          <div class="faq-a">
-            <p><strong>Да, мы создаём музыку для детской мультипликации.</strong> BALM пишет саундтреки, фоновую музыку и песенки для мультфильмов, детских программ и анимационных проектов. <a href="https://t.me/albe_spb" target="_blank" rel="noopener noreferrer">Обсудим вашу идею в Telegram</a>.</p>
-          </div>
+          <summary class="faq-q"><span>Вы пишете музыку для детских мультфильмов и анимации?</span><span class="faq-icon"><svg class="ico" aria-hidden="true"><use href="#i-chevron-down"/></svg></span></summary>
+          <div class="faq-a"><p><strong>Да, мы создаём музыку для детской мультипликации.</strong> BALM пишет саундтреки, фоновую музыку и песенки для мультфильмов, детских программ и анимационных проектов. <a href="https://t.me/albe_spb" target="_blank" rel="noopener noreferrer">Обсудим вашу идею в Telegram</a>.</p></div>
         </details>
         <details class="faq-item">
-          <summary class="faq-q">
-            <span>Пишете ли вы стихи и песни для исполнителей с нуля?</span>
-            <span class="faq-icon"><svg class="ico" aria-hidden="true"><use href="#i-chevron-down"/></svg></span>
-          </summary>
-          <div class="faq-a">
-            <p><strong>Да, мы пишем стихи, тексты песен и полноценные треки для исполнителей на заказ.</strong> Можем создать материал под ваш образ, голос и стиль. <a href="https://t.me/albe_spb" target="_blank" rel="noopener noreferrer">Напишите в Telegram</a>.</p>
-          </div>
+          <summary class="faq-q"><span>Пишете ли вы стихи и песни для исполнителей с нуля?</span><span class="faq-icon"><svg class="ico" aria-hidden="true"><use href="#i-chevron-down"/></svg></span></summary>
+          <div class="faq-a"><p><strong>Да, мы пишем стихи, тексты песен и полноценные треки для исполнителей на заказ.</strong> Можем создать материал под ваш образ, голос и стиль. <a href="https://t.me/albe_spb" target="_blank" rel="noopener noreferrer">Напишите в Telegram</a>.</p></div>
         </details>
         <details class="faq-item">
-          <summary class="faq-q">
-            <span>Можно ли приобрести готовые стихи и песни из каталога?</span>
-            <span class="faq-icon"><svg class="ico" aria-hidden="true"><use href="#i-chevron-down"/></svg></span>
-          </summary>
-          <div class="faq-a">
-            <p><strong>Да, некоторые авторские стихи и песни доступны для приобретения.</strong> Стоимость и условия обсуждаются индивидуально. <a href="https://t.me/albe_spb" target="_blank" rel="noopener noreferrer">Свяжитесь с нами в Telegram</a>.</p>
-          </div>
+          <summary class="faq-q"><span>Можно ли приобрести готовые стихи и песни из каталога?</span><span class="faq-icon"><svg class="ico" aria-hidden="true"><use href="#i-chevron-down"/></svg></span></summary>
+          <div class="faq-a"><p><strong>Да, некоторые авторские стихи и песни доступны для приобретения.</strong> Стоимость и условия обсуждаются индивидуально. <a href="https://t.me/albe_spb" target="_blank" rel="noopener noreferrer">Свяжитесь с нами в Telegram</a>.</p></div>
         </details>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer class="container footer" role="contentinfo">
     <div class="footer-row">
       <div class="footer-platforms">
@@ -1250,7 +1206,6 @@
     (() => {
       'use strict';
 
-      // ===== Мобильное меню =====
       const hamburger = document.getElementById('hamburger');
       const mobileMenu = document.getElementById('mobileMenu');
       if (hamburger && mobileMenu) {
@@ -1268,7 +1223,6 @@
         });
       }
 
-      // ===== Модалки =====
       const modals = {};
       document.querySelectorAll('.modal-overlay, .modal-pay-overlay, .modal-buy-overlay, .agree-overlay').forEach(el => {
         if (el.id) modals[el.id] = el;
@@ -1296,7 +1250,6 @@
         }
       });
 
-      // ===== Чекбокс соглашения =====
       const agreeCheck = document.getElementById('agreeCheck');
       const payBtn = document.getElementById('payBtn');
       if (agreeCheck && payBtn) {
@@ -1312,7 +1265,6 @@
         alert('Политика конфиденциальности: данные не передаются третьим лицам.');
       });
 
-      // ===== Блокировка поворота =====
       (() => {
         const isMobile = window.innerWidth < 768 || /Android|iPhone|iPad|iPod|BlackBerry|Opera Mini|IEMobile/i.test(navigator.userAgent);
         if (!isMobile) return;
@@ -1324,7 +1276,6 @@
         window.addEventListener('orientationchange', () => setTimeout(check, 300), { passive: true });
       })();
 
-      // ===== Жанры / треки =====
       const GENRES = [
         { id: 'chillout', label: 'Chillout' },
         { id: 'jazz', label: 'Jazz' },
@@ -1376,7 +1327,6 @@
         if (iframe) iframe.src = t.url;
       });
 
-      // ===== Показать все релизы =====
       const toggleBtn = document.getElementById('showAllBtn');
       const grid = document.getElementById('releaseGrid');
       if (toggleBtn && grid) {
