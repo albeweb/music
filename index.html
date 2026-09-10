@@ -28,8 +28,8 @@
   <link rel="icon" type="image/x-icon" href="https://balm-music.ru/favicon.ico">
   <link rel="shortcut icon" href="https://balm-music.ru/favicon.ico">
 
-  <link rel="preconnect" href="https://bandcamp.com" crossorigin>
-  <link rel="preconnect" href="https://s4.bcbits.com" crossorigin>
+  <!-- Возвращено как было: preconnect без crossorigin для Bandcamp -->
+  <link rel="preconnect" href="https://s4.bcbits.com">
   <link rel="dns-prefetch" href="https://bandcamp.com">
   <link rel="preload" as="image" href="BALMherob.webp" fetchpriority="high">
   <link rel="preload" as="font" type="font/woff2" href="Geist-Bold.woff2" crossorigin>
@@ -592,7 +592,7 @@
       .bio-stat .lbl{font-size:.55rem!important;white-space:nowrap}
     }
 
-    /* ===== FAQ (details/summary — статичный HTML, без JS) ===== */
+    /* ===== FAQ ===== */
     .faq{padding:80px 0;border-bottom:1px solid rgba(255,255,255,.06)}
     .faq-title{font-size:clamp(1.8rem,3vw,2.2rem);font-weight:700;letter-spacing:-.02em;margin-bottom:48px;text-align:center;font-family:var(--font-main)}
     @media(max-width:480px){.faq-title{font-size:1.4rem;margin-bottom:30px}}
@@ -701,7 +701,7 @@
       body{-webkit-touch-callout:none!important;-webkit-user-select:none!important}
     }
 
-    /* ===== ОПТИМИЗАЦИЯ: тяжёлые секции ниже сгиба ===== */
+    /* ===== ОПТИМИЗАЦИЯ ===== */
     .bio,.faq,.releases{content-visibility:auto;contain-intrinsic-size:auto 800px}
   </style>
 </head>
@@ -709,7 +709,6 @@
 
   <!-- ===== SVG-СПРАЙТ ИКОНОК ===== -->
   <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true" focusable="false">
-    <!-- Оригинальная иконка Яндекс Музыки (стилизованный «импульс» 2023) -->
     <symbol id="i-yandex-music" viewBox="0 0 24 24">
       <path d="M12 2 L13.5 8.5 L20 8 L14.5 12 L20 16 L13.5 15.5 L12 22 L10.5 15.5 L4 16 L9.5 12 L4 8 L10.5 8.5 Z" fill="currentColor"/>
     </symbol>
