@@ -28,7 +28,6 @@
   <link rel="icon" type="image/x-icon" href="https://balm-music.ru/favicon.ico">
   <link rel="shortcut icon" href="https://balm-music.ru/favicon.ico">
 
-  <!-- Возвращено как было: preconnect без crossorigin для Bandcamp -->
   <link rel="preconnect" href="https://s4.bcbits.com">
   <link rel="dns-prefetch" href="https://bandcamp.com">
   <link rel="preload" as="image" href="BALMherob.webp" fetchpriority="high">
@@ -64,13 +63,7 @@
 
     /* ===== RESET ===== */
     *{margin:0;padding:0;box-sizing:border-box}
-    html{
-      scroll-behavior:smooth;overflow-x:hidden;width:100%;background:#0c0718;
-      scrollbar-gutter:stable;
-    }
-    @supports not (scrollbar-gutter:stable){
-      html{overflow-y:scroll}
-    }
+    html{scroll-behavior:smooth;overflow-x:hidden;width:100%;background:#0c0718}
     body{
       font-family:var(--font-main);color:var(--text);
       overflow-x:hidden;width:100%;
@@ -510,10 +503,7 @@
       background:transparent;border:none;border-radius:0;padding:0;
       text-align:left;cursor:pointer;text-decoration:none;color:var(--text);
       display:block;font-family:var(--font-main);
-      opacity:1;transform:translateY(0);
-      animation:cardIn .45s cubic-bezier(.2,.8,.2,1) both;
     }
-    @keyframes cardIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
     .card.hidden{display:none}
     .card-cover{
       width:100%;aspect-ratio:1;border-radius:10px;margin-bottom:14px;
@@ -711,7 +701,6 @@
     .bio,.faq,.releases{content-visibility:auto;contain-intrinsic-size:auto 800px}
 
     /* ===== PRELOADER ===== */
-    html.preloading,html.preloading body{overflow:hidden}
     .preloader{
       position:fixed;inset:0;z-index:999999;
       background:linear-gradient(165deg,#0d0719 0%,#100a24 28%,#0a1422 58%,#0d0a18 82%,#0b0714 100%);
@@ -731,7 +720,6 @@
     }
     .preloader-inner{position:relative;display:flex;flex-direction:column;align-items:center;z-index:2}
 
-    /* --- ЗАГОЛОВОК: размер идентичен hero-title --- */
     .preloader-title{
       display:flex;justify-content:center;
       font-size:clamp(4rem,20vw,14rem);
@@ -800,7 +788,6 @@
     }
     @keyframes preSub{to{opacity:1;transform:translateY(0)}}
 
-    /* --- САУНДВЕЙВ-ПОЛОСА ЗАГРУЗКИ --- */
     .preloader-wave{
       display:flex;align-items:center;justify-content:center;
       gap:3px;height:52px;width:min(320px,78vw);
@@ -854,7 +841,7 @@
       font-variant-numeric:tabular-nums;
     }
 
-    /* ===== REVEAL КОНТЕНТА ===== */
+    /* ===== REVEAL КОНТЕНТА (HERO) ===== */
     body:not(.loaded) .navbar,
     body:not(.loaded) .hero-content>*{opacity:0}
     body.loaded .navbar{animation:revealDown .9s cubic-bezier(.2,.8,.2,1) .05s backwards}
@@ -865,22 +852,53 @@
     @keyframes revealUp{from{opacity:0;transform:translateY(36px)}to{opacity:1;transform:translateY(0)}}
     @keyframes revealDown{from{opacity:0;transform:translateY(-24px)}to{opacity:1;transform:translateY(0)}}
 
-    @media(max-width:480px){
-      .preloader-wave{height:44px;width:min(260px,78vw);margin-top:20px;gap:2px}
-      .preloader-count{font-size:.62rem;margin-top:10px}
+    /* ===== SCROLL REVEAL ===== */
+    .reveal,
+    .reveal-up,
+    .reveal-left,
+    .reveal-right,
+    .reveal-scale{
+      opacity:0;
+      transition:
+        opacity .9s cubic-bezier(.22,1,.36,1),
+        transform .9s cubic-bezier(.22,1,.36,1);
+      transition-delay:var(--rd, 0s);
+      will-change:opacity,transform;
+      backface-visibility:hidden;
     }
+    .reveal,      .reveal-up    {transform:translateY(48px)}
+    .reveal-left  {transform:translateX(-60px)}
+    .reveal-right {transform:translateX(60px)}
+    .reveal-scale {transform:translateY(30px) scale(.94)}
+
+    .reveal.in,
+    .reveal-up.in,
+    .reveal-left.in,
+    .reveal-right.in,
+    .reveal-scale.in{
+      opacity:1;
+      transform:none;
+    }
+
+    @media(max-width:768px){
+      .reveal-left  {transform:translateX(-32px)}
+      .reveal-right {transform:translateX(32px)}
+      .reveal-up, .reveal {transform:translateY(32px)}
+    }
+
     @media(prefers-reduced-motion:reduce){
       .preloader-glow{animation:none}
       .preloader-letter{animation-duration:.4s}
       .preloader-wave-bar i{animation:none;transform:scaleY(.7)}
       .preloader-wave.complete{animation:none}
       .preloader-title::after{animation:none}
+      .reveal,.reveal-up,.reveal-left,.reveal-right,.reveal-scale{
+        opacity:1 !important;transform:none !important;transition:none !important;
+      }
     }
   </style>
 </head>
 <body>
-
-  <script>document.documentElement.classList.add('preloading');</script>
 
   <!-- ===== PRELOADER ===== -->
   <div class="preloader" id="preloader" aria-hidden="true">
@@ -901,8 +919,8 @@
   <noscript>
     <style>
       .preloader{display:none !important}
-      html.preloading,html.preloading body{overflow:auto !important}
       body:not(.loaded) .navbar,body:not(.loaded) .hero-content>*{opacity:1 !important}
+      .reveal,.reveal-up,.reveal-left,.reveal-right,.reveal-scale{opacity:1 !important;transform:none !important}
     </style>
   </noscript>
 
@@ -1148,28 +1166,28 @@
   <section class="cf scroll-margin" id="copyright-free" aria-labelledby="copyrightFreeTitle">
     <div class="container">
       <div class="cf-grid">
-        <div class="cf-text">
-          <div class="cf-badge">
+        <div class="cf-text reveal-left">
+          <div class="cf-badge reveal-up" style="--rd:.05s">
             <svg class="ico" aria-hidden="true"><use href="#i-shield"/></svg> Royalty Free
           </div>
-          <h2 class="cf-title" id="copyrightFreeTitle">
+          <h2 class="cf-title reveal-up" id="copyrightFreeTitle" style="--rd:.12s">
             <svg class="ico" aria-hidden="true"><use href="#i-check-circle"/></svg>
             Музыка без авторских прав для фона, бизнеса и видео
           </h2>
-          <p class="cf-desc">Фоновая музыка БАЛМ создана для использования в коммерческих и некоммерческих проектах. <strong>Никаких отчислений РАО и ВОИС</strong> — платите один раз и используете бессрочно.</p>
+          <p class="cf-desc reveal-up" style="--rd:.2s">Фоновая музыка БАЛМ создана для использования в коммерческих и некоммерческих проектах. <strong>Никаких отчислений РАО и ВОИС</strong> — платите один раз и используете бессрочно.</p>
           <ul class="cf-features">
-            <li><svg class="ico" aria-hidden="true"><use href="#i-check-circle"/></svg> Для ресторанов, ТЦ, салонов красоты</li>
-            <li><svg class="ico" aria-hidden="true"><use href="#i-check-circle"/></svg> Для YouTube, TikTok, рекламы</li>
-            <li><svg class="ico" aria-hidden="true"><use href="#i-check-circle"/></svg> Для игр, подкастов, презентаций</li>
-            <li><svg class="ico" aria-hidden="true"><use href="#i-check-circle"/></svg> Без ограничений по тиражам и срокам</li>
+            <li class="reveal-up" style="--rd:.28s"><svg class="ico" aria-hidden="true"><use href="#i-check-circle"/></svg> Для ресторанов, ТЦ, салонов красоты</li>
+            <li class="reveal-up" style="--rd:.34s"><svg class="ico" aria-hidden="true"><use href="#i-check-circle"/></svg> Для YouTube, TikTok, рекламы</li>
+            <li class="reveal-up" style="--rd:.4s"><svg class="ico" aria-hidden="true"><use href="#i-check-circle"/></svg> Для игр, подкастов, презентаций</li>
+            <li class="reveal-up" style="--rd:.46s"><svg class="ico" aria-hidden="true"><use href="#i-check-circle"/></svg> Без ограничений по тиражам и срокам</li>
           </ul>
-          <div class="cf-legal">
+          <div class="cf-legal reveal-up" style="--rd:.54s">
             <svg class="ico" aria-hidden="true"><use href="#i-check-circle"/></svg>
             <div class="text"><strong>✅ Скачайте бесплатную демо-версию</strong><br>Полная версия — 2 часа уникальной музыки. <strong>Экономьте до 162 000 ₽ в год</strong> на отчислениях за фоновую музыку.</div>
           </div>
         </div>
-        <div class="cf-player">
-          <div class="demo">
+        <div class="cf-player reveal-right">
+          <div class="demo reveal-scale" style="--rd:.15s">
             <div class="demo-track">
               <div class="demo-art">
                 <svg class="ico" aria-hidden="true"><use href="#i-headphones"/></svg>
@@ -1191,7 +1209,7 @@
               <svg class="ico" aria-hidden="true"><use href="#i-headphones"/></svg> BALM RADIO · Все жанры · Без рекламы
             </div>
           </div>
-          <div class="btn-group">
+          <div class="btn-group reveal-up" style="--rd:.3s">
             <button class="btn btn-primary" data-open="subscribeModal" aria-label="Оформить подписку BALM Premium">
               <svg class="ico" aria-hidden="true"><use href="#i-crown"/></svg> Оформить подписку
             </button>
@@ -1208,13 +1226,13 @@
   <section class="releases scroll-margin" id="releases" aria-labelledby="releasesTitle">
     <div class="container">
       <div class="releases-header">
-        <h2 class="releases-title" id="releasesTitle">Новые релизы BALM</h2>
-        <button class="releases-toggle" id="showAllBtn" aria-label="Показать или скрыть все релизы">
+        <h2 class="releases-title reveal-up" id="releasesTitle">Новые релизы BALM</h2>
+        <button class="releases-toggle reveal-up" id="showAllBtn" aria-label="Показать или скрыть все релизы" style="--rd:.1s">
           Все релизы <svg class="ico" aria-hidden="true"><use href="#i-chevron-down"/></svg>
         </button>
       </div>
       <div class="releases-grid" id="releaseGrid">
-        <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" class="card" aria-label="Signal acquired (Funky Break)">
+        <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" class="card reveal-up" aria-label="Signal acquired (Funky Break)">
           <div class="card-cover">
             <img src="signal.webp" alt="Signal acquired (Funky Break)" width="200" height="200" loading="lazy" decoding="async">
             <span class="card-new">New</span>
@@ -1222,7 +1240,7 @@
           <div class="card-title">Signal acquired (Funky Break)</div>
           <div class="card-year">2026 · Альбом · Фанк</div>
         </a>
-        <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" class="card" aria-label="Клуб на дне (Минимал-техно)">
+        <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" class="card reveal-up" aria-label="Клуб на дне (Минимал-техно)">
           <div class="card-cover">
             <img src="rage.webp" alt="Клуб на дне (Минимал-техно)" width="200" height="200" loading="lazy" decoding="async">
             <span class="card-new">New</span>
@@ -1230,7 +1248,7 @@
           <div class="card-title">Клуб на дне (Минимал-техно)</div>
           <div class="card-year">2026 · Сингл · Техно</div>
         </a>
-        <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" class="card" aria-label="Последняя любовь">
+        <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" class="card reveal-up" aria-label="Последняя любовь">
           <div class="card-cover">
             <img src="last.webp" alt="Последняя любовь" width="200" height="200" loading="lazy" decoding="async">
             <span class="card-new">New</span>
@@ -1238,7 +1256,7 @@
           <div class="card-title">Последняя любовь</div>
           <div class="card-year">2026 · Дабл-сингл · Поп</div>
         </a>
-        <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" class="card" aria-label="Jazz">
+        <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" class="card reveal-up" aria-label="Jazz">
           <div class="card-cover">
             <img src="Jazz.webp" alt="Jazz" width="200" height="200" loading="lazy" decoding="async">
             <span class="card-new">New</span>
@@ -1246,84 +1264,84 @@
           <div class="card-title">Jazz</div>
           <div class="card-year">2026 · Альбом · Джаз</div>
         </a>
-        <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" class="card hidden" aria-label="К звездам (Rock / Jazz / Piano)">
+        <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" class="card hidden reveal-up" aria-label="К звездам (Rock / Jazz / Piano)">
           <div class="card-cover">
             <img src="stars.webp" alt="К звездам (Rock / Jazz / Piano)" width="200" height="200" loading="lazy" decoding="async">
           </div>
           <div class="card-title">К звездам (Rock / Jazz / Piano)</div>
           <div class="card-year">2026 · Трипл-сингл</div>
         </a>
-        <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" class="card hidden" aria-label="Альтерэго (Rock)">
+        <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" class="card hidden reveal-up" aria-label="Альтерэго (Rock)">
           <div class="card-cover">
             <img src="alterego.webp" alt="Альтерэго (Rock)" width="200" height="200" loading="lazy" decoding="async">
           </div>
           <div class="card-title">Альтерэго (Rock)</div>
           <div class="card-year">2026 · Альбом · Рок</div>
         </a>
-        <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" class="card hidden" aria-label="Beautiful (Rock)">
+        <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" class="card hidden reveal-up" aria-label="Beautiful (Rock)">
           <div class="card-cover">
             <img src="beautiful.webp" alt="Beautiful (Rock)" width="200" height="200" loading="lazy" decoding="async">
           </div>
           <div class="card-title">Beautiful (Rock)</div>
           <div class="card-year">2026 · Сингл</div>
         </a>
-        <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" class="card hidden" aria-label="Chance English ver. (Rock)">
+        <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" class="card hidden reveal-up" aria-label="Chance English ver. (Rock)">
           <div class="card-cover">
             <img src="chance.webp" alt="Chance English ver. (Rock)" width="200" height="200" loading="lazy" decoding="async">
           </div>
           <div class="card-title">Chance English ver. (Rock)</div>
           <div class="card-year">2026 · Сингл</div>
         </a>
-        <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" class="card hidden" aria-label="Облака (Rock)">
+        <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" class="card hidden reveal-up" aria-label="Облака (Rock)">
           <div class="card-cover">
             <img src="cloud.webp" alt="Облака (Rock)" width="200" height="200" loading="lazy" decoding="async">
           </div>
           <div class="card-title">Облака (Rock)</div>
           <div class="card-year">2026 · Сингл</div>
         </a>
-        <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" class="card hidden" aria-label="Жги моё сердце (Pop)">
+        <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" class="card hidden reveal-up" aria-label="Жги моё сердце (Pop)">
           <div class="card-cover">
             <img src="Heart.webp" alt="Жги моё сердце (Pop)" width="200" height="200" loading="lazy" decoding="async">
           </div>
           <div class="card-title">Жги моё сердце (Pop)</div>
           <div class="card-year">2026 · Сингл</div>
         </a>
-        <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" class="card hidden" aria-label="It's My Life (Hip-hop)">
+        <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" class="card hidden reveal-up" aria-label="It's My Life (Hip-hop)">
           <div class="card-cover">
             <img src="its-my-life.webp" alt="It's My Life (Hip-hop)" width="200" height="200" loading="lazy" decoding="async">
           </div>
           <div class="card-title">It's My Life (Hip-hop)</div>
           <div class="card-year">2026 · Сингл</div>
         </a>
-        <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" class="card hidden" aria-label="Смысл жизни любовь (Pop)">
+        <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" class="card hidden reveal-up" aria-label="Смысл жизни любовь (Pop)">
           <div class="card-cover">
             <img src="love.webp" alt="Смысл жизни любовь (Pop)" width="200" height="200" loading="lazy" decoding="async">
           </div>
           <div class="card-title">Смысл жизни любовь (Pop)</div>
           <div class="card-year">2026 · Сингл</div>
         </a>
-        <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" class="card hidden" aria-label="Ну почему? (Breaks)">
+        <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" class="card hidden reveal-up" aria-label="Ну почему? (Breaks)">
           <div class="card-cover">
             <img src="what.webp" alt="Ну почему? (Breaks)" width="200" height="200" loading="lazy" decoding="async">
           </div>
           <div class="card-title">Ну почему? (Breaks)</div>
           <div class="card-year">2026 · Сингл</div>
         </a>
-        <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" class="card hidden" aria-label="Мой маленький мир (Pop)">
+        <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" class="card hidden reveal-up" aria-label="Мой маленький мир (Pop)">
           <div class="card-cover">
             <img src="world.webp" alt="Мой маленький мир (Pop)" width="200" height="200" loading="lazy" decoding="async">
           </div>
           <div class="card-title">Мой маленький мир (Pop)</div>
           <div class="card-year">2026 · Сингл</div>
         </a>
-        <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" class="card hidden" aria-label="Моя красивая (Pop)">
+        <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" class="card hidden reveal-up" aria-label="Моя красивая (Pop)">
           <div class="card-cover">
             <img src="beautifulRU.webp" alt="Моя красивая (Pop)" width="200" height="200" loading="lazy" decoding="async">
           </div>
           <div class="card-title">Моя красивая (Pop)</div>
           <div class="card-year">2026 · Сингл</div>
         </a>
-        <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" class="card hidden" aria-label="Шанс (Rock)">
+        <a href="https://music.yandex.ru/artist/26471381" target="_blank" rel="noopener noreferrer" class="card hidden reveal-up" aria-label="Шанс (Rock)">
           <div class="card-cover">
             <img src="chanceRU.webp" alt="Шанс (Rock)" width="200" height="200" loading="lazy" decoding="async">
           </div>
@@ -1337,15 +1355,15 @@
   <!-- BIO -->
   <section class="bio scroll-margin" id="bio" aria-labelledby="bioTitle">
     <div class="container bio-grid">
-      <div class="bio-img">
+      <div class="bio-img reveal-left">
         <img src="BALM.webp" alt="BALM — экспериментальный музыкальный проект" width="600" height="600" loading="lazy" decoding="async">
       </div>
       <div>
-        <h2 class="bio-title" id="bioTitle">О проекте BALM</h2>
-        <p class="bio-text"><strong>BALM</strong> — это музыкальный проект Алексея Беляева из Санкт-Петербурга. На стыке разных жанров рождается уникальный звук для тех, кто ищет настоящую эмоцию и качественный музыкальный контент без ограничений по авторским правам.</p>
-        <p class="bio-text">Основная миссия проекта — сделать качественную музыку доступной для бизнеса и творческих проектов. Мы создаём коммерческую, детскую и фоновую музыку, а также пишем песни и стихи для мультипликации на заказ. Работаем в любых жанрах: от джаза до рока, от электроники до хип-хопа.</p>
-        <p class="bio-text"><strong>Ключевое преимущество:</strong> вся фоновая музыка BALM свободна от авторских отчислений РАО и ВОИС. Вы можете использовать её в любых коммерческих целях без дополнительных платежей.</p>
-        <div class="bio-stats">
+        <h2 class="bio-title reveal-up" id="bioTitle">О проекте BALM</h2>
+        <p class="bio-text reveal-up" style="--rd:.08s"><strong>BALM</strong> — это музыкальный проект Алексея Беляева из Санкт-Петербурга. На стыке разных жанров рождается уникальный звук для тех, кто ищет настоящую эмоцию и качественный музыкальный контент без ограничений по авторским правам.</p>
+        <p class="bio-text reveal-up" style="--rd:.16s">Основная миссия проекта — сделать качественную музыку доступной для бизнеса и творческих проектов. Мы создаём коммерческую, детскую и фоновую музыку, а также пишем песни и стихи для мультипликации на заказ. Работаем в любых жанрах: от джаза до рока, от электроники до хип-хопа.</p>
+        <p class="bio-text reveal-up" style="--rd:.24s"><strong>Ключевое преимущество:</strong> вся фоновая музыка BALM свободна от авторских отчислений РАО и ВОИС. Вы можете использовать её в любых коммерческих целях без дополнительных платежей.</p>
+        <div class="bio-stats reveal-up" style="--rd:.32s">
           <div class="bio-stat"><span class="num">Санкт-Петербург</span><span class="lbl">База проекта</span></div>
           <div class="bio-stat"><span class="num">15+</span><span class="lbl">Релизов</span></div>
           <div class="bio-stat"><span class="num">Бесплатно</span><span class="lbl">Демо-версия</span></div>
@@ -1357,9 +1375,9 @@
   <!-- FAQ -->
   <section class="faq scroll-margin" id="faq" aria-labelledby="faqTitle">
     <div class="container">
-      <h2 class="faq-title" id="faqTitle">Часто задаваемые вопросы</h2>
+      <h2 class="faq-title reveal-up" id="faqTitle">Часто задаваемые вопросы</h2>
       <div class="faq-list">
-        <details class="faq-item">
+        <details class="faq-item reveal-up" style="--rd:.05s">
           <summary class="faq-q">
             <span>Нужно ли платить РАО и ВОИС за использование музыки BALM?</span>
             <span class="faq-icon"><svg class="ico" aria-hidden="true"><use href="#i-chevron-down"/></svg></span>
@@ -1368,7 +1386,7 @@
             <p><strong>Нет, не нужно.</strong> Музыка BALM полностью свободна от авторских отчислений. Вы платите <span class="hl">один раз</span> и больше никогда не платите РАО, ВОИС или другим организациям. Экономия до 162 000 ₽ в год. Подробнее в <a href="#" data-agreement>Соглашении</a>.</p>
           </div>
         </details>
-        <details class="faq-item">
+        <details class="faq-item reveal-up" style="--rd:.12s">
           <summary class="faq-q">
             <span>Вы пишете музыку для детских мультфильмов и анимации?</span>
             <span class="faq-icon"><svg class="ico" aria-hidden="true"><use href="#i-chevron-down"/></svg></span>
@@ -1377,7 +1395,7 @@
             <p><strong>Да, мы создаём музыку для детской мультипликации.</strong> BALM пишет саундтреки, фоновую музыку и песенки для мультфильмов, детских программ и анимационных проектов. <a href="https://t.me/albe_spb" target="_blank" rel="noopener noreferrer">Обсудим вашу идею в Telegram</a>.</p>
           </div>
         </details>
-        <details class="faq-item">
+        <details class="faq-item reveal-up" style="--rd:.18s">
           <summary class="faq-q">
             <span>Пишете ли вы стихи и песни для исполнителей с нуля?</span>
             <span class="faq-icon"><svg class="ico" aria-hidden="true"><use href="#i-chevron-down"/></svg></span>
@@ -1386,7 +1404,7 @@
             <p><strong>Да, мы пишем стихи, тексты песен и полноценные треки для исполнителей на заказ.</strong> Можем создать материал под ваш образ, голос и стиль. <a href="https://t.me/albe_spb" target="_blank" rel="noopener noreferrer">Напишите в Telegram</a>.</p>
           </div>
         </details>
-        <details class="faq-item">
+        <details class="faq-item reveal-up" style="--rd:.24s">
           <summary class="faq-q">
             <span>Можно ли приобрести готовые стихи и песни из каталога?</span>
             <span class="faq-icon"><svg class="ico" aria-hidden="true"><use href="#i-chevron-down"/></svg></span>
@@ -1457,7 +1475,6 @@
         const waveEl  = document.getElementById('preloaderWave');
         const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        // --- Генерация саундвейва ---
         const BAR_COUNT = 28;
         const bars = [];
         if (waveEl) {
@@ -1477,7 +1494,6 @@
           }
         }
 
-        // --- Тайминги ---
         const START = reduced ? 200  : 2100;
         const TOTAL = reduced ? 400  : 1300;
         const MIN_W = reduced ? 700  : 3700;
@@ -1507,11 +1523,10 @@
         };
         requestAnimationFrame(tick);
 
-        // --- Завершение ---
         const finish = () => {
-          document.documentElement.classList.remove('preloading');
           preloader.classList.add('done');
           document.body.classList.add('loaded');
+          initScrollReveal();
           setTimeout(() => preloader.remove(), 1200);
         };
 
@@ -1527,6 +1542,52 @@
 
         Promise.all([minWait, pageLoad, fontsReady]).then(finish);
       })();
+
+      // ===== SCROLL REVEAL =====
+      let revealInited = false;
+      function initScrollReveal() {
+        if (revealInited) return;
+        revealInited = true;
+
+        const items = document.querySelectorAll(
+          '.reveal, .reveal-up, .reveal-left, .reveal-right, .reveal-scale'
+        );
+        if (!items.length) return;
+
+        if (!('IntersectionObserver' in window)) {
+          items.forEach(el => el.classList.add('in'));
+          return;
+        }
+
+        const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduced) {
+          items.forEach(el => el.classList.add('in'));
+          return;
+        }
+
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in');
+              io.unobserve(entry.target);
+            }
+          });
+        }, {
+          root: null,
+          rootMargin: '0px 0px -8% 0px',
+          threshold: 0.12
+        });
+
+        const grid = document.getElementById('releaseGrid');
+        if (grid) {
+          grid.querySelectorAll('.card').forEach((card, i) => {
+            const col = i % 4;
+            card.style.setProperty('--rd', (col * 0.08).toFixed(2) + 's');
+          });
+        }
+
+        items.forEach(el => io.observe(el));
+      }
 
       // ===== Мобильное меню =====
       const hamburger = document.getElementById('hamburger');
